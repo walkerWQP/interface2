@@ -15,7 +15,7 @@
 //正式
 #define YUMING  @"http://www.ksznxt.com/"
 //测试
-//#define YUMING    @"http://school.ksznxt.com/"
+//#define YUMING  @"http://school.ksznxt.com/"
 
 
 //登录接口

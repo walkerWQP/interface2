@@ -175,6 +175,8 @@
 
             TeacherZaiXianModel * model = [self.TeacherZaiXianAry objectAtIndex:indexPath.row];
             [cell.TeacherListNImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"缩略图"]];
+           cell.TeacherListNImg.contentMode = UIViewContentModeScaleAspectFill;
+           cell.TeacherListNImg.clipsToBounds = YES;
             cell.TeacherListNTitleLabel.text = model.title;
             if (model.view > 9999) {
                 CGFloat num = model.view / 10000;

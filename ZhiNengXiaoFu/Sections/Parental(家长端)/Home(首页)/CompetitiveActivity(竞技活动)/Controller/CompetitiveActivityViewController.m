@@ -26,7 +26,8 @@
     self.title = @"竞技活动";
     self.view.backgroundColor = COLOR(246, 246, 246, 1);
     [self makeActivityManagementViewControllerUI];
-
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
 }
 
 

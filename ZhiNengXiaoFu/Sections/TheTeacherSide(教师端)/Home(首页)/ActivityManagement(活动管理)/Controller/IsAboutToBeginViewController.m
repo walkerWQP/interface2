@@ -63,7 +63,7 @@
     [self getActivityActivityListData:self.page];
 }
 
--  (void)getActivityActivityListData:(NSInteger)page  {
+-  (void)getActivityActivityListData:(NSInteger)page {
     
     NSDictionary *dic = @{@"key":[UserManager key],@"status":@"2",@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:activityActivityList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -89,8 +89,7 @@
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
 
-            }else
-            {
+            } else {
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];

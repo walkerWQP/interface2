@@ -85,6 +85,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.view.backgroundColor = backColor;
     [self setUser];
     self.pageID = 1;
     //下拉刷新
@@ -114,8 +115,6 @@
 - (void)loadMoreTopic {
     self.pageID += 1;
     
-    NSLog(@"aaaaaaaaaaaaaaaaaaaaaaaaaaaaa%ld",self.pageID);
-    
     if ([self.typeStr isEqualToString:@"1"]) {
         NSDictionary  *dic = @{@"key":[UserManager key], @"class_id":@"", @"page":[NSString stringWithFormat:@"%ld",self.pageID]};
         [self getDataFromGetAlbumURL1:dic];
@@ -132,7 +131,6 @@
     [[IQKeyboardManager sharedManager] disableToolbarInViewControllerClass:[NewDynamicsViewController class]];
     if ([self.typeStr isEqualToString:@"1"]) {
         self.title = @"班级圈";
-        
     } else {
         self.classBtn =[UIButton buttonWithType:UIButtonTypeCustom];
         self.classBtn.frame=CGRectMake(20, 20, 130, 30);
@@ -163,18 +161,18 @@
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
     [self.dynamicsTable addSubview:self.zanwushuju];
-    
-//    //外观代理
-//    UINavigationBar *navigationBar = self.navigationController.navigationBar;
-//    //修改标题颜色
-//    NSDictionary * dict = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
-//    [navigationBar setTitleTextAttributes:dict];
-//
-//    navigationBar.barTintColor = [UIColor colorWithRed:64.0/255.0 green:64.0/255.0 blue:64.0/255.0 alpha:1.0];
-//    navigationBar.tintColor = [UIColor whiteColor];
-//
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
+#pragma mark ======= 键盘上边输入框 =======
+    //外观代理
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+    //修改标题颜色
+    NSDictionary * dict = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    [navigationBar setTitleTextAttributes:dict];
+
+    navigationBar.barTintColor = [UIColor colorWithRed:64.0/255.0 green:64.0/255.0 blue:64.0/255.0 alpha:1.0];
+    navigationBar.tintColor = [UIColor whiteColor];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
 }
 

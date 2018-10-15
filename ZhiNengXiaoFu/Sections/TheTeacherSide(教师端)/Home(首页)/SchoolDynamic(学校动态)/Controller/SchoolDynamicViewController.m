@@ -61,7 +61,6 @@
 
 - (void)getBannersURLData {
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"6"};
-    NSLog(@"%@",[UserManager key]);
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
@@ -150,10 +149,6 @@
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
     self.headImgView.backgroundColor = [UIColor clearColor];
     [self.schoolDynamicCollectionView addSubview:self.headImgView];
-
-    
-    
-    
 }
 
 #pragma mark - <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -172,11 +167,8 @@
     if (self.schoolDynamicArr.count != 0) {
         SchoolDynamicModel *model = [self.schoolDynamicArr objectAtIndex:indexPath.row];
         [cell.headImgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"通知图标"]];
-        
         cell.titleLabel.text = model.title;
-        //    cell.subjectsLabel.text = [dic objectForKey:@"content"];
         cell.timeLabel.text = model.create_time;
-        
         gridcell = cell;
     }
     

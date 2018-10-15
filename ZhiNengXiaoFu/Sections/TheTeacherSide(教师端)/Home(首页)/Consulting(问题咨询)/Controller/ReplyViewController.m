@@ -98,23 +98,19 @@
 - (void)postDataForTeacherAnswerURL {
     
     
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"])
-    {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
         [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
         return;
-    }else if ([self.replyTextField.text isEqualToString:@""])
-    {
+    }else if ([self.replyTextField.text isEqualToString:@""]) {
         [WProgressHUD showErrorAnimatedText:@"回复不能为空"];
         return;
-    } else
-    {
+    } else {
         NSDictionary * dic = @{@"key":[UserManager key], @"id":self.ID,@"answer":self.replyTextField.text};
         [[HttpRequestManager sharedSingleton] POST:teacherAnswerURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
             if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
                 [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
                 [self.navigationController popViewControllerAnimated:YES];
-            }else
-            {
+            } else {
                 if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                     [UserManager logoOut];
                 } else {

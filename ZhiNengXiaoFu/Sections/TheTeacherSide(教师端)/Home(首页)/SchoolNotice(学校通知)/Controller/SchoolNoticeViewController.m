@@ -14,13 +14,13 @@
 
 @interface SchoolNoticeViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, assign) NSInteger     page;
-@property (nonatomic, strong) UIImageView * zanwushuju;
-@property (nonatomic, strong) NSMutableArray  *schoolNoticeArr;
+@property (nonatomic, assign) NSInteger        page;
+@property (nonatomic, strong) UIImageView      *zanwushuju;
+@property (nonatomic, strong) NSMutableArray   *schoolNoticeArr;
 @property (nonatomic, strong) UICollectionView *schoolNoticeCollectionView;
-@property (nonatomic, strong) UIImageView  *headImgView;
+@property (nonatomic, strong) UIImageView      *headImgView;
 
-@property (nonatomic, strong) NSMutableArray *bannerArr;
+@property (nonatomic, strong) NSMutableArray   *bannerArr;
 
 @end
 
@@ -33,14 +33,18 @@
     return _schoolNoticeArr;
 }
 
+- (NSMutableArray *)bannerArr {
+    if (!_bannerArr) {
+        _bannerArr = [NSMutableArray array];
+    }
+    return _bannerArr;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"学校通知";
     self.page  = 1;
-   
-    
     [self mkeSchoolNoticeViewControllerUI];
-    
     //下拉刷新
     self.schoolNoticeCollectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopic)];
     //自动更改透明度
@@ -56,16 +60,10 @@
     [self getBannersURLData];
 }
 
-- (NSMutableArray *)bannerArr {
-    if (!_bannerArr) {
-        _bannerArr = [NSMutableArray array];
-    }
-    return _bannerArr;
-}
+
 
 - (void)getBannersURLData {
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"5"};
-    NSLog(@"%@",[UserManager key]);
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
@@ -78,8 +76,7 @@
                 [self.headImgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"教师端活动管理banner"]];
                 [self.schoolNoticeCollectionView reloadData];
             }
-            
-            
+        
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -106,7 +103,6 @@
 }
 
 - (void)getNoticeListData:(NSInteger)page {
-    
     
     NSDictionary *dic = @{@"key":[UserManager key], @"page":[NSString stringWithFormat:@"%ld",page],@"is_school":@"1"};
     [[HttpRequestManager sharedSingleton] POST:noticeListURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {

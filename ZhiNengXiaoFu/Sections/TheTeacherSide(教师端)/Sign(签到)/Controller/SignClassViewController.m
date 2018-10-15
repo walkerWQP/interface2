@@ -84,12 +84,10 @@
     NSDictionary *dic = @{@"key":[UserManager key],@"class_id":classID,@"type":type};
     [[HttpRequestManager sharedSingleton] POST:classConditionURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.allStr = @"";
             self.signStr = @"";
             self.no_signStr = @"";
             self.leaveStr = @"";
-            
             self.allStr = [NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"all"]];
             self.signStr = [NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"sign"]];
             self.no_signStr = [NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"no_sign"]];
@@ -208,16 +206,12 @@
             } else {
                 [WPopupMenu showRelyOnView:self.rightBtn titles:ary icons:nil menuWidth:140 delegate:self];
             }
-            
-            
             if (self.publishJobArr.count == 0) {
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
             } else {
                 
                 
             }
-            
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -225,7 +219,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -236,9 +229,7 @@
 
 #pragma mark - YBPopupMenuDelegate
 - (void)WPopupMenuDidSelectedAtIndex:(NSInteger)index WPopupMenu:(WPopupMenu *)WPopupMenu {
-
         PublishJobModel *model = [self.classNameArr objectAtIndex:index];
-        NSLog(@"%@",model.ID);
         if (model.ID == nil) {
             [WProgressHUD showSuccessfulAnimatedText:@"数据不正确,请重试"];
         } else {

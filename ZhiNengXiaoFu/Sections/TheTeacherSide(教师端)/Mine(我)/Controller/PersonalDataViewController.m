@@ -23,9 +23,7 @@
 @implementation PersonalDataViewController
 
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    
+- (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = NO;
     [super viewWillAppear:animated];
     [self setUser];
@@ -35,7 +33,6 @@
 }
 
 - (void)viewDidLoad {
-
     [super viewDidLoad];
     self.title = @"个人资料";
     self.view.backgroundColor = backColor;
@@ -110,10 +107,7 @@
         if (indexPath.row == 0) {
             PersonIconCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PersonIconCellId" forIndexPath:indexPath];
             cell.nameLabel.text = @"头像";
-            
             cell.selectionStyle =  UITableViewCellSelectionStyleNone;
-            
-            
             if (self.personInfo.head_img == nil) {
                 cell.iConImg.image = [UIImage imageNamed:@"user"];
             } else {
@@ -131,15 +125,14 @@
                 cell.moreImg.alpha = 1;
                 cell.newTitleLabel.alpha = 1;
                 cell.titleLabel.alpha = 0;
-            }else
-            {
+            } else {
                 cell.moreImg.alpha = 0;
                 cell.newTitleLabel.alpha = 0;
                 cell.titleLabel.alpha = 1;
             }
             if (indexPath.row == 1) {
                 cell.titleLabel.text = self.personInfo.name;
-            }else if (indexPath.row == 2) {
+            } else if (indexPath.row == 2) {
                 if (self.personInfo.mobile == nil || [self.personInfo.mobile isEqualToString:@""]) {
                     cell.newTitleLabel.text = @"请绑定手机号";
                 } else {
@@ -168,9 +161,7 @@
 }
 
 
-- (void)exitBtn : (UIButton *)sender
-{
-    NSLog(@"点击退出");
+- (void)exitBtn : (UIButton *)sender {
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"确定要退出登录吗?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *alertT = [UIAlertAction actionWithTitle:@"退出登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"点击退出登录");
@@ -186,8 +177,7 @@
     
 }
 
-- (void)tuichuLogin
-{
+- (void)tuichuLogin {
     [UserManager logoOut];
     [WProgressHUD showSuccessfulAnimatedText:@"退出成功"];
     
@@ -212,12 +202,10 @@
         {
             NSLog(@"手机号");
             
-            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"])
-            {
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
                 [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
               
-            }else
-            {
+            } else {
                 BindMobilePhoneViewController *bingMoblie = [[BindMobilePhoneViewController alloc] init];
                 if (self.personInfo.mobile == nil || [self.personInfo.mobile isEqualToString:@""]) {
                     bingMoblie.typeStr = @"1";

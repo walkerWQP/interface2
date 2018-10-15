@@ -63,6 +63,9 @@
     [self.schoolDynamicTableView.mj_header beginRefreshing];
     //上拉刷新
     self.schoolDynamicTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopic)];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
 }
 
 - (void)loadNewTopic {

@@ -292,7 +292,7 @@
             
             UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(back.frame.origin.x - 5, back.frame.origin.y + back.frame.size.height + 5, 50, 15)];
             titleLabel.text = [titleAry objectAtIndex:i];
-            titleLabel.font = [UIFont systemFontOfSize:11];
+            titleLabel.font = [UIFont systemFontOfSize:12];
             titleLabel.textAlignment = NSTextAlignmentCenter;
             titleLabel.textColor = RGB(119, 119, 119);
             [cell addSubview:titleLabel];
@@ -429,8 +429,8 @@
             titleLabel.text = @"学校动态";
         }
         
-        titleLabel.font = [UIFont systemFontOfSize:15];
-        titleLabel.textColor = RGB(119, 119, 119);
+        titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:17];
+        titleLabel.textColor = RGB(51, 51, 51);
         [header addSubview:titleLabel];
         
        

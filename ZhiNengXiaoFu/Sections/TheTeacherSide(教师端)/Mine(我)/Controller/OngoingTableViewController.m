@@ -132,18 +132,13 @@
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
             [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
             
-        }else
-        {
+        } else {
             OngoingModel * model = [self.ongoingArr objectAtIndex:indexPath.row];
             [self.ongoingArr removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [self DeleteActivityURL:model.ID];
         }
-       
-        
     }];
-    
-    
     return @[deleteAction];
 }
 
@@ -248,10 +243,8 @@
                 jingJiActivityDetailsVC.JingJiActivityDetailsId = model.ID;
                 [self.navigationController pushViewController:jingJiActivityDetailsVC animated:YES];
             }
-            
         }
     }
-    
 }
 
 

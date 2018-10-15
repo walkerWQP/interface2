@@ -201,8 +201,7 @@
     self.myPicture.backgroundColor = [UIColor redColor];
     [self.launchEventScrollView addSubview:self.myPicture];
     
-    if (!self.LQPhotoPicker_superView)
-    {
+    if (!self.LQPhotoPicker_superView) {
         self.LQPhotoPicker_superView = self.myPicture;
         
         self.LQPhotoPicker_imgMaxCount = 1;
@@ -232,8 +231,7 @@
     NSLog(@"点击发布");
     [self.view endEditing:YES];
     
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"])
-    {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
         [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
         return;
     }
@@ -255,7 +253,6 @@
     }
     
     if (![self.beginTimeBtn.titleLabel.text isEqualToString:@"开始时间"] && ![self.endTimeBtn.titleLabel.text isEqualToString:@"结束时间"]) {
-//        [self compareDate:self.beginTimeBtn.titleLabel.text withDate:self.endTimeBtn.titleLabel.text];
         
         NSDateFormatter *dateformater = [[NSDateFormatter alloc] init];
         [dateformater setDateFormat:@"yyyy-MM-dd"];
@@ -294,8 +291,7 @@
 }
 
 - (void)postDataForActivityPublish:(NSDictionary *)dic {
-    
-    
+
         [WProgressHUD showHUDShowText:@"加载中..."];
         [[HttpRequestManager sharedSingleton] POST:activityPublish parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
             [WProgressHUD hideAllHUDAnimated:YES];
@@ -307,8 +303,7 @@
             } else {
                 if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                     [UserManager logoOut];
-                } else
-                {
+                } else {
                     
                 }
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
@@ -341,7 +336,7 @@
                 NSData *fData = UIImageJPEGRepresentation(image, 0.5);
                 [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
                 
-            }else{
+            } else {
                 [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
             }
             
@@ -377,7 +372,6 @@
 
         }
         
-//        [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
          NSLog(@"%@", error);
@@ -439,7 +433,7 @@
     
 }
 
--(void)pickerView:(UIView *)pickerView result:(NSString *)string index:(NSInteger)index{
+-(void)pickerView:(UIView *)pickerView result:(NSString *)string index:(NSInteger)index {
     [self.classBtn setTitle:string forState:UIControlStateNormal];
     [self.classBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     TeacherNotifiedModel *model = [self.jobManagementArr objectAtIndex:index];
@@ -453,19 +447,7 @@
     NSLog(@"%@",model.ID);
 }
 
-//- (void)pickerView:(UIPickerView *)pickerView didSelectText:(NSString *)text  index:(NSInteger)index{
-//    [self.classBtn setTitle:text forState:UIControlStateNormal];
-//    [self.classBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    TeacherNotifiedModel *model = [self.jobManagementArr objectAtIndex:index];
-//    if (model.ID == nil) {
-//        [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
-//    } else {
-//        self.ID = model.ID;
-//    }
-//
-//
-//    NSLog(@"%@",model.ID);
-//}
+
 
 - (void)getClassData {
     
@@ -491,11 +473,6 @@
                 [[[UIApplication sharedApplication] keyWindow] addSubview:vi];
             }
             
-            
-//            HQPickerView *picker = [[HQPickerView alloc]initWithFrame:self.view.bounds];
-//            picker.delegate = self ;
-//            picker.customArr = ary;
-//            [self.view addSubview:picker];
             
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
@@ -551,27 +528,27 @@
 
 #pragma mark - UIScrollViewDelegate
 //返回缩放时所使用的UIView对象
-- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return scrollView;
 }
 
 //开始缩放时调用
-- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view{
+- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view {
     
 }
 
 //结束缩放时调用，告知缩放比例
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale {
     
 }
 
 //已经缩放时调用
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView{
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
     
 }
 
 //确定是否可以滚动到顶部
-- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView{
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
     return YES;
 }
 

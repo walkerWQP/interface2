@@ -35,6 +35,14 @@
     return _bannerArr;
 }
 
+- (NSMutableArray *)imgAry {
+    if (!_imgAry) {
+        self.imgAry = [@[]mutableCopy];
+    }
+    return _imgAry;
+}
+
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -58,10 +66,9 @@
     [self.newGuidelinesTableView registerNib:[UINib nibWithNibName:@"TongZhiDetailsCell" bundle:nil] forCellReuseIdentifier:@"TongZhiDetailsCellId"];
 }
 
-- (void)getBannersURLData
-{
+- (void)getBannersURLData {
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"10"};
-    NSLog(@"%@",[UserManager key]);
+    
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
@@ -88,37 +95,20 @@
     }];
 }
 
-- (NSMutableArray *)imgAry
-{
-    if (!_imgAry) {
-        self.imgAry = [@[]mutableCopy];
-    }
-    return _imgAry;
-}
 
-- (void)setNetWork
-{
+- (void)setNetWork {
     NSDictionary * dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getGuideURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@", responseObject);
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.workDetailsModel = [WorkDetailsModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
             NSLog(@"%@",self.workDetailsModel.img);
-//            if ([self.workDetailsModel.img isEqualToString:@""] || [self.workDetailsModel.img isEqualToString:NULL]) {
-//                return;
-//            } else {
-//                [self.imgAry addObject:self.workDetailsModel.img];
-//            }
-            
-//            [self configureImage];
             
             [self.newGuidelinesTableView reloadData];
-        }else
-        {
+        } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
-            }else
-            {
+            } else {
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
@@ -129,8 +119,7 @@
     }];
 }
 
-- (UITableView *)newGuidelinesTableView
-{
+- (UITableView *)newGuidelinesTableView {
     if (!_newGuidelinesTableView) {
         self.newGuidelinesTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT) style:UITableViewStyleGrouped];
         self.newGuidelinesTableView.backgroundColor = [UIColor whiteColor];
@@ -143,8 +132,7 @@
 }
 
 
-- (void)configureImage
-{
+- (void)configureImage {
     for (int i = 0; i < self.imgAry.count; i++) {
         UIImageView * imageViewNew = [[UIImageView alloc] initWithFrame:CGRectMake(0, i * 210, self.tongZhiDetailsCell.PicView.bounds.size.width ,0)];
         
@@ -166,39 +154,34 @@
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return nil;
 }
 
 //有时候tableview的底部视图也会出现此现象对应的修改就好了
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return nil;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
     
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     self.tongZhiDetailsCell  = [tableView dequeueReusableCellWithIdentifier:@"TongZhiDetailsCellId" forIndexPath:indexPath];
     self.tongZhiDetailsCell.selectionStyle = UITableViewCellSelectionStyleNone;
     self.tongZhiDetailsCell.TongZhiDetailsTitleLabel.text = self.workDetailsModel.title;
@@ -214,11 +197,7 @@
         self.tongZhiDetailsCell.webView.navigationDelegate = self;
         self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.alpha = 0;
         
-        
-        
         if (self.workDetailsModel.content.length>0) {
-            
-            
             
             [self.tongZhiDetailsCell.webView loadHTMLString:[NSString stringWithFormat:@"<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='black'><meta name='format-detection' content='telephone=no'><style type='text/css'>img{width:%fpx}</style>%@", APP_WIDTH - 20, self.workDetailsModel.content] baseURL:nil];
             
@@ -229,14 +208,11 @@
     return self.tongZhiDetailsCell;
 }
 
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
-{
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     
     NSString *heightString4 = @"document.body.scrollHeight";
     
-    
     [webView evaluateJavaScript:heightString4 completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-        
         
         CGFloat currentHeight = [item doubleValue];
         NSInteger width = APP_WIDTH - 30;
@@ -245,8 +221,6 @@
         CGSize size = [self.workDetailsModel.title boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
         
         self.tongZhiDetailsCell.webView.frame = CGRectMake(10, 30 + size.height , APP_WIDTH - 20, currentHeight);
-        
-        //                weak_self.communityDetailsCell.communityDetailsHegiht.constant = currentHeight;
         
         self.Hnew = currentHeight;
         NSLog(@"html 高度2：%f", currentHeight);
@@ -264,8 +238,7 @@
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger width = APP_WIDTH - 30;
     
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:30]};
@@ -277,19 +250,16 @@
             self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant = 0;
             return 150 + size.height;
             
-        }else
-        {
+        } else {
             return  self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant + 150 + size.height;
         }
-    }else
-    {
+    } else {
         if (self.imgAry.count == 0) {
             
             self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant = 0;
             return 150 + self.Hnew + size.height;
             
-        }else
-        {
+        } else {
             return  self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant + 150+ self.Hnew + size.height;
         }
     }

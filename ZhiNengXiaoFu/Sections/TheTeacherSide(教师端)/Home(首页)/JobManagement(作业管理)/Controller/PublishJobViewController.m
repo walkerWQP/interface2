@@ -135,8 +135,7 @@
     self.myPicture.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.myPicture];
     
-    if (!self.LQPhotoPicker_superView)
-    {
+    if (!self.LQPhotoPicker_superView) {
         self.LQPhotoPicker_superView = self.myPicture;
         
         self.LQPhotoPicker_imgMaxCount = 3;
@@ -193,8 +192,7 @@
     NSDictionary * params = @{@"key":[UserManager key],@"upload_type":@"img", @"upload_img_type":@"work"};
     [WProgressHUD showHUDShowText:@"加载中..."];
     [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        for (int i = 0; i < self.LQPhotoPicker_bigImageArray.count; i++)
-        {
+        for (int i = 0; i < self.LQPhotoPicker_bigImageArray.count; i++) {
             UIImage * image = self.LQPhotoPicker_bigImageArray[i];
             NSData *imageData = UIImageJPEGRepresentation(image,1);
             float length=[imageData length]/1000;
@@ -208,7 +206,7 @@
                 NSData *fData = UIImageJPEGRepresentation(image, 0.5);
                 [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
                 
-            }else{
+            } else {
                 [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
             }
             
@@ -242,9 +240,7 @@
             } else {
                 
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
-//               NSDictionary *dataDic = @{@"key":[UserManager key],@"class_id":self.classID,@"title":self.jobNameTextField.text,@"content":self.jobContentTextView.text,@"course_id":self.courseID,@"img":@""};
-//                [self PostWorkPusblishData:dataDic];
+                
             }
             
             
@@ -260,7 +256,6 @@
 
 
 - (void)PostWorkPusblishData:(NSDictionary *)dic {
-    
     
         [WProgressHUD showHUDShowText:@"加载中..."];
         [[HttpRequestManager sharedSingleton] POST:workPusblish parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {

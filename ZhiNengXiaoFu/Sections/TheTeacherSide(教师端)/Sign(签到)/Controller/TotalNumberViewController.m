@@ -42,7 +42,6 @@
 }
 
 - (void)loadNewTopic {
-    
     [self.totalNumberArr removeAllObjects];
     [self getClassConditionURLData:@"1"];
 }
@@ -50,7 +49,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@",self.ID);
     
     //总数
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
@@ -60,8 +58,7 @@
     [self makeTotalNumberViewControllerUI];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     //结束头部刷新
     [self.totalNumberCollectionView.mj_header endRefreshing];
 }
@@ -168,8 +165,6 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSLog(@"%ld",indexPath.row);
     TotalNumberModel *model = [self.totalNumberArr objectAtIndex:indexPath.row];
     LeaveTheDetailsViewController *LeaveTheDetailsVC = [[LeaveTheDetailsViewController alloc] init];
     switch (model.is_leave) {

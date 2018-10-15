@@ -37,8 +37,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    
-    
 }
 
 - (void)loadNewTopic {
@@ -120,7 +118,6 @@
 
 - (void)getBannersURLData {
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"2"};
-    NSLog(@"%@",[UserManager key]);
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
         [self.teacherNotifiedCollectionView.mj_header endRefreshing];
@@ -134,7 +131,6 @@
                 [self.headImgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"教师端活动管理banner"]];
                 [self.teacherNotifiedCollectionView reloadData];
             }
-            
             
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {

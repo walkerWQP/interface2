@@ -43,6 +43,8 @@
 
 @property (nonatomic, strong) HelperCenterModel * helperCenterModel;
 @property (nonatomic, strong) UIView * back;
+
+@property (nonatomic, strong) UILabel * natureLabel;
 @end
 
 @implementation MineViewController
@@ -57,7 +59,7 @@
     header.image = [UIImage imageNamed:@"背景图我的"];
     [self.view addSubview:header];
     
-    UIImageView * whiteImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 118, kScreenWidth - 30, (kScreenWidth - 30) * 109 / 345 + 10)];
+    UIImageView * whiteImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 118, kScreenWidth - 30, (kScreenWidth - 30) * 109 / 345 + 20)];
     whiteImg.image = [UIImage imageNamed:@"头像底"];
     [self.view addSubview:whiteImg];
     
@@ -74,7 +76,7 @@
     [self.view addSubview:my];
     
     
-   self.touxiangIcon  = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 62, 73, 124, 124)];
+    self.touxiangIcon  = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 62, 73, 124, 124)];
     self.touxiangIcon.image = [UIImage imageNamed:@"头像"];
     [self.view addSubview:self.touxiangIcon];
     
@@ -84,38 +86,49 @@
     [self.view addSubview:self.iconImg];
     
    
-    self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 10,self.touxiangIcon.frame.size.height + self.touxiangIcon.frame.origin.y + 10, 20, 16)];
+    self.nameLabel = [[UILabel alloc] init];
     self.nameLabel.textAlignment = NSTextAlignmentCenter;
     self.nameLabel.textColor = RGB(51, 51, 51);
     self.nameLabel.font = [UIFont systemFontOfSize:16];
-
     [self.view addSubview:self.nameLabel];
     
-    self.bottom = [[UIView alloc] initWithFrame:CGRectMake(0, whiteImg.frame.origin.y + whiteImg.frame.size.height + 10, kScreenWidth, 249)];
+    self.natureLabel = [[UILabel alloc] init];
+    self.natureLabel.textAlignment = NSTextAlignmentCenter;
+    self.natureLabel.textColor = [UIColor whiteColor];
+    self.natureLabel.font = [UIFont systemFontOfSize:11];
+    self.natureLabel.backgroundColor = RGB(255,144,144);
+    self.natureLabel.layer.cornerRadius = 5;
+    self.natureLabel.layer.masksToBounds = YES;
+    [self.view addSubview:self.natureLabel];
+    
+    
+    self.bottom = [[UIView alloc] initWithFrame:CGRectMake(0, whiteImg.frame.origin.y + whiteImg.frame.size.height + 6, kScreenWidth, 249)];
     [self.view addSubview:self.bottom];
    
     
     NSInteger width = (kScreenWidth - 60) / 3;
     UIView * hengOneView = [[UIView alloc] initWithFrame:CGRectMake(30 + width, 0, 1, 248)];
-    hengOneView.backgroundColor = RGB(230, 230, 230);
+    hengOneView.backgroundColor = RGBA(186, 186, 186, 0.2);
     [self.bottom addSubview:hengOneView];
     
     UIView * hengTwoView = [[UIView alloc] initWithFrame:CGRectMake(30 + width * 2, 0, 1, 248)];
-    hengTwoView.backgroundColor = RGB(230, 230, 230);
+    hengTwoView.backgroundColor = RGBA(186, 186, 186, 0.2);
     [self.bottom addSubview:hengTwoView];
     
     UIView * shuOneView = [[UIView alloc] initWithFrame:CGRectMake(30, 83, self.bottom.frame.size.width - 60, 1)];
-    shuOneView.backgroundColor = RGB(230, 230, 230);
+    shuOneView.backgroundColor = RGBA(186, 186, 186, 0.2);
     [self.bottom addSubview:shuOneView];
     
     UIView * shuTwoView = [[UIView alloc] initWithFrame:CGRectMake(30, 83 * 2, self.bottom.frame.size.width- 60, 1)];
-    shuTwoView.backgroundColor = RGB(230, 230, 230);
+    shuTwoView.backgroundColor = RGBA(186, 186, 186, 0.2);
     [self.bottom addSubview:shuTwoView];
     
     
     self.navigationController.navigationBar.translucent = YES;
     [self setNetWorkNew];
 }
+
+
 
 - (void)setNetWorkNew
 {
@@ -217,9 +230,31 @@
 //        }
         self.nameLabel.text = self.personInfo.name;
         
-        NSDictionary *attrs = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:16]};
-        CGSize size = [self.nameLabel.text sizeWithAttributes:attrs];
-        [self.nameLabel setFrame:CGRectMake(kScreenWidth / 2 - size.width,self.touxiangIcon.frame.size.height + self.touxiangIcon.frame.origin.y + 10, size.width * 2, 16)];
+        if (self.personInfo.nature == 1) {
+            self.natureLabel.text = @"走读生";
+        }else
+        {
+            self.natureLabel.text = @"住校生";
+        }
+        
+        CGSize size = [self.nameLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.nameLabel.font,NSFontAttributeName,nil]];
+        CGFloat JGlabelContentWidth = size.width;
+        // 如果label的内容的宽度度超过150，则label的宽度就设置为150，即label的最大宽度为150
+        if (JGlabelContentWidth >= 230) {
+            JGlabelContentWidth = 230;
+        }
+        self.nameLabel.frame =  CGRectMake(kScreenWidth / 2 - JGlabelContentWidth / 2 ,self.touxiangIcon.frame.size.height + self.touxiangIcon.frame.origin.y + 10, JGlabelContentWidth, 16);
+        
+        self.natureLabel.frame = CGRectMake(self.nameLabel.frame.origin.x + self.nameLabel.frame.size.width + 8, self.nameLabel.frame.origin.y, 38, 16);
+        
+//    CGFloat width =  [MineViewController getWidthWithText:@"建议反馈新建议反" height:16 font:16];
+//        NSDictionary *attrs = @{NSFontAttributeName : [UIFont systemFontOfSize:16]};
+//        CGSize size = [self.nameLabel.text sizeWithAttributes:attrs];
+//        [self.nameLabel setFrame:CGRectMake(kScreenWidth / 2 - width,self.touxiangIcon.frame.size.height + self.touxiangIcon.frame.origin.y + 10, width * 2, 16)];
+//
+//        [self.natureLabel setFrame:CGRectMake(self.nameLabel.frame.origin.x + self.nameLabel.frame.size.width + 8, self.nameLabel.frame.origin.y, 38, 16)];
+        
+       
         
         [self.iconImg sd_setImageWithURL:[NSURL URLWithString:self.personInfo.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
         
@@ -253,6 +288,7 @@
                 
                 UILabel * nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 30, itemImg.frame.origin.y + itemImg.frame.size.height + 10, 60, 15)];
                 nameLabel.textColor = RGB(51, 51, 51);
+                nameLabel.textAlignment = NSTextAlignmentCenter;
                 nameLabel.font = [UIFont systemFontOfSize:13];
                 nameLabel.text = [dic objectForKey:@"title"];
                 [itemView addSubview:nameLabel];
@@ -288,9 +324,12 @@
                 itemImg.image = [UIImage imageNamed:[dic objectForKey:@"img"]];
                 [itemView addSubview:itemImg];
                 
+                
                 UILabel * nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 30, itemImg.frame.origin.y + itemImg.frame.size.height + 10, 60, 15)];
                 nameLabel.textColor = RGB(51, 51, 51);
                 nameLabel.font = [UIFont systemFontOfSize:13];
+                nameLabel.textAlignment = NSTextAlignmentCenter;
+
                 nameLabel.text = [dic objectForKey:@"title"];
                 [itemView addSubview:nameLabel];
             }
@@ -299,6 +338,17 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
     }];
+}
+
+
+//根据高度度求宽度  text 计算的内容  Height 计算的高度 font字体大小
++ (CGFloat)getWidthWithText:(NSString *)text height:(CGFloat)height font:(CGFloat)font{
+    
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(MAXFLOAT, height)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]}
+                                     context:nil];
+    return rect.size.width;
 }
 
 #pragma mark - 有就寝管理

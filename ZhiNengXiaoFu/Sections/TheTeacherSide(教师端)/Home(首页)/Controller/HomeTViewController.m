@@ -132,7 +132,6 @@
     
     [self.HomePageJTabelView registerNib:[UINib nibWithNibName:@"SchoolDongTaiCell" bundle:nil] forCellReuseIdentifier:@"SchoolDongTaiCellId"];
     
-    
 }
 
 
@@ -237,7 +236,7 @@
             
             UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(back.frame.origin.x - 5, back.frame.origin.y + back.frame.size.height + 5, 50, 15)];
             titleLabel.text = [titleAry objectAtIndex:i];
-            titleLabel.font = [UIFont systemFontOfSize:11];
+            titleLabel.font = [UIFont systemFontOfSize:12];
             titleLabel.textAlignment = NSTextAlignmentCenter;
             titleLabel.textColor = RGB(119, 119, 119);
             [cell addSubview:titleLabel];
@@ -281,8 +280,7 @@
             lineView.backgroundColor = [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1];
             [cell addSubview:lineView];
         }
-       
-        
+
         return cell;
         
     } else if (indexPath.section == 3) {
@@ -321,9 +319,7 @@
         [cell.contentView addSubview:view];
         return cell;
         
-        
     } else {
-        
         SchoolDongTaiCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SchoolDongTaiCellId" forIndexPath:indexPath];
         NSDictionary * dic = [self.dongtaiAry objectAtIndex:indexPath.row];
         [cell.SchoolDongTaiImg sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"img"]]];
@@ -334,17 +330,14 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0;
 }
 
 //有时候tableview的底部视图也会出现此现象对应的修改就好了
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return nil;
 }
-
-
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -373,8 +366,9 @@
             titleLabel.text = @"学校动态";
         }
         
-        titleLabel.font = [UIFont systemFontOfSize:15];
-        titleLabel.textColor = RGB(119, 119, 119);
+        titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:17];
+        titleLabel.textColor = RGB(51, 51, 51);
+
         [header addSubview:titleLabel];
         
         if (section != 3) {
@@ -409,16 +403,14 @@
     }
 }
 
-- (void)jumpToAnswerHomePageJingJi:(NSString *)answerStr weizhi:(NSString *)weizhi
-{
+- (void)jumpToAnswerHomePageJingJi:(NSString *)answerStr weizhi:(NSString *)weizhi {
     JingJiActivityDetailsViewController *jingJiActivityDetailsVC = [JingJiActivityDetailsViewController new];
     jingJiActivityDetailsVC.JingJiActivityDetailsId = answerStr;
     [self.navigationController pushViewController:jingJiActivityDetailsVC animated:YES];
     
 }
 
-- (void)setClick:(NSInteger)index
-{
+- (void)setClick:(NSInteger)index {
     NSLog(@"%ld", index);
     TongZhiDetailsViewController * tongZhiDetails  = [[TongZhiDetailsViewController alloc] init];
     
@@ -479,7 +471,7 @@
     }
 }
 
-//点击图片的代理
+#pragma mark ======= 轮播图点击事件 =======
 -(void)cycleScrollView:(DCCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     NSLog(@"index = %ld",(long)index);
     BannerModel *model = self.bannerArr[index];
@@ -488,8 +480,7 @@
 }
 
 #pragma mark  - 点击通知图标
-- (void)tongzhiTap:(UITapGestureRecognizer *)sender
-{
+- (void)tongzhiTap:(UITapGestureRecognizer *)sender {
     SchoolTongZhiViewController *schoolTongZhiVC = [[SchoolTongZhiViewController alloc] init];
     schoolTongZhiVC.typeStr = @"1";
     [self.navigationController pushViewController:schoolTongZhiVC animated:YES];
@@ -512,7 +503,7 @@
 }
 
 
-
+#pragma mark ======= 五个图标点击事件 =======
 - (void)backBtn:(UIButton *)sender {
 
     switch (sender.tag) {
@@ -564,15 +555,8 @@
 
 
 - (void)didScrollToPage:(NSInteger)pageNumber inFlowView:(NewPagedFlowView *)flowView {
-    
     NSLog(@"ViewController 滚动到了第%ld页",pageNumber);
 }
-
-
-
-
-
-
 
 
 #pragma mark ======= 获取首页数据 =======

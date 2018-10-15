@@ -40,14 +40,12 @@
 }
 
 - (void)loadNewTopic {
-    
     [self.hasBeenArr removeAllObjects];
     [self getClassConditionURLData:@"2"];
 }
 
 - (void)viewDidLoad { //2签到
     [super viewDidLoad];
-    
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
@@ -55,8 +53,7 @@
     [self makeHasBeenViewControllerUI];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     //结束头部刷新
     [self.hasBeenCollectionView.mj_header endRefreshing];
 }

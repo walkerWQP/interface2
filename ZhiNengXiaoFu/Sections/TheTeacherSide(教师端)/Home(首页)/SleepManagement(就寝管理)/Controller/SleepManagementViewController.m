@@ -53,6 +53,20 @@
 
 @implementation SleepManagementViewController
 
+- (NSMutableArray *)publishJobArr {
+    if (!_publishJobArr) {
+        self.publishJobArr = [@[]mutableCopy];
+    }
+    return _publishJobArr;
+}
+
+- (NSMutableArray *)timeAry {
+    if (!_timeAry) {
+        self.timeAry = [@[]mutableCopy];
+    }
+    return _timeAry;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
@@ -72,8 +86,7 @@
 }
 
 
-- (void)makeConsultingViewControllerUI
-{
+- (void)makeConsultingViewControllerUI {
     
     self.classNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, 110, 20)];
     self.classNameLabel.textColor = titlColor;
@@ -143,7 +156,7 @@
     
 }
 
-- (NSArray <UIViewController *>*)setChildVC{
+- (NSArray <UIViewController *>*)setChildVC {
     //已回复
    self.haveToReplyVC  = [[YiZhuQinViewController alloc]init];
     //未回复
@@ -152,7 +165,7 @@
     return childVC;
 }
 
-- (JohnTopTitleView *)titleView{
+- (JohnTopTitleView *)titleView {
     if (!_titleView) {
         [SingletonHelper manager].biaojiJiuQinColor = 1;
         _titleView = [[JohnTopTitleView alloc]initWithFrame:CGRectMake(0, 287, self.view.frame.size.width, self.view.frame.size.height)];
@@ -163,27 +176,12 @@
     return _titleView;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [SingletonHelper manager].biaojiJiuQinColor = 0;
 
 }
 
-- (NSMutableArray *)publishJobArr
-{
-    if (!_publishJobArr) {
-        self.publishJobArr = [@[]mutableCopy];
-    }
-    return _publishJobArr;
-}
 
-- (NSMutableArray *)timeAry
-{
-    if (!_timeAry) {
-        self.timeAry = [@[]mutableCopy];
-    }
-    return _timeAry;
-}
 
 - (void)rightBtn:(UIButton *)sender {
     
@@ -203,8 +201,7 @@
     }
 }
 
-- (void)timeTap:(UITapGestureRecognizer *)sender
-{
+- (void)timeTap:(UITapGestureRecognizer *)sender {
     if (self.timeAry.count == 0) {
         [WProgressHUD showErrorAnimatedText:@"暂无数据"];
     } else {
@@ -213,8 +210,7 @@
     }
 }
 
-- (void)getClassURLTime
-{
+- (void)getClassURLTime {
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:indexDormGetFourDayList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
@@ -285,20 +281,16 @@
     }];
 }
 
-- (void)postGetTeacherFour
-{
+- (void)postGetTeacherFour {
     NSDictionary *dic = [NSDictionary dictionary];
-    if (self.timeN == nil)
-    {
+    if (self.timeN == nil) {
         dic  = @{@"key":[UserManager key], @"class_id":self.classId};
 
-    }else
-    {
+    } else {
         dic  = @{@"key":[UserManager key], @"class_id":self.classId, @"date":self.timeN};
     }
     
-    [[HttpRequestManager sharedSingleton] POST:indexDormGetClassDormRecord parameters:dic success:^(NSURLSessionDataTask *task, id responseObject)
-     {
+    [[HttpRequestManager sharedSingleton] POST:indexDormGetClassDormRecord parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.FourDic = [NSDictionary dictionary];
             self.FourDic = [responseObject objectForKey:@"data"];
@@ -334,8 +326,7 @@
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402)
             {
                 [UserManager logoOut];
-            } else
-            {
+            } else {
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
@@ -357,8 +348,7 @@
             self.classId = model.ID;
              [self postGetTeacherFour];
         }
-    }else
-    {
+    } else {
         if (self.timeAry.count != 0) {
             
         
@@ -367,8 +357,7 @@
              self.timeLabel.text  = timeStr;
             self.timeN = timeStr;
             [self postGetTeacherFour];
-        }else
-        {
+        } else {
             [WProgressHUD showSuccessfulAnimatedText:@"暂无数据"];
 
         }
@@ -382,14 +371,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

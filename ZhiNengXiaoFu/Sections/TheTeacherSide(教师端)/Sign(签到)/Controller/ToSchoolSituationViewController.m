@@ -24,8 +24,6 @@
 
 @implementation ToSchoolSituationViewController
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"请假信息";
@@ -60,7 +58,6 @@
 
 - (void)makeToSchoolSituationViewControllerUI {
     
-    NSLog(@"%@",self.toSchoolSituationModel.name);
     self.view.backgroundColor = backColor;
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake((APP_WIDTH - 60) / 2, 20, 60, 60)];
     self.headImgView.layer.masksToBounds = YES;

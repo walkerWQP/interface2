@@ -39,8 +39,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:RGB(44, 198, 255)] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:RGB(44, 198, 255)] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:RGB(44, 198, 255)] forBarMetrics:UIBarMetricsDefault];
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"返回白"] style:UIBarButtonItemStyleDone target:self action:@selector(backButnClicked:)];
     self.navigationItem.leftBarButtonItem = back;
@@ -172,15 +170,10 @@
     [self.submitBtn addTarget:self action:@selector(submitBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.submitImgView addSubview:self.submitBtn];
     
-    
-    
 }
 
-//提交
+#pragma mark ======= 提交 =======
 - (void)submitBtn:(UIButton *)sender {
-    
-    
-    NSLog(@"点击提交");
     
     if ([self.typeStr isEqualToString:@"1"]) { //绑定手机号码
         if ([self.phoneTextField.text isEqualToString:@""] || self.phoneTextField.text == nil) {
@@ -208,7 +201,7 @@
     }
 }
 
-//更改绑定手机号码
+#pragma mark ======= 更改绑定手机号码 =======
 - (void)changeMobile:(NSDictionary *)dic {
     [WProgressHUD showHUDShowText:@"加载中..."];
     [[HttpRequestManager sharedSingleton] POST:ChangeMobileURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -232,7 +225,7 @@
     }];
 }
 
-//绑定手机号
+#pragma mark ======= 绑定手机号 =======
 - (void)bindMobile:(NSDictionary *)dic {
     [WProgressHUD showHUDShowText:@"加载中..."];
     [[HttpRequestManager sharedSingleton] POST:BindMobileURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -256,10 +249,9 @@
     }];
 }
 
-//获取验证码
+#pragma mark ======= 获取验证码 =======
 - (void)verificationBtn:(UIButton *)sender {
-    NSLog(@"点击获取验证码");
-    
+
     if ([self.phoneTextField.text isEqualToString:@""] || self.phoneTextField.text == nil) {
         [WProgressHUD showErrorAnimatedText:@"手机号不能为空,请重新输入"];
     } else if ([self valiMobile:self.phoneTextField.text] == NO) {
@@ -283,7 +275,6 @@
             
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
             
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -298,10 +289,7 @@
 }
 
 
-//判断手机号码格式是否正确
-
-
-
+#pragma mark ======= 判断手机号码格式是否正确 =======
 - (BOOL)valiMobile:(NSString *)mobile {
     
     mobile = [mobile stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -311,8 +299,6 @@
         return NO;
         
     }else{
-        
-       
         NSString *CM_NUM = @"1(3[0-9]|4[0-9]|5[0-9]|6[0-9]|7[0-9]|8[0-9]|9[0-9])\\d{8}$";
         
         NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM_NUM];

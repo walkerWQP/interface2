@@ -25,16 +25,14 @@
     
     NSUserDefaults*pushJudge = [NSUserDefaults standardUserDefaults];
     
-    if([[pushJudge objectForKey:@"notify"]isEqualToString:@"push"])
-    {
+    if([[pushJudge objectForKey:@"notify"]isEqualToString:@"push"]) {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回(1)"] style:UIBarButtonItemStylePlain target:self action:@selector(rebackToRootViewAction)];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
         NSUserDefaults * pushJudge = [NSUserDefaults standardUserDefaults];
         [pushJudge setObject:@""forKey:@"notify"];
         [pushJudge synchronize];//记得立即同步
         
-    }else
-    {
+    } else {
         
     }
     
@@ -57,7 +55,7 @@
     
 }
 
-- (NSArray <UIViewController *>*)setChildVC{
+- (NSArray <UIViewController *>*)setChildVC {
     //已回复
     HaveToReplyViewController *haveToReplyVC = [[HaveToReplyViewController alloc]init];
     //未回复
@@ -66,7 +64,7 @@
     return childVC;
 }
 
-- (JohnTopTitleView *)titleView{
+- (JohnTopTitleView *)titleView {
     if (!_titleView) {
         _titleView = [[JohnTopTitleView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     }

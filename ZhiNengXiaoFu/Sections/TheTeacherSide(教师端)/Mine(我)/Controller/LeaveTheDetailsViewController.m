@@ -16,14 +16,14 @@
 @property (nonatomic, strong) UIImageView  *userIconImg;
 @property (nonatomic, strong) UILabel      *userNameLabel;
 
-@property (nonatomic, strong) UIView *backView;
-@property (nonatomic, strong) UIView *StartEndView;
-@property (nonatomic, strong) UIImageView *StartImg;
-@property (nonatomic, strong) UIImageView *EndImg;
-@property (nonatomic, strong) UILabel *StartLabel;
-@property (nonatomic, strong) UILabel *EndLabel;
+@property (nonatomic, strong) UIView       *backView;
+@property (nonatomic, strong) UIView       *StartEndView;
+@property (nonatomic, strong) UIImageView  *StartImg;
+@property (nonatomic, strong) UIImageView  *EndImg;
+@property (nonatomic, strong) UILabel      *StartLabel;
+@property (nonatomic, strong) UILabel      *EndLabel;
 
-@property (nonatomic, strong) UIView     *bgView;
+@property (nonatomic, strong) UIView       *bgView;
 
 @property (nonatomic, strong) UIView       *typeView;
 @property (nonatomic, strong) UIImageView  *typeImgView;
@@ -82,8 +82,7 @@
     [super viewDidLoad];
     self.title = @"请假详情";
     NSUserDefaults*pushJudge = [NSUserDefaults standardUserDefaults];
-    if([[pushJudge objectForKey:@"notify"]isEqualToString:@"push"])
-    {
+    if([[pushJudge objectForKey:@"notify"]isEqualToString:@"push"]) {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回(1)"] style:UIBarButtonItemStylePlain target:self action:@selector(rebackToRootViewAction)];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
         NSUserDefaults * pushJudge = [NSUserDefaults standardUserDefaults];
@@ -97,8 +96,7 @@
     
 }
 
-- (void)rebackToRootViewAction
-{
+- (void)rebackToRootViewAction {
     NSUserDefaults * pushJudge = [NSUserDefaults standardUserDefaults];
     [pushJudge setObject:@""forKey:@"notify"];
     [pushJudge synchronize];//记得立即同步
@@ -140,8 +138,7 @@
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402)
             {
                 [UserManager logoOut];
-            }else
-            {
+            } else {
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
@@ -372,21 +369,15 @@
             self.noteTextView.editable = YES;
         }
     }
-    
-    
 }
 
 
 
 - (void)submitBtn : (UIButton *)sender {
-    
-    
-    
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"])
-    {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
         [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
         return;
-    }else if ([self.noteTextView.text isEqualToString:@""]) {
+    } else if ([self.noteTextView.text isEqualToString:@""]) {
         [WProgressHUD showErrorAnimatedText:@"审核内容不能为空"];
         return;
     } else {
@@ -396,7 +387,6 @@
             if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
                 
                 [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
-                
                 [self.navigationController popViewControllerAnimated:YES];
                 
             } else {

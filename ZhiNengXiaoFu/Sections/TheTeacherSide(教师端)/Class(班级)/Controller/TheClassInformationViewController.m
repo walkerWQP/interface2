@@ -11,40 +11,40 @@
 #import "PublishJobModel.h"
 @interface TheClassInformationViewController ()<WPopupMenuDelegate,UIWebViewDelegate,UIScrollViewDelegate>
 
-@property (nonatomic, strong) UIScrollView   *theClassInformationScrollView;
+@property (nonatomic, strong) UIScrollView    *theClassInformationScrollView;
 
-@property (nonatomic, strong) UIImageView    *backImgView;
-@property (nonatomic, strong) UIImageView    *headImgView;
-@property (nonatomic, strong) UIView         *bgView;
+@property (nonatomic, strong) UIImageView     *backImgView;
+@property (nonatomic, strong) UIImageView     *headImgView;
+@property (nonatomic, strong) UIView          *bgView;
 //班主任
-@property (nonatomic, strong) UILabel        *chargeLabel;
-@property (nonatomic, strong) UILabel        *chargeNameLabel;
+@property (nonatomic, strong) UILabel         *chargeLabel;
+@property (nonatomic, strong) UILabel         *chargeNameLabel;
 //课任教师
-@property (nonatomic, strong) UILabel        *teachersLabel;
+@property (nonatomic, strong) UILabel         *teachersLabel;
 @property (nonatomic, strong) UIButton        *teachersBtn;
 //班委班干
-@property (nonatomic, strong) UILabel       *dryLabel;
-@property (nonatomic, strong) UILabel       *dryNameLabel;
+@property (nonatomic, strong) UILabel         *dryLabel;
+@property (nonatomic, strong) UILabel         *dryNameLabel;
 //班级人数
-@property (nonatomic, strong) UILabel       *numberLabel;
-@property (nonatomic, strong) UILabel       *numberPeopleLabel;
+@property (nonatomic, strong) UILabel         *numberLabel;
+@property (nonatomic, strong) UILabel         *numberPeopleLabel;
 //班级寄语
-@property (nonatomic, strong) UILabel       *remarkLabel;
-@property (nonatomic, strong) UILabel       *remarksLabel;
+@property (nonatomic, strong) UILabel         *remarkLabel;
+@property (nonatomic, strong) UILabel         *remarksLabel;
 
-@property (nonatomic, strong) UIImageView * userIcon;
+@property (nonatomic, strong) UIImageView     *userIcon;
 
-@property (nonatomic, assign) NSInteger hnew;
+@property (nonatomic, assign) NSInteger       hnew;
 
 @property (nonatomic, strong) NSMutableArray  *publishJobArr;
 
 @property (nonatomic, strong) NSMutableArray  *classNameArr;
 
-@property (nonatomic, strong) UIButton       *rightBtn;
+@property (nonatomic, strong) UIButton        *rightBtn;
 
-@property (nonatomic, strong) NSMutableArray *buttonArr;
+@property (nonatomic, strong) NSMutableArray  *buttonArr;
 
-@property (nonatomic, strong) UIWebView * webView;
+@property (nonatomic, strong) UIWebView       *webView;
 
 @end
 
@@ -150,7 +150,6 @@
     
     if (self.classNameArr.count != 0) {
         PublishJobModel *model = [self.classNameArr objectAtIndex:index];
-        NSLog(@"%@",model.ID);
         if (model.ID == nil) {
             [WProgressHUD showSuccessfulAnimatedText:@"数据不正确,请重试"];
         } else {
@@ -170,7 +169,6 @@
     }
     
     [[HttpRequestManager sharedSingleton] POST:userClassInfo parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             ClassHomeModel * model = [ClassHomeModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
@@ -230,7 +228,6 @@
 }
 
 - (void)makeTheClassInformationViewControllerUI:(ClassHomeModel *)model {
-    
     
     self.view.backgroundColor = backColor;
     self.backImgView.hidden = YES;
@@ -309,11 +306,8 @@
         self.teachersBtn.titleLabel.font = titFont;
         self.teachersBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         self.teachersBtn.userInteractionEnabled = YES;
-        
         [self.bgView addSubview:self.teachersBtn];
-       
-        
-        
+
     }
     self.hnew = self.chargeLabel.frame.size.height + self.chargeLabel.frame.origin.y + 30 * model.teachers.count;
     
@@ -351,7 +345,6 @@
     
     NSArray *array = [sender.titleLabel.text componentsSeparatedByString:@"-"];//从字符-中分隔成2个元素的数组
     if([sender.titleLabel.text rangeOfString:@"-"].location !=NSNotFound) {
-        NSLog(@"yes");
         NSString *nameStr = array[0];
         NSString *phoneStr = array[1];
         
@@ -446,3 +439,4 @@
 
 
 @end
+

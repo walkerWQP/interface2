@@ -31,7 +31,12 @@
     return _offTheListArr;
 }
 
-
+- (NSMutableArray *)bannerArr {
+    if (!_bannerArr) {
+        _bannerArr = [NSMutableArray array];
+    }
+    return _bannerArr;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -54,17 +59,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"请假列表";
-    
-    
     [self makeOffTheListViewControllerUI];
-   
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
     [self.view addSubview:self.zanwushuju];
-    
-    
-    
 }
 
 - (void)loadNewTopic {
@@ -79,8 +78,7 @@
 }
 
 - (void)getOffTheListData:(NSInteger)page {
-    
-    
+
     NSDictionary *dic = @{@"key":[UserManager key],@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:leaveLeaveList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
@@ -129,24 +127,17 @@
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
     self.headImgView.backgroundColor = [UIColor clearColor];
     [self.offTheListCollectionView addSubview:self.headImgView];
-//    self.headImgView.image = [UIImage imageNamed:@"教师端活动管理banner"];
+
 }
 
-- (NSMutableArray *)bannerArr {
-    if (!_bannerArr) {
-        _bannerArr = [NSMutableArray array];
-    }
-    return _bannerArr;
-}
+
 
 - (void)getBannersURLData {
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"9"};
-    NSLog(@"%@",[UserManager key]);
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
             self.bannerArr = [BannerModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-            
             if (self.bannerArr.count == 0) {
                 self.headImgView.image = [UIImage imageNamed:@"教师端活动管理banner"];
             } else {
@@ -233,8 +224,6 @@
         leaveTheDetailsVC.headImg = model.head_img;
         [self.navigationController pushViewController:leaveTheDetailsVC animated:YES];
     }
-    
-    
 }
 
 @end

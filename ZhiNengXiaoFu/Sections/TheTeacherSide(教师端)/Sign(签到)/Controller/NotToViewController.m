@@ -40,13 +40,11 @@
 }
 
 - (void)loadNewTopic {
-    
     [self.notToArr removeAllObjects];
     [self getClassConditionURLData:@"3"];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     //结束头部刷新
     [self.notToCollectionView.mj_header endRefreshing];
 }
@@ -55,7 +53,6 @@
     [super viewDidLoad];
     // 未到
     // 总数
-    
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
@@ -160,7 +157,6 @@
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"%ld",indexPath.row);
     TotalNumberModel *model = [self.notToArr objectAtIndex:indexPath.row];
     LeaveTheDetailsViewController *LeaveTheDetailsVC = [[LeaveTheDetailsViewController alloc] init];
     switch (model.is_leave) {

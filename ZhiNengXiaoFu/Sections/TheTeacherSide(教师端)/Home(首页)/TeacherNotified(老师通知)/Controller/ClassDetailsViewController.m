@@ -75,8 +75,6 @@
     self.zanwushuju.alpha = 0;
     [self.classDetailsTableView addSubview:self.zanwushuju];
     
-    
-    
 }
 
 - (void)loadNewTopic {
@@ -92,7 +90,6 @@
 
 - (void)getBannersURLData {
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"3"};
-    NSLog(@"%@",[UserManager key]);
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
@@ -178,8 +175,6 @@
 }
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
         //添加一个删除按钮
         UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
             NSLog(@"点击删除");
@@ -187,8 +182,7 @@
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
                 [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
                 
-            }else
-            {
+            } else {
                 ClassDetailsModel * model = [self.classDetailsArr objectAtIndex:indexPath.row];
                 [self.classDetailsArr removeObjectAtIndex:indexPath.row];
                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -207,11 +201,9 @@
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
-            
             [self.classDetailsArr removeAllObjects];
             [self.classDetailsTableView reloadData];
             [self getNoticeListData:1];
-            
             
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
@@ -334,7 +326,6 @@
 
 
 - (void)rightBtn : (UIButton *)sender {
-    
     ClassNoticeViewController *classNoticeVC = [[ClassNoticeViewController alloc] init];
     classNoticeVC.classID = self.ID;
     [self.navigationController pushViewController:classNoticeVC animated:YES];

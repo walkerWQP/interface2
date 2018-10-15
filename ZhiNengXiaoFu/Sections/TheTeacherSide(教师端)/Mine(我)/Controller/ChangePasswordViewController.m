@@ -44,9 +44,6 @@
 - (void)makeChangePasswordViewControllerUI {
     
     self.view.backgroundColor = backColor;
-//    self.oldPasswordImgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 105, 20, 20)];
-//    self.oldPasswordImgView.image = [UIImage imageNamed:@"密码"];
-//    [self.view addSubview:self.oldPasswordImgView];
     
     self.oldPasswordText = [[UITextField alloc] initWithFrame:CGRectMake(20, 100, APP_WIDTH - 60, 30)];
     self.oldPasswordText.font = titFont;
@@ -59,10 +56,6 @@
     self.lineView.backgroundColor = fengeLineColor;
     [self.view addSubview:self.lineView];
     
-//    self.ImgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, self.oldPasswordText.frame.size.height + 125, 20, 20)];
-//    self.ImgView.image = [UIImage imageNamed:@"密码1"];
-//    [self.view addSubview:self.ImgView];
-    
     self.passwordText = [[UITextField alloc] initWithFrame:CGRectMake(20, self.oldPasswordText.frame.size.height + 120, self.oldPasswordText.frame.size.width, 30)];
     self.passwordText.font = titFont;
     self.passwordText.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"输入新密码(6-18位字符)" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:157/255.0 green:157/255.0 blue:157/255.0 alpha:1.0]}];
@@ -73,10 +66,6 @@
     self.lineView1 = [[UIView alloc] initWithFrame:CGRectMake(20, self.oldPasswordText.frame.size.height + self.passwordText.frame.size.height + 125, APP_WIDTH - 40, 1)];
     self.lineView1.backgroundColor = fengeLineColor;
     [self.view addSubview:self.lineView1];
-    
-//    self.ImgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, self.oldPasswordText.frame.size.height + self.passwordText.frame.size.height + 145, 20, 20)];
-//    self.ImgView1.image = [UIImage imageNamed:@"密码1"];
-//    [self.view addSubview:self.ImgView1];
     
     self.againText = [[UITextField alloc] initWithFrame:CGRectMake(20, self.oldPasswordText.frame.size.height + self.passwordText.frame.size.height + 140, APP_WIDTH - 60, 30)];
     self.againText.font = titFont;

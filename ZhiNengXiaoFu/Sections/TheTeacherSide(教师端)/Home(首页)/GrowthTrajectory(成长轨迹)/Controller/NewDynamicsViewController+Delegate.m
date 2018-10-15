@@ -90,7 +90,6 @@
         return;
     }
     
-    
     NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
     self.commentIndexPath = indexPath;
 
@@ -122,7 +121,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -286,7 +284,7 @@
     
 }
 
-
+#pragma mark ======= 删除该条数据 =======
 - (void)DynamicsCell:(NewDynamicsTableViewCell *)cell didClickComment:(DynamicsCommentItemModel *)commentModel {
     
     NSInteger commentRow = self.commentIndexPath.row;
@@ -342,7 +340,7 @@
     }
 }
 
-#pragma mark - UITextfield Delegate
+#pragma mark ======= 评论 =======
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {

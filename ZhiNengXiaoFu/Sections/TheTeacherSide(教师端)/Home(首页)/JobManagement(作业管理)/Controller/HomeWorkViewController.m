@@ -229,27 +229,6 @@
         }
        
     }];
-
-//    //添加一个编辑按钮
-//    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"修改" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-//
-//        NSLog(@"点击修改");
-//        HomeWorkModel *model = self.homeWorkArr[indexPath.row];
-//        PublishJobViewController *publishJobVC = [[PublishJobViewController alloc] init];
-//        if (self.ID == nil) {
-//            [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
-//        } else {
-//            publishJobVC.classID = self.ID;
-//            publishJobVC.ID  = model.ID;
-//            publishJobVC.title = model.title;
-//            publishJobVC.content = model.course_name;
-//            publishJobVC.course_id = model.ID;
-//            [self.navigationController pushViewController:publishJobVC animated:YES];
-//        }
-//
-//
-//    }];
-//    editAction.backgroundColor = [UIColor greenColor];
     
     return @[deleteAction];
 }

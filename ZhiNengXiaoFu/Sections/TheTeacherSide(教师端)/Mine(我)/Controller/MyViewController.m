@@ -22,7 +22,7 @@
 #import "ActivityManagementViewController.h"
 #import "AdviceFeedbackViewController.h"
 #import "HelperCenterModel.h"
-
+#import "NewDynamicsViewController.h"
 
 @interface MyViewController ()<UITableViewDelegate, UITableViewDataSource,UIAlertViewDelegate>
 
@@ -50,6 +50,20 @@
         _myArr = [NSMutableArray array];
     }
     return _myArr;
+}
+
+- (NSMutableArray *)iconAry {
+    if (!_iconAry) {
+        self.iconAry = [@[]mutableCopy];
+    }
+    return _iconAry;
+}
+
+- (NSMutableArray *)titleAry {
+    if (!_titleAry) {
+        self.titleAry = [@[]mutableCopy];
+    }
+    return _titleAry;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -103,12 +117,12 @@
     [self.view addSubview:self.iconImg];
     
     
-    self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 10,self.touxiangIcon.frame.size.height + self.touxiangIcon.frame.origin.y + 10, 20, 16)];
+    self.nameLabel = [[UILabel alloc] init];
     self.nameLabel.textAlignment = NSTextAlignmentCenter;
     self.nameLabel.textColor = RGB(51, 51, 51);
     self.nameLabel.font = [UIFont systemFontOfSize:16];
-    
     [self.view addSubview:self.nameLabel];
+    
     
     self.bottom = [[UIView alloc] initWithFrame:CGRectMake(0, whiteImg.frame.origin.y + whiteImg.frame.size.height + 10, kScreenWidth, 249)];
     self.bottom.userInteractionEnabled = YES;
@@ -117,83 +131,44 @@
     
     NSInteger width = (kScreenWidth - 60) / 3;
     UIView * hengOneView = [[UIView alloc] initWithFrame:CGRectMake(30 + width, 0, 1, 248)];
-    hengOneView.backgroundColor = RGB(230, 230, 230);
+    hengOneView.backgroundColor = RGBA(186, 186, 186, 0.2);
     [self.bottom addSubview:hengOneView];
     
     UIView * hengTwoView = [[UIView alloc] initWithFrame:CGRectMake(30 + width * 2, 0, 1, 248)];
-    hengTwoView.backgroundColor = RGB(230, 230, 230);
+    hengTwoView.backgroundColor = RGBA(186, 186, 186, 0.2);
     [self.bottom addSubview:hengTwoView];
     
     UIView * shuOneView = [[UIView alloc] initWithFrame:CGRectMake(30, 83, self.bottom.frame.size.width - 60, 1)];
-    shuOneView.backgroundColor = RGB(230, 230, 230);
+    shuOneView.backgroundColor = RGBA(186, 186, 186, 0.2);
     [self.bottom addSubview:shuOneView];
     
     UIView * shuTwoView = [[UIView alloc] initWithFrame:CGRectMake(30, 83 * 2, self.bottom.frame.size.width- 60, 1)];
-    shuTwoView.backgroundColor = RGB(230, 230, 230);
+    shuTwoView.backgroundColor = RGBA(186, 186, 186, 0.2);
     [self.bottom addSubview:shuTwoView];
     
  self.navigationController.navigationBar.translucent = YES;
 
-    
 }
-
-
-
 
 - (void)setUser {
     NSDictionary * dic = @{@"key":[UserManager key]};
     [WProgressHUD showHUDShowText:@"加载中..."];
-
     [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
-        
         [WProgressHUD hideAllHUDAnimated:YES];
-
         self.model = [PersonInformationModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
-//        if (self.model.is_adviser == 1 && self.model.dorm_open == 1) {
-//            NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"帮助1",@"请假列表",@"修改密码",@"已发布", @"就寝管理",nil];
-//            NSMutableArray * TitleAry = [NSMutableArray arrayWithObjects:@"帮助",@"请假列表",@"修改密码",@"已发布的活动", @"就寝管理", nil];
-//
-//            for (int i = 0; i < imgAry.count; i++) {
-//                NSString * img  = [imgAry objectAtIndex:i];
-//                NSString * title = [TitleAry objectAtIndex:i];
-//                NSDictionary * dic = @{@"img":img, @"title":title};
-//                [self.myArr addObject:dic];
-//            }
-//
-//        }else
-//        {
-//            NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"帮助1",@"请假列表",@"修改密码",@"已发布",nil];
-//            NSMutableArray * TitleAry = [NSMutableArray arrayWithObjects:@"帮助",@"请假列表",@"修改密码",@"已发布的活动", nil];
-//
-//            for (int i = 0; i < imgAry.count; i++) {
-//                NSString * img  = [imgAry objectAtIndex:i];
-//                NSString * title = [TitleAry objectAtIndex:i];
-//                NSDictionary * dic = @{@"img":img, @"title":title};
-//                [self.myArr addObject:dic];
-//            }
-//        }
-//
-//        NSLog(@"%@",self.model.mobile);
-        
-    
-        
-       
-
         self.nameLabel.text = self.model.name;
-        
-        NSDictionary *attrs = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:16]};
-        CGSize size = [self.nameLabel.text sizeWithAttributes:attrs];
-        [self.nameLabel setFrame:CGRectMake(kScreenWidth / 2 - size.width,self.touxiangIcon.frame.size.height + self.touxiangIcon.frame.origin.y + 10, size.width * 2, 16)];
-        
+        CGSize size = [self.nameLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.nameLabel.font,NSFontAttributeName,nil]];
+        CGFloat JGlabelContentWidth = size.width;
+        // 如果label的内容的宽度度超过150，则label的宽度就设置为150，即label的最大宽度为150
+        if (JGlabelContentWidth >= 230) {
+            JGlabelContentWidth = 230;
+        }
+        self.nameLabel.frame =  CGRectMake(kScreenWidth / 2 - JGlabelContentWidth / 2 ,self.touxiangIcon.frame.size.height + self.touxiangIcon.frame.origin.y + 10, JGlabelContentWidth, 16);
+
         [self.iconImg sd_setImageWithURL:[NSURL URLWithString:self.model.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
-        
-        if (self.model.dorm_open == 1 && self.model.nature == 2)
-        {
+        if (self.model.dorm_open == 1 && self.model.nature == 2) {
             NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"就寝管理新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新", nil];
             NSMutableArray * TitleAry = [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"就寝管理",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈", nil];
-            
-            
             for (int i = 0; i < imgAry.count; i++) {
                 NSString * img  = [imgAry objectAtIndex:i];
                 NSString * title = [TitleAry objectAtIndex:i];
@@ -218,6 +193,7 @@
                 
                 UILabel * nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 30, itemImg.frame.origin.y + itemImg.frame.size.height + 10, 60, 15)];
                 nameLabel.textColor = RGB(51, 51, 51);
+                nameLabel.textAlignment = NSTextAlignmentCenter;
                 nameLabel.font = [UIFont systemFontOfSize:13];
                 nameLabel.text = [dic objectForKey:@"title"];
                 [itemView addSubview:nameLabel];
@@ -225,8 +201,7 @@
                 
             }
             
-        }else
-        {
+        } else {
             NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新", nil];
             NSMutableArray * TitleAry = [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈", nil];
             
@@ -240,7 +215,7 @@
             NSInteger width = (kScreenWidth - 60) / 3;
             for (int i = 0; i < self.myArr .count; i++) {
                 NSDictionary * dic = [self.myArr  objectAtIndex:i];
-                UIView * itemView = [[UIView alloc] initWithFrame:CGRectMake(30 + width *  (i %3), 0 + 83 * (i / 3), width, 83)];
+                UIView * itemView = [[UIView alloc] initWithFrame:CGRectMake(30 + width *  (i % 3), 0 + 83 * (i / 3), width, 83)];
                 [self.bottom addSubview:itemView];
                 
                 itemView.tag = i;
@@ -257,6 +232,8 @@
                 UILabel * nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 30, itemImg.frame.origin.y + itemImg.frame.size.height + 10, 60, 15)];
                 nameLabel.textColor = RGB(51, 51, 51);
                 nameLabel.font = [UIFont systemFontOfSize:13];
+                nameLabel.textAlignment = NSTextAlignmentCenter;
+
                 nameLabel.text = [dic objectForKey:@"title"];
                 [itemView addSubview:nameLabel];
             }
@@ -267,32 +244,16 @@
     }];
 }
 
-- (NSMutableArray *)iconAry
-{
-    if (!_iconAry) {
-        self.iconAry = [@[]mutableCopy];
-    }
-    return _iconAry;
-}
-
-- (NSMutableArray *)titleAry
-{
-    if (!_titleAry) {
-        self.titleAry = [@[]mutableCopy];
-    }
-    return _titleAry;
-}
 
 
-- (void)person:(UIButton *)sender
-{
+
+- (void)person:(UIButton *)sender {
     PersonalDataViewController *personalDataVC = [[PersonalDataViewController alloc] init];
     [self.navigationController pushViewController:personalDataVC animated:YES];
 }
 
 #pragma mark ======= 就寝管理 =======
-- (void)itmeTap:(UITapGestureRecognizer *)sender
-{
+- (void)itmeTap:(UITapGestureRecognizer *)sender {
     switch (sender.view.tag) {
         case 0:
         {
@@ -325,12 +286,10 @@
         case 4:
         {
             NSLog(@"绑定手机");
-            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"])
-            {
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
                 [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
                 
-            }else
-            {
+            } else {
                 BindMobilePhoneViewController *bingMoblie = [[BindMobilePhoneViewController alloc] init];
                 if (self.model.mobile == nil || [self.model.mobile isEqualToString:@""]) {
                     bingMoblie.typeStr = @"1";
@@ -382,8 +341,7 @@
 }
 
 #pragma mark ======= 无就寝管理 =======
-- (void)itmeTap1:(UITapGestureRecognizer *)sender
-{
+- (void)itmeTap1:(UITapGestureRecognizer *)sender {
     switch (sender.view.tag) {
         case 0:
         {
@@ -401,8 +359,7 @@
         {
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
                 [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
-            }else
-            {
+            } else {
                 NSLog(@"修改密码");
                 ChangePasswordViewController *changePasswordVC = [[ChangePasswordViewController alloc] init];
                 [self.navigationController pushViewController:changePasswordVC animated:YES];
@@ -411,12 +368,10 @@
             break;
         case 3:
         {
-            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"])
-            {
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
                 [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
                 
-            }else
-            {
+            } else {
                 BindMobilePhoneViewController *bingMoblie = [[BindMobilePhoneViewController alloc] init];
                 if (self.model.mobile == nil || [self.model.mobile isEqualToString:@""]) {
                     bingMoblie.typeStr = @"1";
@@ -464,23 +419,19 @@
     }
 }
 
-- (void)imgTap:(UITapGestureRecognizer *)sender
-{
+- (void)imgTap:(UITapGestureRecognizer *)sender {
     [self.back removeFromSuperview];
 }
 
-- (void)setNetWorkNew
-{
+- (void)setNetWorkNew {
     NSDictionary * dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:userContactUs parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.helperCenterModel = [HelperCenterModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
-        }else
-        {
+        } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
-            }else
-            {
+            } else {
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
@@ -494,182 +445,6 @@
 }
 
 
-//- (UITableView *)myTabelView {
-//    if (!_myTabelView) {
-//        self.myTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH) style:UITableViewStylePlain];
-//        self.myTabelView.backgroundColor = backColor;
-//        self.myTabelView.delegate = self;
-//        self.myTabelView.dataSource = self;
-//        self.myTabelView.separatorStyle = UITableViewCellEditingStyleNone;
-//    }
-//    return _myTabelView;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    if (section == 0) {
-//        return 1;
-//    } else if (section == 1) {
-//        return self.myArr.count;
-//    } else {
-//        return 1;
-//    }
-//}
-//
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    if (section == 0) {
-//        return 0;
-//    }else if (section == 1) {
-//        return 10;
-//    } else {
-//        return 10;
-//    }
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-//    return 0;
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 10)];
-//    headerView.backgroundColor = backColor;
-//    return headerView;
-//}
-//
-////有时候tableview的底部视图也会出现此现象对应的修改就好了
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-//    return nil;
-//}
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 3;
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (indexPath.section == 0)
-//    {
-//        MyInformationCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyInformationCellId" forIndexPath:indexPath];
-//        cell.userName.text = self.model.name;
-//        cell.userZiLiao.text = @"我的资料";
-//
-//        if (self.model.head_img == nil)
-//        {
-//            cell.userImg.image = [UIImage imageNamed:@"user"];
-//        } else
-//        {
-//            [cell.userImg sd_setImageWithURL:[NSURL URLWithString:self.model.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
-//        }
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return cell;
-//    } else if (indexPath.section == 1) {
-//        HomeworkCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkCellId" forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        if (self.myArr.count != 0) {
-//            NSDictionary * dic = [self.myArr objectAtIndex:indexPath.row];
-//            cell.itemImg.image = [UIImage imageNamed:[dic objectForKey:@"img"]];
-//            cell.itemLabel.text = [dic objectForKey:@"title"];
-//        }
-//
-//        return cell;
-//    } else
-//    {
-//        ExitCell *  cell = [tableView dequeueReusableCellWithIdentifier:@"ExitCellId" forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        [cell.exitBtn addTarget:self action:@selector(exitBtn:) forControlEvents:UIControlEventTouchUpInside];
-//
-//        return cell;
-//    }
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 0) {
-//        return 90;
-//    } else if (indexPath.section == 1) {
-//        return 50;
-//    } else {
-//        return 50;
-//    }
-//}
-//
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 0) {
-//        PersonalDataViewController *personalDataVC = [[PersonalDataViewController alloc] init];
-//        [self.navigationController pushViewController:personalDataVC animated:YES];
-//    } else if (indexPath.section == 1) {
-//        switch (indexPath.row) {
-//            case 0:
-//            {
-//                NSLog(@"1");
-//                HelperCenterViewController *helpCenterVC = [[HelperCenterViewController alloc] init];
-//                [self.navigationController pushViewController:helpCenterVC animated:YES];
-//            }
-//                break;
-//            case 1:
-//            {
-//                NSLog(@"请假列表");
-//                OffTheListViewController *offTheListVC = [[OffTheListViewController alloc] init];
-//                [self.navigationController pushViewController:offTheListVC animated:YES];
-//
-//            }
-//                break;
-//            case 2:
-//            {
-//                if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
-//                    [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
-//                }else
-//                {
-//                    NSLog(@"修改密码");
-//                    ChangePasswordViewController *changePasswordVC = [[ChangePasswordViewController alloc] init];
-//                    [self.navigationController pushViewController:changePasswordVC animated:YES];
-//                }
-//            }
-//                break;
-//            case 3:
-//            {
-//                NSLog(@"我的活动");
-//                OngoingTableViewController *ongoingTableViewC = [[OngoingTableViewController alloc] init];
-//                [self.navigationController pushViewController:ongoingTableViewC animated:YES];
-//
-//            }
-//                break;
-//            case 4:
-//            {
-//                NSLog(@"点击就寝管理");
-//                SleepManagementViewController * sleepManagementVC = [[SleepManagementViewController alloc] init];
-//                [self.navigationController pushViewController:sleepManagementVC animated:YES];
-//            }
-//            default:
-//                break;
-//        }
-//    } else if (indexPath.section == 2) {
-//        NSLog(@"退出登录");
-//    }
-//}
-//
-//- (void)exitBtn : (UIButton *)sender
-//{
-//    NSLog(@"点击退出");
-//    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"确定要退出登录吗?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-//    UIAlertAction *alertT = [UIAlertAction actionWithTitle:@"退出登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        NSLog(@"点击退出登录");
-//        [self tuichuLogin];
-//    }];
-//    UIAlertAction *alertF = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//        NSLog(@"点击了取消");
-//    }];
-//
-//    [actionSheet addAction:alertT];
-//    [actionSheet addAction:alertF];
-//    [self presentViewController:actionSheet animated:YES completion:nil];
-//
-//}
-//
-//- (void)tuichuLogin
-//{
-//    [UserManager logoOut];
-//    [WProgressHUD showSuccessfulAnimatedText:@"退出成功"];
-//
-//}
+
 
 @end

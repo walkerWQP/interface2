@@ -74,7 +74,8 @@
     return _bannerArr;
 }
 
-- (void)getBannersURLData {
+- (void)getBannersURLData
+{
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"11"};
     NSLog(@"%@",[UserManager key]);
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -352,7 +353,11 @@
             }
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UIImageView * imgs = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
+        UIImageView * imgs = [[UIImageView alloc] initWithFrame:CGRectMake(15, 0, APP_WIDTH - 30, 170)];
+        imgs.contentMode = UIViewContentModeScaleAspectFill;
+        imgs.clipsToBounds = YES;
+        imgs.layer.cornerRadius  = 10;
+        imgs.layer.masksToBounds = YES;
         if (self.bannerArr.count == 0) {
             //            imgs.image = [UIImage imageNamed:@"教师端活动管理banner"];
         } else {
@@ -366,20 +371,23 @@
         TeacherListNCell * cell = [tableView dequeueReusableCellWithIdentifier:@"TeacherListNCellId" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.LiuLanTopCon.constant = 15;
+      
         if (self.ChildJiaoYuAry.count != 0) {
             
-             ParentXueTangModel * model = [self.ChildJiaoYuAry objectAtIndex:indexPath.row];
-
+            ParentXueTangModel * model = [self.ChildJiaoYuAry objectAtIndex:indexPath.row];
             [cell.TeacherListNImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"缩略图"]];
+            cell.TeacherListNImg.contentMode = UIViewContentModeScaleAspectFill;
+            cell.TeacherListNImg.clipsToBounds = YES;
             cell.TeacherListNTitleLabel.text = model.title;
-            if (model.view > 9999) {
+            if (model.view > 9999)
+            {
                 CGFloat num = model.view / 10000;
                 cell.TeacherListNBoFangCi.text = [NSString stringWithFormat:@"%.1f万次播放", num];
             }else
             {
                 cell.TeacherListNBoFangCi.text = [NSString stringWithFormat:@"%ld次播放", model.view];
-                
             }
+            
             cell.TeacherListNFenLeiLabel.alpha = 0;
             
             if (model.label.count == 0) {

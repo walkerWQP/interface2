@@ -76,6 +76,10 @@
 {
     if (!_back) {
         _back = [[UIImageView alloc] initWithFrame:CGRectMake(15, 0, self.frame.size.width - 30, self.frame.size.height)];
+        _back.contentMode = UIViewContentModeScaleAspectFill;
+        _back.clipsToBounds = YES;
+        _back.layer.cornerRadius  = 5;
+        _back.layer.masksToBounds = YES;
     }
     return _back;
 }
@@ -84,6 +88,7 @@
 {
     if (!_backTwo) {
         _backTwo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+       
         _backTwo.image = [UIImage imageNamed:@"banner底部"];
     }
     return _backTwo;

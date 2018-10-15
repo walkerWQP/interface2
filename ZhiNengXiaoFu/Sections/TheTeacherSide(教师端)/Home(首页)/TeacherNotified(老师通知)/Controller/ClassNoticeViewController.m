@@ -101,20 +101,8 @@
     self.myPicture.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.myPicture];
     
-    
-//    //判断是否具有相机权限
-//    if ([JurisdictionMethod videoJurisdiction]) {
-//
-//    }else{
-//        [[JurisdictionMethod shareJurisdictionMethod] photoJurisdictionAlert];
-//
-//    }
-    
-    
-    
     //打开照相机拍照
-    if (!self.LQPhotoPicker_superView)
-    {
+    if (!self.LQPhotoPicker_superView) {
         self.LQPhotoPicker_superView = self.myPicture;
         
         self.LQPhotoPicker_imgMaxCount = 3;
@@ -163,8 +151,7 @@
     NSDictionary * params = @{@"key":[UserManager key],@"upload_type":@"img", @"upload_img_type":@"notice"};
     [WProgressHUD showHUDShowText:@"加载中..."];
     [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        for (int i = 0; i < self.LQPhotoPicker_bigImageArray.count; i++)
-        {
+        for (int i = 0; i < self.LQPhotoPicker_bigImageArray.count; i++) {
             UIImage * image = self.LQPhotoPicker_bigImageArray[i];
             NSData *imageData = UIImageJPEGRepresentation(image,1);
             float length=[imageData length]/1000;
@@ -173,16 +160,14 @@
             formatter.dateFormat = @"yyyyMMddHHmmss";
             NSString *str = [formatter stringFromDate:[NSDate date]];
             NSString *imageFileName = [NSString stringWithFormat:@"%@.jpeg", str];
-            NSLog(@"%@",str);
             
-            if (length>1280)
-            {
+            if (length>1280) {
                 NSData *fData = UIImageJPEGRepresentation(image, 0.5);
                 [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
                 NSLog(@"%@",[NSString stringWithFormat:@"file[%d]",i]);
                 
    
-            }else{
+            } else {
 
                 [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
                 
@@ -194,13 +179,13 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WProgressHUD hideAllHUDAnimated:YES];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            NSLog(@"%@", responseObject);
+            
             NSDictionary *dic = [responseObject objectForKey:@"data"];
             NSMutableArray *arr = [dic objectForKey:@"url"];
             for (int i = 0; i < arr.count; i ++) {
                 [self.imgFiledArr addObject:arr[i]];
             }
-            NSLog(@"%ld",self.imgFiledArr.count);
+            
             NSDictionary *dataDic = [NSDictionary dictionary];
     
             dataDic = @{@"key":[UserManager key],@"class_id":self.classID,@"title":self.noticeNameTextField.text,@"content":self.noticeContentTextView.text,@"img":self.imgFiledArr};
@@ -213,7 +198,7 @@
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
 
             } else {
-//                [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
+
                 NSDictionary *dataDic = [NSDictionary dictionary];
                 dataDic = @{@"key":[UserManager key],@"class_id":self.classID,@"title":self.noticeNameTextField.text,@"content":self.noticeContentTextView.text,@"img":@""};
                 [self postDataForRelease:dataDic];
@@ -227,7 +212,7 @@
     
 }
 
-//发布
+#pragma mark ======= 发布 =======
 - (void)postDataForRelease:(NSDictionary *)dic{
     
         [WProgressHUD showHUDShowText:@"加载中..."];
