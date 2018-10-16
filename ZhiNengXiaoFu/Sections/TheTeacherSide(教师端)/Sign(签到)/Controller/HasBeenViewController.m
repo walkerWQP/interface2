@@ -154,8 +154,6 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSLog(@"%ld",indexPath.row);
     TotalNumberModel *model = [self.hasBeenArr objectAtIndex:indexPath.row];
     LeaveTheDetailsViewController *LeaveTheDetailsVC = [[LeaveTheDetailsViewController alloc] init];
     switch (model.is_leave) {

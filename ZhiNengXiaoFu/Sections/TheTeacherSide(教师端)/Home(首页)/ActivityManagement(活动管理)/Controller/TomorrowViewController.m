@@ -157,8 +157,6 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSLog(@"%ld",indexPath.row);
     OngoingModel *model = [self.tomorrowArr objectAtIndex:indexPath.row];
     JingJiActivityDetailsViewController *jingJiActivityDetailsVC = [JingJiActivityDetailsViewController new];
     if (model.ID == nil) {

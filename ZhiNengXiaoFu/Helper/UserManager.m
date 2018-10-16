@@ -46,74 +46,54 @@
 
 
 
-+(void)logoOut{
++(void)logoOut {
     
-//    NSString * chooseLoginState = [[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"];
-//    PersonInformationModel * model = [UserManager getUserObject];
-//    NSDictionary * dic = @{@"uid":model.ID, @"school_id":[NSString stringWithFormat:@"%ld", model.school_id], @"identity":chooseLoginState};
-//    [WProgressHUD showHUDShowText:@"加载中..."];
-//
-//    [[HttpRequestManager sharedSingleton] POST:TUICHULOGIN parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSLog(@"%@", responseObject);
-//        [WProgressHUD hideAllHUDAnimated:YES];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"chooseLoginState"];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"personInfo"];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"key"];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"youkeState"];
 
-//        if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
-//           [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
     
-            [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"chooseLoginState"];
-            [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"personInfo"];
-            [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"key"];
-            [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"youkeState"];
-
-            
-            LoginHomePageViewController * loginHomepage = [[LoginHomePageViewController alloc] init];
-            // 定义一个变量存放当前屏幕显示的viewcontroller
-            UIViewController *result = nil;
-            
-            // 得到当前应用程序的主要窗口
-            UIWindow * window = [[UIApplication sharedApplication] keyWindow];
-            
-            // windowLevel是在 Z轴 方向上的窗口位置，默认值为UIWindowLevelNormal
-            if (window.windowLevel != UIWindowLevelNormal)
+        LoginHomePageViewController * loginHomepage = [[LoginHomePageViewController alloc] init];
+        // 定义一个变量存放当前屏幕显示的viewcontroller
+        UIViewController *result = nil;
+    
+        // 得到当前应用程序的主要窗口
+        UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    
+        // windowLevel是在 Z轴 方向上的窗口位置，默认值为UIWindowLevelNormal
+        if (window.windowLevel != UIWindowLevelNormal)
+        {
+            // 获取应用程序所有的窗口
+            NSArray *windows = [[UIApplication sharedApplication] windows];
+            for(UIWindow * tmpWin in windows)
             {
-                // 获取应用程序所有的窗口
-                NSArray *windows = [[UIApplication sharedApplication] windows];
-                for(UIWindow * tmpWin in windows)
+                // 找到程序的默认窗口（正在显示的窗口）
+                if (tmpWin.windowLevel == UIWindowLevelNormal)
                 {
-                    // 找到程序的默认窗口（正在显示的窗口）
-                    if (tmpWin.windowLevel == UIWindowLevelNormal)
-                    {
-                        // 将关键窗口赋值为默认窗口
-                        window = tmpWin;
-                        break;
-                    }
+                    // 将关键窗口赋值为默认窗口
+                    window = tmpWin;
+                    break;
                 }
             }
-            
-            // 获取窗口的当前显示视图
-            UIView *frontView = [[window subviews] objectAtIndex:0];
-            
-            // 获取视图的下一个响应者，UIView视图调用这个方法的返回值为UIViewController或它的父视图
-            id nextResponder = [frontView nextResponder];
-            
-            // 判断显示视图的下一个响应者是否为一个UIViewController的类对象
-            if ([nextResponder isKindOfClass:[UIViewController class]]) {
-                result = nextResponder;
-            } else {
-                result = window.rootViewController;
-            }
-            
-            [result presentViewController:loginHomepage animated:YES completion:NULL];
-            
-//        }
-        
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"%@", error);
-//        [WProgressHUD hideAllHUDAnimated:YES];
-//
-//    }];
+        }
     
+        // 获取窗口的当前显示视图
+        UIView *frontView = [[window subviews] objectAtIndex:0];
+    
+        // 获取视图的下一个响应者，UIView视图调用这个方法的返回值为UIViewController或它的父视图
+        id nextResponder = [frontView nextResponder];
+    
+        // 判断显示视图的下一个响应者是否为一个UIViewController的类对象
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            result = nextResponder;
+        } else {
+            result = window.rootViewController;
+        }
+    
+        [result presentViewController:loginHomepage animated:YES completion:NULL];
+    
+
 }
 
 +(NSString  *)key

@@ -172,8 +172,6 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSLog(@"%ld",indexPath.row);
     PublicClassModel *model = [self.publicClassArr objectAtIndex:indexPath.row];
     TeacherZaiXianDetailsViewController *teacherZaiXianDetailsVC = [[TeacherZaiXianDetailsViewController alloc] init];
     if (model.ID == nil) {

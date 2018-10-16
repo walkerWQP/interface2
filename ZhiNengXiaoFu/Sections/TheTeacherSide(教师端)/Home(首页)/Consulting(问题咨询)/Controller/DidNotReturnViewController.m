@@ -72,7 +72,6 @@
     NSDictionary * dic = @{@"key":[UserManager key], @"status":@0,@"page":[NSString stringWithFormat:@"%ld",page]};
     
     [[HttpRequestManager sharedSingleton] POST:ConsultConsultList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         //结束头部刷新
         [self.didNotReturnCollectionView.mj_header endRefreshing];
         //结束尾部刷新
@@ -189,8 +188,6 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSLog(@"%ld",indexPath.row);
     ConsultListModel *model = [self.didNotReturnArr objectAtIndex:indexPath.row];
     ReplyViewController *replyVC = [[ReplyViewController alloc] init];
     if (model.ID == nil) {
@@ -202,8 +199,6 @@
         replyVC.problemStr =  model.question;
         [self.navigationController pushViewController:replyVC animated:YES];
     }
-   
-    
 }
 
 

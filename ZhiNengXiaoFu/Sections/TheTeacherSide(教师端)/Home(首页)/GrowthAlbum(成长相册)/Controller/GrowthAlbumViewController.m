@@ -45,8 +45,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.webTitle;
-    NSLog(@"%@",self.classID);
-    
     if ([self.typeID isEqualToString:@"1"]) {
         
     } else {
@@ -237,8 +235,6 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
-    NSLog(@"---------%@", request.URL.absoluteString);
-    
     self.hidesBottomBarWhenPushed = YES;
     
     NSString *urlString = request.URL.absoluteString;
@@ -249,7 +245,6 @@
         
         [[UIApplication sharedApplication]openURL:request.URL options:@{} completionHandler:^(BOOL success) {
             
-            NSLog(@"=========%d", success);
             
         }];
         

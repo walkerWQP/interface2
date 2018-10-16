@@ -218,20 +218,16 @@
         
         
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            NSLog(@"%@", responseObject);
             NSDictionary *dic = [responseObject objectForKey:@"data"];
             NSMutableArray *arr = [dic objectForKey:@"url"];
             for (int i = 0; i < arr.count; i ++) {
                 [self.imgFiledArr addObject:arr[i]];
             }
-            NSLog(@"%ld",self.imgFiledArr.count);
             NSDictionary *dataDic = [NSDictionary dictionary];
        
             dataDic = @{@"key":[UserManager key],@"class_id":self.classID,@"title":self.jobNameTextField.text,@"content":self.jobContentTextView.text,@"course_id":self.courseID,@"img":self.imgFiledArr};
             [self PostWorkPusblishData:dataDic];
       
-            
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];

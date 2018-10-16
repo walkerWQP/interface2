@@ -132,12 +132,9 @@
 - (void)setUser {
     NSDictionary * dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
             self.userNameStr = [[responseObject objectForKey:@"data"] objectForKey:@"name"];
-            NSLog(@"%@",self.userNameStr);
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];

@@ -190,7 +190,6 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%ld",indexPath.row);
     SchoolDynamicModel *model = [self.schoolDynamicArr objectAtIndex:indexPath.row];
     SchoolDongTaiDetailsViewController *schoolDongTaiDetailsVC = [[SchoolDongTaiDetailsViewController alloc] init];
     if (model.ID == nil) {

@@ -172,19 +172,15 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WProgressHUD hideAllHUDAnimated:YES];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            NSLog(@"%@", responseObject);
             NSDictionary *dic = [responseObject objectForKey:@"data"];
             NSMutableArray *arr = [dic objectForKey:@"url"];
             for (int i = 0; i < arr.count; i ++) {
                 [self.imgFiledArr addObject:arr[i]];
             }
-            NSLog(@"%ld",self.imgFiledArr.count);
             NSDictionary *dataDic = [NSDictionary dictionary];
             
             dataDic = @{@"key":[UserManager key],@"class_id":self.courseID,@"img":self.imgFiledArr};
             [self postDataForUploadURL:dataDic];
-            
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -192,7 +188,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

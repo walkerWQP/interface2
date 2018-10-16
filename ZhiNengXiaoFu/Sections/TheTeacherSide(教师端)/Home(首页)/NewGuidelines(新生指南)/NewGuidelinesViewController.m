@@ -99,11 +99,8 @@
 - (void)setNetWork {
     NSDictionary * dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getGuideURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.workDetailsModel = [WorkDetailsModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
-            NSLog(@"%@",self.workDetailsModel.img);
-            
             [self.newGuidelinesTableView reloadData];
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
@@ -223,7 +220,6 @@
         self.tongZhiDetailsCell.webView.frame = CGRectMake(10, 30 + size.height , APP_WIDTH - 20, currentHeight);
         
         self.Hnew = currentHeight;
-        NSLog(@"html 高度2：%f", currentHeight);
         self.tongZhiDetailsCell.webView.hidden =NO;
         
         self.tongZhiDetailsCell.TongZhiDetailsTWebopCon.constant = self.Hnew + 26;

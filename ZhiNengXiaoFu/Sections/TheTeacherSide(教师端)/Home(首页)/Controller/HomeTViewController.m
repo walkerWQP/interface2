@@ -150,7 +150,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 3) {
         return self.classArr.count;
-    }else if (section == 5){
+    } else if (section == 5){
         return self.dongtaiAry.count;
     } else {
         return 1;
@@ -197,8 +197,6 @@
         [self.banner removeAllSubviews];
         
         self.banner = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 150) shouldInfiniteLoop:YES imageGroups:self.imgArr];
-        //    banner.placeholderImage = [UIImage imageNamed:@"placeholderImage"];
-        //    banner.cellPlaceholderImage = [UIImage imageNamed:@"placeholderImage"];
         self.banner.autoScrollTimeInterval = 3;
         self.banner.autoScroll = YES;
         self.banner.isZoom = YES;
@@ -231,7 +229,7 @@
             [back setBackgroundImage:[UIImage imageNamed:[imgAry objectAtIndex:i]] forState:UIControlStateNormal];
             [back addTarget:self action:@selector(backBtn:) forControlEvents:UIControlEventTouchDown];
             back.tag = i;
-            //            back.image = [UIImage imageNamed:[imgAry objectAtIndex:i]];
+            
             [cell addSubview:back];
             
             UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(back.frame.origin.x - 5, back.frame.origin.y + back.frame.size.height + 5, 50, 15)];
@@ -248,7 +246,8 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 2)
+    {
         static NSString *CellIdentifier = @"TableViewCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -411,7 +410,7 @@
 }
 
 - (void)setClick:(NSInteger)index {
-    NSLog(@"%ld", index);
+    
     TongZhiDetailsViewController * tongZhiDetails  = [[TongZhiDetailsViewController alloc] init];
     
     tongZhiDetails.tongZhiId = [NSString stringWithFormat:@"%ld", index];
@@ -458,7 +457,8 @@
         case 5:
         {
             SchoolDongTaiDetailsViewController *schoolDongTaiDetailsVC = [[SchoolDongTaiDetailsViewController alloc] init];
-            if (self.dongtaiAry.count != 0) {
+            if (self.dongtaiAry.count != 0)
+            {
                 NSDictionary * model = [self.dongtaiAry objectAtIndex:indexPath.row];
                 schoolDongTaiDetailsVC.schoolDongTaiId  = [model objectForKey:@"id"];
             }
@@ -473,7 +473,6 @@
 
 #pragma mark ======= 轮播图点击事件 =======
 -(void)cycleScrollView:(DCCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    NSLog(@"index = %ld",(long)index);
     BannerModel *model = self.bannerArr[index];
     NSLog(@"%@",model.ID);
     NSLog(@"%@",model.url);
@@ -553,7 +552,6 @@
 }
 
 
-
 - (void)didScrollToPage:(NSInteger)pageNumber inFlowView:(NewPagedFlowView *)flowView {
     NSLog(@"ViewController 滚动到了第%ld页",pageNumber);
 }
@@ -567,7 +565,6 @@
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             [self.bannerArr removeAllObjects];
             [self.imgArr removeAllObjects];
-            NSLog(@"%@",[responseObject objectForKey:@"data"]);
             NSDictionary *dataDic = [responseObject objectForKey:@"data"];
             self.bannerArr = [HomeBannerModel mj_objectArrayWithKeyValuesArray:[dataDic objectForKey:@"banner"]];
             for (NSDictionary *bannerDict in [dataDic objectForKey:@"banner"]) {
@@ -611,7 +608,6 @@
 - (void)setUser {
     NSDictionary * dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
             self.schoolName = [[responseObject objectForKey:@"data"] objectForKey:@"school_name"];
@@ -655,7 +651,6 @@
             for (PublishJobModel * model in self.publishJobArr) {
                 [ary1 addObject:[NSString stringWithFormat:@"%@", model.name]];
             }
-            NSLog(@"%@",ary[0]);
             if (ary.count == 0 || ary1.count == 0) {
                 [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
             } else {
@@ -668,7 +663,8 @@
             }
             
         } else {
-            if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
+            if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402)
+            {
                 [UserManager logoOut];
             } else {
                 

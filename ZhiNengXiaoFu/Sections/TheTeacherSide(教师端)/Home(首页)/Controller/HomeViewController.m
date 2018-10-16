@@ -103,7 +103,6 @@
     
     NSDictionary * dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:UserGetUnreadNumber parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         HomePageNumberModel * model = [HomePageNumberModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
         NSString * activity = [[NSString alloc] init];
         if (model.activity > 9) {
@@ -132,7 +131,6 @@
         } else {
             leave = [NSString stringWithFormat:@"%ld", model.leave];
         }
-        
         NSString * notice_s = [[NSString alloc] init];
         if (model.notice_s > 9) {
             notice_s = @"9+";
@@ -164,7 +162,6 @@
         }
         
         [[HttpRequestManager sharedSingleton] POST:UserSavePushId parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"jpushid%@", responseObject);
             
             if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
                 
@@ -262,19 +259,7 @@
                 
             }
                 break;
-//            case 2:
-//            {
-//                NSLog(@"点击右脑开发");
-////                CourseManagementViewController *courseManagementVC = [[CourseManagementViewController alloc] init];
-////                [self.navigationController pushViewController:courseManagementVC animated:YES];
-//                GrowthAlbumViewController *growthAlbumVC = [[GrowthAlbumViewController alloc] init];
-//                growthAlbumVC.urlStr = brainURL;
-//                growthAlbumVC.webTitle = @"右脑开发";
-//                growthAlbumVC.typeID = @"1";
-//                [self.navigationController pushViewController:growthAlbumVC animated:YES];
-//
-//            }
-//                break;
+
             case 2:
             {
                 NSLog(@"点击成长轨迹");
@@ -282,14 +267,7 @@
                 
             }
                 break;
-//            case 4:
-//            {
-//                NSLog(@"点击视频上传");
-//                UploadVideoViewController *uploadVideoVC = [[UploadVideoViewController alloc] init];
-//                [self.navigationController pushViewController:uploadVideoVC animated:YES];
-//
-//            }
-//                break;
+
             case 3:
             {
                 NSLog(@"点击活动管理");
@@ -312,9 +290,7 @@
                 NSLog(@"点击学校通知");
                 SchoolNoticeViewController *schoolNoticeVC = [[SchoolNoticeViewController alloc] init];
                 [self.navigationController pushViewController:schoolNoticeVC animated:YES];
-//                TongZhiViewController *tongZhiVC = [[TongZhiViewController alloc] init];
-//                tongZhiVC.teacherID = @"2";
-//                [self.navigationController pushViewController:tongZhiVC animated:YES];
+
                
             }
                 break;
@@ -343,13 +319,7 @@
                 
             }
                 break;
-//            case 9:
-//            {
-//                 NSLog(@"点击就寝管理");
-//                SleepManagementViewController * sleepManagementVC = [[SleepManagementViewController alloc] init];
-//                [self.navigationController pushViewController:sleepManagementVC animated:YES];
-//            }
-//                break;
+
                 
             default:
                 break;
@@ -431,7 +401,6 @@
             for (PublishJobModel * model in self.publishJobArr) {
                 [ary1 addObject:[NSString stringWithFormat:@"%@", model.name]];
             }
-            NSLog(@"%@",ary[0]);
             if (ary.count == 0 || ary1.count == 0) {
                 [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
             } else {
@@ -461,7 +430,7 @@
 - (void)setUser {
     NSDictionary * dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
+        
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
             self.schoolName = [[responseObject objectForKey:@"data"] objectForKey:@"school_name"];

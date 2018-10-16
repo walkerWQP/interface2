@@ -47,7 +47,6 @@
 - (void)setUser {
     NSDictionary * dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         self.personInfo = [PersonInformationModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
         [self.personalDataTableView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

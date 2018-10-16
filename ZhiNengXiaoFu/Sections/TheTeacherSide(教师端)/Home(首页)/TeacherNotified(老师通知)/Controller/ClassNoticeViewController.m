@@ -164,9 +164,6 @@
             if (length>1280) {
                 NSData *fData = UIImageJPEGRepresentation(image, 0.5);
                 [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
-                NSLog(@"%@",[NSString stringWithFormat:@"file[%d]",i]);
-                
-   
             } else {
 
                 [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];

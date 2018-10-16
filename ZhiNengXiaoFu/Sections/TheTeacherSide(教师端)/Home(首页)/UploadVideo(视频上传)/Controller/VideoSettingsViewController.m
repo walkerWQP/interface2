@@ -196,11 +196,7 @@
         [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
         return;
     }
-    NSLog(@"%@",self.ID);
-    NSLog(@"%@",self.titleField.text);
-    NSLog(@"%@",self.describeTextView.text);
-    NSLog(@"%@",self.is_chargeStr);
-    NSLog(@"%@",self.costTextField.text);
+    
     NSDictionary *dic = [NSDictionary dictionary];
     if ([self.is_chargeStr isEqualToString:@"0"]) {
         dic = @{@"key":[UserManager key],@"id":self.ID,@"title":self.titleField.text,@"introduce":self.describeTextView.text,@"is_charge":self.is_chargeStr};

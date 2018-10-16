@@ -160,8 +160,6 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSLog(@"%ld",indexPath.row);
     OngoingModel *model = [self.ongoingArr objectAtIndex:indexPath.row];
     JingJiActivityDetailsViewController *jingJiActivityDetailsVC = [JingJiActivityDetailsViewController new];
     if (model.ID == nil) {
@@ -170,8 +168,6 @@
         jingJiActivityDetailsVC.JingJiActivityDetailsId = model.ID;
         [self.navigationController pushViewController:jingJiActivityDetailsVC animated:YES];
     }
-    
-    
 }
 
 

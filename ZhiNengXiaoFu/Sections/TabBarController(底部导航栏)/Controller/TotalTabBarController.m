@@ -34,14 +34,17 @@
 {
     [super viewDidLoad];
     
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] isEqualToString:@"2"]) {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] isEqualToString:@"2"])
+    {
         [[UITabBar appearance] setTintColor:THEMECOLOR];
 
-    } else {
+    } else
+    {
         [[UITabBar appearance] setTintColor:THEMECOLOR];
 
     }
-
+    
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTabBarThree:) name:@"changeTabBarThree" object:nil];
     
@@ -59,15 +62,27 @@
         
     } else {
 //        [self setupChildViewController:@"首页" viewController:[HomePageViewController new] image:@"首页图标" selectedImage:@"首页图标拷贝"];
-        [self setupChildViewController:@"首页" viewController:[HomePageJViewController new] image:@"首页图标" selectedImage:@"首页图标拷贝"];
-
-        [self setupChildViewController:@"班级信息" viewController:[TheClassInformationViewController new] image:@"班级管理" selectedImage:@"班级管理1"];
-
-//        [self setupChildViewController:@"班级信息" viewController:[ClassHomeViewController new] image:@"班级管理" selectedImage:@"班级管理1"];
+//        [self setupChildViewController:@"首页" viewController:[HomePageJViewController new] image:@"首页图标" selectedImage:@"首页图标拷贝"];
+//
+//        [self setupChildViewController:@"班级信息" viewController:[TheClassInformationViewController new] image:@"班级管理" selectedImage:@"班级管理1"];
+//
+////        [self setupChildViewController:@"班级信息" viewController:[ClassHomeViewController new] image:@"班级管理" selectedImage:@"班级管理1"];
+//
+//        [self setupChildViewController:@"进出安全" viewController:[QianDaoViewController new] image:@"到校情况2" selectedImage:@"到校情况"];
+//
+//        [self setupChildViewController:@"我的" viewController:[MineViewController new] image:@"我的拷贝" selectedImage:@"我的"];
         
-        [self setupChildViewController:@"进出安全" viewController:[QianDaoViewController new] image:@"到校情况2" selectedImage:@"到校情况"];
         
-        [self setupChildViewController:@"我的" viewController:[MineViewController new] image:@"我的拷贝" selectedImage:@"我的"];
+        
+        [self setupChildViewController:@"首页" viewController:[HomePageJViewController new] image:@"首页未选" selectedImage:@"首页选中"];
+
+        [self setupChildViewController:@"班级信息" viewController:[TheClassInformationViewController new] image:@"班级未选" selectedImage:@"班级选中"];
+
+        //        [self setupChildViewController:@"班级信息" viewController:[ClassHomeViewController new] image:@"班级管理" selectedImage:@"班级管理1"];
+
+        [self setupChildViewController:@"进出安全" viewController:[QianDaoViewController new] image:@"进出未选" selectedImage:@"进出选中"];
+
+        [self setupChildViewController:@"我的" viewController:[MineViewController new] image:@"我的未选" selectedImage:@"我的选中"];
     }
 
 }
@@ -80,7 +95,8 @@
     [nav popToRootViewControllerAnimated:NO];
 }
 
-- (void)setupChildViewController:(NSString *)title viewController:(UIViewController *)controller image:(NSString *)image selectedImage:(NSString *)selectedImage {
+- (void)setupChildViewController:(NSString *)title viewController:(UIViewController *)controller image:(NSString *)image selectedImage:(NSString *)selectedImage
+{
     UITabBarItem *item = [[UITabBarItem alloc]init];
     item.image = [[UIImage imageNamed:image] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

@@ -228,9 +228,7 @@
 }
 
 - (void)releaseBtn : (UIButton *)sender {
-    NSLog(@"点击发布");
     [self.view endEditing:YES];
-    
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
         [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
         return;
@@ -352,7 +350,6 @@
             for (int i = 0; i < arr.count; i ++) {
                 [self.imgFiledArr addObject:arr[i]];
             }
-            NSLog(@"%ld",self.imgFiledArr.count);
             
             if (self.imgFiledArr.count != 0) {
                 NSString *str = [NSString stringWithFormat:@"%@",self.imgFiledArr[0]];

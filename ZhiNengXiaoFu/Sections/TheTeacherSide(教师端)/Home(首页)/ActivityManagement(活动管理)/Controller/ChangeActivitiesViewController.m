@@ -285,7 +285,6 @@
 }
 
 - (void)getSelectDate:(NSString *)date type:(DateType)type {
-    NSLog(@"%d - %@", type, date);
     switch (type) {
         case DateTypeOfStart:
             [self.beginTimeBtn setTitle:date forState:UIControlStateNormal];

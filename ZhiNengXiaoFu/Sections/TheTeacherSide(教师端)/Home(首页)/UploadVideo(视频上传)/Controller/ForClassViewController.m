@@ -169,11 +169,6 @@
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"%ld",indexPath.row);
-//    PublicClassModel *model = [self.forClassArr objectAtIndex:indexPath.row];
-//    VideoSettingsViewController *videoSettingsVC = [[VideoSettingsViewController alloc] init];
-//    videoSettingsVC.ID = model.ID;
-//    [self.navigationController pushViewController:videoSettingsVC animated:YES];
     PublicClassModel *model = [self.forClassArr objectAtIndex:indexPath.row];
     TeacherZaiXianDetailsViewController *teacherZaiXianDetailsVC = [[TeacherZaiXianDetailsViewController alloc] init];
     if (model.ID == nil) {

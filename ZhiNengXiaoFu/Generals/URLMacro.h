@@ -13,9 +13,9 @@
 #endif /* URLMacro_h */
 
 //正式
-#define YUMING  @"http://www.ksznxt.com/"
+//#define YUMING  @"http://www.ksznxt.com/"
 //测试
-//#define YUMING  @"http://school.ksznxt.com/"
+#define YUMING  @"http://school.ksznxt.com/"
 
 
 //登录接口
