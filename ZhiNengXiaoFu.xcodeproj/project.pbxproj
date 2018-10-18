@@ -256,7 +256,6 @@
 		98AD7EC1210F11BD00641231 /* SchoolNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7E90210F11BD00641231 /* SchoolNoticeViewController.m */; };
 		98AD7EC2210F11BD00641231 /* ClassDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7E97210F11BD00641231 /* ClassDetailsViewController.m */; };
 		98AD7EC3210F11BD00641231 /* TeacherNotifiedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7E9B210F11BD00641231 /* TeacherNotifiedViewController.m */; };
-		98AD7EC4210F11BD00641231 /* NoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7E9C210F11BD00641231 /* NoticeViewController.m */; };
 		98AD7EC5210F11BD00641231 /* TeacherNotifiedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7E9E210F11BD00641231 /* TeacherNotifiedModel.m */; };
 		98AD7EC6210F11BD00641231 /* ClassDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7EA3210F11BD00641231 /* ClassDetailsCell.m */; };
 		98AD7EC7210F11BD00641231 /* TeacherNotifiedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7EA4210F11BD00641231 /* TeacherNotifiedCell.m */; };
@@ -836,10 +835,8 @@
 		98AD7E91210F11BD00641231 /* SchoolNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolNoticeViewController.h; sourceTree = "<group>"; };
 		98AD7E97210F11BD00641231 /* ClassDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDetailsViewController.m; sourceTree = "<group>"; };
 		98AD7E98210F11BD00641231 /* TeacherNotifiedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherNotifiedViewController.h; sourceTree = "<group>"; };
-		98AD7E99210F11BD00641231 /* NoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeViewController.h; sourceTree = "<group>"; };
 		98AD7E9A210F11BD00641231 /* ClassDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetailsViewController.h; sourceTree = "<group>"; };
 		98AD7E9B210F11BD00641231 /* TeacherNotifiedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherNotifiedViewController.m; sourceTree = "<group>"; };
-		98AD7E9C210F11BD00641231 /* NoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeViewController.m; sourceTree = "<group>"; };
 		98AD7E9E210F11BD00641231 /* TeacherNotifiedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherNotifiedModel.m; sourceTree = "<group>"; };
 		98AD7E9F210F11BD00641231 /* TeacherNotifiedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherNotifiedModel.h; sourceTree = "<group>"; };
 		98AD7EA1210F11BD00641231 /* ClassDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetailsCell.h; sourceTree = "<group>"; };
@@ -3252,8 +3249,6 @@
 				98AD7E9B210F11BD00641231 /* TeacherNotifiedViewController.m */,
 				98AD7E9A210F11BD00641231 /* ClassDetailsViewController.h */,
 				98AD7E97210F11BD00641231 /* ClassDetailsViewController.m */,
-				98AD7E99210F11BD00641231 /* NoticeViewController.h */,
-				98AD7E9C210F11BD00641231 /* NoticeViewController.m */,
 				98C01EE52114326B00D625DA /* ClassNoticeViewController.h */,
 				98C01EE62114326B00D625DA /* ClassNoticeViewController.m */,
 			);
@@ -3987,7 +3982,6 @@
 				04251B9421153EE50090CD3C /* YiHuiFuViewController.m in Sources */,
 				047FB21A2113ECE300AED26D /* MyZiXunViewController.m in Sources */,
 				9883A1CC2121949700E5BB07 /* ClassDetailsTableViewCell.m in Sources */,
-				98AD7EC4210F11BD00641231 /* NoticeViewController.m in Sources */,
 				98BBCF51210C074E00AC00CD /* UIButton+WCustomIcon.m in Sources */,
 				98AD7EB0210F11BD00641231 /* GrowthAlbumViewController.m in Sources */,
 				98D89DBE2110058600355626 /* NotToViewController.m in Sources */,

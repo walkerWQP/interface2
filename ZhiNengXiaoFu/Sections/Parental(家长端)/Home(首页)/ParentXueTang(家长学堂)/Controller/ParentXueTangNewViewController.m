@@ -233,7 +233,7 @@
          [headerView addSubview:self.zinv];
          
          self.xinli = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth / 4 * 3 - 30, 8, 62, 28)];
-         self.xinli.text = @"心里健康";
+         self.xinli.text = @"心理健康";
          self.xinli.font = [UIFont systemFontOfSize:15];
          if (self.biaoji == 1)
          {

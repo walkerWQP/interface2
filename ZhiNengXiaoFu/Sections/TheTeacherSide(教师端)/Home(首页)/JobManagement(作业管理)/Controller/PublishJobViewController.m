@@ -13,23 +13,20 @@
 @interface PublishJobViewController ()<UITextFieldDelegate,PickerViewResultDelegate,LQPhotoPickerViewDelegate>
 
 //科目
-@property (nonatomic, strong) UILabel      *subjectsLabel;
-@property (nonatomic, strong) UIButton     *subjectsBtn;
-
+@property (nonatomic, strong) UILabel         *subjectsLabel;
+@property (nonatomic, strong) UIButton        *subjectsBtn;
 //作业名称
-@property (nonatomic, strong) UILabel      *jobNameLabel;
-@property (nonatomic, strong) UITextField  *jobNameTextField;
+@property (nonatomic, strong) UILabel         *jobNameLabel;
+@property (nonatomic, strong) UITextField     *jobNameTextField;
 //作业内容
-@property (nonatomic, strong) UILabel      *jobContentLabel;
-@property (nonatomic, strong) WTextView   *jobContentTextView;
+@property (nonatomic, strong) UILabel         *jobContentLabel;
+@property (nonatomic, strong) WTextView       *jobContentTextView;
 //上传图片内容
-@property (nonatomic, strong) UILabel      *uploadPicturesLabel;
-@property (nonatomic, strong) UIView       *myPicture;
-
+@property (nonatomic, strong) UILabel         *uploadPicturesLabel;
+@property (nonatomic, strong) UIView          *myPicture;
 @property (nonatomic, strong) NSMutableArray  *imgFiledArr;
-
-@property (nonatomic, strong) NSMutableArray *publishJobArr;
-@property (nonatomic, strong) NSString       *courseID;
+@property (nonatomic, strong) NSMutableArray  *publishJobArr;
+@property (nonatomic, strong) NSString        *courseID;
 
 @end
 

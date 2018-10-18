@@ -14,9 +14,9 @@
 
 @interface TotalNumberViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSMutableArray  *totalNumberArr;
+@property (nonatomic, strong) NSMutableArray   *totalNumberArr;
 @property (nonatomic, strong) UICollectionView *totalNumberCollectionView;
-@property (nonatomic, strong) UIImageView *zanwushuju;
+@property (nonatomic, strong) UIImageView      *zanwushuju;
 
 @end
 
@@ -165,43 +165,48 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    TotalNumberModel *model = [self.totalNumberArr objectAtIndex:indexPath.row];
-    LeaveTheDetailsViewController *LeaveTheDetailsVC = [[LeaveTheDetailsViewController alloc] init];
-    switch (model.is_leave) {
-        case 1:
-        {
-            NSLog(@"请假");
-            if (model.ID == nil) {
-                [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
-            } else {
-                LeaveTheDetailsVC.typeStr = @"1";
-                LeaveTheDetailsVC.studentID= model.ID;
-                
-                [self.navigationController pushViewController:LeaveTheDetailsVC animated:YES];
+    if (self.totalNumberArr.count != nil) {
+        TotalNumberModel *model = [self.totalNumberArr objectAtIndex:indexPath.row];
+        LeaveTheDetailsViewController *LeaveTheDetailsVC = [[LeaveTheDetailsViewController alloc] init];
+        switch (model.is_leave) {
+            case 1:
+            {
+                NSLog(@"请假");
+                if (model.ID == nil) {
+                    [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
+                } else {
+                    LeaveTheDetailsVC.typeStr = @"1";
+                    LeaveTheDetailsVC.studentID= model.ID;
+                    
+                    [self.navigationController pushViewController:LeaveTheDetailsVC animated:YES];
+                }
             }
+                break;
+            case 2:
+            {
+                NSLog(@"逃学");
+                QianDaoViewController *qianDaoVC = [QianDaoViewController new];
+                qianDaoVC.studentId = model.ID;
+                [self.navigationController pushViewController:qianDaoVC animated:YES];
+                
+            }
+                break;
+            case 3:
+            {
+                NSLog(@"签到");
+                QianDaoViewController *qianDaoVC = [QianDaoViewController new];
+                qianDaoVC.studentId = model.ID;
+                [self.navigationController pushViewController:qianDaoVC animated:YES];
+            }
+                break;
+                
+            default:
+                break;
         }
-            break;
-        case 2:
-        {
-            NSLog(@"逃学");
-            QianDaoViewController *qianDaoVC = [QianDaoViewController new];
-            qianDaoVC.studentId = model.ID;
-            [self.navigationController pushViewController:qianDaoVC animated:YES];
-            
-        }
-            break;
-        case 3:
-        {
-            NSLog(@"签到");
-            QianDaoViewController *qianDaoVC = [QianDaoViewController new];
-            qianDaoVC.studentId = model.ID;
-            [self.navigationController pushViewController:qianDaoVC animated:YES];
-        }
-            break;
-            
-        default:
-            break;
+    } else {
+        
     }
+    
     
 }
 

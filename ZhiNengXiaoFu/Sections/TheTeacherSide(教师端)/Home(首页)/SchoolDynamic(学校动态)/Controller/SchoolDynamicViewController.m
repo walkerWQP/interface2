@@ -14,11 +14,11 @@
 @interface SchoolDynamicViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UICollectionView *schoolDynamicCollectionView;
-@property (nonatomic, strong) NSMutableArray  *schoolDynamicArr;
-@property (nonatomic, strong) UIImageView  *headImgView;
-@property (nonatomic, assign) NSInteger     page;
-@property (nonatomic, strong) UIImageView *zanwushuju;
-@property (nonatomic, strong) NSMutableArray *bannerArr;
+@property (nonatomic, strong) NSMutableArray   *schoolDynamicArr;
+@property (nonatomic, strong) UIImageView      *headImgView;
+@property (nonatomic, assign) NSInteger        page;
+@property (nonatomic, strong) UIImageView      *zanwushuju;
+@property (nonatomic, strong) NSMutableArray   *bannerArr;
 
 @end
 

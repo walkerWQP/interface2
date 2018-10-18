@@ -136,9 +136,7 @@
         [defaults setObject:currentVersion forKey:versionKey];
         [defaults synchronize];
     }
-    
-
-}
+ }
 
 - (void)setHuoQuShangXianBanBen
 {

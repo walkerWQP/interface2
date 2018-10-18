@@ -14,36 +14,30 @@
 }
 
 //活动标题
-@property (nonatomic, strong) UILabel     *titleLabel;
-@property (nonatomic, strong) UITextField *titleTextField;
+@property (nonatomic, strong) UILabel          *titleLabel;
+@property (nonatomic, strong) UITextField      *titleTextField;
 //时间
-@property (nonatomic, strong) UILabel     *timeLabel;
-@property (nonatomic, strong) UIView      *timeView;
-@property (nonatomic, strong) UILabel     *changeLabel;
-@property (nonatomic, strong) UIButton    *beginTimeBtn;
-@property (nonatomic, strong) UIButton    *endTimeBtn;
+@property (nonatomic, strong) UILabel          *timeLabel;
+@property (nonatomic, strong) UIView           *timeView;
+@property (nonatomic, strong) UILabel          *changeLabel;
+@property (nonatomic, strong) UIButton         *beginTimeBtn;
+@property (nonatomic, strong) UIButton         *endTimeBtn;
 //班级
-@property (nonatomic, strong) UILabel     *classLabel;
-@property (nonatomic, strong) UIButton    *classBtn;
+@property (nonatomic, strong) UILabel          *classLabel;
+@property (nonatomic, strong) UIButton         *classBtn;
 //活动简介
-@property (nonatomic, strong) UILabel     *introductionLabel;
-@property (nonatomic, strong) WTextView  *introductionTextView;
+@property (nonatomic, strong) UILabel          *introductionLabel;
+@property (nonatomic, strong) WTextView        *introductionTextView;
 //上传图片
-@property (nonatomic, strong) UILabel     *uploadLabel;
-//@property (nonatomic, strong) UIButton    *uploadBtn;
+@property (nonatomic, strong) UILabel          *uploadLabel;
 //发送班级活动
-@property (nonatomic, strong) UIButton    *releaseBtn;
-@property (nonatomic, strong) UIView      *myPicture;
-
-@property (nonatomic, strong) NSMutableArray *jobManagementArr;
-
-@property (nonatomic, strong) UIScrollView   *launchEventScrollView;
-
-@property (nonatomic, strong) NSMutableArray  *imgFiledArr;
-
-@property (nonatomic, strong) NSString   *ID;
-
-@property (nonatomic, assign) NSInteger  timeID;
+@property (nonatomic, strong) UIButton         *releaseBtn;
+@property (nonatomic, strong) UIView           *myPicture;
+@property (nonatomic, strong) NSMutableArray   *jobManagementArr;
+@property (nonatomic, strong) UIScrollView     *launchEventScrollView;
+@property (nonatomic, strong) NSMutableArray   *imgFiledArr;
+@property (nonatomic, strong) NSString         *ID;
+@property (nonatomic, assign) NSInteger        timeID;
 
 @end
 
@@ -66,7 +60,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发布活动";
-    
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         
     }];

@@ -14,12 +14,12 @@
 
 @interface DidNotReturnViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSMutableArray  *didNotReturnArr;
-@property (nonatomic, strong) UICollectionView *didNotReturnCollectionView;
-@property (nonatomic, assign) NSInteger    page;
-@property (nonatomic, strong) UIImageView *zanwushuju;
-@property (nonatomic, strong) PersonInformationModel * personInfo;
-@property (nonatomic, assign) NSInteger   typeID;
+@property (nonatomic, strong) NSMutableArray         *didNotReturnArr;
+@property (nonatomic, strong) UICollectionView       *didNotReturnCollectionView;
+@property (nonatomic, assign) NSInteger              page;
+@property (nonatomic, strong) UIImageView            *zanwushuju;
+@property (nonatomic, strong) PersonInformationModel *personInfo;
+@property (nonatomic, assign) NSInteger              typeID;
 
 
 @end

@@ -158,6 +158,8 @@
     if (self.shiPinListAry.count != 0) {
         TeacherZaiXianModel * model = [self.shiPinListAry objectAtIndex:indexPath.row];
         [cell.TeacherListNImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"缩略图"]];
+        cell.TeacherListNImg.contentMode = UIViewContentModeScaleAspectFill;
+        cell.TeacherListNImg.clipsToBounds = YES;
         cell.TeacherListNTitleLabel.text = model.title;
         if (model.view > 9999) {
             CGFloat num = model.view / 10000;
@@ -170,18 +172,18 @@
         cell.TeacherListNFenLeiLabel.text = [NSString stringWithFormat:@"所属分类:%@", model.t_name];
         
         if (model.label.count == 0) {
-            cell.TeacherListNOneImg.alpha = 0;
-            cell.TeacherListNTwoImg.alpha = 0;
-            cell.TeacherListNThreeImg.alpha = 0;
+            cell.TeacherListNOneView.alpha = 0;
+            cell.TeacherListNTwoView.alpha = 0;
+            cell.TeacherListNThreeView.alpha = 0;
             
             cell.TeacherListNOneLabel.alpha = 0;
             cell.TeacherListNTwoLabel.alpha = 0;
             cell.TeacherListNThreeLabel.alpha = 0;
         }else if (model.label.count == 1)
         {
-            cell.TeacherListNOneImg.alpha = 1;
-            cell.TeacherListNTwoImg.alpha = 0;
-            cell.TeacherListNThreeImg.alpha = 0;
+            cell.TeacherListNOneView.alpha = 1;
+            cell.TeacherListNTwoView.alpha = 0;
+            cell.TeacherListNThreeView.alpha = 0;
             
             cell.TeacherListNOneLabel.alpha = 1;
             cell.TeacherListNTwoLabel.alpha = 0;
@@ -190,9 +192,9 @@
             
         }else if (model.label.count == 2)
         {
-            cell.TeacherListNOneImg.alpha = 1;
-            cell.TeacherListNTwoImg.alpha = 1;
-            cell.TeacherListNThreeImg.alpha = 0;
+            cell.TeacherListNOneView.alpha = 1;
+            cell.TeacherListNTwoView.alpha = 1;
+            cell.TeacherListNThreeView.alpha = 0;
             
             cell.TeacherListNOneLabel.alpha = 1;
             cell.TeacherListNTwoLabel.alpha = 1;
@@ -201,9 +203,9 @@
             cell.TeacherListNTwoLabel.text = [model.label objectAtIndex:1];
         }else if (model.label.count == 3)
         {
-            cell.TeacherListNOneImg.alpha = 1;
-            cell.TeacherListNTwoImg.alpha = 1;
-            cell.TeacherListNThreeImg.alpha = 1;
+            cell.TeacherListNOneView.alpha = 1;
+            cell.TeacherListNTwoView.alpha = 1;
+            cell.TeacherListNThreeView.alpha = 1;
             
             cell.TeacherListNOneLabel.alpha = 1;
             cell.TeacherListNTwoLabel.alpha = 1;

@@ -14,7 +14,7 @@
 
 #pragma mark - TableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
+    NewDynamicsLayout *layout = self.layoutsArr[indexPath.row];
     return layout.height;
 }
 
@@ -23,8 +23,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewDynamicsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"NewDynamicsTableViewCell"];
-    NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:indexPath.row];
+    NewDynamicsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewDynamicsTableViewCell"];
+    NewDynamicsLayout *layout = [self.layoutsArr objectAtIndex:indexPath.row];
     DynamicsModel * model = layout.model;
     if (self.layoutsArr.count == 0) {
         return cell;
@@ -160,7 +160,6 @@
             model.likeArr = [arr copy];
             [layout resetLayout];
             [self.dynamicsTable reloadRowsAtIndexPaths:@[self.commentIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -248,7 +247,6 @@
         }
     }
     if (phoneNum) {
-        NSLog(@"点击了电话:%@",phoneNum);
         UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"确定要拨打的电话吗?"] message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         
         UIAlertAction *alertT = [UIAlertAction actionWithTitle:phoneNum style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -266,11 +264,8 @@
             
         }];
         
-        
         [actionSheet addAction:alertT];
-        
         [actionSheet addAction:alertF];
-        
         [self presentViewController:actionSheet animated:YES completion:nil];
     }
 }

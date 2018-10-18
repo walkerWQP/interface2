@@ -12,9 +12,9 @@
 
 @interface YiZhuQinViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic, strong) UICollectionView * YiZhuQinCollectionView;
-@property (nonatomic, retain) UICollectionViewFlowLayout * layout;
-@property (nonatomic, strong) NSMutableArray *YiZhuQinAry;
+@property (nonatomic, strong) UICollectionView            *YiZhuQinCollectionView;
+@property (nonatomic, retain) UICollectionViewFlowLayout  *layout;
+@property (nonatomic, strong) NSMutableArray              *YiZhuQinAry;
 
 @end
 
@@ -32,17 +32,12 @@
     UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 1)];
     [self.view addSubview:lineView];
     lineView.backgroundColor = [UIColor colorWithRed:238 / 255.0 green:238 / 255.0 blue:238 / 255.0 alpha:1];
-    
-    
     self.layout = [[UICollectionViewFlowLayout alloc] init];
     self.YiZhuQinCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 1, APP_WIDTH, APP_HEIGHT - 287 - APP_NAVH - 40 - 1) collectionViewLayout:self.layout];
-    
     self.YiZhuQinCollectionView.backgroundColor = backColor;
-    
     self.YiZhuQinCollectionView.delegate = self;
     self.YiZhuQinCollectionView.dataSource = self;
     [self.view addSubview:self.YiZhuQinCollectionView];
-    
     [self.YiZhuQinCollectionView registerClass:[JiuQinStuCell class] forCellWithReuseIdentifier:@"JiuQinStuCellId"];
 }
 

@@ -14,6 +14,7 @@
 #import "BaiDuQuanJingViewController.h"
 #import "WeiLanViewController.h"
 #import "WeiLanListViewController.h"
+
 @interface DingWeiViewController ()<AMapLocationManagerDelegate, AMapGeoFenceManagerDelegate, MAMapViewDelegate>
 
 @property (nonatomic, strong) AMapLocationManager * locationManager;
@@ -44,10 +45,9 @@
     // Do any additional setup after loading the view.
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"电子围栏" style:UIBarButtonItemStyleDone target:self action:@selector(rightBarButton:)];
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
     
     self.title = @"所在位置";
-    
     
     self.mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.mapView];

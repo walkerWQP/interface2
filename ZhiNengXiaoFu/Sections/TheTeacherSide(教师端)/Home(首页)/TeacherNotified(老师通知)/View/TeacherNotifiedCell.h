@@ -13,7 +13,7 @@
 @interface TeacherNotifiedCell : UICollectionViewCell
 
 @property (nonatomic, strong) UIImageView  *headImgView;
-@property (nonatomic, strong) UILabel  *classLabel;
-@property (nonatomic, strong) UIButton *rightBtn;
+@property (nonatomic, strong) UILabel      *classLabel;
+@property (nonatomic, strong) UIButton     *rightBtn;
 
 @end

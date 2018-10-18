@@ -9,18 +9,17 @@
 #import "ClassDetailsViewController.h"
 #import "ClassDetailsTableViewCell.h"
 #import "ClassDetailsModel.h"
-#import "NoticeViewController.h"
 #import "ClassNoticeViewController.h"
 #import "TongZhiDetailsViewController.h"
 
 @interface ClassDetailsViewController ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, assign) NSInteger     page;
-@property (nonatomic, strong) UIImageView * zanwushuju;
-@property (nonatomic, strong) NSMutableArray *bannerArr;
+@property (nonatomic, assign) NSInteger       page;
+@property (nonatomic, strong) UIImageView     *zanwushuju;
+@property (nonatomic, strong) NSMutableArray  *bannerArr;
 @property (nonatomic, strong) NSMutableArray  *classDetailsArr;
-@property (nonatomic, strong) UITableView *classDetailsTableView;
-@property (nonatomic, strong) UIImageView  *headImgView;
+@property (nonatomic, strong) UITableView     *classDetailsTableView;
+@property (nonatomic, strong) UIImageView     *headImgView;
 
 @end
 
@@ -62,6 +61,7 @@
     self.title = self.titleStr;
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [button setTitle:@"发布" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     button.titleLabel.font = titFont;
     [button addTarget:self action:@selector(rightBtn:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];

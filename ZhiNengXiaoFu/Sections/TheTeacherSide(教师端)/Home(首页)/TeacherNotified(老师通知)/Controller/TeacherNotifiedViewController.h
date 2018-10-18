@@ -11,10 +11,9 @@
 @interface TeacherNotifiedViewController : BaseViewController
 
 
-@property (nonatomic, strong) NSMutableArray *teacherNotifiedArr;
+@property (nonatomic, strong) NSMutableArray   *teacherNotifiedArr;
 @property (nonatomic, strong) UICollectionView *teacherNotifiedCollectionView;
-@property (nonatomic, strong) UIImageView  *headImgView;
-
-@property (nonatomic, strong) NSString *titleStr;
+@property (nonatomic, strong) UIImageView      *headImgView;
+@property (nonatomic, strong) NSString         *titleStr;
 
 @end

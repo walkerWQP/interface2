@@ -12,12 +12,12 @@
 @interface ToSchoolSituationViewController ()
 
 @property (nonatomic, strong) ToSchoolSituationModel *toSchoolSituationModel;
-@property (nonatomic, strong) UIImageView  *headImgView;
-@property (nonatomic, strong) UILabel      *nameLabel;
-@property (nonatomic, strong) UILabel      *timeLabel;
-@property (nonatomic, strong) UILabel      *reasonLabel;
-@property (nonatomic, strong) UILabel      *remarkLabel;
-@property (nonatomic, strong) UILabel      *statusLabel;
+@property (nonatomic, strong) UIImageView            *headImgView;
+@property (nonatomic, strong) UILabel                *nameLabel;
+@property (nonatomic, strong) UILabel                *timeLabel;
+@property (nonatomic, strong) UILabel                *reasonLabel;
+@property (nonatomic, strong) UILabel                *remarkLabel;
+@property (nonatomic, strong) UILabel                *statusLabel;
 
 
 @end

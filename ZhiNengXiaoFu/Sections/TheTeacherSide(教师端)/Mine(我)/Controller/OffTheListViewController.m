@@ -18,7 +18,7 @@
 @property (nonatomic, strong) UIImageView      *headImgView;
 @property (nonatomic, strong) UIImageView      *zanwushuju;
 @property (nonatomic, assign) NSInteger        page;
-@property (nonatomic, strong) NSMutableArray *bannerArr;
+@property (nonatomic, strong) NSMutableArray   *bannerArr;
 
 @end
 

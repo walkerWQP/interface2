@@ -19,27 +19,25 @@
 #import "PersonInformationModel.h"
 #import "SleepManagementViewController.h"
 #import "BindMobilePhoneViewController.h"
-#import "ActivityManagementViewController.h"
+#import "OngoingTableViewController.h"
 #import "AdviceFeedbackViewController.h"
 #import "HelperCenterModel.h"
 #import "NewDynamicsViewController.h"
 
 @interface MyViewController ()<UITableViewDelegate, UITableViewDataSource,UIAlertViewDelegate>
 
-@property (nonatomic, strong) UITableView    *myTabelView;
-@property (nonatomic, strong) NSMutableArray *myArr;
-@property (nonatomic, strong) PersonInformationModel * model;
-@property (nonatomic, strong) HelperCenterModel * helperCenterModel;
-@property (nonatomic, strong) UIView * back;
-@property (nonatomic, strong) UIWebView * webView;
-
-@property (nonatomic, strong) UILabel * nameLabel;
-@property (nonatomic, strong) UIImageView * iconImg;
-@property (nonatomic, strong)  UIImageView * touxiangIcon;
-
-@property (nonatomic, strong) NSMutableArray * iconAry;
-@property (nonatomic, strong) NSMutableArray * titleAry;
-@property (nonatomic, strong)  UIView * bottom;
+@property (nonatomic, strong) UITableView            *myTabelView;
+@property (nonatomic, strong) NSMutableArray         *myArr;
+@property (nonatomic, strong) PersonInformationModel *model;
+@property (nonatomic, strong) HelperCenterModel      *helperCenterModel;
+@property (nonatomic, strong) UIView                 *back;
+@property (nonatomic, strong) UIWebView              *webView;
+@property (nonatomic, strong) UILabel                *nameLabel;
+@property (nonatomic, strong) UIImageView            *iconImg;
+@property (nonatomic, strong)  UIImageView           *touxiangIcon;
+@property (nonatomic, strong) NSMutableArray         *iconAry;
+@property (nonatomic, strong) NSMutableArray         *titleAry;
+@property (nonatomic, strong)  UIView                *bottom;
 
 @end
 
@@ -90,7 +88,7 @@
     header.image = [UIImage imageNamed:@"背景图我的"];
     [self.view addSubview:header];
     
-    UIImageView * whiteImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 118, kScreenWidth - 30, (kScreenWidth - 30) * 109 / 345 + 10)];
+    UIImageView * whiteImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 54 + APP_NAVH, kScreenWidth - 30, (kScreenWidth - 30) * 109 / 345 + 20)];
     whiteImg.image = [UIImage imageNamed:@"头像底"];
     [self.view addSubview:whiteImg];
     
@@ -100,18 +98,19 @@
     person.userInteractionEnabled = YES;
     [self.view addSubview:person];
     
-    UILabel * my = [[UILabel alloc] initWithFrame:CGRectMake(21, APP_NAVH - 30, 60, 22)];
+    UILabel * my = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 30, APP_NAVH - 30, 60, 22)];
     my.text = @"我的";
     my.textColor = [UIColor whiteColor];
-    my.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:24];
+    my.textAlignment = NSTextAlignmentCenter;
+    my.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:18];
     [self.view addSubview:my];
     
     
-    self.touxiangIcon  = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 62, 73, 124, 124)];
+    self.touxiangIcon  = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 62, APP_NAVH + 9, 124, 124)];
     self.touxiangIcon.image = [UIImage imageNamed:@"头像"];
     [self.view addSubview:self.touxiangIcon];
     
-    self.iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 50, 12 + 73, 100, 100)];
+    self.iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 50, 12 + APP_NAVH + 9, 100, 100)];
     self.iconImg.layer.cornerRadius = 50;
     self.iconImg.layer.masksToBounds = YES;
     [self.view addSubview:self.iconImg];
@@ -145,8 +144,7 @@
     UIView * shuTwoView = [[UIView alloc] initWithFrame:CGRectMake(30, 83 * 2, self.bottom.frame.size.width- 60, 1)];
     shuTwoView.backgroundColor = RGBA(186, 186, 186, 0.2);
     [self.bottom addSubview:shuTwoView];
-    
- self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.translucent = YES;
 
 }
 
@@ -166,7 +164,7 @@
         self.nameLabel.frame =  CGRectMake(kScreenWidth / 2 - JGlabelContentWidth / 2 ,self.touxiangIcon.frame.size.height + self.touxiangIcon.frame.origin.y + 10, JGlabelContentWidth, 16);
 
         [self.iconImg sd_setImageWithURL:[NSURL URLWithString:self.model.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
-        if (self.model.dorm_open == 1 && self.model.nature == 2) {
+        if (self.model.is_adviser == 1 && self.model.dorm_open == 1) {
             NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"就寝管理新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新", nil];
             NSMutableArray * TitleAry = [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"就寝管理",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈", nil];
             for (int i = 0; i < imgAry.count; i++) {
@@ -201,7 +199,8 @@
                 
             }
             
-        } else {
+        } else
+        {
             NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新", nil];
             NSMutableArray * TitleAry = [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈", nil];
             
@@ -265,8 +264,8 @@
         case 1:
         {
             NSLog(@"已发活动");
-            ActivityManagementViewController *activityManagementVC = [ActivityManagementViewController new];
-            [self.navigationController pushViewController:activityManagementVC animated:YES];
+            OngoingTableViewController *ongoingTableVC = [OngoingTableViewController new];
+            [self.navigationController pushViewController:ongoingTableVC animated:YES];
         }
             break;
         case 2:
@@ -351,8 +350,8 @@
             break;
         case 1:
         {
-            ActivityManagementViewController *activityManagementVC = [ActivityManagementViewController new];
-            [self.navigationController pushViewController:activityManagementVC animated:YES];
+            OngoingTableViewController *ongoingTableVC = [OngoingTableViewController new];
+            [self.navigationController pushViewController:ongoingTableVC animated:YES];
         }
             break;
         case 2:

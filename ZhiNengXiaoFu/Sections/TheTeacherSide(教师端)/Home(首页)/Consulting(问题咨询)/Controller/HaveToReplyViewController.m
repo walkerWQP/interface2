@@ -12,11 +12,11 @@
 
 @interface HaveToReplyViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSMutableArray  *haveToReplyArr;
-@property (nonatomic, strong) UICollectionView *haveToReplyCollectionView;
-@property (nonatomic, assign) NSInteger     page;
-@property (nonatomic, strong) UIImageView *zanwushuju;
-@property (nonatomic, strong) PersonInformationModel * personInfo;
+@property (nonatomic, strong) NSMutableArray         *haveToReplyArr;
+@property (nonatomic, strong) UICollectionView       *haveToReplyCollectionView;
+@property (nonatomic, assign) NSInteger              page;
+@property (nonatomic, strong) UIImageView            *zanwushuju;
+@property (nonatomic, strong) PersonInformationModel *personInfo;
 
 @end
 

@@ -14,10 +14,10 @@
 
 @interface OngoingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSMutableArray  *ongoingArr;
+@property (nonatomic, strong) NSMutableArray   *ongoingArr;
 @property (nonatomic, strong) UICollectionView *ongoingCollectionView;
-@property (nonatomic, assign) NSInteger       page;
-@property (nonatomic, strong) UIImageView *zanwushuju;
+@property (nonatomic, assign) NSInteger        page;
+@property (nonatomic, strong) UIImageView      *zanwushuju;
 
 @end
 

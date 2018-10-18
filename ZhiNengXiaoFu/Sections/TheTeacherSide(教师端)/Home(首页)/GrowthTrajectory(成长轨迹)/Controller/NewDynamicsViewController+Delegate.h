@@ -11,6 +11,6 @@
 
 @interface NewDynamicsViewController (Delegate)<UITableViewDataSource,UITableViewDelegate,NewDynamicsCellDelegate,UIWebViewDelegate,UITextFieldDelegate>
 
-@property (nonatomic, strong) UIWebView * webView;
+@property (nonatomic, strong) UIWebView *webView;
 
 @end

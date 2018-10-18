@@ -12,7 +12,6 @@
 @interface TheClassInformationViewController ()<WPopupMenuDelegate,UIWebViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView    *theClassInformationScrollView;
-
 @property (nonatomic, strong) UIImageView     *backImgView;
 @property (nonatomic, strong) UIImageView     *headImgView;
 @property (nonatomic, strong) UIView          *bgView;
@@ -31,19 +30,12 @@
 //班级寄语
 @property (nonatomic, strong) UILabel         *remarkLabel;
 @property (nonatomic, strong) UILabel         *remarksLabel;
-
 @property (nonatomic, strong) UIImageView     *userIcon;
-
 @property (nonatomic, assign) NSInteger       hnew;
-
 @property (nonatomic, strong) NSMutableArray  *publishJobArr;
-
 @property (nonatomic, strong) NSMutableArray  *classNameArr;
-
 @property (nonatomic, strong) UIButton        *rightBtn;
-
 @property (nonatomic, strong) NSMutableArray  *buttonArr;
-
 @property (nonatomic, strong) UIWebView       *webView;
 
 @end
@@ -92,7 +84,7 @@
     [self.rightBtn setTitle:@"切换班级" forState:UIControlStateNormal];
     self.rightBtn.titleLabel.font = titFont;
     [self.rightBtn addTarget:self action:@selector(rightBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [self.rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightBtn];
     } else {
         
@@ -130,7 +122,6 @@
                 
                 
             }
-            
             
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {

@@ -16,9 +16,7 @@
 @property (nonatomic, strong) UITextField   *passwordText;
 @property (nonatomic, strong) UIImageView   *ImgView1;
 @property (nonatomic, strong) UITextField   *againText;
-
 @property (nonatomic, strong) UIButton      *submitBtn;
-
 @property (nonatomic, strong) UIView        *lineView;
 @property (nonatomic, strong) UIView        *lineView1;
 @property (nonatomic, strong) UIView        *lineView2;

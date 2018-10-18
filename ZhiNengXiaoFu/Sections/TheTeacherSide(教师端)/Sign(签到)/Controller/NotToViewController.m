@@ -14,9 +14,9 @@
 
 @interface NotToViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSMutableArray  *notToArr;
+@property (nonatomic, strong) NSMutableArray   *notToArr;
 @property (nonatomic, strong) UICollectionView *notToCollectionView;
-@property (nonatomic, strong) UIImageView *zanwushuju;
+@property (nonatomic, strong) UIImageView      *zanwushuju;
 
 @end
 

@@ -13,10 +13,10 @@
 
 @interface IsAboutToBeginViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSMutableArray  *isAboutToBeginArr;
-@property (nonatomic, strong) UICollectionView *isAboutToBeginCollectionView;
-@property (nonatomic, assign) NSInteger       page;
-@property (nonatomic, strong) UIImageView *zanwushuju;
+@property (nonatomic, strong) NSMutableArray    *isAboutToBeginArr;
+@property (nonatomic, strong) UICollectionView  *isAboutToBeginCollectionView;
+@property (nonatomic, assign) NSInteger         page;
+@property (nonatomic, strong) UIImageView       *zanwushuju;
 
 @end
 

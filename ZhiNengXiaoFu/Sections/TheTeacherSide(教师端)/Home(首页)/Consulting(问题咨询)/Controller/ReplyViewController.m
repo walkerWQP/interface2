@@ -15,8 +15,9 @@
 @property (nonatomic, strong) UILabel       *problemLabel;
 @property (nonatomic, strong) UILabel       *problemContentLabel;
 @property (nonatomic, strong) UIView        *lineView;
-@property (nonatomic, strong) UITextField   *replyTextField;
+@property (nonatomic, strong) WTextView     *replyTextField;
 @property (nonatomic, strong) UIButton      *replyBtn;
+
 
 
 @end
@@ -27,13 +28,12 @@
     [super viewDidLoad];
     self.title = @"发表回复";
     [self makeReplyViewControllerUI];
-    
 }
 
 - (void)makeReplyViewControllerUI {
     
     self.view.backgroundColor = backColor;
-    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, APP_WIDTH - 20, APP_HEIGHT * 0.23)];
+    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, APP_WIDTH - 20, APP_HEIGHT * 0.3)];
     self.bgView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.bgView];
     
@@ -64,16 +64,15 @@
     self.lineView.backgroundColor = fengeLineColor;
     [self.bgView addSubview:self.lineView];
     
-    self.replyTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, self.headImgView.frame.size.height + self.problemContentLabel.frame.size.height + 30, self.bgView.frame.size.width - 20, 30)];
+    self.replyTextField = [[WTextView alloc] initWithFrame:CGRectMake(10, self.headImgView.frame.size.height + self.problemContentLabel.frame.size.height + 30, self.bgView.frame.size.width - 20, 110)];
     self.replyTextField.backgroundColor = [UIColor whiteColor];
     self.replyTextField.layer.masksToBounds = YES;
     self.replyTextField.layer.cornerRadius = 5;
     self.replyTextField.layer.borderColor = fengeLineColor.CGColor;
     self.replyTextField.layer.borderWidth = 1.0f;
     self.replyTextField.font = contentFont;
-    self.replyTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请回复" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:157/255.0 green:157/255.0 blue:157/255.0 alpha:1.0]}];
-    self.replyTextField.delegate = self;
-    self.replyTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.replyTextField.placeholder = @"请回复...";
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.bgView addSubview:self.replyTextField];
     
     self.replyBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, self.bgView.frame.size.height + 60, APP_WIDTH - 40, 40)];

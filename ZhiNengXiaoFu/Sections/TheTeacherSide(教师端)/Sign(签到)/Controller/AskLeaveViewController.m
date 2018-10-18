@@ -14,9 +14,9 @@
 
 @interface AskLeaveViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSMutableArray  *askLeaveArr;
+@property (nonatomic, strong) NSMutableArray   *askLeaveArr;
 @property (nonatomic, strong) UICollectionView *askLeaveCollectionView;
-@property (nonatomic, strong) UIImageView *zanwushuju;
+@property (nonatomic, strong) UIImageView      *zanwushuju;
 
 @end
 

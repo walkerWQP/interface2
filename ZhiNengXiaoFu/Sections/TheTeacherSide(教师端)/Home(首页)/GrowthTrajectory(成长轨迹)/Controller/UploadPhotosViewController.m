@@ -58,7 +58,6 @@
 
 - (void)makeReleasedAlbumsViewControllerUI {
     
-    
     self.ReleasedAlbumsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
     self.ReleasedAlbumsScrollView.backgroundColor = backColor;
     self.ReleasedAlbumsScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.2);
@@ -71,18 +70,14 @@
     self.ReleasedAlbumsScrollView.bouncesZoom = YES;
     //设置委托
     self.ReleasedAlbumsScrollView.delegate = self;
-    
     [self.view addSubview:self.ReleasedAlbumsScrollView];
-    
     if ([self.typeStr isEqualToString:@"1"]) {
-
-        
         self.shuRuNeiRonLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 20, APP_WIDTH - 20, 20)];
         self.shuRuNeiRonLabel.text = @"请输入内容";
         self.shuRuNeiRonLabel.textColor = titlColor;
         self.shuRuNeiRonLabel.font = titFont;
         [self.ReleasedAlbumsScrollView addSubview:self.shuRuNeiRonLabel];
-        
+
         self.shuRuNeiRonTextView = [[WTextView alloc] initWithFrame:CGRectMake(10, self.shuRuNeiRonLabel.frame.origin.y + self.shuRuNeiRonLabel.frame.size.height + 15, APP_WIDTH - 20, 100)];
         self.shuRuNeiRonTextView.placeholder = @"请输入内容...";
         self.shuRuNeiRonTextView.textColor = titlColor;
@@ -92,15 +87,14 @@
         self.shuRuNeiRonTextView.layer.borderWidth = 1.0f;
         [self.ReleasedAlbumsScrollView addSubview:self.shuRuNeiRonTextView];
         
-        
         self.uploadPicturesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.shuRuNeiRonTextView.frame.size.height + self.shuRuNeiRonTextView.frame.origin.y + 15, APP_WIDTH - 20, 30)];
         self.uploadPicturesLabel.text = @"上传图片内容(最多只能上传九张)";
         self.uploadPicturesLabel.textColor = titlColor;
         self.uploadPicturesLabel.font = titFont;
         [self.ReleasedAlbumsScrollView addSubview:self.uploadPicturesLabel];
         
-        self.myPicture = [[UIView alloc] initWithFrame:CGRectMake(0, self.uploadPicturesLabel.frame.size.height + self.uploadPicturesLabel.frame.origin.y + 15, APP_WIDTH - 20, 80)];
-        self.myPicture.backgroundColor = [UIColor redColor];
+        self.myPicture = [[UIView alloc] initWithFrame:CGRectMake(0, self.uploadPicturesLabel.frame.size.height + self.uploadPicturesLabel.frame.origin.y + 15, APP_WIDTH - 20, 240)];
+        self.myPicture.backgroundColor = [UIColor whiteColor];
         [self.ReleasedAlbumsScrollView addSubview:self.myPicture];
         
         if (!self.LQPhotoPicker_superView) {
@@ -132,7 +126,6 @@
         imgView.image = [UIImage imageNamed:@"下拉"];
         [self.nameBtn addSubview:imgView];
         
-        
         self.shuRuNeiRonLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.nameBtn.frame.origin.y + self.nameBtn.frame.size.height + 15, APP_WIDTH - 20, 20)];
         self.shuRuNeiRonLabel.text = @"请输入内容";
         self.shuRuNeiRonLabel.textColor = titlColor;
@@ -148,15 +141,15 @@
         self.shuRuNeiRonTextView.layer.borderWidth = 1.0f;
         [self.ReleasedAlbumsScrollView addSubview:self.shuRuNeiRonTextView];
         
-        
         self.uploadPicturesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.shuRuNeiRonTextView.frame.size.height + self.shuRuNeiRonTextView.frame.origin.y + 15, APP_WIDTH - 20, 30)];
         self.uploadPicturesLabel.text = @"上传图片内容(最多只能上传九张)";
         self.uploadPicturesLabel.textColor = titlColor;
         self.uploadPicturesLabel.font = titFont;
         [self.ReleasedAlbumsScrollView addSubview:self.uploadPicturesLabel];
-        
-        self.myPicture = [[UIView alloc] initWithFrame:CGRectMake(0, self.uploadPicturesLabel.frame.size.height + self.uploadPicturesLabel.frame.origin.y + 15, APP_WIDTH - 20, 80)];
-        self.myPicture.backgroundColor = [UIColor redColor];
+
+        self.myPicture = [[UIView alloc] initWithFrame:CGRectMake(0, self.uploadPicturesLabel.frame.size.height + self.uploadPicturesLabel.frame.origin.y + 15, APP_WIDTH - 20, 240)];
+        self.myPicture.backgroundColor = [UIColor whiteColor];
+
         [self.ReleasedAlbumsScrollView addSubview:self.myPicture];
         
         if (!self.LQPhotoPicker_superView) {
@@ -244,10 +237,12 @@
             NSString *str = [formatter stringFromDate:[NSDate date]];
             NSString *imageFileName = [NSString stringWithFormat:@"%@.jpeg", str];
             
-            if (length>1280) {
+            if (length>1280)
+            {
                 NSData *fData = UIImageJPEGRepresentation(image, 0.5);
                 [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
-            }else{
+            } else
+            {
                 [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
             }
             

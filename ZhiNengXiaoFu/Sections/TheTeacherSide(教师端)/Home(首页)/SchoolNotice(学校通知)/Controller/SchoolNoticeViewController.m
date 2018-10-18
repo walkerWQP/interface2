@@ -9,7 +9,6 @@
 #import "SchoolNoticeViewController.h"
 #import "ClassDetailsCell.h"
 #import "SchoolDynamicModel.h"
-#import "NoticeViewController.h"
 #import "TongZhiDetailsViewController.h"
 
 @interface SchoolNoticeViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>

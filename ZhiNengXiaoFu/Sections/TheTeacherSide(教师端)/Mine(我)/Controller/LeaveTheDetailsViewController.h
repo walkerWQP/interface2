@@ -13,7 +13,6 @@
 @property (nonatomic, strong) NSString    *ID;
 @property (nonatomic, strong) NSString    *name;
 @property (nonatomic, strong) NSString    *headImg;
-
 @property (nonatomic, strong) NSString    *typeStr;
 @property (nonatomic, strong) NSString    *studentID;
 

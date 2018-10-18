@@ -20,13 +20,10 @@
 @property (nonatomic, strong) NSString        *signStr;
 @property (nonatomic, strong) NSString        *no_signStr;
 @property (nonatomic, strong) NSString        *leaveStr;
-
 @property (nonatomic, strong) NSMutableArray  *publishJobArr;
 @property (nonatomic, strong) NSMutableArray  *classNameArr;
-
-@property (nonatomic, strong) NSMutableArray *titleArray;
-
-@property (nonatomic, strong) UIButton       *rightBtn;
+@property (nonatomic, strong) NSMutableArray  *titleArray;
+@property (nonatomic, strong) UIButton        *rightBtn;
 
 @end
 

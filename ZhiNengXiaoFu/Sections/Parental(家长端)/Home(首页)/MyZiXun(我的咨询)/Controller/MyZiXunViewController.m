@@ -31,7 +31,7 @@
     questionLabel.font = [UIFont systemFontOfSize:17];
     [self.view addSubview:questionLabel];
     
-    self.myZiXunTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, questionLabel.frame.origin.y + questionLabel.frame.size.height + 10, APP_WIDTH - 30, 50)];
+    self.myZiXunTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, questionLabel.frame.origin.y + questionLabel.frame.size.height + 10, APP_WIDTH - 30, 100)];
     self.myZiXunTextView.text = @" 请输入问题";
     self.myZiXunTextView.font = [UIFont systemFontOfSize:15];
     self.myZiXunTextView.delegate = self;

@@ -14,9 +14,9 @@
 
 @interface PersonalDataViewController ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) UITableView    * personalDataTableView;
-@property (nonatomic, strong) NSMutableArray * nameArr;
-@property (nonatomic, strong) PersonInformationModel * personInfo;
+@property (nonatomic, strong) UITableView            *personalDataTableView;
+@property (nonatomic, strong) NSMutableArray         *nameArr;
+@property (nonatomic, strong) PersonInformationModel *personInfo;
 
 @end
 

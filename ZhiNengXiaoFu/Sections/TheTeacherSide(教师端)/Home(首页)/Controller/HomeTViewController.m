@@ -35,8 +35,8 @@
 
 @interface HomeTViewController ()<NewPagedFlowViewDelegate, UITableViewDelegate, UITableViewDataSource, HomePageJingJiViewDelegate,DCCycleScrollViewDelegate>
 
-@property (nonatomic, strong) NSString  * schoolName;
 
+@property (nonatomic, strong) NSString  * schoolName;
 @property (nonatomic, strong) UITableView * HomePageJTabelView;
 @property (nonatomic, strong) UIImageView * img;
 @property (nonatomic, strong) NSMutableArray *publishJobArr;
@@ -51,13 +51,15 @@
 @property (nonatomic, strong) NSMutableArray *tongzhiAry;
 @property (nonatomic, strong) NSMutableArray *jingjiAry;
 @property (nonatomic, strong) NSMutableArray *dongtaiAry;
+@property (nonatomic, strong) HomePageTongZhiView *ccspView;
 
 @end
 
 @implementation HomeTViewController
 
 - (NSMutableArray *)activityArr {
-    if (!_activityArr) {
+    if (!_activityArr)
+    {
         _activityArr = [NSMutableArray array];
     }
     return _activityArr;
@@ -119,9 +121,7 @@
 }
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
-    
     self.view.backgroundColor = backColor;
     [self setUser];
     [self getIndexURLData];
@@ -132,19 +132,24 @@
     
     [self.HomePageJTabelView registerNib:[UINib nibWithNibName:@"SchoolDongTaiCell" bundle:nil] forCellReuseIdentifier:@"SchoolDongTaiCellId"];
     
+    //下拉刷新
+    self.HomePageJTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getIndexURLData)];
+    //自动更改透明度
+    self.HomePageJTabelView.mj_header.automaticallyChangeAlpha = YES;
+    //进入刷新状态
+    [self.HomePageJTabelView.mj_header beginRefreshing];
 }
 
 
 
 - (UITableView *)HomePageJTabelView {
     if (!_HomePageJTabelView) {
-        self.HomePageJTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - APP_NAVH) style:UITableViewStyleGrouped];
+        self.HomePageJTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - APP_NAVH - APP_TABH) style:UITableViewStyleGrouped];
         self.HomePageJTabelView.delegate = self;
         self.HomePageJTabelView.dataSource = self;
     }
     return _HomePageJTabelView;
 }
-
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -173,7 +178,6 @@
         return 71;
     } else if (indexPath.section == 4) {
         return (kScreenWidth - 40) / 3 * 144 / 235 + 25;
-
     } else {
         return 104;
     }
@@ -195,7 +199,6 @@
         
         self.automaticallyAdjustsScrollViewInsets = NO;
         [self.banner removeAllSubviews];
-        
         self.banner = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 150) shouldInfiniteLoop:YES imageGroups:self.imgArr];
         self.banner.autoScrollTimeInterval = 3;
         self.banner.autoScroll = YES;
@@ -229,9 +232,8 @@
             [back setBackgroundImage:[UIImage imageNamed:[imgAry objectAtIndex:i]] forState:UIControlStateNormal];
             [back addTarget:self action:@selector(backBtn:) forControlEvents:UIControlEventTouchDown];
             back.tag = i;
-            
             [cell addSubview:back];
-            
+
             UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(back.frame.origin.x - 5, back.frame.origin.y + back.frame.size.height + 5, 50, 15)];
             titleLabel.text = [titleAry objectAtIndex:i];
             titleLabel.font = [UIFont systemFontOfSize:12];
@@ -243,11 +245,11 @@
         UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 80, kScreenWidth, 10)];
         lineView.backgroundColor = [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1];
         [cell addSubview:lineView];
-        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    } else if (indexPath.section == 2)
-    {
+    } else if (indexPath.section == 2) {
+        [ self.ccspView removeTimer];
+
         static NSString *CellIdentifier = @"TableViewCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -268,16 +270,16 @@
         [tongZhiImg addGestureRecognizer:tongzhiTap];
         
         if (self.tongzhiAry.count > 0) {
-            HomePageTongZhiView *ccspView=[[HomePageTongZhiView alloc] initWithFrame:CGRectMake(46 + 15 + 10, 0, kScreenWidth, 60)];
-            ccspView.titleArray = self.tongzhiAry;
-            [ccspView setClickLabelBlock:^(NSInteger index, NSString * _Nonnull titleString) {
+            self.ccspView =[[HomePageTongZhiView alloc] initWithFrame:CGRectMake(46 + 15 + 10, 0, kScreenWidth, 60)];
+            self.ccspView.titleArray = self.tongzhiAry;
+            [self.ccspView setClickLabelBlock:^(NSInteger index, NSString * _Nonnull titleString) {
                 [self setClick:index];
             }];
-            [cell addSubview:ccspView];
+            [cell addSubview:self.ccspView];
             
             UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 60, kScreenWidth, 10)];
             lineView.backgroundColor = [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1];
-            [cell addSubview:lineView];
+            [cell.contentView addSubview:lineView];
         }
 
         return cell;
@@ -412,9 +414,7 @@
 - (void)setClick:(NSInteger)index {
     
     TongZhiDetailsViewController * tongZhiDetails  = [[TongZhiDetailsViewController alloc] init];
-    
     tongZhiDetails.tongZhiId = [NSString stringWithFormat:@"%ld", index];
-    
     [self.navigationController pushViewController:tongZhiDetails animated:YES];
 }
 
@@ -588,7 +588,8 @@
             self.dongtaiAry = [dataDic objectForKey:@"dynamic"];
 
             [self.HomePageJTabelView reloadData];
-            
+            [self.HomePageJTabelView.mj_header endRefreshing];
+
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -596,7 +597,8 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
+            [self.HomePageJTabelView.mj_header endRefreshing];
+
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         

@@ -30,14 +30,14 @@
 
 @interface HomeViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic, strong) UICollectionView * HomeCollectionView;
-@property (nonatomic, retain) UICollectionViewFlowLayout * layout;
-@property (nonatomic, strong) NSMutableArray * homePageAry;
-@property (nonatomic, strong) NSMutableArray *publishJobArr;
-@property (nonatomic, strong) NSMutableArray * numberAry;
-@property (nonatomic, strong) NSString  *classID;
-@property (nonatomic, strong) NSString  *className;
-@property (nonatomic, strong) NSString  *schoolName;
+@property (nonatomic, strong) UICollectionView           *HomeCollectionView;
+@property (nonatomic, retain) UICollectionViewFlowLayout *layout;
+@property (nonatomic, strong) NSMutableArray             *homePageAry;
+@property (nonatomic, strong) NSMutableArray             *publishJobArr;
+@property (nonatomic, strong) NSMutableArray             *numberAry;
+@property (nonatomic, strong) NSString                   *classID;
+@property (nonatomic, strong) NSString                   *className;
+@property (nonatomic, strong) NSString                   *schoolName;
 
 @end
 

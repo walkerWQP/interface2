@@ -12,7 +12,7 @@
 
 
 @property (nonatomic, strong) WTextView     *contentTextView;
-@property (nonatomic, strong) UIButton    *submitBtn;
+@property (nonatomic, strong) UIButton      *submitBtn;
 
 @end
 

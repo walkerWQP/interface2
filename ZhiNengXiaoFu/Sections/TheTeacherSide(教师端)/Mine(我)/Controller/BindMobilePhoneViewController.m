@@ -10,22 +10,20 @@
 
 @interface BindMobilePhoneViewController ()<UITextFieldDelegate,UIScrollViewDelegate>
 
-@property (nonatomic, strong) UIScrollView   *launchEventScrollView;
+@property (nonatomic, strong) UIScrollView *launchEventScrollView;
 @property (nonatomic, strong) UIImageView  *backImgView;
 @property (nonatomic, strong) UIImageView  *whiteImgView;
 @property (nonatomic, strong) UIImageView  *phoneImgView;
 @property (nonatomic, strong) UILabel      *phoneLabel;
 @property (nonatomic, strong) UIImageView  *phoneImg;
 @property (nonatomic, strong) UITextField  *phoneTextField;
-
 @property (nonatomic, strong) UIImageView  *verImgView;
 @property (nonatomic, strong) UILabel      *verLabel;
 @property (nonatomic, strong) UIImageView  *verificationImg;
 @property (nonatomic, strong) UITextField  *verificationText;
 @property (nonatomic, strong) UIButton     *verificationBtn;
-
-@property (nonatomic, strong) UIImageView *submitImgView;
-@property (nonatomic, strong) UIButton    *submitBtn;
+@property (nonatomic, strong) UIImageView  *submitImgView;
+@property (nonatomic, strong) UIButton     *submitBtn;
 
 
 @end

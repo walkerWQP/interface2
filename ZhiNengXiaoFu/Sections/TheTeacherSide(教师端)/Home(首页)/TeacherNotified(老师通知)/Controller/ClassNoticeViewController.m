@@ -11,15 +11,14 @@
 @interface ClassNoticeViewController ()<UITextFieldDelegate,LQPhotoPickerViewDelegate>
 
 //通知名称
-@property (nonatomic, strong) UILabel      *noticeNameLabel;
-@property (nonatomic, strong) UITextField  *noticeNameTextField;
+@property (nonatomic, strong) UILabel         *noticeNameLabel;
+@property (nonatomic, strong) UITextField     *noticeNameTextField;
 //通知内容内容
-@property (nonatomic, strong) UILabel      *noticeContentLabel;
-@property (nonatomic, strong) WTextView   *noticeContentTextView;
+@property (nonatomic, strong) UILabel         *noticeContentLabel;
+@property (nonatomic, strong) WTextView       *noticeContentTextView;
 //上传图片内容
-@property (nonatomic, strong) UILabel      *uploadPicturesLabel;
-@property (nonatomic, strong) UIView       *myPicture;
-
+@property (nonatomic, strong) UILabel         *uploadPicturesLabel;
+@property (nonatomic, strong) UIView          *myPicture;
 @property (nonatomic, strong) NSMutableArray  *imgFiledArr;
 
 @end
@@ -40,6 +39,7 @@
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [button setTitle:@"发布" forState:UIControlStateNormal];
     button.titleLabel.font = titFont;
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(rightBtn:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     

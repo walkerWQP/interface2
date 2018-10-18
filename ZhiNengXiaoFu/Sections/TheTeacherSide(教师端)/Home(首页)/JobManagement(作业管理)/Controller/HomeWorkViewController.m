@@ -15,11 +15,11 @@
 
 @interface HomeWorkViewController ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) UITableView * homeWorkTableView;
-@property (nonatomic, strong) NSMutableArray * homeWorkArr;
-@property (nonatomic, strong) UIImageView  *headImgView;
-@property (nonatomic, strong) UIImageView *zanwushuju;
-@property (nonatomic, assign) NSInteger   page;
+@property (nonatomic, strong) UITableView    *homeWorkTableView;
+@property (nonatomic, strong) NSMutableArray *homeWorkArr;
+@property (nonatomic, strong) UIImageView    *headImgView;
+@property (nonatomic, strong) UIImageView    *zanwushuju;
+@property (nonatomic, assign) NSInteger      page;
 @property (nonatomic, strong) NSMutableArray *bannerArr;
 
 
@@ -74,7 +74,6 @@
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
     [self.self.homeWorkTableView addSubview:self.zanwushuju];
-    
     
 }
 

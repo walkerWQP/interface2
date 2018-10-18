@@ -13,7 +13,7 @@
 
 @interface JobManagementViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) UIImageView * zanwushuju;
+@property (nonatomic, strong) UIImageView    *zanwushuju;
 @property (nonatomic, strong) NSMutableArray *bannerArr;
 @end
 
@@ -35,8 +35,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-   
+
 }
 
 - (void)loadNewTopic {
@@ -55,9 +54,7 @@
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
     [self.view addSubview:self.zanwushuju];
-    
     [self makeJobManagementViewControllerUI];
-    
     //下拉刷新
     self.jobManagementCollectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopic)];
     //自动更改透明度

@@ -50,39 +50,11 @@
 @property (nonatomic, strong) NSMutableArray * workAry;
 @property (nonatomic, strong) NSMutableArray * jingJiAry;
 @property (nonatomic, strong) NSMutableArray * dongtaiAry;
-
+@property (nonatomic, strong) HomePageTongZhiView *ccspView;
 
 @end
 
 @implementation HomePageJViewController
-
-- (void)viewDidLoad
-{
-    
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    UIImage *image1 = [UIImage imageNamed:@"banner"];
-    UIImage *image2 = [UIImage imageNamed:@"bannerHelper"];
-    UIImage *image3 = [UIImage imageNamed:@"教师端活动管理banner"];
-    UIImage *image4 = [UIImage imageNamed:@"banner"];
-    UIImage *image5 = [UIImage imageNamed:@"请假列表背景图"];
-    self.imageArray = [NSMutableArray arrayWithObjects:image1,image2,image3, image4,image5,nil];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self setUser];
-    
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
-    
-    [self.view addSubview:self.HomePageJTabelView];
-    
-    self.HomePageJTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    [self.HomePageJTabelView registerNib:[UINib nibWithNibName:@"WorkCell" bundle:nil] forCellReuseIdentifier:@"WorkCellId"];
-    [self.HomePageJTabelView registerNib:[UINib nibWithNibName:@"SchoolDongTaiCell" bundle:nil] forCellReuseIdentifier:@"SchoolDongTaiCellId"];
-    [self getIndexURLData];
-
-}
 
 - (NSMutableArray *)imgArr {
     if (!_imgArr) {
@@ -104,6 +76,45 @@
     }
     return _tongzhiAry;
 }
+
+- (NSMutableArray *)workAry {
+    if (!_workAry) {
+        _workAry = [NSMutableArray array];
+    }
+    return _workAry;
+}
+
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    UIImage *image1 = [UIImage imageNamed:@"banner"];
+    UIImage *image2 = [UIImage imageNamed:@"bannerHelper"];
+    UIImage *image3 = [UIImage imageNamed:@"教师端活动管理banner"];
+    UIImage *image4 = [UIImage imageNamed:@"banner"];
+    UIImage *image5 = [UIImage imageNamed:@"请假列表背景图"];
+    self.imageArray = [NSMutableArray arrayWithObjects:image1,image2,image3, image4,image5,nil];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self setUser];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
+    
+    [self.view addSubview:self.HomePageJTabelView];
+    
+    self.HomePageJTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.HomePageJTabelView registerNib:[UINib nibWithNibName:@"WorkCell" bundle:nil] forCellReuseIdentifier:@"WorkCellId"];
+    [self.HomePageJTabelView registerNib:[UINib nibWithNibName:@"SchoolDongTaiCell" bundle:nil] forCellReuseIdentifier:@"SchoolDongTaiCellId"];
+    
+    //下拉刷新
+    self.HomePageJTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getIndexURLData)];
+    //自动更改透明度
+    self.HomePageJTabelView.mj_header.automaticallyChangeAlpha = YES;
+    //进入刷新状态
+    [self.HomePageJTabelView.mj_header beginRefreshing];
+
+}
+
 
 //点击图片的代理
 -(void)cycleScrollView:(DCCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
@@ -145,7 +156,7 @@
             }
             
             [self.HomePageJTabelView reloadData];
-            
+            [self.HomePageJTabelView.mj_header endRefreshing];
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -153,7 +164,7 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
+             [self.HomePageJTabelView.mj_header endRefreshing];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -163,7 +174,7 @@
 - (UITableView *)HomePageJTabelView
 {
     if (!_HomePageJTabelView) {
-        self.HomePageJTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - APP_NAVH) style:UITableViewStyleGrouped];
+        self.HomePageJTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - APP_NAVH - APP_TABH) style:UITableViewStyleGrouped];
         self.HomePageJTabelView.delegate = self;
         self.HomePageJTabelView.dataSource = self;
     }
@@ -306,6 +317,8 @@
         return cell;
     }else if (indexPath.section == 2)
     {
+        [self.ccspView removeFromSuperview];
+         [ self.ccspView removeTimer];
         static NSString *CellIdentifier = @"TableViewCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -327,16 +340,21 @@
         
         
         if (self.tongzhiAry.count > 0) {
-            HomePageTongZhiView *ccspView=[[HomePageTongZhiView alloc] initWithFrame:CGRectMake(46 + 15 + 10, 0, kScreenWidth, 60)];
-            ccspView.titleArray = self.tongzhiAry;
-            [ccspView setClickLabelBlock:^(NSInteger index, NSString * _Nonnull titleString) {
-                [self setClick:index];
+           
+
+          self.ccspView  =[[HomePageTongZhiView alloc] initWithFrame:CGRectMake(46 + 15 + 10, 0, kScreenWidth, 60)];
+             self.ccspView.titleArray = self.tongzhiAry;
+            
+            __weak typeof(self)blockSelf = self;
+            [ self.ccspView setClickLabelBlock:^(NSInteger index, NSString * _Nonnull titleString)
+            {
+                [blockSelf setClick:index];
             }];
-            [cell addSubview:ccspView];
+            [cell addSubview: self.ccspView];
             
             UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 60, kScreenWidth, 10)];
             lineView.backgroundColor = [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1];
-            [cell addSubview:lineView];
+            [cell.contentView addSubview:lineView];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 

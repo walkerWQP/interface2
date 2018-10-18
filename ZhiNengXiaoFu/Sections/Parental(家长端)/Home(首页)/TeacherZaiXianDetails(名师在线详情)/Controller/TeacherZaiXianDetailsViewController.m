@@ -35,7 +35,8 @@
     [self setNetWork:self.teacherZaiXianDetailsId];
     self.navigationItem.hidesBackButton = YES;
     
-    
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shiPinList:) name:@"shipinListBoFang" object:nil];
 }
 

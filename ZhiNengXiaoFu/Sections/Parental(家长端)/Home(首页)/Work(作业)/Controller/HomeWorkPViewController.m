@@ -67,6 +67,9 @@
     [self.HomeWorkPTableView addSubview:self.zanwushuju];
     
     [self getBannersURLData];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
 
 }
 
@@ -87,7 +90,6 @@
            
             [self.HomeWorkPTableView reloadData];
            
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];

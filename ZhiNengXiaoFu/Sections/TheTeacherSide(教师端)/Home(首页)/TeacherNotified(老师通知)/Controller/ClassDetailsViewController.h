@@ -10,8 +10,7 @@
 
 @interface ClassDetailsViewController : BaseViewController
 
-@property (nonatomic, strong) NSString        *titleStr;
-
+@property (nonatomic, strong) NSString  *titleStr;
 @property (nonatomic, strong) NSString  *ID;
 
 @end

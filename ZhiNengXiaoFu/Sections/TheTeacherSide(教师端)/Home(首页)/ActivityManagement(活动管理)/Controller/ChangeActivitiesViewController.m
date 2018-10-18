@@ -13,24 +13,21 @@
 }
 
 //活动标题
-@property (nonatomic, strong) UILabel     *titleLabel;
-@property (nonatomic, strong) UITextField *titleTextField;
+@property (nonatomic, strong) UILabel        *titleLabel;
+@property (nonatomic, strong) UITextField    *titleTextField;
 //时间
-@property (nonatomic, strong) UILabel     *timeLabel;
-@property (nonatomic, strong) UIView      *timeView;
-@property (nonatomic, strong) UILabel     *changeLabel;
-@property (nonatomic, strong) UIButton    *beginTimeBtn;
-@property (nonatomic, strong) UIButton    *endTimeBtn;
-
+@property (nonatomic, strong) UILabel        *timeLabel;
+@property (nonatomic, strong) UIView         *timeView;
+@property (nonatomic, strong) UILabel        *changeLabel;
+@property (nonatomic, strong) UIButton       *beginTimeBtn;
+@property (nonatomic, strong) UIButton       *endTimeBtn;
 //活动简介
-@property (nonatomic, strong) UILabel     *introductionLabel;
-@property (nonatomic, strong) WTextView  *introductionTextView;
+@property (nonatomic, strong) UILabel        *introductionLabel;
+@property (nonatomic, strong) WTextView      *introductionTextView;
 
 //发送班级活动
-@property (nonatomic, strong) UIButton    *releaseBtn;
-@property (nonatomic, assign) NSInteger  timeID;
-
-
+@property (nonatomic, strong) UIButton       *releaseBtn;
+@property (nonatomic, assign) NSInteger      timeID;
 @property (nonatomic, strong) UIScrollView   *launchEventScrollView;
 
 @end

@@ -59,7 +59,7 @@
     header.image = [UIImage imageNamed:@"背景图我的"];
     [self.view addSubview:header];
     
-    UIImageView * whiteImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 118, kScreenWidth - 30, (kScreenWidth - 30) * 109 / 345 + 20)];
+    UIImageView * whiteImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 54 + APP_NAVH, kScreenWidth - 30, (kScreenWidth - 30) * 109 / 345 + 20)];
     whiteImg.image = [UIImage imageNamed:@"头像底"];
     [self.view addSubview:whiteImg];
     
@@ -69,18 +69,19 @@
     person.userInteractionEnabled = YES;
     [self.view addSubview:person];
     
-    UILabel * my = [[UILabel alloc] initWithFrame:CGRectMake(21, APP_NAVH - 30, 60, 22)];
+    UILabel * my = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 30, APP_NAVH - 30, 60, 22)];
     my.text = @"我的";
     my.textColor = [UIColor whiteColor];
-    my.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:24];
+    my.textAlignment = NSTextAlignmentCenter;
+    my.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:18];
     [self.view addSubview:my];
     
     
-    self.touxiangIcon  = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 62, 73, 124, 124)];
+    self.touxiangIcon  = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 62, APP_NAVH + 9, 124, 124)];
     self.touxiangIcon.image = [UIImage imageNamed:@"头像"];
     [self.view addSubview:self.touxiangIcon];
     
-    self.iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 50, 12 + 73, 100, 100)];
+    self.iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 50, 12 + APP_NAVH + 9, 100, 100)];
     self.iconImg.layer.cornerRadius = 50;
     self.iconImg.layer.masksToBounds = YES;
     [self.view addSubview:self.iconImg];

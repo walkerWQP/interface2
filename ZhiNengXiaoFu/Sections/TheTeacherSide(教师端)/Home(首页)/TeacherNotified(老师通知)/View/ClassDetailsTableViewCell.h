@@ -10,9 +10,9 @@
 
 @interface ClassDetailsTableViewCell : UITableViewCell
 @property (nonatomic, strong) UIImageView  *headImgView;
-@property (nonatomic, strong) UILabel  *titleLabel;
-@property (nonatomic, strong) UILabel  *subjectsLabel;
-@property (nonatomic, strong) UILabel  *timeLabel;
-@property (nonatomic, strong) UIButton *delegateBtn;
+@property (nonatomic, strong) UILabel      *titleLabel;
+@property (nonatomic, strong) UILabel      *subjectsLabel;
+@property (nonatomic, strong) UILabel      *timeLabel;
+@property (nonatomic, strong) UIButton     *delegateBtn;
 @property (nonatomic, strong) UIView       *lineView;
 @end

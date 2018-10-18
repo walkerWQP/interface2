@@ -12,8 +12,8 @@
 
 @property (nonatomic, assign) NSInteger student_id;
 
-@property (nonatomic, copy) NSString * student_name;
+@property (nonatomic, copy) NSString    *student_name;
 
-@property (nonatomic, copy) NSString * student_head_img;
+@property (nonatomic, copy) NSString    *student_head_img;
 
 @end

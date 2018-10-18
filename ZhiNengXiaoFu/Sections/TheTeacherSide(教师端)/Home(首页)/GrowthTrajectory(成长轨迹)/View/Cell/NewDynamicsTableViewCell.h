@@ -16,23 +16,22 @@
 
 @interface NewDynamicsGrayView : UIView
 
-@property(nonatomic,strong)UIButton *grayBtn;
-@property(nonatomic,strong)UIImageView *thumbImg;
-@property(nonatomic,strong)YYLabel *dspLabel;
-
+@property(nonatomic,strong)UIButton                 *grayBtn;
+@property(nonatomic,strong)UIImageView              *thumbImg;
+@property(nonatomic,strong)YYLabel                  *dspLabel;
 @property(nonatomic,strong)NewDynamicsTableViewCell *cell;
 
 @end
 
 @interface NewDynamicsThumbCommentView : UIView<UITableViewDataSource,UITableViewDelegate>
 
-@property(nonatomic,strong)UIImageView *bgImgView;
-@property(nonatomic,strong)YYLabel *thumbLabel;
-@property(nonatomic,strong)UIView *dividingLine;
-@property(nonatomic,strong)NSMutableArray *likeArray;
-@property(nonatomic,strong)NSMutableArray *commentArray;
-@property(nonatomic,strong)NewDynamicsLayout *layout;
-@property(nonatomic,strong)UITableView *commentTable;
+@property(nonatomic,strong)UIImageView              *bgImgView;
+@property(nonatomic,strong)YYLabel                  *thumbLabel;
+@property(nonatomic,strong)UIView                   *dividingLine;
+@property(nonatomic,strong)NSMutableArray           *likeArray;
+@property(nonatomic,strong)NSMutableArray           *commentArray;
+@property(nonatomic,strong)NewDynamicsLayout        *layout;
+@property(nonatomic,strong)UITableView              *commentTable;
 
 @property(nonatomic,strong)NewDynamicsTableViewCell *cell;
 
@@ -42,22 +41,22 @@
 
 @interface NewDynamicsTableViewCell : UITableViewCell<JRMenuDelegate>
 
-@property(nonatomic,strong)NewDynamicsLayout *layout;
+@property(nonatomic,strong)NewDynamicsLayout           *layout;
 
-@property(nonatomic,strong)UIImageView *portrait;
-@property(nonatomic,strong)YYLabel *nameLabel;
-@property(nonatomic,strong)YYLabel *detailLabel;
-@property(nonatomic,strong)UIButton *moreLessDetailBtn;
-@property(nonatomic,strong)SDWeiXinPhotoContainerView *picContainerView;
-@property(nonatomic,strong)NewDynamicsGrayView *grayView;
-@property(nonatomic,strong)UIButton *spreadBtn;
-@property(nonatomic,strong)YYLabel *dateLabel;
-@property(nonatomic,strong)UIButton *deleteBtn;
-@property(nonatomic,strong)UIButton *menuBtn;
-@property(nonatomic,strong)NewDynamicsThumbCommentView * thumbCommentView;
-@property(nonatomic,strong)UIView *dividingLine;
+@property(nonatomic,strong)UIImageView                 *portrait;
+@property(nonatomic,strong)YYLabel                     *nameLabel;
+@property(nonatomic,strong)YYLabel                     *detailLabel;
+@property(nonatomic,strong)UIButton                    *moreLessDetailBtn;
+@property(nonatomic,strong)SDWeiXinPhotoContainerView  *picContainerView;
+@property(nonatomic,strong)NewDynamicsGrayView         *grayView;
+@property(nonatomic,strong)UIButton                    *spreadBtn;
+@property(nonatomic,strong)YYLabel                     *dateLabel;
+@property(nonatomic,strong)UIButton                    *deleteBtn;
+@property(nonatomic,strong)UIButton                    *menuBtn;
+@property(nonatomic,strong)NewDynamicsThumbCommentView *thumbCommentView;
+@property(nonatomic,strong)UIView                      *dividingLine;
 
-@property(nonatomic,strong)JRMenuView *jrMenuView;
+@property(nonatomic,strong)JRMenuView                  *jrMenuView;
 
 @property(nonatomic,assign)id<NewDynamicsCellDelegate>delegate;
 

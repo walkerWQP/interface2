@@ -15,14 +15,13 @@
 
 @interface NewGuidelinesViewController ()<UITableViewDelegate, UITableViewDataSource,WKUIDelegate,WKNavigationDelegate>
 
-@property (nonatomic, strong) UITableView * newGuidelinesTableView;
-@property (nonatomic, strong) WorkDetailsModel * workDetailsModel;
-@property (nonatomic, strong) TongZhiDetailsCell * tongZhiDetailsCell;
-
-@property (nonatomic, strong) NSMutableArray * imgAry;
-@property (nonatomic, assign) CGFloat Hnew;
-@property (nonatomic, strong) UIImageView    *headImgView;
-@property (nonatomic, strong) NSMutableArray *bannerArr;
+@property (nonatomic, strong) UITableView        *newGuidelinesTableView;
+@property (nonatomic, strong) WorkDetailsModel   *workDetailsModel;
+@property (nonatomic, strong) TongZhiDetailsCell *tongZhiDetailsCell;
+@property (nonatomic, strong) NSMutableArray     *imgAry;
+@property (nonatomic, assign) CGFloat            Hnew;
+@property (nonatomic, strong) UIImageView        *headImgView;
+@property (nonatomic, strong) NSMutableArray     *bannerArr;
 
 @end
 

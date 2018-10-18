@@ -30,7 +30,7 @@
     self.WeiLanListTableView.dataSource = self;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加围栏" style:UIBarButtonItemStyleDone target:self action:@selector(rightBarButton:)];
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
     
     
     [self.view addSubview:self.WeiLanListTableView];

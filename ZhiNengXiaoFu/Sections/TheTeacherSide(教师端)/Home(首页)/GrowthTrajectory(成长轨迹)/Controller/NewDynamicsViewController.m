@@ -21,25 +21,23 @@
 @property (nonatomic, strong) UISegmentedControl      *segment;
 
 
-@property (nonatomic, strong) UIButton             *rightBtn;
-@property (nonatomic, strong) NSMutableArray       *classNameArr;
-@property (nonatomic, strong) NSMutableArray       *publishJobArr;
-@property (nonatomic, assign) NSInteger            pageID;
-
-@property (nonatomic, strong) UIButton             *classBtn;
-@property (nonatomic, strong) NSMutableArray       *praiseArr;
-@property (nonatomic, strong) NSString             *userNameStr;
-@property (nonatomic, strong) NSMutableArray       *fakeDatasource;
-@property (nonatomic, strong) UIImageView          *headImgView;
-@property (nonatomic, strong) NSMutableArray       *bannerArr;
-@property (nonatomic, strong) UIImageView          *zanwushuju;
+@property (nonatomic, strong) UIButton                *rightBtn;
+@property (nonatomic, strong) NSMutableArray          *classNameArr;
+@property (nonatomic, strong) NSMutableArray          *publishJobArr;
+@property (nonatomic, assign) NSInteger               pageID;
+@property (nonatomic, strong) UIButton                *classBtn;
+@property (nonatomic, strong) NSMutableArray          *praiseArr;
+@property (nonatomic, strong) NSString                *userNameStr;
+@property (nonatomic, strong) NSMutableArray          *fakeDatasource;
+@property (nonatomic, strong) UIImageView             *headImgView;
+@property (nonatomic, strong) NSMutableArray          *bannerArr;
+@property (nonatomic, strong) UIImageView             *zanwushuju;
 
 @end
 
 @implementation NewDynamicsViewController
 
-- (NSMutableArray *)bannerArr
-{
+- (NSMutableArray *)bannerArr {
     if (!_bannerArr)
     {
         _bannerArr = [NSMutableArray array];
@@ -85,6 +83,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
+    
+    
+    
     self.view.backgroundColor = backColor;
     [self setUser];
     self.pageID = 1;
@@ -109,12 +113,10 @@
         NSDictionary  *dic = @{@"key":[UserManager key], @"class_id":self.classID, @"page":[NSString stringWithFormat:@"%ld",self.pageID]};
         [self getDataFromGetAlbumURL:dic];
     }
-    
 }
 
 - (void)loadMoreTopic {
     self.pageID += 1;
-    
     if ([self.typeStr isEqualToString:@"1"]) {
         NSDictionary  *dic = @{@"key":[UserManager key], @"class_id":@"", @"page":[NSString stringWithFormat:@"%ld",self.pageID]};
         [self getDataFromGetAlbumURL1:dic];
@@ -122,13 +124,15 @@
         NSDictionary  *dic = @{@"key":[UserManager key], @"class_id":self.classID, @"page":[NSString stringWithFormat:@"%ld",self.pageID]};
         [self getDataFromGetAlbumURL1:dic];
     }
-
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // 取消IQKeyboardManager Toolbar
     [[IQKeyboardManager sharedManager] disableToolbarInViewControllerClass:[NewDynamicsViewController class]];
+    
+    
+    
     if ([self.typeStr isEqualToString:@"1"]) {
         self.title = @"班级圈";
     } else {
@@ -142,21 +146,16 @@
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(105, 2, 30, 30)];
         img.image = [UIImage imageNamed:@"向下"];
         [self.classBtn addSubview:img];
-        
     }
     
-    [self.navigationController.navigationBar setTitleTextAttributes:
-     @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
-    
+   
     self.rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [self.rightBtn setImage:[UIImage imageNamed:@"相机"] forState:UIControlStateNormal];
     self.rightBtn.titleLabel.font = titFont;
     [self.rightBtn addTarget:self action:@selector(rightBtn:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightBtn];
-    
     [self setup];
     [self.view addSubview:self.commentInputTF];
-    
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
@@ -173,18 +172,14 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    
 }
 
 
 - (void)getBannersURLData {
-    
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"3"};
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.bannerArr = [BannerModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-            
             if (self.bannerArr.count == 0) {
                 self.headImgView.image = [UIImage imageNamed:@"教师端活动管理banner"];
             } else {
@@ -495,7 +490,8 @@
 
 
 #pragma mark - getter
-- (UITableView *)dynamicsTable {
+- (UITableView *)dynamicsTable
+{
     if (!_dynamicsTable) {
         _dynamicsTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH) style:UITableViewStylePlain];
         _dynamicsTable.dataSource = self;

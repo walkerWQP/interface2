@@ -10,10 +10,9 @@
 
 @interface JobManagementViewController : BaseViewController
 
-@property (nonatomic, strong) NSMutableArray *jobManagementArr;
+@property (nonatomic, strong) NSMutableArray   *jobManagementArr;
 @property (nonatomic, strong) UICollectionView *jobManagementCollectionView;
-@property (nonatomic, strong) UIImageView  *headImgView;
-
-@property (nonatomic, strong) NSString *titleStr;
+@property (nonatomic, strong) UIImageView      *headImgView;
+@property (nonatomic, strong) NSString         *titleStr;
 
 @end

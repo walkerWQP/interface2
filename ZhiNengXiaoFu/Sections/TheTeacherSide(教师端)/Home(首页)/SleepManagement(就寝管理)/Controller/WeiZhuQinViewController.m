@@ -11,9 +11,9 @@
 #import "StudentJiuQinModel.h"
 @interface WeiZhuQinViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic, strong) UICollectionView * WeiZhuQinCollectionView;
-@property (nonatomic, retain) UICollectionViewFlowLayout * layout;
-@property (nonatomic, strong) NSMutableArray *WeiZhuQinAry;
+@property (nonatomic, strong) UICollectionView           *WeiZhuQinCollectionView;
+@property (nonatomic, retain) UICollectionViewFlowLayout *layout;
+@property (nonatomic, strong) NSMutableArray             *WeiZhuQinAry;
 @end
 
 @implementation WeiZhuQinViewController
@@ -27,25 +27,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 1)];
     [self.view addSubview:lineView];
     lineView.backgroundColor = [UIColor colorWithRed:238 / 255.0 green:238 / 255.0 blue:238 / 255.0 alpha:1];
-    
     self.layout = [[UICollectionViewFlowLayout alloc] init];
     self.WeiZhuQinCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 1, APP_WIDTH, APP_HEIGHT - 287 - APP_NAVH - 40 - 1) collectionViewLayout:self.layout];
-    
     self.WeiZhuQinCollectionView.backgroundColor = backColor;
-    
     self.WeiZhuQinCollectionView.delegate = self;
     self.WeiZhuQinCollectionView.dataSource = self;
     [self.view addSubview:self.WeiZhuQinCollectionView];
-    
     [self.WeiZhuQinCollectionView registerClass:[JiuQinStuCell class] forCellWithReuseIdentifier:@"JiuQinStuCellId"];
 }
-
-
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [SingletonHelper manager].weidaoAry.count;

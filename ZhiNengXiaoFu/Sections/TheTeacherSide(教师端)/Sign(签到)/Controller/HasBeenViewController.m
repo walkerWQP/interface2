@@ -14,9 +14,9 @@
 
 @interface HasBeenViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSMutableArray  *hasBeenArr;
+@property (nonatomic, strong) NSMutableArray   *hasBeenArr;
 @property (nonatomic, strong) UICollectionView *hasBeenCollectionView;
-@property (nonatomic, strong) UIImageView *zanwushuju;
+@property (nonatomic, strong) UIImageView      *zanwushuju;
 
 @end
 

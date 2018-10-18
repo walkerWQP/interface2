@@ -15,38 +15,29 @@
 @interface SleepManagementViewController ()<WPopupMenuDelegate>
 
 //
-@property (nonatomic, strong) UIButton   * rightBtn;
-@property (nonatomic, strong) NSMutableArray *publishJobArr;
-@property (nonatomic, strong) JohnTopTitleView *titleView;
-
+@property (nonatomic, strong) UIButton                *rightBtn;
+@property (nonatomic, strong) NSMutableArray          *publishJobArr;
+@property (nonatomic, strong) JohnTopTitleView        *titleView;
 //班级
-@property (nonatomic, strong) UILabel * classNameLabel;
+@property (nonatomic, strong) UILabel                 *classNameLabel;
 //下拉箭头
-@property (nonatomic, strong) UIImageView * jiantouImg;
-//
-@property (nonatomic, strong) UILabel * timeLabel;
+@property (nonatomic, strong) UIImageView             *jiantouImg;
+@property (nonatomic, strong) UILabel                 *timeLabel;
 //圆圈
-@property (nonatomic, strong) CircleView *circleV;
-
-@property (nonatomic, strong) UILabel * zhuxiaoCount;
-@property (nonatomic, strong) UILabel * zhuxiaoCountN;
-
-@property (nonatomic, strong) UILabel * yidaoLabel;
-@property (nonatomic, strong) UILabel * weidaoLabel;
-
-@property (nonatomic, strong) UIView * yidaoView;
-@property (nonatomic, strong) UIView * weidaoView;
-@property (nonatomic, strong) NSMutableArray *timeAry;
-
+@property (nonatomic, strong) CircleView              *circleV;
+@property (nonatomic, strong) UILabel                 *zhuxiaoCount;
+@property (nonatomic, strong) UILabel                 *zhuxiaoCountN;
+@property (nonatomic, strong) UILabel                 *yidaoLabel;
+@property (nonatomic, strong) UILabel                 *weidaoLabel;
+@property (nonatomic, strong) UIView                  *yidaoView;
+@property (nonatomic, strong) UIView                  *weidaoView;
+@property (nonatomic, strong) NSMutableArray          *timeAry;
 //区分班级时间状态
-@property (nonatomic, assign) int qufenClassTime;
-
-@property (nonatomic, copy) NSString * classId;
-@property (nonatomic, copy) NSString * timeN;
-
-@property (nonatomic, strong) NSDictionary * FourDic;
-
-@property (nonatomic, strong) YiZhuQinViewController *haveToReplyVC;
+@property (nonatomic, assign) int                     qufenClassTime;
+@property (nonatomic, copy) NSString                  *classId;
+@property (nonatomic, copy) NSString                  *timeN;
+@property (nonatomic, strong) NSDictionary            *FourDic;
+@property (nonatomic, strong) YiZhuQinViewController  *haveToReplyVC;
 @property (nonatomic, strong) WeiZhuQinViewController *didNotReturnVC;
 @end
 
@@ -74,14 +65,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.title = @"住校生入寝";
     self.rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 90, 30)];
     [self.rightBtn setTitle:@"切换班级" forState:UIControlStateNormal];
     self.rightBtn.titleLabel.font = titFont;
+    [self.rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.rightBtn addTarget:self action:@selector(rightBtn:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightBtn];
-    
     [self makeConsultingViewControllerUI];
 }
 
@@ -114,7 +104,6 @@
     //进度条宽度
     _circleV.strokelineWidth = 30;
     [self.view addSubview:_circleV];
-    
     
     self.zhuxiaoCount = [[UILabel alloc] initWithFrame:CGRectMake(APP_WIDTH / 2 - 25, self.classNameLabel.frame.origin.y + self.classNameLabel.frame.size.height + 20 + 65, 55, 24)];
     self.zhuxiaoCount.textColor = [UIColor colorWithRed:255 / 255.0 green:105 / 255.0 blue:141 / 255.0 alpha:1];

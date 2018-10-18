@@ -15,7 +15,7 @@
 @property (nonatomic, assign) NSInteger      album_id;
 @property (nonatomic, strong) NSString       *name;
 @property (nonatomic, strong) NSString       *head_img;
-@property (nonatomic, assign) NSInteger      teacher_id;
+@property (nonatomic, assign) NSInteger      user_id;
 @property (nonatomic, strong) NSString       *content;
 @property (nonatomic, copy) NSMutableArray   *img;
 @property (nonatomic, strong) NSString       *create_time;

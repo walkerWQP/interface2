@@ -13,9 +13,9 @@
 #endif /* URLMacro_h */
 
 //正式
-//#define YUMING  @"http://www.ksznxt.com/"
+#define YUMING  @"http://www.ksznxt.com/"
 //测试
-#define YUMING  @"http://school.ksznxt.com/"
+//#define YUMING  @"http://school.ksznxt.com/"
 
 
 //登录接口
@@ -257,10 +257,10 @@
 #define UserGetUnreadNumber [NSString stringWithFormat:@"%@index/user/get_unread_number",YUMING]
 
 //获取成长相册列表
-#define GetAlbumURL [NSString stringWithFormat:@"%@index/album/get_album",YUMING]
+#define GetAlbumURL [NSString stringWithFormat:@"%@index/album/get_album1",YUMING]
 
 //教师删除成长相册
-#define DeleteAlbumURL [NSString stringWithFormat:@"%@index/album/delete_album",YUMING]
+#define DeleteAlbumURL [NSString stringWithFormat:@"%@index/album/delete_album1",YUMING]
 
 //点赞、取消点赞
 #define PraiseURL [NSString stringWithFormat:@"%@index/album/praise",YUMING]
@@ -272,7 +272,7 @@
 #define DeleteDiscussURL [NSString stringWithFormat:@"%@index/album/delete_discuss",YUMING]
 
 //教师发布相册v2
-#define indexAlbumAddAlbum [NSString stringWithFormat:@"%@index/album/add_album",YUMING]
+#define indexAlbumAddAlbum [NSString stringWithFormat:@"%@index/album/add_album1",YUMING]
 
 //游客登录
 #define indexVisitorLogin [NSString stringWithFormat:@"%@index/visitor/login",YUMING]

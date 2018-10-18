@@ -13,10 +13,10 @@
 
 @interface TomorrowViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSMutableArray  *tomorrowArr;
+@property (nonatomic, strong) NSMutableArray   *tomorrowArr;
 @property (nonatomic, strong) UICollectionView *tomorrowCollectionView;
-@property (nonatomic, assign) NSInteger       page;
-@property (nonatomic, strong) UIImageView *zanwushuju;
+@property (nonatomic, assign) NSInteger        page;
+@property (nonatomic, strong) UIImageView      *zanwushuju;
 
 @end
 
