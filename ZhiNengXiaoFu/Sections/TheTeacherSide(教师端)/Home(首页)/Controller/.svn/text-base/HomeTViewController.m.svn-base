@@ -179,7 +179,6 @@
         NSDictionary * dic = [NSDictionary dictionary];
         if (registrationID == nil) {
             dic = @{@"push_id":@"", @"system":@"ios", @"key":[UserManager key]};
-            
         } else {
             dic = @{@"push_id":registrationID, @"system":@"ios", @"key":[UserManager key]};
         }
@@ -197,16 +196,12 @@
                 } else {
                     
                 }
-                
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"%@", error);
         }];
-        
     }];
 }
-
-
 
 
 - (void)unObserveAllNotifications {
@@ -246,11 +241,8 @@
 }
 
 - (void)networkDidLogin:(NSNotification *)notification {
-    
     NSLog(@"已登录");
-    
     if ([JPUSHService registrationID]) {
-        
         NSLog(@"get RegistrationID");
     }
 }
@@ -275,7 +267,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 3) {
-        
         if (self.classArr.count == 0) {
             return 1;
         } else {
@@ -289,7 +280,6 @@
         }
     } else {
         return 1;
-        
     }
 }
 
@@ -414,11 +404,9 @@
             }
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
         self.tongZhiImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 10, 46, 39)];
         self.tongZhiImg.image = [UIImage imageNamed:@"通知New"];
         [cell addSubview:self.tongZhiImg];
-        
         UITapGestureRecognizer *tongzhiTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tongzhiTap:)];
         self.tongZhiImg.userInteractionEnabled = YES;
         [self.tongZhiImg addGestureRecognizer:tongzhiTap];
@@ -464,9 +452,7 @@
                 cell.lineView.hidden = YES;
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
             return cell;
-        
         }
         
     } else if (indexPath.section == 4) {
@@ -490,32 +476,31 @@
             zanwuLabel.font = [UIFont systemFontOfSize:13];
             [cell.contentView addSubview:zanwuLabel];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
             return cell;
+            
         } else {
         
-        
-        static NSString *CellIdentifier = @"TableViewCell3";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        } else {
-            //删除cell中的子对象,刷新覆盖问题。
-            while ([cell.contentView.subviews lastObject] != nil) {
-                [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
+            static NSString *CellIdentifier = @"TableViewCell3";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+            } else {
+                //删除cell中的子对象,刷新覆盖问题。
+                while ([cell.contentView.subviews lastObject] != nil) {
+                    [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
+                }
             }
-        }
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor=[UIColor whiteColor];
-
-        NSArray *array=[NSArray arrayWithArray:self.jingjiAry];
-        HomePageJingJiView *view=[[HomePageJingJiView alloc] init];
-        view.frame=CGRectMake(0,0, kScreenWidth,  (kScreenWidth - 40) / 3 * 144 / 235 + 25 - 10);
-        view.HomePageJingJiViewDelegate = self;
-        [view setDetail:array];
-        [cell.contentView addSubview:view];
-        return cell;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor=[UIColor whiteColor];
+            NSArray *array=[NSArray arrayWithArray:self.jingjiAry];
+            HomePageJingJiView *view=[[HomePageJingJiView alloc] init];
+            view.frame=CGRectMake(0,0, kScreenWidth,  (kScreenWidth - 40) / 3 * 144 / 235 + 25 - 10);
+            view.HomePageJingJiViewDelegate = self;
+            [view setDetail:array];
+            [cell.contentView addSubview:view];
+            return cell;
+            
         }
         
     } else {
@@ -539,16 +524,18 @@
             zanwuLabel.font = [UIFont systemFontOfSize:13];
             [cell.contentView addSubview:zanwuLabel];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
             return cell;
+            
         } else {
-        SchoolDongTaiCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SchoolDongTaiCellId" forIndexPath:indexPath];
-        NSDictionary * dic = [self.dongtaiAry objectAtIndex:indexPath.row];
-        [cell.SchoolDongTaiImg sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"img"]]];
-        cell.SchoolDongTaiTitleLabel.text = [dic objectForKey:@"title"];
-        cell.SchoolDongTaiConnectLabel.text = [dic objectForKey:@"content"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
+            
+            SchoolDongTaiCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SchoolDongTaiCellId" forIndexPath:indexPath];
+            NSDictionary * dic = [self.dongtaiAry objectAtIndex:indexPath.row];
+            [cell.SchoolDongTaiImg sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"img"]]];
+            cell.SchoolDongTaiTitleLabel.text = [dic objectForKey:@"title"];
+            cell.SchoolDongTaiConnectLabel.text = [dic objectForKey:@"content"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+            
         }
     }
 }
@@ -617,13 +604,11 @@
             clickView.userInteractionEnabled = YES;
             clickView.tag = section;
             [clickView addGestureRecognizer:headerTap];
-            
         }
         return header;
     } else {
         return nil;
     }
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -638,11 +623,9 @@
     JingJiActivityDetailsViewController *jingJiActivityDetailsVC = [JingJiActivityDetailsViewController new];
     jingJiActivityDetailsVC.JingJiActivityDetailsId = answerStr;
     [self.navigationController pushViewController:jingJiActivityDetailsVC animated:YES];
-    
 }
 
 - (void)setClick:(NSInteger)index {
-    
     TongZhiDetailsViewController * tongZhiDetails  = [[TongZhiDetailsViewController alloc] init];
     tongZhiDetails.tongZhiId = [NSString stringWithFormat:@"%ld", index];
     [self.navigationController pushViewController:tongZhiDetails animated:YES];
@@ -731,7 +714,6 @@
         SchoolDongTaiViewController * schoolDongTaiVC = [[SchoolDongTaiViewController alloc] init];
         [self.navigationController pushViewController:schoolDongTaiVC animated:YES];
     }
-    
 }
 
 
@@ -820,7 +802,6 @@
             self.tongzhiAry = [dataDic objectForKey:@"notice"];
             self.dongtaiAry = [dataDic objectForKey:@"dynamic"];
             self.jingjiAry = [dataDic objectForKey:@"activity"];
-
             [self.HomePageJTabelView reloadData];
 
         } else {
@@ -831,7 +812,6 @@
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
             [self.HomePageJTabelView.mj_header endRefreshing];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -861,7 +841,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -902,7 +881,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];

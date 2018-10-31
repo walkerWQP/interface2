@@ -49,28 +49,27 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
 @implementation EasyShowAlertView
 
 
-- (void)dealloc
-{
+- (void)dealloc {
 //    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-+ (instancetype)showActionSheetWithTitle:(NSString *)title message:(NSString *)message
-{
+
++ (instancetype)showActionSheetWithTitle:(NSString *)title message:(NSString *)message {
     return [self showAlertWithType:alertShowTypeActionSheet title:title message:message];
 }
-+ (instancetype)showAlertWithTitle:(NSString *)title message:(NSString *)message
-{
+
++ (instancetype)showAlertWithTitle:(NSString *)title message:(NSString *)message {
     return [self showAlertWithType:alertShowTypeAlert title:title message:message];
 }
-+ (instancetype)showSystemActionSheetWithTitle:(NSString *)title message:(NSString *)message
-{
+
++ (instancetype)showSystemActionSheetWithTitle:(NSString *)title message:(NSString *)message {
     return [self showAlertWithType:alertShowTypeSystemActionSheet title:title message:message] ;
 }
-+ (instancetype)showSystemAlertWithTitle:(NSString *)title message:(NSString *)message
-{
+
++ (instancetype)showSystemAlertWithTitle:(NSString *)title message:(NSString *)message {
     return [self showAlertWithType:alertShowTypeSystemAlert title:title message:message];
 }
-+ (instancetype)showAlertWithType:(alertShowType)type title:(NSString *)title message:(NSString *)message
-{
+
++ (instancetype)showAlertWithType:(alertShowType)type title:(NSString *)title message:(NSString *)message {
     if (ISEMPTY_S(title) && ISEMPTY_S(message)) {
         NSAssert(NO, @"you should set title or message") ;
         return nil;
@@ -83,15 +82,12 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
     return showView ;
 }
 
-- (void)addSystemItemWithTitle:(NSString *)title itemType:(UIAlertActionStyle)itemType callback:(alertItemCallback)callback
-{
+- (void)addSystemItemWithTitle:(NSString *)title itemType:(UIAlertActionStyle)itemType callback:(alertItemCallback)callback {
     [self addItemWithTitle:title itemType:(ShowAlertItemType)itemType callback:callback];
 }
 
-- (void)addItemWithTitle:(NSString *)title itemType:(ShowAlertItemType)itemType callback:(alertItemCallback)callback
-{
+- (void)addItemWithTitle:(NSString *)title itemType:(ShowAlertItemType)itemType callback:(alertItemCallback)callback {
     NSAssert(!ISEMPTY_S(title), @"the title should input！");
-    
     EasyShowAlertItem *item = [[EasyShowAlertItem alloc]init];
     item.title = title ;
     item.itemTpye = itemType ;
@@ -100,38 +96,27 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
 }
 
 
-- (void)show
-{
+- (void)show {
     self.oldKeyWindow = [UIApplication sharedApplication].keyWindow ;
     [self.alertWindow addSubview:self];
     [self.alertWindow makeKeyAndVisible];
-    
     [self addSubview:self.alertBgView];
-    
     [self.alertBgView addSubview:self.alertTitleLabel];
     [self.alertBgView addSubview:self.alertMessageLabel];
     self.alertTitleLabel.text = self.alertShowTitle ;
     self.alertMessageLabel.text = self.alertShowMessage ;
-    
     for (int i = 0; i < self.alertItemArray.count; i++) {
         UIButton *button = [self alertButtonWithIndex:i ];
         [self.alertBgView addSubview:button];
     }
-    
     [self layoutAlertSubViews];
-    
     [self showStartAnimationWithType:self.options.alertAnimationType completion:nil];
-    
-    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarOrientationChange:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     
 }
 
-- (void)systemShow
-{
+- (void)systemShow {
     UIAlertControllerStyle stype = self.alertShowType == alertShowTypeSystemAlert ;
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:self.alertShowTitle
-                                                                    message:self.alertShowMessage
-                                                             preferredStyle:stype];
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:self.alertShowTitle message:self.alertShowMessage preferredStyle:stype];
     
     [self.alertItemArray enumerateObjectsUsingBlock:^(EasyShowAlertItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIAlertAction *action = [UIAlertAction actionWithTitle:obj.title
@@ -155,8 +140,8 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
 //    self.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     [self layoutAlertSubViews];
 }
-- (void)layoutAlertSubViews
-{
+
+- (void)layoutAlertSubViews {
     CGFloat bgViewMaxWidth = self.alertShowType==alertShowTypeAlert ?  SCREEN_WIDTH_S*0.75 : SCREEN_WIDTH_S ;
     CGFloat buttonHeight = 50 ;
     
@@ -185,8 +170,7 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
             [tempButton setFrame:CGRectMake(tempButtonX, tempButtonY, bgViewMaxWidth/2, buttonHeight)];
             totalHeight = tempButton.bottom ;
         }
-    }
-    else{
+    } else {
         for (int i = 0; i < btnCount ; i++) {
             UIButton *tempButton = self.alertButtonArray[i];
             
@@ -225,10 +209,9 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
 {
     
 }
-- (void)bgViewPan:(UIPanGestureRecognizer *)recognizer
-{
-    CGPoint location = [recognizer locationInView:self];
 
+- (void)bgViewPan:(UIPanGestureRecognizer *)recognizer {
+    CGPoint location = [recognizer locationInView:self];
     UIButton *tempButton = nil;
     for (int i = 0; i < self.alertButtonArray.count; i++) {
         UIButton *itemBtn = self.alertButtonArray[i];
@@ -240,23 +223,20 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
             itemBtn.highlighted = NO;
         }
     }
-    
     if (tempButton && recognizer.state == UIGestureRecognizerStateEnded) {
         [self buttonClick:tempButton];
     }
-    
 }
 
-- (void)buttonClick:(UIButton *)button
-{
+- (void)buttonClick:(UIButton *)button {
     EasyShowAlertItem *item = self.alertItemArray[button.tag];
     if (item.callback) {
         item.callback(self);
     }
     [self alertWindowTap];
 }
-- (UIButton *)alertButtonWithIndex:(long)index
-{
+
+- (UIButton *)alertButtonWithIndex:(long)index {
     EasyShowAlertItem *item = self.alertItemArray[index];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -306,8 +286,7 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
     return button ;
 }
 
-- (void)alertWindowTap
-{
+- (void)alertWindowTap {
     
     void (^completion)(void) = ^{
         [self.oldKeyWindow makeKeyWindow];
@@ -326,8 +305,7 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
 
 #pragma mark - animation
 
-- (void)showEndAnimationWithType:(alertAnimationType)type completion:(void(^)(void))completion
-{
+- (void)showEndAnimationWithType:(alertAnimationType)type completion:(void(^)(void))completion {
     if (self.alertShowType == alertShowTypeActionSheet) {
         [UIView animateWithDuration:EasyShowAnimationTime animations:^{
             self.alertBgView.top = SCREEN_HEIGHT_S ;
@@ -407,15 +385,14 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
     }
 }
 
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     void(^completion)(void) = [anim valueForKey:@"handler"];
     if (completion) {
         completion();
     }
 }
-- (void)showStartAnimationWithType:(alertAnimationType)type completion:(void(^)(void))completion
-{
+
+- (void)showStartAnimationWithType:(alertAnimationType)type completion:(void(^)(void))completion {
     if (self.alertShowType == alertShowTypeActionSheet) {
         self.alertBgView.top = SCREEN_HEIGHT_S ;
         [UIView animateWithDuration:EasyShowAnimationTime animations:^{
@@ -480,8 +457,7 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
 }
 
 #pragma mark - getter
-- (UIView *)alertBgView
-{
+- (UIView *)alertBgView {
     if (nil == _alertBgView) {
         _alertBgView = [[UIView alloc]init];
         if (self.options.alertTintColor == [UIColor clearColor]) {
@@ -496,11 +472,10 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bgViewTap:)] ;
         [_alertBgView addGestureRecognizer:tapGesture];
 
-        //        _alertBgView.clipsToBounds = YES ;
-        //        _alertBgView.layer.cornerRadius = 10 ;
     }
     return _alertBgView ;
 }
+
 - (UIWindow *)alertWindow {
     if (nil == _alertWindow) {
         _alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -512,12 +487,10 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
             [_alertWindow addGestureRecognizer:tapGes];
         }
     }
-    
     return _alertWindow;
 }
 
-- (UILabel *)alertTitleLabel
-{
+- (UILabel *)alertTitleLabel {
     if (nil == _alertTitleLabel) {
         _alertTitleLabel = [[EasyShowLabel alloc] initWithContentInset:UIEdgeInsetsMake(35, 30, 15, 30)];
         _alertTitleLabel.textAlignment = NSTextAlignmentCenter;
@@ -533,8 +506,8 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
     }
     return _alertTitleLabel ;
 }
-- (UILabel *)alertMessageLabel
-{
+
+- (UILabel *)alertMessageLabel {
     if (nil == _alertMessageLabel) {
         _alertMessageLabel = [[EasyShowLabel alloc] initWithContentInset:UIEdgeInsetsMake(15, 30, 20, 30)];
         _alertMessageLabel.textAlignment = NSTextAlignmentCenter;
@@ -550,15 +523,15 @@ typedef NS_ENUM(NSUInteger , alertShowType) {
     }
     return _alertMessageLabel ;
 }
-- (NSMutableArray *)alertButtonArray
-{
+
+- (NSMutableArray *)alertButtonArray {
     if (nil == _alertButtonArray) {
         _alertButtonArray = [NSMutableArray arrayWithCapacity:3];
     }
     return _alertButtonArray ;
 }
-- (EasyShowOptions *)options
-{
+
+- (EasyShowOptions *)options {
     if (nil == _options) {
         _options = [EasyShowOptions sharedEasyShowOptions];
     }

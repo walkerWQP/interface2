@@ -154,28 +154,25 @@
     self.center       = newCenter;
 }
 
-- (CGPoint)CLbottomRight
-{
+- (CGPoint)CLbottomRight {
     CGFloat x = self.frame.origin.x + self.frame.size.width;
     CGFloat y = self.frame.origin.y + self.frame.size.height;
     return CGPointMake(x, y);
 }
 
-- (CGPoint)CLbottomLeft
-{
+- (CGPoint)CLbottomLeft {
     CGFloat x = self.frame.origin.x;
     CGFloat y = self.frame.origin.y + self.frame.size.height;
     return CGPointMake(x, y);
 }
 
-- (CGPoint)CLtopRight
-{
+- (CGPoint)CLtopRight {
     CGFloat x = self.frame.origin.x + self.frame.size.width;
     CGFloat y = self.frame.origin.y;
     return CGPointMake(x, y);
 }
-- (CGPoint)CLtopLeft
-{
+
+- (CGPoint)CLtopLeft {
     CGFloat x = self.frame.origin.x;
     CGFloat y = self.frame.origin.y;
     return CGPointMake(x, y);

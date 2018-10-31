@@ -23,7 +23,7 @@
 @implementation CLSlider
 
 
--(instancetype)initWithFrame:(CGRect)frame{
+-(instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setup];
     }
@@ -35,7 +35,7 @@
     [self setThumbImage:thumbImage forState:UIControlStateNormal];
 }
 // 控制slider的宽和高，这个方法才是真正的改变slider滑道的高的
-- (CGRect)trackRectForBounds:(CGRect)bounds{
+- (CGRect)trackRectForBounds:(CGRect)bounds {
     [super trackRectForBounds:bounds];
     return CGRectMake(bounds.origin.x, bounds.origin.y, CGRectGetWidth(bounds), 2);
 }
@@ -66,6 +66,7 @@
     //否则,返回能够处理的view
     return result;
 }
+
 //检查是点击事件的点是否在slider范围内
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     //调用父类判断
@@ -81,8 +82,9 @@
     //否则返回父类的结果
     return result;
 }
+
 #pragma mark - 获取资源图片
-- (UIImage *)getPictureWithName:(NSString *)name{
+- (UIImage *)getPictureWithName:(NSString *)name {
     NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"CLPlayer" ofType:@"bundle"]];
     NSString *path   = [bundle pathForResource:name ofType:@"png"];
     return [UIImage imageWithContentsOfFile:path];

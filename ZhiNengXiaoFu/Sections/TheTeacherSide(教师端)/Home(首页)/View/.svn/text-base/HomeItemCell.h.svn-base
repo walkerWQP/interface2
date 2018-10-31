@@ -10,7 +10,7 @@
 
 @interface HomeItemCell : UICollectionViewCell
 
-@property (nonatomic, strong) UILabel * titleLabel;
-@property (nonatomic, strong) UIImageView * itemImg;
+@property (nonatomic, strong) UILabel     *titleLabel;
+@property (nonatomic, strong) UIImageView *itemImg;
 
 @end

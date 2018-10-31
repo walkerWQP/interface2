@@ -32,43 +32,41 @@
 @implementation EasyShowLodingView
 
 
-- (void)dealloc
-{
+- (void)dealloc {
 }
 
 
-+ (void)showLoding
-{
++ (void)showLoding {
     [self showLodingText:@""];
 }
-+ (void)showLodingText:(NSString *)text
-{
+
++ (void)showLodingText:(NSString *)text {
     UIView *showView = [EasyShowUtils topViewController].view ;
     if ([EasyShowOptions sharedEasyShowOptions].lodingShowOnWindow) {
         showView = [UIApplication sharedApplication].keyWindow ;
     }
     [self showLodingText:text inView:showView];
 }
-+ (void)showLodingText:(NSString *)text inView:(UIView *)superView
-{
+
++ (void)showLodingText:(NSString *)text inView:(UIView *)superView {
     [self showLodingText:text imageName:nil inView:superView];
 }
-+ (void)showLodingText:(NSString *)text imageName:(NSString *)imageName
-{
+
++ (void)showLodingText:(NSString *)text imageName:(NSString *)imageName {
     UIView *showView = [EasyShowUtils topViewController].view ;
     if ([EasyShowOptions sharedEasyShowOptions].lodingShowOnWindow) {
         showView = [UIApplication sharedApplication].keyWindow ;
     }
     [self showLodingText:text imageName:imageName inView:showView];
 }
-+ (void)showLodingText:(NSString *)text imageName:(NSString *)imageName inView:(UIView *)superView
-{
+
++ (void)showLodingText:(NSString *)text imageName:(NSString *)imageName inView:(UIView *)superView {
     [self showLodingWithText:text inView:superView imageName:imageName];
 }
+
 + (void)showLodingWithText:(NSString *)text
                     inView:(UIView *)view
-                 imageName:(NSString *)imageName
-{
+                 imageName:(NSString *)imageName {
     
     if (nil == view) {
         NSAssert(NO, @"there shoud have a superview");
@@ -97,18 +95,15 @@
    
 }
 
-
-
-+ (void)hidenLoding
-{
++ (void)hidenLoding {
     UIView *showView = [EasyShowUtils topViewController].view ;
     if ([EasyShowOptions sharedEasyShowOptions].lodingShowOnWindow) {
         showView = [UIApplication sharedApplication].keyWindow ;
     }
     [self hidenLoingInView:showView];
 }
-+ (void)hidenLoingInView:(UIView *)superView
-{
+
++ (void)hidenLoingInView:(UIView *)superView {
     NSEnumerator *subviewsEnum = [superView.subviews reverseObjectEnumerator];
     for (UIView *subview in subviewsEnum) {
         if ([subview isKindOfClass:self]) {
@@ -120,17 +115,14 @@
 }
 
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        
         self.backgroundColor =  [UIColor clearColor]; // [UIColor greenColor] ;//
     }
     return self ;
 }
 
-- (void)showViewWithSuperView:(UIView *)superView
-{
+- (void)showViewWithSuperView:(UIView *)superView {
     //展示视图的frame
     
     CGSize imageSize = CGSizeZero ;
@@ -191,20 +183,17 @@
         //左右形式
         displayAreaSize.width = imageSize.width + EasyShowLodingImageEdge*2 + textSize.width ;
         displayAreaSize.height = MAX(imageSize.height+ EasyShowLodingImageEdge*2, textSize.height) ;
-    }
-    else{
+    } else {
         //上下形式
         displayAreaSize.width = MAX(imageSize.width+2*EasyShowLodingImageEdge, textSize.width);
         displayAreaSize.height = imageSize.height+2*EasyShowLodingImageEdge + textSize.height ;
     }
 
-    
     if (self.options.lodingSuperViewReceiveEvent) {
         //父视图能够接受事件 。 显示区域的大小=self的大小=displayAreaSize
 
         [self setFrame:CGRectMake((SCREEN_WIDTH_S-displayAreaSize.width)/2, (SCREEN_HEIGHT_S-displayAreaSize.height)/2, displayAreaSize.width, displayAreaSize.height)];
-    }
-    else{
+    } else {
         //父视图不能接收-->self的大小应该为superview的大小。来遮盖
         
         [self setFrame: CGRectMake(0, 0, superView.width, superView.height)] ;
@@ -228,8 +217,7 @@
     if (self.options.lodingShowType%2) {//左右形式
         textLabelX = self.imageView.right;
         textLabelY =  (self.lodingBgView.height-textSize.height)/2 ;
-    }
-    else{
+    } else {
         textLabelX = 0 ;
         textLabelY = self.imageView.bottom + EasyShowLodingImageEdge ;
     }
@@ -333,8 +321,7 @@
     
 }
 
-- (void)drawGradientaLayerAmination
-{
+- (void)drawGradientaLayerAmination {
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.fillColor = [UIColor clearColor].CGColor;
@@ -377,8 +364,8 @@
 
     [gradientLayer addAnimation:animation forKey:@"GradientLayerAnimation"];
 }
-- (void)removeSelfFromSuperView
-{
+
+- (void)removeSelfFromSuperView {
     NSAssert([NSThread isMainThread], @"needs to be accessed on the main thread.");
     
     if (![NSThread isMainThread]) {
@@ -409,8 +396,7 @@
 
 #pragma mark - animation
 // 转圈动画
-- (void)drawAnimiationImageView:(BOOL)isImageView
-{
+- (void)drawAnimiationImageView:(BOOL)isImageView {
     NSString *keyPath = isImageView ? @"transform.rotation.y" : @"transform.rotation.z" ;
     CABasicAnimation *animation=[CABasicAnimation animationWithKeyPath:keyPath];
     animation.fromValue=@(0);
@@ -424,8 +410,7 @@
 }
 
 
-- (void)showFadeAnimationStart:(BOOL)isStart completion:(void(^)(void))completion
-{
+- (void)showFadeAnimationStart:(BOOL)isStart completion:(void(^)(void))completion {
     self.alpha = isStart ? 0.1f : 1.0f;
     [UIView animateWithDuration:EasyShowAnimationTime animations:^{
         self.alpha = isStart ? 1.0 : 0.1f ;
@@ -435,8 +420,7 @@
         }
     }];
 }
-- (void)showBounceAnimationStart:(BOOL)isStart completion:(void(^)(void))completion
-{
+- (void)showBounceAnimationStart:(BOOL)isStart completion:(void(^)(void))completion {
     if (isStart) {
         CAKeyframeAnimation *popAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
         popAnimation.duration = EasyShowAnimationTime ;
@@ -473,20 +457,20 @@
    
     [self performSelector:@selector(ddd) withObject:nil afterDelay:bacAnimation.duration];
 }
-- (void)ddd
-{
+
+- (void)ddd {
     [self removeFromSuperview];
 }
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     void(^completion)(void) = [anim valueForKey:@"handler"];
     if (completion) {
         completion();
     }
 }
+
 //加载loding的动画
-- (void)drawAnimationImageViewLoding
-{
+- (void)drawAnimationImageViewLoding {
     CGPoint centerPoint= CGPointMake(self.imageView.width/2.0f, self.imageView.height/2.0f) ;
     UIBezierPath *beizPath=[UIBezierPath bezierPathWithArcCenter:centerPoint radius:centerPoint.x startAngle:-M_PI_2 endAngle:M_PI_2 clockwise:YES];
     CAShapeLayer *centerLayer=[CAShapeLayer layer];
@@ -495,23 +479,20 @@
     centerLayer.strokeColor=self.options.lodingTintColor.CGColor;//边框颜色
     centerLayer.lineWidth=2.0f;
     centerLayer.lineCap=kCALineCapRound;//线框类型
-    
     [self.imageView.layer addSublayer:centerLayer];
-    
 }
 
 
 #pragma mark - getter
 
-- (EasyShowOptions *)options
-{
+- (EasyShowOptions *)options {
     if (nil == _options) {
         _options = [EasyShowOptions sharedEasyShowOptions];
     }
     return _options ;
 }
-- (UIView *)lodingBgView
-{
+
+- (UIView *)lodingBgView {
     if (nil == _lodingBgView) {
         _lodingBgView = [[UIView alloc]init] ;
         _lodingBgView.backgroundColor = self.options.lodingBackgroundColor ;
@@ -519,8 +500,8 @@
     }
     return _lodingBgView ;
 }
-- (UIImageView *)imageView
-{
+
+- (UIImageView *)imageView {
     if (nil == _imageView) {
         _imageView = [[UIImageView alloc]init];
         _imageView.backgroundColor = [UIColor clearColor];
@@ -529,27 +510,20 @@
     }
     return _imageView ;
 }
-- (UILabel *)textLabel
-{
+
+- (UILabel *)textLabel {
     if (nil == _textLabel) {
         _textLabel = [[EasyShowLabel alloc]initWithContentInset:UIEdgeInsetsMake(10, 20, 10, 20)];
         _textLabel.textColor = self.options.lodingTintColor;
         _textLabel.font = self.options.lodingTextFount ;
-        
-        
-        
         _textLabel.backgroundColor = [UIColor clearColor];
         if (self.options.showLableAlignment) {
             _textLabel.textAlignment = self.options.showLableAlignment;
-
-        }
-        else
-        {
+        } else {
             _textLabel.textAlignment = NSTextAlignmentCenter;
 
         }
-        if (self.options.IsShowLableOffset)
-        {
+        if (self.options.IsShowLableOffset) {
             _textLabel.contentInset =self.options.showLableContentInset;
             
         }
@@ -583,8 +557,7 @@
     return _textLabel ;
 }
 
-- (UIActivityIndicatorView *)imageViewIndeicator
-{
+- (UIActivityIndicatorView *)imageViewIndeicator {
     if (nil == _imageViewIndeicator) {
         UIActivityIndicatorViewStyle style = self.options.lodingShowType%2 ? UIActivityIndicatorViewStyleWhite : UIActivityIndicatorViewStyleWhiteLarge ;
         _imageViewIndeicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];

@@ -183,16 +183,13 @@
             return;
         } else if (self.LQPhotoPicker_smallImageArray.count == 0) {
             NSDictionary *dataDic = [NSDictionary dictionary];
-            
             dataDic = @{@"key":[UserManager key],@"img":self.imgFiledArr, @"content":self.shuRuNeiRonTextView.text};
             [self postDataForUploadURL:dataDic];
-            
         } else if ([self.shuRuNeiRonTextView.text isEqualToString:@""]) {
             [self setShangChuanTupian];
         } else {
             [self setShangChuanTupian];
         }
-        
     } else {
         if (self.courseID == nil) {
             [WProgressHUD showErrorAnimatedText:@"请选择班级"];
@@ -202,10 +199,8 @@
             return;
         } else if (self.LQPhotoPicker_smallImageArray.count == 0) {
             NSDictionary *dataDic = [NSDictionary dictionary];
-            
             dataDic = @{@"key":[UserManager key],@"class_id":self.courseID,@"img":self.imgFiledArr, @"content":self.shuRuNeiRonTextView.text};
             [self postDataForUploadURL:dataDic];
-            
         } else if ([self.shuRuNeiRonTextView.text isEqualToString:@""]) {
             [self setShangChuanTupian];
         } else {
@@ -222,8 +217,6 @@
 - (void)setShangChuanTupian {
     
     [self LQPhotoPicker_getBigImageDataArray];
-    
-    
     NSDictionary * params = @{@"key":[UserManager key],@"upload_type":@"img", @"upload_img_type":@"album"};
     [WProgressHUD showHUDShowText:@"加载中..."];
     [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -237,12 +230,10 @@
             NSString *str = [formatter stringFromDate:[NSDate date]];
             NSString *imageFileName = [NSString stringWithFormat:@"%@.jpeg", str];
             
-            if (length>1280)
-            {
+            if (length>1280) {
                 NSData *fData = UIImageJPEGRepresentation(image, 0.5);
                 [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
-            } else
-            {
+            } else {
                 [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
             }
             
@@ -265,22 +256,17 @@
             } else {
                 dataDic = @{@"key":[UserManager key],@"class_id":self.courseID,@"img":self.imgFiledArr, @"content":self.shuRuNeiRonTextView.text};
             }
-            
             [self postDataForUploadURL:dataDic];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
             } else {
                 
             }
-            
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       
         [WProgressHUD hideAllHUDAnimated:YES];
     }];
     
@@ -299,7 +285,6 @@
                 [UserManager logoOut];
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -343,7 +328,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];

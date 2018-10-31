@@ -38,6 +38,7 @@ NSString *const EasyShowViewDidlDismissNotification = @"EasyShowViewDidlDismissN
 @synthesize lodingPlayImagesArray = _lodingPlayImagesArray ;
 
 static EasyShowOptions *_showInstance;
+
 + (id)allocWithZone:(struct _NSZone *)zone {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -45,7 +46,8 @@ static EasyShowOptions *_showInstance;
     });
     return _showInstance;
 }
-+ (instancetype)sharedEasyShowOptions{
+
++ (instancetype)sharedEasyShowOptions {
     if (nil == _showInstance) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
@@ -54,17 +56,16 @@ static EasyShowOptions *_showInstance;
     }
     return _showInstance;
 }
-- (id)copyWithZone:(NSZone *)zone{
-    return _showInstance;
-}
-- (id)mutableCopyWithZone:(NSZone *)zone
-{
+
+- (id)copyWithZone:(NSZone *)zone {
     return _showInstance;
 }
 
+- (id)mutableCopyWithZone:(NSZone *)zone {
+    return _showInstance;
+}
 
-- (instancetype)init
-{
+- (instancetype)init {
     if (self = [super init]) {
        
         _textAnimationType = TextAnimationTypeBounce ;
@@ -97,12 +98,12 @@ static EasyShowOptions *_showInstance;
     }
     return self ;
 }
-- (void)setlodingPlayImagesArray:(NSArray *)lodingPlayImagesArray
-{
+
+- (void)setlodingPlayImagesArray:(NSArray *)lodingPlayImagesArray {
     _lodingPlayImagesArray = lodingPlayImagesArray ;
 }
-- (NSArray *)lodingPlayImagesArray
-{
+
+- (NSArray *)lodingPlayImagesArray {
     NSAssert(_lodingPlayImagesArray, @"you should set image array use to animation!");
     return _lodingPlayImagesArray  ;
 }

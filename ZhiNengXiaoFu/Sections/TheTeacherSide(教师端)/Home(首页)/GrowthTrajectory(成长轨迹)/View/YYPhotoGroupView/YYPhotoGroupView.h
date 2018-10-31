@@ -10,13 +10,16 @@
 
 
 @interface YYPhotoGroupItem : NSObject
+
 @property (nonatomic, strong) UIView *thumbView;
 @property (nonatomic, assign) CGSize largeImageSize;
 @property (nonatomic, strong) NSURL *largeImageURL;
+
 @end
 
 
 @interface YYPhotoGroupView : UIView
+
 @property (nonatomic, readonly) NSArray *groupItems;
 @property (nonatomic, readonly) NSInteger currentPage;
 @property (nonatomic, assign) BOOL blurEffectBackground;

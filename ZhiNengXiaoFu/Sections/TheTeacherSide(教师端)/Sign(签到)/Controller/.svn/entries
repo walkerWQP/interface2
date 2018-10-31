@@ -1,15 +1,15 @@
 10
 
 dir
-262
+271
 http://ios2@61.132.226.224:8081/svn/duxiu/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Sign(%E7%AD%BE%E5%88%B0)/Controller
 http://ios2@61.132.226.224:8081/svn/duxiu
 
 
 
-2018-10-17T08:54:38.735351Z
-221
-ios1
+2018-10-29T03:21:47.022460Z
+268
+ios2
 
 
 
@@ -28,7 +28,7 @@ d466fc26-aeb2-6048-8488-bbf0a50f055a
 
 HasBeenViewController.m
 file
-267
+
 
 
 
@@ -164,7 +164,7 @@ ios1
 
 TotalNumberViewController.h
 file
-267
+
 
 
 
@@ -198,7 +198,7 @@ ios2
 
 ToSchoolSituationViewController.m
 file
-268
+
 
 
 
@@ -232,7 +232,7 @@ ios2
 
 AskLeaveViewController.m
 file
-267
+
 
 
 
@@ -266,7 +266,7 @@ ios2
 
 TotalNumberViewController.m
 file
-267
+
 
 
 
@@ -402,7 +402,7 @@ ios2
 
 NotToViewController.m
 file
-267
+
 
 
 

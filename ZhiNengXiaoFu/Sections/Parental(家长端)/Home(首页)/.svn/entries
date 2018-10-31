@@ -1,14 +1,14 @@
 10
 
 dir
-262
+271
 http://ios2@61.132.226.224:8081/svn/duxiu/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/Parental(%E5%AE%B6%E9%95%BF%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)
 http://ios2@61.132.226.224:8081/svn/duxiu
 
 
 
-2018-10-26T09:22:14.458984Z
-262
+2018-10-27T07:21:54.210937Z
+265
 ios2
 
 
@@ -26,10 +26,10 @@ ios2
 
 d466fc26-aeb2-6048-8488-bbf0a50f055a
 
-TeacherZaiXianDetails(名师在线详情)
+TongZhi(通知)
 dir
 
-TongZhi(通知)
+TeacherZaiXianDetails(名师在线详情)
 dir
 
 Work(作业)
@@ -41,22 +41,22 @@ dir
 JiuQinGuanLi(就寝管理)
 dir
 
-ParentXueTangDetails(家长学堂详情)
-dir
-
 SchoolDongTaiDetails(学校动态详情)
 dir
 
-MyZiXun(我的咨询)
+ParentXueTangDetails(家长学堂详情)
 dir
 
 TeacherZaiXian(名师在线)
 dir
 
-CompetitiveActivity(竞技活动)
+MyZiXun(我的咨询)
 dir
 
 TongZhiDetails(通知详情)
+dir
+
+CompetitiveActivity(竞技活动)
 dir
 
 FreshmanGuidance(新生指导)

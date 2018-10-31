@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeBannerModel : NSObject
+
 @property (nonatomic, strong) NSString   *ID;
 @property (nonatomic, strong) NSString   *url;
 @property (nonatomic, strong) NSString   *inside;

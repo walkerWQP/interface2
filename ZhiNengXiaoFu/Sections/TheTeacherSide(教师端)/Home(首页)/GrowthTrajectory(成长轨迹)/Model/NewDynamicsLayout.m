@@ -11,6 +11,13 @@
 
 @implementation NewDynamicsLayout
 
+- (NSMutableArray *)commentLayoutArr {
+    if (!_commentLayoutArr) {
+        _commentLayoutArr = [NSMutableArray array];
+    }
+    return _commentLayoutArr;
+}
+
 - (instancetype)initWithModel:(DynamicsModel *)model {
     self = [super init];
     if (self) {
@@ -142,7 +149,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -242,7 +248,6 @@
                     [text appendAttributedString:message];
                 }
                 
-                
             } else {
                 
                 NSMutableAttributedString *nick = [[NSMutableAttributedString alloc] initWithString:model.discuss_name];
@@ -265,8 +270,6 @@
                 NSMutableAttributedString * message = [[NSMutableAttributedString alloc] initWithString:model.discuss_content];
                 message.font = [UIFont systemFontOfSize:13];
                 [text appendAttributedString:message];
-                
-                
             }
             
             YYTextContainer * container = [YYTextContainer containerWithSize:CGSizeMake(APP_WIDTH - kDynamicsNormalPadding - kDynamicsPortraitWidthAndHeight - kDynamicsPortraitNamePadding - kDynamicsNameDetailPadding*2 - kDynamicsNormalPadding,CGFLOAT_MAX)];
@@ -276,17 +279,10 @@
             _commentHeight += layout.textBoundingSize.height;//评论文字高度
             _commentHeight += kDynamicsGrayPicPadding;//评论文字下边距
             [self.commentLayoutArr addObject:layout];
-            
         }
-  
     _thumbCommentHeight += _commentHeight;
 }
 
-- (NSMutableArray *)commentLayoutArr {
-    if (!_commentLayoutArr) {
-        _commentLayoutArr = [NSMutableArray array];
-    }
-    return _commentLayoutArr;
-}
+
 
 @end

@@ -10,15 +10,18 @@
 
 @implementation HomeLunBoCell
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (NSMutableArray *)dataHeaderSourceAryImg {
+    if (!_dataHeaderSourceAryImg) {
+        self.dataHeaderSourceAryImg = [@[]mutableCopy];
+    }
+    return _dataHeaderSourceAryImg;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.cycleScrollView2];
-        
         [self getClassData];
-
-        
     }
     return self;
 }
@@ -44,34 +47,19 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
 }
 
-- (NSMutableArray *)dataHeaderSourceAryImg
-{
-    if (!_dataHeaderSourceAryImg) {
-        self.dataHeaderSourceAryImg = [@[]mutableCopy];
-    }
-    return _dataHeaderSourceAryImg;
-}
 
-- (void)loadTicketTop
-{
-    //网络加载 --- 创建带标题的图片轮播器
-    
-//    [self.dataHeaderSourceAryImg addObject:[UIImage imageNamed:@"教师端活动管理banner"]];
-//    [self.dataHeaderSourceAryImg addObject:[UIImage imageNamed:@"banner"]];
-//    [self.dataHeaderSourceAryImg addObject:[UIImage imageNamed:@"bannerHelper"]];
-    
+
+- (void)loadTicketTop {
     
     if (APP_WIDTH == 414) {
         self.cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.frame.size.width, 200) imageURLStringsGroup:nil]; // 模拟网络延时情景
-    }else
-    {
+    } else {
         self.cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.frame.size.width, 170) imageURLStringsGroup:nil]; // 模拟网络延时情景
     }
     

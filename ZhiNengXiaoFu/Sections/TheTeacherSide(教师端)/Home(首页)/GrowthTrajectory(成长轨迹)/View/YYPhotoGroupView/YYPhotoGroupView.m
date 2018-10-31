@@ -15,9 +15,11 @@
 
 
 @interface YYPhotoGroupItem()<NSCopying>
+
 @property (nonatomic, readonly) UIImage *thumbImage;
 @property (nonatomic, readonly) BOOL thumbClippedToTop;
 - (BOOL)shouldClipToTop:(CGSize)imageSize forView:(UIView *)view;
+
 @end
 @implementation YYPhotoGroupItem
 
@@ -53,15 +55,14 @@
 
 
 @interface YYPhotoGroupCell : UIScrollView <UIScrollViewDelegate>
-@property (nonatomic, strong) UIView *imageContainerView;
+
+@property (nonatomic, strong) UIView              *imageContainerView;
 @property (nonatomic, strong) YYAnimatedImageView *imageView;
-@property (nonatomic, assign) NSInteger page;
-
-@property (nonatomic, assign) BOOL showProgress;
-@property (nonatomic, assign) CGFloat progress;
-@property (nonatomic, strong) CAShapeLayer *progressLayer;
-
-@property (nonatomic, strong) YYPhotoGroupItem *item;
+@property (nonatomic, assign) NSInteger           page;
+@property (nonatomic, assign) BOOL                showProgress;
+@property (nonatomic, assign) CGFloat             progress;
+@property (nonatomic, strong) CAShapeLayer        *progressLayer;
+@property (nonatomic, strong) YYPhotoGroupItem    *item;
 @property (nonatomic, readonly) BOOL itemDidLoad;
 - (void)resizeSubviewSize;
 
@@ -116,7 +117,6 @@
     if (_item == item) return;
     _item = item;
     _itemDidLoad = NO;
-    
     
     [self setZoomScale:1.0 animated:NO];
     self.maximumZoomScale = 3;

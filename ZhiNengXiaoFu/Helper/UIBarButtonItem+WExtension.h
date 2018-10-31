@@ -10,8 +10,7 @@
 
 @interface UIBarButtonItem (WExtension)
 
-@property (nonatomic, strong) UIColor *barButtonItemColor;
-
+@property (nonatomic, strong) UIColor  *barButtonItemColor;
 @property (nonatomic, strong) NSString *barButtonItemTitle;
 
 + (instancetype)itemWithImage:(NSString *)image highImage:(NSString *)highImage target:(id)target action:(SEL)action;

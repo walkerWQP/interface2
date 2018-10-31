@@ -12,25 +12,20 @@
 
 @implementation HttpRequestManager
 
-+ (instancetype)sharedSingleton
-{
++ (instancetype)sharedSingleton {
     static HttpRequestManager *manager = nil;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
         manager = [[HttpRequestManager alloc]init];
     });
-    
     return manager;
 }
 
 
-- (id)init
-{
+- (id)init {
     self =[super init];
     if (self) {
-        
         _sessionManger = [AFHTTPSessionManager manager];
         _sessionManger.responseSerializer.acceptableContentTypes =RESPONSE_CONTENT_TYPE;
         _sessionManger.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -40,23 +35,17 @@
     return self;
 }
 
--(NSString *)getStr:(NSString *)url
-{
-    
+-(NSString *)getStr:(NSString *)url {
     return url;
 }
 /**
  *  get请求
  */
-- (NSURLSessionTask *)GET:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask * task, id responseObject))success failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure
-{
-    
-    NSLog(@"%@--%@",URLString,parameters);
+- (NSURLSessionTask *)GET:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask * task, id responseObject))success failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure {
     
     NSMutableDictionary *mutableParmeters = [[NSMutableDictionary alloc]initWithDictionary:parameters];
     
-    NSURLSessionDataTask * dataTask = [_sessionManger GET:URLString parameters:mutableParmeters progress:nil success:^(NSURLSessionDataTask *  task, id  responseObject)
-                                       {
+    NSURLSessionDataTask * dataTask = [_sessionManger GET:URLString parameters:mutableParmeters progress:nil success:^(NSURLSessionDataTask *  task, id  responseObject) {
                                            
                                            success(task, responseObject);
                                            
@@ -72,17 +61,9 @@
 /**
  *  post
  */
-- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask * task, id responseObject))success failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure
-{
-    
-    //    [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:URLString parameters:parameters error:nil];
-    
-    NSLog(@"%@--%@",URLString,parameters);
-    
+- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask * task, id responseObject))success failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure {
     
     NSMutableDictionary *mutableParmerts = [[NSMutableDictionary alloc]initWithDictionary:parameters];
-    
-    
     NSURLSessionDataTask * dataTask = [_sessionManger POST:URLString parameters:mutableParmerts progress:nil success:^(NSURLSessionDataTask *  task, id  responseObject)
                                        {
                                            
@@ -93,8 +74,7 @@
                                            
                                            failure(task,error);
                                        }];
-    
-    //    [_sessionManger POST:URLString parameters:mutableParmerts progress:nil success:success failure:failure]
+
     return dataTask;
     
 }
@@ -123,14 +103,10 @@
                                  parameters:(NSDictionary *)parameters
                                    progress:(HYBUploadProgress)progress
                                     success:(HYBResponseSuccess)success
-                                       fail:(HYBResponseFail)fail
-{
+                                       fail:(HYBResponseFail)fail {
     
     
     NSString * finallString = [NSString stringWithFormat:@"%@",url];
-    
-    
-    //    [_sessionManger. addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];//加上这句话
     
     NSURLSessionTask *session = [_sessionManger POST:finallString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
@@ -158,9 +134,6 @@
         
     }];
     
-    //    [session resume];
-    
-    
     return session;
 }
 
@@ -172,14 +145,11 @@
                             parameters:(NSDictionary *)parameters
                               progress:(HYBUploadProgress)progress
                                success:(HYBResponseSuccess)success
-                                  fail:(HYBResponseFail)fail
-{
+                                  fail:(HYBResponseFail)fail {
     
     
     NSString * finallString = [NSString stringWithFormat:@"%@",url];
     
-    
-    //    [_sessionManger. addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];//加上这句话
     
     NSURLSessionTask *session = [_sessionManger POST:finallString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
@@ -214,7 +184,6 @@
         fail(error);
         
     }];
-    
     
     return session;
 }

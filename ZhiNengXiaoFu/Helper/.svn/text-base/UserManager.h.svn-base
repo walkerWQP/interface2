@@ -14,25 +14,16 @@
 @property (nonatomic, strong) PersonInformationModel * userInfo;
 
 //判断是否是登录状态
-
 +(BOOL)isLogin;
 
-
-
 //储存用户信息
-
 +(void)saveUserObject:(PersonInformationModel *)userinfo;
 
-
-
 //获取用户基本信息
-
 +(PersonInformationModel *)getUserObject;
 
 
-
 //退出登录，清除用户信息
-
 +(void)logoOut;
 
 //获取key

@@ -15,11 +15,11 @@
 @property(nonatomic,assign)NSInteger index;
 /** 是否能用*/
 @property(nonatomic,assign,getter=isEnable)BOOL enable;
+
 @end
 @implementation AILoadingView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         _index    = 0;
@@ -29,6 +29,7 @@
     }
     return self;
 }
+
 -(void)layoutSubviews {
     [super layoutSubviews];
     UIBezierPath *path      = [self cycleBezierPathIndex:_index];
@@ -39,6 +40,7 @@
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.bounds.size.width * 0.5, self.bounds.size.height *0.5) radius:self.bounds.size.width * 0.5 startAngle:index * (M_PI* 2)/3  endAngle:index * (M_PI* 2)/3 + 2*M_PI * 4/3 clockwise:YES];
     return path;
 }
+
 - (void)createUI {
     self.loadingLayer             = [CAShapeLayer layer];
     self.loadingLayer.lineWidth   = 2.;
@@ -47,6 +49,7 @@
     [self.layer addSublayer:self.loadingLayer];
     self.loadingLayer.lineCap     = kCALineCapRound;
 }
+
 - (void)loadingAnimation {
     CABasicAnimation *strokeStartAnimation = [CABasicAnimation animationWithKeyPath:@"strokeStart"];
     strokeStartAnimation.fromValue         = @0;
@@ -65,6 +68,7 @@
     strokeAniamtionGroup.animations        = @[strokeEndAnimation,strokeStartAnimation];
     [self.loadingLayer addAnimation:strokeAniamtionGroup forKey:@"strokeAniamtionGroup"];
 }
+
 #pragma mark -CAAnimationDelegate
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     if (!self.isEnable) {
@@ -84,11 +88,13 @@
     self.enable = YES;
     [self loadingAnimation];
 }
+
 - (void)stopAnimation {
     self.hidden = YES;
     self.enable = NO;
     [self.loadingLayer removeAllAnimations];
 }
+
 - (void)setStrokeColor:(UIColor *)strokeColor {
     _strokeColor                   = strokeColor;
     self.loadingLayer.strokeColor  = strokeColor.CGColor;

@@ -131,7 +131,6 @@
     self.yidaoLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
     [self.view addSubview:self.yidaoLabel];
     
-    
     self.yidaoView = [[UIView alloc] initWithFrame:CGRectMake(self.yidaoLabel.frame.origin.x - 10 - 12 ,self.weidaoView.frame.origin.y, 12, 12)];
     self.yidaoView.backgroundColor = [UIColor colorWithRed:255 / 255.0 green:105 / 255.0 blue:141 / 255.0 alpha:1];
     [self.view addSubview:self.yidaoView];

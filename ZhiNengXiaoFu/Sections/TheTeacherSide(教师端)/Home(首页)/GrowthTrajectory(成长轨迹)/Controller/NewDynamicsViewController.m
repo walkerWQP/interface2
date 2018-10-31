@@ -70,6 +70,13 @@
     return _publishJobArr;
 }
 
+- (NSMutableArray *)layoutsArr {
+    if (!_layoutsArr) {
+        _layoutsArr = [NSMutableArray array];
+    }
+    return _layoutsArr;
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -187,7 +194,6 @@
             } else {
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -218,7 +224,6 @@
             } else {
                 
                 NSMutableArray *dataArr = [NSMutableArray array];
-                
                 for (NSDictionary *dic in [responseObject objectForKey:@"data"]) {
                     [dataArr addObject:dic];
                 }
@@ -249,17 +254,13 @@
                             [tempComments addObject:commentModel];
 
                     }
-
                     model.commentArr = [tempComments copy];
-
                     NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
                     [self.layoutsArr addObject:layout];
-    
                 }
                 self.zanwushuju.alpha = 0;
                 [self.dynamicsTable reloadData];
             }
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -335,7 +336,6 @@
                     }
                     
                     model.commentArr = [tempComments copy];
-                    
                     NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
                     [self.layoutsArr addObject:layout];
                     
@@ -373,7 +373,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -426,7 +425,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [WProgressHUD hideAllHUDAnimated:YES];
@@ -483,8 +481,7 @@
 
 
 #pragma mark - getter
-- (UITableView *)dynamicsTable
-{
+- (UITableView *)dynamicsTable {
     if (!_dynamicsTable) {
         _dynamicsTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH) style:UITableViewStylePlain];
         _dynamicsTable.dataSource = self;
@@ -507,12 +504,7 @@
     return _dynamicsTable;
 }
 
-- (NSMutableArray *)layoutsArr {
-    if (!_layoutsArr) {
-        _layoutsArr = [NSMutableArray array];
-    }
-    return _layoutsArr;
-}
+
 
 - (UITextField *)commentInputTF {
     if (!_commentInputTF) {

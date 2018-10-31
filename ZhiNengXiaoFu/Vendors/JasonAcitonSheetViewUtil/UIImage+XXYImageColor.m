@@ -11,6 +11,7 @@
 @implementation UIImage (XXYImageColor)
 //
 + (UIImage *)xxy_imageWithColor:(UIColor *)color{
+    
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -18,8 +19,8 @@
     CGContextFillRect(context, rect);
     UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
     return theImage;
+    
 }
 
 @end

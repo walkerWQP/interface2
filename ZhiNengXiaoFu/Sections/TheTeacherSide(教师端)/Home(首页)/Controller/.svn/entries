@@ -1,14 +1,14 @@
 10
 
 dir
-262
+271
 http://ios2@61.132.226.224:8081/svn/duxiu/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/Controller
 http://ios2@61.132.226.224:8081/svn/duxiu
 
 
 
-2018-10-23T08:28:37.672851Z
-253
+2018-10-30T03:12:16.928710Z
+271
 ios2
 
 
@@ -66,10 +66,10 @@ file
 
 
 
-2018-10-23T08:06:52.000000Z
-0bb1eb0edf3bca32bc25f7b82a7fd0f9
-2018-10-23T08:28:37.672851Z
-253
+2018-10-29T08:52:51.000000Z
+4176a9f0994f151beb70bbb7c27f61cf
+2018-10-29T09:33:19.169921Z
+270
 ios2
 
 
@@ -92,7 +92,7 @@ ios2
 
 
 
-17752
+17373
 
 HomeTViewController.m
 file
@@ -100,11 +100,11 @@ file
 
 
 
-2018-10-23T02:22:58.000000Z
-718e1812ce0036487a0152e6df8d8637
-2018-10-23T01:34:13.937500Z
-250
-ios1
+2018-10-30T01:15:33.000000Z
+14acea661a37addc42c2d4fd427b75a5
+2018-10-30T03:12:16.928710Z
+271
+ios2
 
 
 
@@ -126,7 +126,7 @@ ios1
 
 
 
-36849
+36815
 
 HomeViewController.h
 file

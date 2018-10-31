@@ -78,11 +78,9 @@
     [JPUSHService setupWithOption:launchOptions appKey:appKey channel:channel apsForProduction:isProduction advertisingIdentifier:nil];
     
     NSDictionary *remoteNotificationDic = nil;
-    if (launchOptions != nil)
-    {
+    if (launchOptions != nil) {
         remoteNotificationDic = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-        if (remoteNotificationDic != nil)
-        {
+        if (remoteNotificationDic != nil) {
             self.remoteNotificationUserInfo = remoteNotificationDic;
         }
     }
@@ -117,8 +115,7 @@
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] == nil) {
             LoginHomePageViewController * loginHomePageVC = [[LoginHomePageViewController alloc] init];
             self.window.rootViewController = loginHomePageVC;
-        }else
-        {
+        } else {
             TotalTabBarController * totalTabBarVC = [[TotalTabBarController alloc] init];
             self.window.rootViewController = totalTabBarVC;
         }
@@ -138,8 +135,7 @@
     }
  }
 
-- (void)setHuoQuShangXianBanBen
-{
+- (void)setHuoQuShangXianBanBen {
     NSDictionary * dic = @{@"system":@"2"};
     [[HttpRequestManager sharedSingleton] POST:versionGetVersion parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@", responseObject);
@@ -159,8 +155,7 @@
 /**
  *  天朝专用检测app更新
  */
-- (void)hsUpdateApp:(NSString *)version  force:(NSInteger)force
-{
+- (void)hsUpdateApp:(NSString *)version  force:(NSInteger)force {
     //2先获取当前工程项目版本号
     NSDictionary *infoDic=[[NSBundle mainBundle] infoDictionary];
     NSString *currentVersion=[infoDic[@"CFBundleShortVersionString"] stringByReplacingOccurrencesOfString:@"."withString:@""];
@@ -168,18 +163,15 @@
     NSString * versinNew  = [version stringByReplacingOccurrencesOfString:@"."withString:@""];
     //3从网络获取appStore版本号
     
-    if([currentVersion integerValue] < [versinNew integerValue])
-    {
+    if([currentVersion integerValue] < [versinNew integerValue]) {
         [self setGengXinNeiRon:force];
-        
-    }else{
+    } else {
         NSLog(@"版本号好像比商店大噢!检测到不需要更新");
     }
     
 }
 
-- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (self.force == 1) {
         if(buttonIndex==0)
         {
@@ -187,27 +179,21 @@
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itunes.apple.com/us/app/id%@?ls=1&mt=8", STOREAPPID]];
             [[UIApplication sharedApplication] openURL:url];
         }
-    }else
-    {
+    } else {
         //5实现跳转到应用商店进行更新
-        if(buttonIndex==1)
-        {
+        if(buttonIndex==1) {
             //6此处加入应用在app store的地址，方便用户去更新，一种实现方式如下：
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itunes.apple.com/us/app/id%@?ls=1&mt=8", STOREAPPID]];
             [[UIApplication sharedApplication] openURL:url];
         }
-        
     }
 }
 
-- (void)setGengXinNeiRon:(NSInteger)force
-{
-    if (force == 1)
-    {
+- (void)setGengXinNeiRon:(NSInteger)force {
+    if (force == 1) {
         UIAlertView * neironAlertView = [[UIAlertView alloc] initWithTitle:@"版本有更新,请前往appstore下载" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [neironAlertView show];
-    }else
-    {
+    } else {
         UIAlertView * neironAlertView = [[UIAlertView alloc] initWithTitle:@"版本有更新,请前往appstore下载" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [neironAlertView show];
     }
@@ -216,8 +202,7 @@
 
 //注册 APNs 成功并上报 DeviceToken
 - (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     /// Required - 注册 DeviceToken
     [JPUSHService registerDeviceToken:deviceToken];
 }
@@ -230,8 +215,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 //添加处理 APNs 通知回调方法
 // iOS 10 Support
-- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler
-{
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
     completionHandler(UNNotificationPresentationOptionAlert|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound); // 需要执行这个方法，选择是否提醒用户，有 Badge、Sound、Alert 三种类型可以选择设置
     
     
@@ -248,15 +232,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
-    }else
-    {
+    } else {
         
     }
 }
 
 // iOS 10 Support
-- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
-{
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
     // Required
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     UNNotificationRequest *request = response.notification.request; // 收到推送的请求
@@ -270,8 +252,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     
     
     
-    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]])
-    {
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
     }
     
@@ -279,8 +260,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] == nil) {
         [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"notify"];
 
-    }else
-    {
+    } else {
         
         if ([[userInfo objectForKey:@"identity"] isEqualToString:@"0"] || [[userInfo objectForKey:@"identity"] isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"]]) {
             if ([[userInfo objectForKey:@"type"] isEqualToString:@"notice"]) {
@@ -301,74 +281,59 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
                 [rootViewController presentViewController:pushNav animated:YES completion:nil];
                 
                 
-            }else if ([[userInfo objectForKey:@"type"] isEqualToString:@"homework"])
-            {
+            } else if ([[userInfo objectForKey:@"type"] isEqualToString:@"homework"]) {
                 
                 WorkDetailsViewController * workDetailsVC = [[WorkDetailsViewController alloc] init];
                 workDetailsVC.workId = [userInfo objectForKey:@"id"];
-                if ([[userInfo objectForKey:@"identity"] isEqualToString:@"2"])
-                {
+                if ([[userInfo objectForKey:@"identity"] isEqualToString:@"2"]) {
                     workDetailsVC.typeID = @"1";
                 }
                 MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:workDetailsVC];
                 UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
-                while (rootViewController.presentedViewController)
-                {
+                while (rootViewController.presentedViewController) {
                     rootViewController = rootViewController.presentedViewController;
                 }
                 [rootViewController presentViewController:pushNav animated:YES completion:nil];
-            }else if ([[userInfo objectForKey:@"type"] isEqualToString:@"consult"])
-            {
+            } else if ([[userInfo objectForKey:@"type"] isEqualToString:@"consult"]) {
              
-                if ([[userInfo objectForKey:@"identity"] isEqualToString:@"2"])
-                {
+                if ([[userInfo objectForKey:@"identity"] isEqualToString:@"2"]) {
                     ConsultingViewController * consult = [[ConsultingViewController alloc] init];
                     MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:consult];
                     UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
-                    while (rootViewController.presentedViewController)
-                    {
+                    while (rootViewController.presentedViewController) {
                         rootViewController = rootViewController.presentedViewController;
                     }
                     [rootViewController presentViewController:pushNav animated:YES completion:nil];
                 
-                }else if ([[userInfo objectForKey:@"identity"] isEqualToString:@"1"])
-                {
+                } else if ([[userInfo objectForKey:@"identity"] isEqualToString:@"1"]) {
                     WenTiZiXunViewController * wenTiZiXunVC = [[WenTiZiXunViewController alloc] init];
                     MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:wenTiZiXunVC];
                     UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
-                    while (rootViewController.presentedViewController)
-                    {
+                    while (rootViewController.presentedViewController) {
                         rootViewController = rootViewController.presentedViewController;
                     }
                     [rootViewController presentViewController:pushNav animated:YES completion:nil];
-               
                 }
-            }else if ([[userInfo objectForKey:@"type"] isEqualToString:@"leave"])
-            {
-                if ([[userInfo objectForKey:@"identity"] isEqualToString:@"2"])
-                {
+            } else if ([[userInfo objectForKey:@"type"] isEqualToString:@"leave"]) {
+                if ([[userInfo objectForKey:@"identity"] isEqualToString:@"2"]) {
                     LeaveTheDetailsViewController *leaveTheDetailsVC = [LeaveTheDetailsViewController new];
                     
                     leaveTheDetailsVC.ID = [userInfo objectForKey:@"id"];
                     
                     MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:leaveTheDetailsVC];
                     UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
-                    while (rootViewController.presentedViewController)
-                    {
+                    while (rootViewController.presentedViewController) {
                         rootViewController = rootViewController.presentedViewController;
                     }
                     [rootViewController presentViewController:pushNav animated:YES completion:nil];
-                
-                }else
-                {
+                } else {
                     LeaveDetailsViewController *leaveTheDetailsVC = [LeaveDetailsViewController new];
                     
                     leaveTheDetailsVC.leaveDetailsId = [userInfo objectForKey:@"id"];
                     
                     MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:leaveTheDetailsVC];
                     UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
-                    while (rootViewController.presentedViewController)
-                    {
+                    while (rootViewController.presentedViewController) {
                         rootViewController = rootViewController.presentedViewController;
                     }
                     [rootViewController presentViewController:pushNav animated:YES completion:nil];
@@ -377,13 +342,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
             }
             
             [[NSUserDefaults standardUserDefaults] setObject:@"push" forKey:@"notify"];
-        }else
-        {
+        } else {
             [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"notify"];
-
         }
     }
-
     completionHandler();  // 系统要求执行这个方法
 }
 
@@ -421,8 +383,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-    if (@available(iOS 11.0, *))
-    {
+    if (@available(iOS 11.0, *)) {
         [UIApplication sharedApplication].applicationIconBadgeNumber = -1;
         [JPUSHService setBadge:0];
     } else {
@@ -442,8 +403,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         [self hsUpdateApp:[SingletonHelper manager].version force:[SingletonHelper manager].force];
     }
     
-    if (@available(iOS 11.0, *))
-    {
+    if (@available(iOS 11.0, *)) {
         [UIApplication sharedApplication].applicationIconBadgeNumber = -1;
         [JPUSHService setBadge:0];
     } else {

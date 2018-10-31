@@ -11,9 +11,9 @@
 @interface BusinessDetailController ()<UIWebViewDelegate>
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
-@property (nonatomic, strong) UILabel *titleLable;
-@property (nonatomic, strong) UIView *titleView;
-@property (nonatomic, strong) UIWebView *myWebView;
+@property (nonatomic, strong) UILabel                 *titleLable;
+@property (nonatomic, strong) UIView                  *titleView;
+@property (nonatomic, strong) UIWebView               *myWebView;
 
 @end
 
@@ -64,18 +64,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setNav];
-    
     NSURL *url = [NSURL URLWithString:self.urlStr];
     [self.myWebView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 - (void)setNav {
     self.navigationItem.titleView = self.titleView;
-    
     [self.titleView addSubview:self.titleLable];
-    
     [self.titleView addSubview:self.activityView];
 }
 
@@ -89,10 +85,8 @@
 
 - (void)setWebTitle:(NSString *)webTitle {
     _webTitle = webTitle;
-    
     self.titleLable.text = webTitle;
     [self.titleLable sizeToFit];
-    
     self.titleLable.center = CGPointMake(self.titleView.frame.size.width * 0.5, self.titleView.frame.size.height * 0.5);
     self.activityView.center = CGPointMake(self.titleLable.frame.origin.x - self.activityView.frame.size.width * 0.5-5, self.titleView.frame.size.height * 0.5);
 }

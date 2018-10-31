@@ -30,14 +30,13 @@ PickerViewTypeCity,//城市
 
 @interface PickerView : UIView<UIPickerViewDelegate,UIPickerViewDataSource>
 
-@property(nonatomic,strong)UIPickerView *picker;
-@property (nonatomic,strong)UIDatePicker *datePicke;
-@property(nonatomic,assign)PickerViewType type;
-@property(nonatomic,strong)NSMutableArray *array;
+@property(nonatomic,strong)UIPickerView    *picker;
+@property (nonatomic,strong)UIDatePicker   *datePicke;
+@property(nonatomic,assign)PickerViewType  type;
+@property(nonatomic,strong)NSMutableArray  *array;
 
 //默认选中第一列
 @property (nonatomic,assign)NSInteger selectComponent;
-
-
 @property(nonatomic,weak)id<PickerViewResultDelegate>delegate;
+
 @end

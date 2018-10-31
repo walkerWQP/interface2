@@ -76,7 +76,6 @@
     [self.view addSubview:self.HomeCollectionView];
     
     [self.HomeCollectionView registerClass:[HomeLunBoCell class] forCellWithReuseIdentifier:@"HomePageLunBoCellId"];
-//    [self.HomeCollectionView registerClass:[HomeItemCell class] forCellWithReuseIdentifier:@"HomePageItemCellId"];
     
     NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"老师通知",@"作业管理",@"成长相册",@"活动管理",@"问题咨询",@"学校通知",@"学校动态1",@"请假列表1",@"新生指南", nil];
     NSMutableArray * TitleAry = [NSMutableArray arrayWithObjects:@"老师通知",@"作业管理",@"班级圈",@"活动管理",@"问题咨询",@"学校通知",@"学校动态",@"请假列表",@"新生指南", nil];
@@ -90,7 +89,6 @@
     }
     
     [self.HomeCollectionView registerNib:[UINib nibWithNibName:@"HomePageItemNCell" bundle:nil] forCellWithReuseIdentifier:@"HomePageItemNCellId"];
-
     [self pushJiGuangId];
 }
 
@@ -138,7 +136,6 @@
         }
         
         self.numberAry = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",activity,consult,notice_s,dynamic,leave,@"0" ,nil];
-
         
         [self.HomeCollectionView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -154,10 +151,8 @@
         NSDictionary * dic = [NSDictionary dictionary];
         if (registrationID == nil) {
             dic = @{@"push_id":@"", @"system":@"ios", @"key":[UserManager key]};
-            
         } else {
             dic = @{@"push_id":registrationID, @"system":@"ios", @"key":[UserManager key]};
-            
         }
         
         [[HttpRequestManager sharedSingleton] POST:UserSavePushId parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -165,20 +160,16 @@
             if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
                 
             } else {
-                if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402)
-                {
+                if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                     [UserManager logoOut];
                     [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
                 } else {
                     
                 }
-                
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"%@", error);
         }];
-        
     }];
 }
 
@@ -217,17 +208,14 @@
                 cell.NumberLabel.text = str;
             }
         }
-        
         return cell;
     }
-    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (APP_WIDTH == 414) {
             return CGSizeMake(APP_WIDTH, 200);
-            
         } else {
             return CGSizeMake(APP_WIDTH, 170);
         }
@@ -247,7 +235,6 @@
                 NSLog(@"点击老师通知");
                 TeacherNotifiedViewController *teacherNotifiedVC = [[TeacherNotifiedViewController alloc] init];
                 [self.navigationController pushViewController:teacherNotifiedVC animated:YES];
-                
             }
                 break;
             case 1:
@@ -255,7 +242,6 @@
                 NSLog(@"点击作业管理");
                 JobManagementViewController *jobManagementVC = [[JobManagementViewController alloc] init];
                 [self.navigationController pushViewController:jobManagementVC animated:YES];
-                
             }
                 break;
 
@@ -272,8 +258,6 @@
                 NSLog(@"点击活动管理");
                 ActivityManagementViewController *activityManagementVC = [[ActivityManagementViewController alloc] init];
                 [self.navigationController pushViewController:activityManagementVC animated:YES];
-                
-                
             }
                 break;
             case 4:
@@ -281,7 +265,6 @@
                 NSLog(@"点击问题咨询");
                 ConsultingViewController *consultingVC = [[ConsultingViewController alloc] init];
                 [self.navigationController pushViewController:consultingVC animated:YES];
-                
             }
                 break;
             case 5:
@@ -289,8 +272,6 @@
                 NSLog(@"点击学校通知");
                 SchoolNoticeViewController *schoolNoticeVC = [[SchoolNoticeViewController alloc] init];
                 [self.navigationController pushViewController:schoolNoticeVC animated:YES];
-
-               
             }
                 break;
             case 6:
@@ -298,7 +279,6 @@
                 NSLog(@"点击学校动态");
                 SchoolDynamicViewController *schoolDynamicVC = [[SchoolDynamicViewController alloc] init];
                 [self.navigationController pushViewController:schoolDynamicVC animated:YES];
-
             }
                 break;
             case 7:
@@ -306,7 +286,6 @@
                 NSLog(@"点击请假列表");
                 OffTheListViewController *offTheListVC = [OffTheListViewController new];
                 [self.navigationController pushViewController:offTheListVC animated:YES];
-                
             }
                 break;
                 
@@ -315,11 +294,9 @@
                 NSLog(@"点击新生指南");
                 NewGuidelinesViewController *newGuidelinesVC = [NewGuidelinesViewController new];
                 [self.navigationController pushViewController:newGuidelinesVC animated:YES];
-                
             }
                 break;
 
-                
             default:
                 break;
         }
@@ -339,7 +316,7 @@
                 growthAlbumVC.webTitle = @"成长相册";
                 [self.navigationController pushViewController:growthAlbumVC animated:YES];
             }
-        
+            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -378,7 +355,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [WProgressHUD hideAllHUDAnimated:YES];
@@ -447,7 +423,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

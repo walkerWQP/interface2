@@ -144,8 +144,7 @@
 }
 #pragma mark - 方法 Methods
 //色值转换成颜色
-- (UIColor *)colorWithHexString: (NSString *)color
-{
+- (UIColor *)colorWithHexString: (NSString *)color {
     NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     
     // String should be 6 or 8 characters

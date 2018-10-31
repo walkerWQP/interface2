@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIView (XXYViewFrame)
+
 @property (nonatomic, assign) CGFloat x;
 @property (nonatomic, assign) CGFloat y;
 

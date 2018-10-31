@@ -18,11 +18,9 @@ typedef enum {
 
 @interface SDBaseRefreshView : UIView
 
-@property (nonatomic, strong) UIScrollView *scrollView;
-
+@property (nonatomic, strong) UIScrollView         *scrollView;
 - (void)endRefreshing;
-
-@property (nonatomic, assign) UIEdgeInsets scrollViewOriginalInsets;
+@property (nonatomic, assign) UIEdgeInsets         scrollViewOriginalInsets;
 @property (nonatomic, assign) SDWXRefreshViewState refreshState;
 
 @end

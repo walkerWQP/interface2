@@ -12,15 +12,15 @@
 #define JRMenuDismissNotification @"JRMenuDismissNotification"
 @implementation JRMenuView
 {
-    BOOL hasShow;
-    CGFloat jrMenuWidth;
-    UIView * backGroundView;
-    UIButton * thumbBtn;
-    UIButton * commentBtn;
-    UIButton * shareBtn;
-    NSArray * nameArray;
-    UIView * targetView;
-    UIView * superView;
+    BOOL      hasShow;
+    CGFloat   jrMenuWidth;
+    UIView    *backGroundView;
+    UIButton  *thumbBtn;
+    UIButton  *commentBtn;
+    UIButton  *shareBtn;
+    NSArray   *nameArray;
+    UIView    *targetView;
+    UIView    *superView;
 }
 
 - (instancetype)init {
@@ -69,7 +69,6 @@
         }
         
     }
-    
     //添加背景view
     backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, jrMenuWidth, JRMenuHeight)];
     backGroundView.backgroundColor = [UIColor blackColor];

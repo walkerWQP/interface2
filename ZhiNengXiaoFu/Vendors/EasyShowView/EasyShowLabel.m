@@ -17,21 +17,21 @@
 @implementation EasyShowLabel
 
 
-- (instancetype)initWithContentInset:(UIEdgeInsets)contentInset
-{
+- (instancetype)initWithContentInset:(UIEdgeInsets)contentInset {
     if (self = [super init]) {
         _contentInset = contentInset ;
     }
     return self ;
 }
+
 - (void)setContentInset:(UIEdgeInsets)contentInset {
     _contentInset = contentInset;
     NSString *tempString = self.text;
     self.text = @"";
     self.text = tempString;
 }
-- (CGRect)textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines
-{
+
+- (CGRect)textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines {
     UIEdgeInsets insets = self.contentInset;
     CGRect rect = [super textRectForBounds:UIEdgeInsetsInsetRect(bounds, insets)
                     limitedToNumberOfLines:numberOfLines];
@@ -43,8 +43,8 @@
     
     return rect;
 }
--(void)drawTextInRect:(CGRect)rect
-{
+
+-(void)drawTextInRect:(CGRect)rect {
     [super drawTextInRect:UIEdgeInsetsInsetRect(rect, self.contentInset)];
 }
 

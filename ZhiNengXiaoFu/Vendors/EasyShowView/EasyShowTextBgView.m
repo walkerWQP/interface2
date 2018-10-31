@@ -15,29 +15,25 @@
 
 @property ShowTextStatus showTextStatus ;
 
-@property (nonatomic,strong)UILabel *textLabel ;
-@property (nonatomic,strong)UIImageView *imageView ;
-
+@property (nonatomic,strong)UILabel         *textLabel ;
+@property (nonatomic,strong)UIImageView     *imageView ;
 @property (nonatomic,strong)EasyShowOptions *options ;
-
-@property (nonatomic,strong)UIWindow *showTextWindow ;
+@property (nonatomic,strong)UIWindow        *showTextWindow ;
 
 @end
 
 @implementation EasyShowTextBgView
 
-- (void)dealloc
-{
+- (void)dealloc {
     _showTextWindow = nil ;
 }
 
 
-- (void)showWindowYToPoint:(CGFloat)toPoint
-{
+- (void)showWindowYToPoint:(CGFloat)toPoint {
     self.showTextWindow.y = toPoint ;
 }
-- (instancetype)initWithFrame:(CGRect)frame status:(ShowTextStatus)status text:(NSString *)text imageName:(NSString *)imageName
-{
+
+- (instancetype)initWithFrame:(CGRect)frame status:(ShowTextStatus)status text:(NSString *)text imageName:(NSString *)imageName {
     if ([super initWithFrame:frame]) {
         
         self.backgroundColor = self.options.textBackGroundColor ; //[UIColor redColor]; //
@@ -60,27 +56,18 @@
 //            UIImage *image = [[UIImage imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             if (image) {
                 self.imageView.image = image ;
-            }
-            else{
+            } else {
                 NSAssert(NO, @"iamgeName is illgal ");
             }
-        }
-        else
-        {
+        } else {
             [self drawAnimationImageView];
-
         }
         
         
         
         if (!ISEMPTY_S(text)) {
-            CGSize textSize = [EasyShowUtils textWidthWithStirng:text
-                                                            font:self.options.textTitleFount
-                                                        maxWidth:TextShowMaxWidth];
-            
+            CGSize textSize = [EasyShowUtils textWidthWithStirng:text font:self.options.textTitleFount maxWidth:TextShowMaxWidth];
             self.textLabel.text = text ;
-            
-            
             if (self.isShowedStatusBar||self.isShowedNavigation) {
                 
                 CGFloat addX = self.isShowedStatusBar ? 7 : 10 ;
@@ -88,21 +75,17 @@
                 self.textLabel.frame = CGRectMake(self.imageView.right + addX , self.imageView.top - addH, self.width - self.imageView.right - 5, self.imageView.height +addH*2 ) ;
                 //                self.textLabel.backgroundColor = [UIColor yellowColor];
                 self.textLabel.textAlignment = NSTextAlignmentLeft ;
-            }
-            else{
-                
+            } else {
                 self.textLabel.frame = CGRectMake(20,self.height-textSize.height-15 ,textSize.width, textSize.height) ;
                 self.textLabel.textAlignment = NSTextAlignmentCenter ;
             }
         }
-        
-//        [self drawAnimationImageView];
+    
     }
     return self ;
 }
 
-- (UIWindow *)showTextWindow
-{
+- (UIWindow *)showTextWindow {
     if (nil == _showTextWindow) {
         CGFloat showHeight = self.isShowedStatusBar ? STATUSBAR_HEIGHT_S : NAVIGATION_HEIGHT_S ;
         _showTextWindow = [[UIWindow alloc]initWithFrame:CGRectMake(0, -showHeight , SCREEN_WIDTH_S, showHeight )];
@@ -115,12 +98,13 @@
     }
     return _showTextWindow ;
 }
-- (void)gestureTap
-{
+
+- (void)gestureTap {
+    
 }
+
 //加载loding的动画
-- (void)drawAnimationImageViewLoding
-{
+- (void)drawAnimationImageViewLoding {
     CGPoint centerPoint= CGPointMake(self.imageView.width/2.0f, self.imageView.height/2.0f) ;
     UIBezierPath *beizPath=[UIBezierPath bezierPathWithArcCenter:centerPoint radius:centerPoint.x startAngle:-M_PI_2 endAngle:M_PI_2 clockwise:YES];
     CAShapeLayer *centerLayer=[CAShapeLayer layer];
@@ -129,15 +113,12 @@
     centerLayer.strokeColor=self.options.textTitleColor.CGColor;//边框颜色
     centerLayer.lineWidth=2.0f;
     centerLayer.lineCap=kCALineCapRound;//线框类型
-    
     [self.imageView.layer addSublayer:centerLayer];
-    
     [self drawAnimiationImageView:NO];
 }
 
 // 转圈动画
-- (void)drawAnimiationImageView:(BOOL)isImageView
-{
+- (void)drawAnimiationImageView:(BOOL)isImageView {
     NSString *keyPath = isImageView ? @"transform.rotation.y" : @"transform.rotation.z" ;
     CABasicAnimation *animation=[CABasicAnimation animationWithKeyPath:keyPath];
     animation.fromValue=@(0);
@@ -150,12 +131,9 @@
     [self.imageView.layer addAnimation:animation forKey:@"animation"];
 }
 
-- (void)drawAnimationImageView
-{
+- (void)drawAnimationImageView {
     CGFloat imageWH = self.imageView.width ;
-    
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, imageWH, imageWH)
-                                                    cornerRadius:imageWH/2];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, imageWH, imageWH) cornerRadius:imageWH/2];
     UIColor *drawColor = nil ;
     switch (_showTextStatus) {
         case ShowTextStatusPureText:
@@ -211,8 +189,7 @@
     [self.imageView.layer addSublayer :lineLayer];
 }
 
-- (void)showEndAnimationWithDuration:(CGFloat)duration
-{
+- (void)showEndAnimationWithDuration:(CGFloat)duration {
     CABasicAnimation *bacAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
     bacAnimation.duration = duration ;
     bacAnimation.beginTime = .0;
@@ -229,8 +206,7 @@
     [self.layer addAnimation:animationGroup forKey:nil];
 }
 
-- (void)showStartAnimationWithDuration:(CGFloat)duration
-{
+- (void)showStartAnimationWithDuration:(CGFloat)duration {
     CAKeyframeAnimation *popAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
     popAnimation.duration = duration;
     popAnimation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.01f, 0.01f, 1.0f)],
@@ -248,25 +224,23 @@
 
 
 //是否显示在statusbar上
-- (BOOL)isShowedStatusBar
-{
+- (BOOL)isShowedStatusBar {
     return self.options.textStatusType==ShowTextStatusTypeStatusBar ;
 }
+
 //是否正在显示在navigation上
-- (BOOL)isShowedNavigation
-{
+- (BOOL)isShowedNavigation {
     return self.options.textStatusType==ShowTextStatusTypeNavigation ;
 }
-- (EasyShowOptions *)options
-{
+
+- (EasyShowOptions *)options {
     if (nil == _options) {
         _options = [EasyShowOptions sharedEasyShowOptions];
     }
     return _options ;
 }
 
-- (UIImageView *)imageView
-{
+- (UIImageView *)imageView {
     if (nil == _imageView) {
         CGFloat imageWH = EasyDrawImageWH ;
         CGFloat imageX = (self.width-EasyDrawImageWH)/2 ;
@@ -285,15 +259,14 @@
         //                _imageView.backgroundColor = [UIColor yellowColor];
         if ((self.isShowedStatusBar||self.isShowedNavigation)) {
             [self.showTextWindow addSubview:_imageView];
-        }
-        else{
+        } else {
             [self addSubview:_imageView];
         }
     }
     return _imageView ;
 }
-- (UILabel *)textLabel
-{
+
+- (UILabel *)textLabel {
     if (nil == _textLabel) {
         _textLabel = [[UILabel alloc]init];
         _textLabel.textColor = self.options.textTitleColor;
@@ -303,20 +276,13 @@
         _textLabel.numberOfLines = 0 ;
         if ((self.isShowedStatusBar||self.isShowedNavigation)) {
             [self.showTextWindow addSubview:_textLabel];
-        }
-        else{
+        } else {
             [self addSubview:_textLabel];
         }
     }
     return _textLabel ;
 }
 
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code
- }
- */
+
 
 @end

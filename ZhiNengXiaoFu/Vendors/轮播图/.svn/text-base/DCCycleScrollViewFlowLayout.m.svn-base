@@ -24,7 +24,6 @@
 //    NSArray *arrayAttrs = [super layoutAttributesForElementsInRect:rect];
     
     if(!self.isZoom) return arrayAttrs;
-
     
     // 2.计算整体的中心点的x值
     CGFloat centerX = self.collectionView.contentOffset.x + self.collectionView.bounds.size.width * 0.5;

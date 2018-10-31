@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DCCycleScrollViewFlowLayout : UICollectionViewFlowLayout
+
 @property (nonatomic,assign) BOOL isZoom;
+
 @end

@@ -14,17 +14,16 @@ static NSString *encryptionKey = @"duxiu2018";
 @implementation Encryption
 
 
-+ (NSString *)md5EncryptWithString:(NSString *)string{
++ (NSString *)md5EncryptWithString:(NSString *)string {
     return [self md5:[NSString stringWithFormat:@"%@", string]];
 }
 
-+ (NSString *)md5EncryptWithString
-{
++ (NSString *)md5EncryptWithString {
     return [self md5:[NSString stringWithFormat:@"%@%@", @"ios", encryptionKey]];
 }
 
 
-+ (NSString *)md5:(NSString *)string{
++ (NSString *)md5:(NSString *)string {
     const char *cStr = [string UTF8String];
     unsigned char digest[CC_MD5_DIGEST_LENGTH];
     
@@ -39,7 +38,7 @@ static NSString *encryptionKey = @"duxiu2018";
 }
 
 #pragma mark - 32位 小写
-+(NSString *)MD5ForLower32Bate:(NSString *)str{
++ (NSString *)MD5ForLower32Bate:(NSString *)str {
     
     //要进行UTF8的转码
     const char* input = [str UTF8String];

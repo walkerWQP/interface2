@@ -18,14 +18,16 @@
     });
     return sharedPublic;
 }
+
 - (id)init{
     if (self=[super init]) {
         
     }
     return self;
 }
+
 //动态计算高度
-+ (CGSize)workOutSizeWithStr:(NSString *)str andFont:(NSInteger)fontSize value:(NSValue *)value{
++ (CGSize)workOutSizeWithStr:(NSString *)str andFont:(NSInteger)fontSize value:(NSValue *)value {
     if (!str) {
         str = @"";
     }
@@ -36,9 +38,9 @@
             size=[str boundingRectWithSize:[value CGSizeValue] options:NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingTruncatesLastVisibleLine attributes:attribute context:nil].size;
         }
     }
-    
     return size;
 }
+
 + (UIImage *)UIImageWithColor:(UIColor *)color {
     CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
@@ -49,6 +51,7 @@
     UIGraphicsEndImageContext();
     return theImage;
 }
+
 //+ (UITabBarItem *)getItemWithTitle:(NSString *)title defaultImageName:(NSString *)defaultImageName  selectedImageName:(NSString *)selectedImageName{
 //    UITabBarItem *item;
 //    NSShadow *shadow=[[NSShadow alloc]init];
@@ -60,7 +63,7 @@
 //    return item;
 //}
 
-+ (UIColor *)colorFromHex:(NSString *)hexString alpha:(CGFloat)alpha{
++ (UIColor *)colorFromHex:(NSString *)hexString alpha:(CGFloat)alpha {
     if (hexString.length==0) {
         return nil;
     }
@@ -75,6 +78,7 @@
     [[NSScanner scannerWithString:[hexString substringWithRange:range]]scanHexInt:&blue];
     return [UIColor colorWithRed:(float)(red/255.0f)green:(float)(green / 255.0f) blue:(float)(blue / 255.0f)alpha:alpha];
 }
+
 ///字符串转时间
 + (NSDate *)dateFromString:(NSString *)dateString DateForatter:(NSString *)dateforatter {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -84,6 +88,7 @@
     NSDate *destDate= [dateFormatter dateFromString:dateString];
     return destDate;
 }
+
 ///时间转字符串
 + (NSString *)setDate:(NSDate *)date DateForatter:(NSString *)dateforatter {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

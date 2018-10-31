@@ -24,4 +24,5 @@
 - (void)show;
 - (void)dismiss;
 + (void)dismissAllJRMenu;//收回所有JRMenu
+
 @end

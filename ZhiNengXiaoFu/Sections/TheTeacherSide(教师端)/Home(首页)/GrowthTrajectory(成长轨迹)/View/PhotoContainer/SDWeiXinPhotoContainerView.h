@@ -10,10 +10,9 @@
 
 @interface SDWeiXinPhotoContainerView : UIView
 
-@property (nonatomic, strong) NSArray *picPathStringsArray;
-
-@property (nonatomic, strong) UIViewController * superView;
-@property (nonatomic, assign) int customImgWidth;
+@property (nonatomic, strong) NSArray          *picPathStringsArray;
+@property (nonatomic, strong) UIViewController *superView;
+@property (nonatomic, assign) int              customImgWidth;
 
 + (CGSize)getContainerSizeWithPicPathStringsArray:(NSArray *)picPathStringsArray;
 

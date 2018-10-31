@@ -1,15 +1,15 @@
 10
 
 dir
-262
+271
 http://ios2@61.132.226.224:8081/svn/duxiu/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller
 http://ios2@61.132.226.224:8081/svn/duxiu
 
 
 
-2018-10-22T09:30:08.987304Z
-248
-ios1
+2018-10-29T01:50:06.805664Z
+267
+ios2
 
 
 
@@ -28,7 +28,7 @@ d466fc26-aeb2-6048-8488-bbf0a50f055a
 
 MyViewController.m
 file
-266
+
 
 
 
@@ -162,40 +162,6 @@ ios2
 
 255
 
-BindMobilePhoneViewController.m
-file
-267
-
-
-
-2018-10-27T09:58:49.000000Z
-de8da4a4c1821410b7ea4a8643155ad1
-2018-10-29T01:50:06.805664Z
-267
-ios2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-17135
-
 LeaveTheDetailsViewController.h
 file
 
@@ -230,9 +196,43 @@ ios1
 
 513
 
+BindMobilePhoneViewController.m
+file
+
+
+
+
+2018-10-27T09:58:49.000000Z
+de8da4a4c1821410b7ea4a8643155ad1
+2018-10-29T01:50:06.805664Z
+267
+ios2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+17135
+
 AdviceFeedbackViewController.m
 file
-266
+
 
 
 
@@ -298,6 +298,74 @@ ios2
 
 246
 
+OngoingTableViewController.h
+file
+
+
+
+
+2018-09-20T07:55:44.000000Z
+b68d2fee20f7e0dfa48adb1158b2ed56
+2018-09-11T08:05:51.029296Z
+80
+ios2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+251
+
+LeaveTheDetailsViewController.m
+file
+
+
+
+
+2018-10-27T09:12:00.000000Z
+31ecd4013f76162d2de0694cd0a9da1d
+2018-10-27T09:16:25.913085Z
+266
+ios2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+20218
+
 ChangePasswordViewController.h
 file
 
@@ -332,14 +400,14 @@ ios2
 
 255
 
-LeaveTheDetailsViewController.m
+OffTheListViewController.m
 file
-266
 
 
 
-2018-10-27T09:12:00.000000Z
-31ecd4013f76162d2de0694cd0a9da1d
+
+2018-10-27T07:45:34.000000Z
+8549882f7cea4cb669c4d2b7bc668542
 2018-10-27T09:16:25.913085Z
 266
 ios2
@@ -364,41 +432,7 @@ ios2
 
 
 
-20218
-
-OngoingTableViewController.h
-file
-
-
-
-
-2018-09-20T07:55:44.000000Z
-b68d2fee20f7e0dfa48adb1158b2ed56
-2018-09-11T08:05:51.029296Z
-80
-ios2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-251
+9413
 
 SDBaseRefreshView.h
 file
@@ -434,16 +468,16 @@ ios2
 
 638
 
-OffTheListViewController.m
+PersonalDataViewController.h
 file
-266
 
 
 
-2018-10-27T07:45:34.000000Z
-8549882f7cea4cb669c4d2b7bc668542
-2018-10-27T09:16:25.913085Z
-266
+
+2018-09-20T07:55:44.000000Z
+d9e17d9f23df599720090f4ac2a0e47f
+2018-09-11T08:05:51.029296Z
+80
 ios2
 
 
@@ -466,7 +500,7 @@ ios2
 
 
 
-9413
+242
 
 OngoingTableViewController.m
 file
@@ -502,43 +536,9 @@ ios1
 
 9919
 
-PersonalDataViewController.h
-file
-
-
-
-
-2018-09-20T07:55:44.000000Z
-d9e17d9f23df599720090f4ac2a0e47f
-2018-09-11T08:05:51.029296Z
-80
-ios2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-242
-
 ChangePasswordViewController.m
 file
-266
+
 
 
 
@@ -606,7 +606,7 @@ ios2
 
 PersonalDataViewController.m
 file
-266
+
 
 
 

@@ -32,7 +32,6 @@
 @property(nonatomic,strong)NSMutableArray           *commentArray;
 @property(nonatomic,strong)NewDynamicsLayout        *layout;
 @property(nonatomic,strong)UITableView              *commentTable;
-
 @property(nonatomic,strong)NewDynamicsTableViewCell *cell;
 
 - (void)setWithLikeArr:(NSMutableArray *)likeArr CommentArr:(NSMutableArray *)commentArr DynamicsLayout:(NewDynamicsLayout *)layout;
@@ -42,7 +41,6 @@
 @interface NewDynamicsTableViewCell : UITableViewCell<JRMenuDelegate>
 
 @property(nonatomic,strong)NewDynamicsLayout           *layout;
-
 @property(nonatomic,strong)UIImageView                 *portrait;
 @property(nonatomic,strong)YYLabel                     *nameLabel;
 @property(nonatomic,strong)YYLabel                     *detailLabel;
@@ -55,7 +53,6 @@
 @property(nonatomic,strong)UIButton                    *menuBtn;
 @property(nonatomic,strong)NewDynamicsThumbCommentView *thumbCommentView;
 @property(nonatomic,strong)UIView                      *dividingLine;
-
 @property(nonatomic,strong)JRMenuView                  *jrMenuView;
 
 @property(nonatomic,assign)id<NewDynamicsCellDelegate>delegate;

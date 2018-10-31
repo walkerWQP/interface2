@@ -18,8 +18,8 @@ typedef NS_ENUM(NSInteger, WHUDType) {
 @interface WProgressHUD : UIView
 
 @property (nonatomic,strong) NSString *tipText;
-@property(nonatomic,strong)  UILabel * showTextLabel;
-@property (nonatomic,strong) UIView *toast;
+@property(nonatomic,strong)  UILabel  *showTextLabel;
+@property (nonatomic,strong) UIView   *toast;
 @property(nonatomic,assign)  WHUDType type;
 
 - (void)show:(BOOL)animated view:(UIView *)view;

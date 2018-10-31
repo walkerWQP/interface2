@@ -10,8 +10,7 @@
 
 @implementation HomeItemCell
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.itemImg];
@@ -20,20 +19,17 @@
     return self;
 }
 
-- (UILabel *)titleLabel
-{
+- (UILabel *)titleLabel {
     if (!_titleLabel) {
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.itemImg.frame.origin.x, self.itemImg.frame.size.height + self.itemImg.frame.origin.y + 5, 60, 20)];
         self.titleLabel.font = [UIFont systemFontOfSize:13];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.textColor = RGB(51, 51, 51);
-        
     }
     return _titleLabel;
 }
 
-- (UIImageView *)itemImg
-{
+- (UIImageView *)itemImg {
     if (!_itemImg) {
         self.itemImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width / 2 - 30, 15, 60, 60)];
     }

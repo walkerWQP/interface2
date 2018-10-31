@@ -9,6 +9,7 @@
 #import "CLPlayerMaskView.h"
 #import "CLSlider.h"
 #import "Masonry.h"
+
 //间隙
 #define Padding        10
 //顶部底部工具条高度
@@ -27,7 +28,8 @@
     }
     return self;
 }
-- (void)initViews{
+
+- (void)initViews {
     [self addSubview:self.topToolBar];
     [self addSubview:self.bottomToolBar];
     [self addSubview:self.activity];
@@ -43,8 +45,9 @@
     self.topToolBar.backgroundColor = [UIColor colorWithRed:0.00000f green:0.00000f blue:0.00000f alpha:0.20000f];
     self.bottomToolBar.backgroundColor = [UIColor colorWithRed:0.00000f green:0.00000f blue:0.00000f alpha:0.20000f];
 }
+
 #pragma mark - 约束
-- (void)makeConstraints{
+- (void)makeConstraints {
     //顶部工具条
     [self.topToolBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self);
@@ -111,39 +114,45 @@
         make.center.equalTo(self);
     }];
 }
+
 #pragma mark -- 设置颜色
--(void)setProgressBackgroundColor:(UIColor *)progressBackgroundColor{
+-(void)setProgressBackgroundColor:(UIColor *)progressBackgroundColor {
     _progressBackgroundColor = progressBackgroundColor;
     _progress.trackTintColor = progressBackgroundColor;
 }
--(void)setProgressBufferColor:(UIColor *)progressBufferColor{
+
+-(void)setProgressBufferColor:(UIColor *)progressBufferColor {
     _progressBufferColor        = progressBufferColor;
     _progress.progressTintColor = progressBufferColor;
 }
--(void)setProgressPlayFinishColor:(UIColor *)progressPlayFinishColor{
+
+-(void)setProgressPlayFinishColor:(UIColor *)progressPlayFinishColor {
     _progressPlayFinishColor      = progressPlayFinishColor;
     _slider.minimumTrackTintColor = _progressPlayFinishColor;
 }
+
 #pragma mark - 懒加载
 //顶部工具条
-- (UIView *) topToolBar{
-    if (_topToolBar == nil){
+- (UIView *) topToolBar {
+    if (_topToolBar == nil) {
         _topToolBar = [[UIView alloc] init];
         _topToolBar.userInteractionEnabled = YES;
     }
     return _topToolBar;
 }
+
 //底部工具条
-- (UIView *) bottomToolBar{
-    if (_bottomToolBar == nil){
+- (UIView *) bottomToolBar {
+    if (_bottomToolBar == nil) {
         _bottomToolBar = [[UIView alloc] init];
         _bottomToolBar.userInteractionEnabled = YES;
     }
     return _bottomToolBar;
 }
+
 //转子
-- (AILoadingView *) activity{
-    if (_activity == nil){
+- (AILoadingView *) activity {
+    if (_activity == nil) {
         _activity = [[AILoadingView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
         _activity.strokeColor = [UIColor whiteColor];
 //        _activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -152,9 +161,10 @@
     }
     return _activity;
 }
+
 //返回按钮
-- (UIButton *) backButton{
-    if (_backButton == nil){
+- (UIButton *) backButton {
+    if (_backButton == nil) {
         _backButton = [[UIButton alloc] init];
         [_backButton setImage:[self getPictureWithName:@"CLBackBtn"] forState:UIControlStateNormal];
         [_backButton setImage:[self getPictureWithName:@"CLBackBtn"] forState:UIControlStateHighlighted];
@@ -165,8 +175,8 @@
 }
 
 //播放按钮
-- (UIButton *) playButton{
-    if (_playButton == nil){
+- (UIButton *) playButton {
+    if (_playButton == nil) {
         _playButton = [[UIButton alloc] init];
         [_playButton setImage:[self getPictureWithName:@"CLPlayBtn"] forState:UIControlStateNormal];
         [_playButton setImage:[self getPictureWithName:@"CLPauseBtn"] forState:UIControlStateSelected];
@@ -176,8 +186,8 @@
 }
 
 //全屏按钮
-- (UIButton *) fullButton{
-    if (_fullButton == nil){
+- (UIButton *) fullButton {
+    if (_fullButton == nil) {
         _fullButton = [[UIButton alloc] init];
         [_fullButton setImage:[self getPictureWithName:@"CLMaxBtn"] forState:UIControlStateNormal];
         [_fullButton setImage:[self getPictureWithName:@"CLMinBtn"] forState:UIControlStateSelected];
@@ -185,9 +195,10 @@
     }
     return _fullButton;
 }
+
 //当前播放时间
-- (UILabel *) currentTimeLabel{
-    if (_currentTimeLabel == nil){
+- (UILabel *) currentTimeLabel {
+    if (_currentTimeLabel == nil) {
         _currentTimeLabel = [[UILabel alloc] init];
         _currentTimeLabel.textColor = [UIColor whiteColor];
         _currentTimeLabel.adjustsFontSizeToFitWidth = YES;
@@ -196,9 +207,10 @@
     }
     return _currentTimeLabel;
 }
+
 //总时间
-- (UILabel *) totalTimeLabel{
-    if (_totalTimeLabel == nil){
+- (UILabel *) totalTimeLabel {
+    if (_totalTimeLabel == nil) {
         _totalTimeLabel = [[UILabel alloc] init];
         _totalTimeLabel.textColor = [UIColor whiteColor];
         _totalTimeLabel.adjustsFontSizeToFitWidth = YES;
@@ -207,16 +219,18 @@
     }
     return _totalTimeLabel;
 }
+
 //缓冲条
-- (UIProgressView *) progress{
-    if (_progress == nil){
+- (UIProgressView *) progress {
+    if (_progress == nil) {
         _progress = [[UIProgressView alloc] init];
     }
     return _progress;
 }
+
 //滑动条
-- (CLSlider *) slider{
-    if (_slider == nil){
+- (CLSlider *) slider {
+    if (_slider == nil) {
         _slider = [[CLSlider alloc] init];
         // slider开始滑动事件
         [_slider addTarget:self action:@selector(progressSliderTouchBegan:) forControlEvents:UIControlEventTouchDown];
@@ -229,9 +243,9 @@
     }
     return _slider;
 }
+
 //加载失败按钮
-- (UIButton *) failButton
-{
+- (UIButton *) failButton {
     if (_failButton == nil) {
         _failButton = [[UIButton alloc] init];
         _failButton.hidden = YES;
@@ -243,17 +257,19 @@
     }
     return _failButton;
 }
+
 #pragma mark - 按钮点击事件
 //返回按钮
-- (void)backButtonAction:(UIButton *)button{
+- (void)backButtonAction:(UIButton *)button {
     if (_delegate && [_delegate respondsToSelector:@selector(cl_backButtonAction:)]) {
         [_delegate cl_backButtonAction:button];
     }else{
         NSLog(@"没有实现代理或者没有设置代理人");
     }
 }
+
 //播放按钮
-- (void)playButtonAction:(UIButton *)button{
+- (void)playButtonAction:(UIButton *)button {
     button.selected = !button.selected;
     if (_delegate && [_delegate respondsToSelector:@selector(cl_playButtonAction:)]) {
         [_delegate cl_playButtonAction:button];
@@ -261,8 +277,9 @@
         NSLog(@"没有实现代理或者没有设置代理人");
     }
 }
+
 //全屏按钮
-- (void)fullButtonAction:(UIButton *)button{
+- (void)fullButtonAction:(UIButton *)button {
     button.selected = !button.selected;
     if (_delegate && [_delegate respondsToSelector:@selector(cl_fullButtonAction:)]) {
         [_delegate cl_fullButtonAction:button];
@@ -270,49 +287,55 @@
         NSLog(@"没有实现代理或者没有设置代理人");
     }
 }
+
 //失败按钮
-- (void)failButtonAction:(UIButton *)button{
+- (void)failButtonAction:(UIButton *)button {
     self.failButton.hidden = YES;
     [self.activity starAnimation];
     self.activity.hidden   = NO;
     if (_delegate && [_delegate respondsToSelector:@selector(cl_failButtonAction:)]) {
         [_delegate cl_failButtonAction:button];
-    }else{
+    } else {
         NSLog(@"没有实现代理或者没有设置代理人");
     }
 }
+
 #pragma mark - 滑杆
 //开始滑动
-- (void)progressSliderTouchBegan:(CLSlider *)slider{
+- (void)progressSliderTouchBegan:(CLSlider *)slider {
     if (_delegate && [_delegate respondsToSelector:@selector(cl_progressSliderTouchBegan:)]) {
         [_delegate cl_progressSliderTouchBegan:slider];
     }else{
         NSLog(@"没有实现代理或者没有设置代理人");
     }
 }
+
 //滑动中
-- (void)progressSliderValueChanged:(CLSlider *)slider{
+- (void)progressSliderValueChanged:(CLSlider *)slider {
     if (_delegate && [_delegate respondsToSelector:@selector(cl_progressSliderValueChanged:)]) {
         [_delegate cl_progressSliderValueChanged:slider];
     }else{
         NSLog(@"没有实现代理或者没有设置代理人");
     }
 }
+
 //滑动结束
-- (void)progressSliderTouchEnded:(CLSlider *)slider{
+- (void)progressSliderTouchEnded:(CLSlider *)slider {
     if (_delegate && [_delegate respondsToSelector:@selector(cl_progressSliderTouchEnded:)]) {
         [_delegate cl_progressSliderTouchEnded:slider];
     }else{
         NSLog(@"没有实现代理或者没有设置代理人");
     }
 }
+
 #pragma mark - 布局
--(void)layoutSubviews{
+-(void)layoutSubviews {
     [super layoutSubviews];
     [self makeConstraints];
 }
+
 #pragma mark - 获取资源图片
-- (UIImage *)getPictureWithName:(NSString *)name{
+- (UIImage *)getPictureWithName:(NSString *)name {
     NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"CLPlayer" ofType:@"bundle"]];
     NSString *path   = [bundle pathForResource:name ofType:@"png"];
     return [UIImage imageWithContentsOfFile:path];

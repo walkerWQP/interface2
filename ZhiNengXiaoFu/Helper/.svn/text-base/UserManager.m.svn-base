@@ -18,8 +18,7 @@
     NSData *data = [userDefault objectForKey:@"personInfo"];
     if (data.length > 0) {
         loginState = YES;
-        
-    }else{
+    } else {
         loginState = NO;
     }
     return loginState;
@@ -27,8 +26,7 @@
 
 
 
-+ (void)saveUserObject:(PersonInformationModel *)userinfo{
-    
++ (void)saveUserObject:(PersonInformationModel *)userinfo {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:userinfo];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     [userDefault setObject:data forKey:@"personInfo"];
@@ -37,8 +35,7 @@
 
 
 
-+ (PersonInformationModel *)getUserObject{
-    
++ (PersonInformationModel *)getUserObject {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSData *data = [userDefault objectForKey:@"personInfo"];
     return [NSKeyedUnarchiver unarchiveObjectWithData:data ];
@@ -48,12 +45,11 @@
 
 +(void)logoOut {
     
-        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"chooseLoginState"];
-        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"personInfo"];
-        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"key"];
-        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"youkeState"];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"chooseLoginState"];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"personInfo"];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"key"];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"youkeState"];
 
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"guanbiGunDong" object:nil];
         LoginHomePageViewController * loginHomepage = [[LoginHomePageViewController alloc] init];
         // 定义一个变量存放当前屏幕显示的viewcontroller
@@ -63,15 +59,12 @@
         UIWindow * window = [[UIApplication sharedApplication] keyWindow];
     
         // windowLevel是在 Z轴 方向上的窗口位置，默认值为UIWindowLevelNormal
-        if (window.windowLevel != UIWindowLevelNormal)
-        {
+        if (window.windowLevel != UIWindowLevelNormal) {
             // 获取应用程序所有的窗口
             NSArray *windows = [[UIApplication sharedApplication] windows];
-            for(UIWindow * tmpWin in windows)
-            {
+            for(UIWindow * tmpWin in windows) {
                 // 找到程序的默认窗口（正在显示的窗口）
-                if (tmpWin.windowLevel == UIWindowLevelNormal)
-                {
+                if (tmpWin.windowLevel == UIWindowLevelNormal) {
                     // 将关键窗口赋值为默认窗口
                     window = tmpWin;
                     break;
@@ -94,20 +87,14 @@
     
         [result presentViewController:loginHomepage animated:YES completion:NULL];
     
-
 }
 
-+(NSString  *)key
-{
++(NSString  *)key {
     NSString * key = [[NSUserDefaults standardUserDefaults] objectForKey:@"key"];
-    
-    
     if (key == nil) {
         key = @"";
-    }else
-    {
+    } else {
        
-
     }
     return key;
 }

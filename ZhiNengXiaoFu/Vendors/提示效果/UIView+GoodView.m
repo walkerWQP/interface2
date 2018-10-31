@@ -12,87 +12,87 @@
 
 //static CGFloat vleft = 0.0;
 
-- (CGFloat)left{
+- (CGFloat)left {
     return self.frame.origin.x;
 }
 
-- (CGFloat)top{
+- (CGFloat)top {
     return self.frame.origin.y;
 }
 
-- (CGFloat)right{
+- (CGFloat)right {
     return self.frame.origin.x+self.frame.size.width;
 }
 
-- (CGFloat)bottom{
+- (CGFloat)bottom {
     return self.frame.origin.y+self.frame.size.height;
 }
 
-- (CGFloat)width{
+- (CGFloat)width {
     return self.frame.size.width;
 }
 
-- (CGFloat)height{
+- (CGFloat)height {
     return self.frame.size.height;
 }
 
-- (CGFloat)centerX{
+- (CGFloat)centerX {
     return self.center.x;
 }
 
-- (CGFloat)centerY{
+- (CGFloat)centerY {
     return self.center.y;
 }
 
-- (void)setLeft:(CGFloat)left{
+- (void)setLeft:(CGFloat)left {
     CGRect frame=self.frame;
     frame.origin.x=left;
     self.frame=frame;
 }
 
-- (void)setTop:(CGFloat)top{
+- (void)setTop:(CGFloat)top {
     CGRect frame=self.frame;
     frame.origin.y=top;
     self.frame=frame;
 }
 
-- (void)setRight:(CGFloat)right{
+- (void)setRight:(CGFloat)right {
     CGRect frame=self.frame;
     frame.origin.x=right-self.width;
     self.frame=frame;
 }
 
-- (void)setBottom:(CGFloat)bottom{
+- (void)setBottom:(CGFloat)bottom {
     CGRect frame=self.frame;
     frame.origin.y=bottom-self.height;
     self.frame=frame;
 }
 
-- (void)setWidth:(CGFloat)width{
+- (void)setWidth:(CGFloat)width {
     CGRect frame=self.frame;
     frame.size.width=width;
     self.frame=frame;
 }
 
-- (void)setHeight:(CGFloat)height{
+- (void)setHeight:(CGFloat)height {
     CGRect frame=self.frame;
     frame.size.height=height;
     self.frame=frame;
 }
 
-- (void)setCenterY:(CGFloat)centerY{
+- (void)setCenterY:(CGFloat)centerY {
     CGPoint center=self.center;
     center.y=centerY;
     self.center=center;
 }
 
-- (void)setCenterX:(CGFloat)centerX{
+- (void)setCenterX:(CGFloat)centerX {
     CGPoint center=self.center;
     center.x=centerX;
     self.center=center;
 }
 
-- (void)dropShadowWithOffset:(CGSize)offset radius:(CGFloat)radius color:(UIColor *)color opacity:(CGFloat)opacity{
+- (void)dropShadowWithOffset:(CGSize)offset radius:(CGFloat)radius color:(UIColor *)color opacity:(CGFloat)opacity {
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddRect(path, NULL, self.bounds);
     self.layer.shadowPath = path;
@@ -104,7 +104,6 @@
     self.layer.shadowRadius = radius;
     self.layer.shadowOpacity = opacity;
     
-    // Default clipsToBounds is YES, will clip off the shadow, so we disable it.
     self.clipsToBounds = NO;
 }
 

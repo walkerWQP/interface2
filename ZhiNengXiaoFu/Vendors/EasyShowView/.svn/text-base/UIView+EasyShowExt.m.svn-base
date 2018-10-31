@@ -15,19 +15,23 @@
 - (CGFloat)x {
     return self.frame.origin.x;
 }
+
 - (void)setX:(CGFloat)x {
     CGRect frame = self.frame;
     frame.origin.x = x;
     self.frame = frame;
 }
+
 - (CGFloat)y {
     return self.frame.origin.y;
 }
+
 - (void)setY:(CGFloat)y {
     CGRect frame = self.frame;
     frame.origin.y = y;
     self.frame = frame;
 }
+
 - (CGFloat)width {
     return self.frame.size.width;
 }
@@ -48,7 +52,6 @@
     self.frame = frame;
 }
 
-
 - (CGFloat)centerX {
     return self.center.x;
 }
@@ -64,8 +67,6 @@
 - (void)setCenterY:(CGFloat)centerY {
     self.center = CGPointMake(self.center.x, centerY);
 }
-
-
 
 - (CGFloat)left {
     return self.frame.origin.x;
@@ -108,8 +109,7 @@
 }
 
 
-- (UIViewController *)currentViewController
-{
+- (UIViewController *)currentViewController {
     for (UIView* next = [self superview]; next; next = next.superview) {
         UIResponder *nextResponder = [next nextResponder];
         if ([nextResponder isKindOfClass:[UIViewController class]]) {
@@ -121,22 +121,18 @@
 
 
 
-- (void)setRoundedCorners:(CGFloat)corners
-{
-    
+- (void)setRoundedCorners:(CGFloat)corners {
     UIBezierPath* maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(corners, 0)];
     CAShapeLayer* shapeLayer = [CAShapeLayer layer];
     shapeLayer.frame = self.bounds;
     shapeLayer.path = maskPath.CGPath;
-    
     self.layer.mask = shapeLayer ;
 }
 
 - (void)setRoundedCorners:(UIRectCorner)corners
               borderWidth:(CGFloat)borderWidth
               borderColor:(UIColor *)borderColor
-               cornerSize:(CGSize)size
-{
+               cornerSize:(CGSize)size {
     UIBezierPath* maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                    byRoundingCorners:corners
                                                          cornerRadii:size];
@@ -163,6 +159,7 @@
         [self.layer addSublayer:borderLayer];
     }
 }
+
 @end
 
 

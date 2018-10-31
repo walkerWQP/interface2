@@ -1965,10 +1965,10 @@
 			isa = PBXGroup;
 			children = (
 				042AA446211D58EA00E3AACB /* UIView+XXYViewFrame.h */,
+				042AA44A211D58EA00E3AACB /* UIView+XXYViewFrame.m */,
+				042AA449211D58EA00E3AACB /* UIImage+XXYImageColor.h */,
 				042AA447211D58EA00E3AACB /* UIImage+XXYImageColor.m */,
 				042AA448211D58EA00E3AACB /* XXYActionSheetView.h */,
-				042AA449211D58EA00E3AACB /* UIImage+XXYImageColor.h */,
-				042AA44A211D58EA00E3AACB /* UIView+XXYViewFrame.m */,
 				042AA44B211D58EA00E3AACB /* XXYActionSheetView.m */,
 			);
 			path = JasonAcitonSheetViewUtil;
@@ -2178,7 +2178,6 @@
 				04171659214793C2007F6CCE /* ZhiNengXiaoFu.entitlements */,
 				043F390F21016F8C00115A55 /* Generals */,
 				043F391021016F8C00115A55 /* Helper */,
-				043F390E21016F8C00115A55 /* Resource */,
 				043F391221016F8C00115A55 /* Sections */,
 				043F391121016F8C00115A55 /* Vendors */,
 				043F38D921016DB600115A55 /* AppDelegate.h */,
@@ -2211,13 +2210,6 @@
 				043F390221016DB800115A55 /* Info.plist */,
 			);
 			path = ZhiNengXiaoFuUITests;
-			sourceTree = "<group>";
-		};
-		043F390E21016F8C00115A55 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resource;
 			sourceTree = "<group>";
 		};
 		043F390F21016F8C00115A55 /* Generals */ = {
@@ -2594,20 +2586,20 @@
 			children = (
 				04F69571211C410C00F9D2E2 /* UIView+CLSetRect.h */,
 				04F69572211C410D00F9D2E2 /* UIView+CLSetRect.m */,
+				04F69561211C40E600F9D2E2 /* CLSlider.h */,
 				04F69559211C40E600F9D2E2 /* CLSlider.m */,
 				04F6955A211C40E600F9D2E2 /* CLPlayerView.h */,
+				04F69562211C40E600F9D2E2 /* CLPlayerView.m */,
 				04F6955B211C40E600F9D2E2 /* UINavigationController+CLPlayerRotation.h */,
+				04F69560211C40E600F9D2E2 /* UINavigationController+CLPlayerRotation.m */,
+				04F69564211C40E600F9D2E2 /* AILoadingView.h */,
 				04F6955C211C40E600F9D2E2 /* AILoadingView.m */,
 				04F6955D211C40E600F9D2E2 /* UIViewController+CLPlayerRotation.h */,
 				04F6955E211C40E600F9D2E2 /* UITabBarController+CLPlayerRotation.m */,
-				04F6955F211C40E600F9D2E2 /* CLPlayerMaskView.m */,
-				04F69560211C40E600F9D2E2 /* UINavigationController+CLPlayerRotation.m */,
-				04F69561211C40E600F9D2E2 /* CLSlider.h */,
-				04F69562211C40E600F9D2E2 /* CLPlayerView.m */,
-				04F69563211C40E600F9D2E2 /* UIViewController+CLPlayerRotation.m */,
-				04F69564211C40E600F9D2E2 /* AILoadingView.h */,
 				04F69565211C40E600F9D2E2 /* CLPlayerMaskView.h */,
+				04F6955F211C40E600F9D2E2 /* CLPlayerMaskView.m */,
 				04F69566211C40E600F9D2E2 /* UITabBarController+CLPlayerRotation.h */,
+				04F69563211C40E600F9D2E2 /* UIViewController+CLPlayerRotation.m */,
 				04F69567211C40E600F9D2E2 /* Resource */,
 			);
 			path = CLPlayer;
@@ -2808,11 +2800,11 @@
 		987209A0211ECEB3009D235D /* popView(弹出视图) */ = {
 			isa = PBXGroup;
 			children = (
+				987209A4211ECEB3009D235D /* YBRectConst.h */,
 				987209A1211ECEB3009D235D /* YBRectConst.m */,
+				987209A5211ECEB3009D235D /* WPopupMenuPath.h */,
 				987209A2211ECEB3009D235D /* WPopupMenuPath.m */,
 				987209A3211ECEB3009D235D /* WPopupMenu.h */,
-				987209A4211ECEB3009D235D /* YBRectConst.h */,
-				987209A5211ECEB3009D235D /* WPopupMenuPath.h */,
 				987209A6211ECEB3009D235D /* WPopupMenu.m */,
 			);
 			path = "popView(弹出视图)";
@@ -3117,10 +3109,10 @@
 		98AD7E89210F11BD00641231 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				98AD7E8D210F11BD00641231 /* HomeLunBoCell.h */,
 				98AD7E8A210F11BD00641231 /* HomeLunBoCell.m */,
 				98AD7E8B210F11BD00641231 /* HomeItemCell.h */,
 				98AD7E8C210F11BD00641231 /* HomeItemCell.m */,
-				98AD7E8D210F11BD00641231 /* HomeLunBoCell.h */,
 				98850012216E00CB00F09CB6 /* WorkTableViewCell.h */,
 				98850013216E00CB00F09CB6 /* WorkTableViewCell.m */,
 			);
@@ -3228,25 +3220,25 @@
 		98D89DCB21103C7800355626 /* EasyShowView */ = {
 			isa = PBXGroup;
 			children = (
+				98D89DDD21103C7800355626 /* EasyShowView.h */,
+				98D89DD621103C7800355626 /* EasyShowTextView.h */,
 				98D89DCC21103C7800355626 /* EasyShowTextView.m */,
 				98D89DCD21103C7800355626 /* UIView+EasyShowExt.h */,
+				98D89DD521103C7800355626 /* UIView+EasyShowExt.m */,
 				98D89DCE21103C7800355626 /* EasyShowOptions.h */,
+				98D89DD921103C7800355626 /* EasyShowOptions.m */,
 				98D89DCF21103C7800355626 /* EasyShowTextBgView.h */,
+				98D89DD821103C7800355626 /* EasyShowTextBgView.m */,
 				98D89DD021103C7800355626 /* EasyShowLodingView.h */,
+				98D89DD721103C7800355626 /* EasyShowLodingView.m */,
+				98D89DDB21103C7800355626 /* EasyShowUtils.h */,
 				98D89DD121103C7800355626 /* EasyShowUtils.m */,
+				98D89DDA21103C7800355626 /* EasyShowLabel.h */,
 				98D89DD221103C7800355626 /* EasyShowLabel.m */,
 				98D89DD321103C7800355626 /* EasyShowAlertView.h */,
-				98D89DD421103C7800355626 /* EasyShowTypes.m */,
-				98D89DD521103C7800355626 /* UIView+EasyShowExt.m */,
-				98D89DD621103C7800355626 /* EasyShowTextView.h */,
-				98D89DD721103C7800355626 /* EasyShowLodingView.m */,
-				98D89DD821103C7800355626 /* EasyShowTextBgView.m */,
-				98D89DD921103C7800355626 /* EasyShowOptions.m */,
-				98D89DDA21103C7800355626 /* EasyShowLabel.h */,
-				98D89DDB21103C7800355626 /* EasyShowUtils.h */,
-				98D89DDC21103C7800355626 /* EasyShowTypes.h */,
-				98D89DDD21103C7800355626 /* EasyShowView.h */,
 				98D89DDE21103C7800355626 /* EasyShowAlertView.m */,
+				98D89DDC21103C7800355626 /* EasyShowTypes.h */,
+				98D89DD421103C7800355626 /* EasyShowTypes.m */,
 			);
 			path = EasyShowView;
 			sourceTree = "<group>";
@@ -3364,10 +3356,10 @@
 		CD4E2D6F216DDA3B008F1DA2 /* NewPagedFlowView */ = {
 			isa = PBXGroup;
 			children = (
-				CD4E2D70216DDA3B008F1DA2 /* PGIndexBannerSubiew.m */,
-				CD4E2D71216DDA3B008F1DA2 /* NewPagedFlowView.m */,
 				CD4E2D72216DDA3B008F1DA2 /* PGIndexBannerSubiew.h */,
+				CD4E2D70216DDA3B008F1DA2 /* PGIndexBannerSubiew.m */,
 				CD4E2D73216DDA3B008F1DA2 /* NewPagedFlowView.h */,
+				CD4E2D71216DDA3B008F1DA2 /* NewPagedFlowView.m */,
 			);
 			path = NewPagedFlowView;
 			sourceTree = "<group>";

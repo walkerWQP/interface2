@@ -1,15 +1,15 @@
 10
 
 dir
-262
+271
 http://ios2@61.132.226.224:8081/svn/duxiu/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/SleepManagement(%E5%B0%B1%E5%AF%9D%E7%AE%A1%E7%90%86)/Model
 http://ios2@61.132.226.224:8081/svn/duxiu
 
 
 
-2018-10-17T02:31:46.133789Z
-218
-ios1
+2018-10-29T09:33:19.169921Z
+270
+ios2
 
 
 
@@ -66,11 +66,11 @@ file
 
 
 
-2018-10-17T07:01:22.000000Z
-08fe69cef54741312f38a1b7c1689b0c
-2018-10-17T02:31:46.133789Z
-218
-ios1
+2018-10-29T07:06:09.000000Z
+05cc6c870a65dbaecc798aa7d226ca9b
+2018-10-29T09:33:19.169921Z
+270
+ios2
 
 
 
@@ -92,5 +92,5 @@ ios1
 
 
 
-395
+393
 

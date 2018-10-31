@@ -67,9 +67,7 @@
     layout.model.isOpening = !layout.model.isOpening;
     [layout resetLayout];
     CGRect cellRect = [self.dynamicsTable rectForRowAtIndexPath:indexPath];
-    
     [self.dynamicsTable reloadData];
-    
     if (cellRect.origin.y < self.dynamicsTable.contentOffset.y + 64) {
         [self.dynamicsTable scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
@@ -167,7 +165,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [WProgressHUD hideAllHUDAnimated:YES];
@@ -179,7 +176,6 @@
 -(void)DidClickCommentInDynamicsCell:(NewDynamicsTableViewCell *)cell {
     NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
     self.commentIndexPath = indexPath;
-    
     self.commentInputTF.placeholder = @"输入评论...";
     [self.commentInputTF becomeFirstResponder];
     self.commentInputTF.hidden = NO;
@@ -375,13 +371,11 @@
             [WProgressHUD hideAllHUDAnimated:YES];
         }];
         
-    }
+      }
         
     }
-    
     self.commentInputTF.text = nil;
     [self.commentInputTF resignFirstResponder];
-    
     return YES;
     
 }

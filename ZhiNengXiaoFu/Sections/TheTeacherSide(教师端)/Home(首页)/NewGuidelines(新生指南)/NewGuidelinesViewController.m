@@ -79,7 +79,6 @@
                 [self.newGuidelinesTableView reloadData];
             }
             
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -87,7 +86,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -107,7 +105,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
@@ -119,7 +116,6 @@
         self.newGuidelinesTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT) style:UITableViewStyleGrouped];
         self.newGuidelinesTableView.backgroundColor = [UIColor whiteColor];
         self.newGuidelinesTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
         self.newGuidelinesTableView.delegate = self;
         self.newGuidelinesTableView.dataSource = self;
     }
@@ -196,44 +192,32 @@
             [self.tongZhiDetailsCell.webView loadHTMLString:[NSString stringWithFormat:@"<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='black'><meta name='format-detection' content='telephone=no'><style type='text/css'>img{width:%fpx}</style>%@", APP_WIDTH - 20, self.workDetailsModel.content] baseURL:nil];
             
         }
-        
     }
-    
     return self.tongZhiDetailsCell;
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     
     NSString *heightString4 = @"document.body.scrollHeight";
-    
     [webView evaluateJavaScript:heightString4 completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-        
         CGFloat currentHeight = [item doubleValue];
         NSInteger width = APP_WIDTH - 30;
-        
         NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:30]};
         CGSize size = [self.workDetailsModel.title boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-        
         self.tongZhiDetailsCell.webView.frame = CGRectMake(10, 30 + size.height , APP_WIDTH - 20, currentHeight);
-        
         self.Hnew = currentHeight;
         self.tongZhiDetailsCell.webView.hidden =NO;
-        
         self.tongZhiDetailsCell.TongZhiDetailsTWebopCon.constant = self.Hnew + 26;
-        
         self.tongZhiDetailsCell.webView.height = currentHeight;
         [self.newGuidelinesTableView reloadData];
         
     }];
-    
-    
-    
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger width = APP_WIDTH - 30;
     
+    NSInteger width = APP_WIDTH - 30;
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:30]};
     CGSize size = [self.workDetailsModel.title boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
     
@@ -247,10 +231,8 @@
         }
     } else {
         if (self.imgAry.count == 0) {
-            
             self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant = 0;
             return 150 + self.Hnew + size.height;
-            
         } else {
             return  self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant + 150+ self.Hnew + size.height;
         }

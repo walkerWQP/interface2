@@ -15,15 +15,12 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     
     self = [super initWithFrame:frame];
-    
     if (self) {
-        
         [self addSubview:self.mainImageView];
         [self addSubview:self.coverView];
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleCellTapAction:)];
         [self addGestureRecognizer:singleTap];
     }
-    
     return self;
 }
 
@@ -38,7 +35,6 @@
     if (CGRectEqualToRect(self.mainImageView.frame, superViewBounds)) {
         return;
     }
-    
     self.mainImageView.frame = superViewBounds;
     self.coverView.frame = superViewBounds;
 }

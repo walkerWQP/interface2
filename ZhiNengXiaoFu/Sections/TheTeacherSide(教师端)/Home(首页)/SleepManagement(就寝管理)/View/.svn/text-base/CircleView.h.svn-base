@@ -11,8 +11,8 @@
 @interface CircleView : UIView
 @property (nonatomic,strong) CAShapeLayer *backgroundLine;
 @property (nonatomic,strong) CAShapeLayer *mainLine;
-@property (nonatomic,assign) CGFloat strokelineWidth;
-@property (nonatomic,strong) NSTimer *labelTimer;
+@property (nonatomic,assign) CGFloat      strokelineWidth;
+@property (nonatomic,strong) NSTimer      *labelTimer;
 - (void)circleWithProgress:(NSInteger)progress andIsAnimate:(BOOL)animate;
 
 @end

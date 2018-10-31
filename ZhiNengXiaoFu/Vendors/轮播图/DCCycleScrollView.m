@@ -13,13 +13,13 @@
 #define kScreenWidth  [UIScreen mainScreen].bounds.size.width
 
 @interface DCCycleScrollView()<UICollectionViewDataSource,UICollectionViewDelegate>
-@property (nonatomic,strong) UIImageView *backgroundImageView;
+@property (nonatomic,strong) UIImageView                 *backgroundImageView;
 @property (nonatomic,strong) DCCycleScrollViewFlowLayout *flowLayout;
-@property (nonatomic,strong) UICollectionView *collectionView;
-@property (nonatomic,strong) NSArray *imgArr;//图片数组
-@property (nonatomic,assign) NSInteger totalItems;//item总数
-@property (nonatomic,strong) NSTimer *timer;
-@property (nonatomic,assign) NSUInteger currentpage;//当前页
+@property (nonatomic,strong) UICollectionView            *collectionView;
+@property (nonatomic,strong) NSArray                     *imgArr;//图片数组
+@property (nonatomic,assign) NSInteger                   totalItems;//item总数
+@property (nonatomic,strong) NSTimer                     *timer;
+@property (nonatomic,assign) NSUInteger                  currentpage;//当前页
 @end
 
 static NSString *const cellID = @"cellID";
@@ -29,9 +29,9 @@ static NSString *const cellID = @"cellID";
     float _oldPoint;
     NSInteger _dragDirection;
 }
+
 #pragma mark  - life cycle
-+(instancetype)cycleScrollViewWithFrame:(CGRect)frame shouldInfiniteLoop:(BOOL)infiniteLoop imageGroups:(NSArray *)imageGroups
-{
++(instancetype)cycleScrollViewWithFrame:(CGRect)frame shouldInfiniteLoop:(BOOL)infiniteLoop imageGroups:(NSArray *)imageGroups {
     DCCycleScrollView *cycleScrollView = [[DCCycleScrollView alloc]initWithFrame:frame];
     cycleScrollView.backgroundColor = [UIColor whiteColor];
     cycleScrollView.infiniteLoop = infiniteLoop;
@@ -39,19 +39,17 @@ static NSString *const cellID = @"cellID";
     cycleScrollView.imgArr = imageGroups;
     return cycleScrollView;
 }
--(instancetype)initWithFrame:(CGRect)frame
-{
-    if(self = [super initWithFrame:frame])
-    {
+
+-(instancetype)initWithFrame:(CGRect)frame {
+    if(self = [super initWithFrame:frame]) {
         [self initialization];
         [self addSubview:self.collectionView];
         [self addSubview:self.pageControl];
-
     }
     return self;
 }
--(void)initialization
-{
+
+-(void)initialization {
     //初始化
     _infiniteLoop = YES;
     _autoScroll = YES;
@@ -63,12 +61,12 @@ static NSString *const cellID = @"cellID";
     _pageControl.currentPage = 0;
     _bannerImageViewContentMode = UIViewContentModeScaleToFill;
 }
--(CGFloat )defaultSpace
-{
+
+-(CGFloat )defaultSpace {
     return (kScreenWidth - self.itemWidth)/2;
 }
--(void)layoutSubviews
-{
+
+-(void)layoutSubviews {
     [super layoutSubviews];
     
     self.collectionView.frame = self.bounds;
@@ -76,24 +74,20 @@ static NSString *const cellID = @"cellID";
     self.flowLayout.itemSize = CGSizeMake(_itemWidth, self.bounds.size.height);
     self.flowLayout.minimumLineSpacing = self.itemSpace;
     
-    if(self.collectionView.contentOffset.x == 0 && _totalItems > 0)
-    {
+    if(self.collectionView.contentOffset.x == 0 && _totalItems > 0) {
         NSInteger targeIndex = 0;
-        if(self.infiniteLoop)
-        {//无线循环
+        if(self.infiniteLoop) {//无线循环
             // 如果是无限循环，应该默认把 collection 的 item 滑动到 中间位置。
             // 注意：此处 totalItems 的数值，其实是图片数组数量的 100 倍。
             // 乘以 0.5 ，正好是取得中间位置的 item 。图片也恰好是图片数组里面的第 0 个。
             targeIndex = _totalItems * 0.5;
-        }else
-        {
+        } else {
             targeIndex = 0;
         }
         //设置图片默认位置
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:targeIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
         _oldPoint = self.collectionView.contentOffset.x;
         self.collectionView.userInteractionEnabled = YES;
-
     }
 }
 #pragma mark  - event
@@ -101,41 +95,36 @@ static NSString *const cellID = @"cellID";
 #pragma mark  - delegate
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     self.collectionView.userInteractionEnabled = NO;
     if (!self.imgArr.count) return; // 解决清除timer时偶尔会出现的问题
     self.pageControl.currentPage = [self currentIndex] % self.imgArr.count;
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     _oldPoint = scrollView.contentOffset.x;
     if (self.autoScroll) {
         [self invalidateTimer];
     }
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     if (self.autoScroll) {
         [self setupTimer];
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self scrollViewDidEndScrollingAnimation:self.collectionView];
 }
 
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     self.collectionView.userInteractionEnabled = YES;
     if (!self.imgArr.count) return; // 解决清除timer时偶尔会出现的问题
 }
 
 //手离开屏幕的时候
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
     if(!self.infiniteLoop) return;//如果不是无限轮播，则返回
     
     //如果是向右滑或者滑动距离大于item的一半，则像右移动一个item+space的距离，反之向左
@@ -144,9 +133,9 @@ static NSString *const cellID = @"cellID";
     int shouldPage = moveWidth/(self.itemWidth/2);
     if (velocity.x>0 || shouldPage > 0) {
         _dragDirection = 1;
-    }else if (velocity.x<0 || shouldPage < 0){
+    } else if (velocity.x<0 || shouldPage < 0){
         _dragDirection = -1;
-    }else{
+    } else {
         _dragDirection = 0;
     }
     self.collectionView.userInteractionEnabled = NO;
@@ -157,7 +146,7 @@ static NSString *const cellID = @"cellID";
 
 }
 
-- (void)scrollViewWillBeginDecelerating: (UIScrollView *)scrollView{
+- (void)scrollViewWillBeginDecelerating: (UIScrollView *)scrollView {
     if(!self.infiniteLoop) return;//如果不是无限轮播，则返回
 
     //松开手指滑动开始减速的时候，设置滑动动画
@@ -167,12 +156,11 @@ static NSString *const cellID = @"cellID";
 }
 
 #pragma mark  - 数据源方法
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _totalItems;
 }
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     DCCycleScrollViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     long itemIndex = (int) indexPath.item % self.imgArr.count;
     NSString *imagePath = self.imgArr[itemIndex];
@@ -191,8 +179,7 @@ static NSString *const cellID = @"cellID";
     return cell;
 }
 #pragma mark  - 代理方法
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.delegate respondsToSelector:@selector(cycleScrollView:didSelectItemAtIndex:)]) {
         [self.delegate cycleScrollView:self didSelectItemAtIndex:[self currentIndex] % self.imgArr.count];
     }
@@ -200,48 +187,41 @@ static NSString *const cellID = @"cellID";
 #pragma mark  - notification
 
 #pragma mark  - private
-- (void)setupTimer
-{
+- (void)setupTimer {
     [self invalidateTimer]; // 创建定时器前先停止定时器，不然会出现僵尸定时器，导致轮播频率错误
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:self.autoScrollTimeInterval target:self selector:@selector(automaticScroll) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     _timer = timer;
     
 }
-- (void)invalidateTimer
-{
+
+- (void)invalidateTimer {
     [_timer invalidate];
     _timer = nil;
 }
--(void)automaticScroll
-{
+
+-(void)automaticScroll {
     if(_totalItems == 0) return;
-    
     NSInteger currentIndex = [self currentIndex];
-    
     NSInteger targetIndex = currentIndex + 1;
-    
     [self scrollToIndex:targetIndex];
 }
--(NSInteger)currentIndex
-{
+
+-(NSInteger)currentIndex {
     if(self.collectionView.frame.size.width == 0 || self.collectionView.frame.size.height == 0)
         return 0;
     NSInteger index = 0;
     
     if (_flowLayout.scrollDirection == UICollectionViewScrollDirectionHorizontal) {//水平滑动
         index = (self.collectionView.contentOffset.x + (self.itemWidth + self.itemSpace) * 0.5) / (self.itemSpace + self.itemWidth);
-    }else{
+    } else {
         index = (self.collectionView.contentOffset.y + _flowLayout.itemSize.height * 0.5)/ _flowLayout.itemSize.height;
     }
     return MAX(0,index);
 }
--(void)scrollToIndex:(NSInteger)index
-{
-    if(index >= _totalItems) //滑到最后则调到中间
-    {
-        if(self.infiniteLoop)
-        {
+-(void)scrollToIndex:(NSInteger)index {
+    if(index >= _totalItems) { //滑到最后则调到中间
+        if(self.infiniteLoop) {
             index = _totalItems * 0.5;
             [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
         }
@@ -250,18 +230,17 @@ static NSString *const cellID = @"cellID";
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 
 }
+
 #pragma mark  - public
 /**设置分页滑动属性（如果infiniteLoop属性为yes，则设置无效）*/
--(void)setCollectionViewPagingEnabled:(BOOL)pagingEnabled
-{
-    if(self.infiniteLoop == NO)
-    {
+-(void)setCollectionViewPagingEnabled:(BOOL)pagingEnabled {
+    if(self.infiniteLoop == NO) {
         self.collectionView.pagingEnabled = pagingEnabled;
     }
 }
+
 #pragma mark  - setter or getter
-- (void)setPlaceholderImage:(UIImage *)placeholderImage
-{
+- (void)setPlaceholderImage:(UIImage *)placeholderImage {
     _placeholderImage = placeholderImage;
     
     if (!self.backgroundImageView) {
@@ -274,45 +253,41 @@ static NSString *const cellID = @"cellID";
     }
     self.backgroundImageView.image = placeholderImage;
 }
--(void)setItemWidth:(CGFloat)itemWidth
-{
+
+-(void)setItemWidth:(CGFloat)itemWidth {
     _itemWidth = itemWidth;
     self.flowLayout.itemSize = CGSizeMake(itemWidth, self.bounds.size.height);
 }
--(void)setItemSpace:(CGFloat)itemSpace
-{
+
+-(void)setItemSpace:(CGFloat)itemSpace {
     _itemSpace = itemSpace;
     self.flowLayout.minimumLineSpacing = itemSpace;
 }
--(void)setIsZoom:(BOOL)isZoom
-{
+
+-(void)setIsZoom:(BOOL)isZoom {
     _isZoom = isZoom;
     self.flowLayout.isZoom = isZoom;
 }
--(void)setImgArr:(NSArray *)imgArr
-{
+
+-(void)setImgArr:(NSArray *)imgArr {
     _imgArr = imgArr;
     self.pageControl.numberOfPages = imgArr.count;
     //如果循环则100倍，
     _totalItems = self.infiniteLoop?imgArr.count * 100:imgArr.count;
-    if(_imgArr.count > 1)
-    {
+    if(_imgArr.count > 1) {
         self.collectionView.scrollEnabled = YES;
         [self setAutoScroll:self.autoScroll];
-    }else
-    {
+    } else {
         //不循环
         self.collectionView.scrollEnabled = NO;
         [self invalidateTimer];
     }
-    
     [self.collectionView reloadData];
         
 }
--(void)setAutoScroll:(BOOL)autoScroll
-{
-    if(self.infiniteLoop)
-    {
+
+-(void)setAutoScroll:(BOOL)autoScroll {
+    if(self.infiniteLoop) {
         _autoScroll = autoScroll;
         //创建之前，停止定时器
         [self invalidateTimer];
@@ -323,10 +298,8 @@ static NSString *const cellID = @"cellID";
     }
 
 }
--(UICollectionView *)collectionView
-{
-    if(_collectionView == nil)
-    {
+-(UICollectionView *)collectionView {
+    if(_collectionView == nil) {
         _collectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:self.flowLayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
@@ -334,33 +307,29 @@ static NSString *const cellID = @"cellID";
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.backgroundColor = [UIColor clearColor];
-        
         //注册cell
         [_collectionView registerClass:[DCCycleScrollViewCell class] forCellWithReuseIdentifier:cellID];
-
     }
     return _collectionView;
 }
--(UIPageControl *)pageControl
-{
-    if(_pageControl == nil)
-    {
+
+-(UIPageControl *)pageControl {
+    if(_pageControl == nil) {
         _pageControl = [[UIPageControl alloc]init];
         _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
         _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     }
     return _pageControl;
 }
--(DCCycleScrollViewFlowLayout *)flowLayout
-{
-    if(_flowLayout == nil)
-    {
+
+-(DCCycleScrollViewFlowLayout *)flowLayout {
+    if(_flowLayout == nil) {
         _flowLayout = [[DCCycleScrollViewFlowLayout alloc]init];
         _flowLayout.isZoom = self.isZoom;
         _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _flowLayout.minimumLineSpacing = 0;
-
     }
     return _flowLayout;
 }
+
 @end

@@ -1,7 +1,7 @@
 10
 
 dir
-262
+271
 http://ios2@61.132.226.224:8081/svn/duxiu/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Vendors/CLPlayer
 http://ios2@61.132.226.224:8081/svn/duxiu
 
@@ -28,14 +28,14 @@ d466fc26-aeb2-6048-8488-bbf0a50f055a
 
 UITabBarController+CLPlayerRotation.m
 file
+272
 
 
 
-
-2018-09-20T07:55:43.000000Z
-2d3ae15847e1e70b346655dd71ab396f
-2018-09-11T08:05:51.029296Z
-80
+2018-10-30T06:17:52.000000Z
+d041ef60fba37bc431b3999513cd9d97
+2018-10-30T08:20:20.597656Z
+272
 ios2
 
 
@@ -58,7 +58,7 @@ ios2
 
 
 
-1637
+1641
 
 UIView+CLSetRect.h
 file
@@ -96,14 +96,14 @@ has-props
 
 UINavigationController+CLPlayerRotation.m
 file
+272
 
 
 
-
-2018-09-20T07:55:43.000000Z
-c9961023716a2400b14e4268b076d4c6
-2018-09-11T08:05:51.029296Z
-80
+2018-10-30T06:13:12.000000Z
+6033f204695d35c356745e424940e0ac
+2018-10-30T08:20:20.597656Z
+272
 ios2
 
 
@@ -126,7 +126,7 @@ ios2
 
 
 
-884
+888
 
 CLSlider.h
 file
@@ -164,14 +164,14 @@ has-props
 
 UIView+CLSetRect.m
 file
+272
 
 
 
-
-2018-09-20T07:55:43.000000Z
-4dd0f0d6287b5a2f033c7d11de130a1b
-2018-09-11T08:05:51.029296Z
-80
+2018-10-30T03:52:38.000000Z
+fbb8a8de38cda4e9ce49ec9aa0361ac6
+2018-10-30T08:20:20.597656Z
+272
 ios2
 has-props
 
@@ -194,7 +194,7 @@ has-props
 
 
 
-8014
+8015
 
 Resource
 dir
@@ -269,14 +269,14 @@ has-props
 
 CLSlider.m
 file
+272
 
 
 
-
-2018-09-20T07:55:43.000000Z
-27b754bc495fb5cccde73bbfdb535e7b
-2018-09-11T08:05:51.029296Z
-80
+2018-10-30T03:53:28.000000Z
+33e487ce130ed780b1b6f40d689b0933
+2018-10-30T08:20:20.597656Z
+272
 ios2
 has-props
 
@@ -299,18 +299,18 @@ has-props
 
 
 
-3075
+3080
 
 UIViewController+CLPlayerRotation.m
 file
+272
 
 
 
-
-2018-09-20T07:55:43.000000Z
-1e1f2e66d8fefadbeca5fae018f6a563
-2018-09-11T08:05:51.029296Z
-80
+2018-10-30T06:29:57.000000Z
+23a0bb32588f3cce21954f84fee89076
+2018-10-30T08:20:20.597656Z
+272
 ios2
 
 
@@ -333,18 +333,18 @@ ios2
 
 
 
-911
+915
 
 CLPlayerView.m
 file
+272
 
 
 
-
-2018-09-20T07:55:43.000000Z
-3ddaa57a984b3ec2a0fb63bc261df030
-2018-09-11T08:05:51.029296Z
-80
+2018-10-30T06:13:12.000000Z
+b17f1cc2af17d2cf34e6b0b7278143a4
+2018-10-30T08:20:20.597656Z
+272
 ios2
 has-props
 
@@ -367,18 +367,18 @@ has-props
 
 
 
-27098
+25646
 
 AILoadingView.h
 file
+272
 
 
 
-
-2018-09-20T07:55:43.000000Z
-b7cfec55d3f4a1dfc4a52e90990d29b9
-2018-09-11T08:05:51.029296Z
-80
+2018-10-30T06:13:12.000000Z
+22c14545275890f95768ee7f4c79b08a
+2018-10-30T08:20:20.597656Z
+272
 ios2
 
 
@@ -401,18 +401,18 @@ ios2
 
 
 
-465
+466
 
 CLPlayerMaskView.h
 file
+272
 
 
 
-
-2018-09-20T07:55:43.000000Z
-c7f91b4074b00fd51b372637404a87d8
-2018-09-11T08:05:51.029296Z
-80
+2018-10-30T06:18:14.000000Z
+31a5df926d488d8f5e338db0ca0f4017
+2018-10-30T08:20:20.597656Z
+272
 ios2
 has-props
 
@@ -435,7 +435,7 @@ has-props
 
 
 
-2043
+2046
 
 UITabBarController+CLPlayerRotation.h
 file
@@ -473,14 +473,14 @@ ios2
 
 CLPlayerMaskView.m
 file
+272
 
 
 
-
-2018-09-20T07:55:43.000000Z
-a53f4ce931705beac929b4dcdcdaecf1
-2018-09-11T08:05:51.029296Z
-80
+2018-10-30T06:27:52.000000Z
+3d50574782d8a382b30a240955bf7fc8
+2018-10-30T08:20:20.597656Z
+272
 ios2
 has-props
 
@@ -503,18 +503,18 @@ has-props
 
 
 
-11909
+11969
 
 AILoadingView.m
 file
+272
 
 
 
-
-2018-09-20T07:55:43.000000Z
-15b3436b1374bb477fb28a43fd13c7ea
-2018-09-11T08:05:51.029296Z
-80
+2018-10-30T06:17:52.000000Z
+fabde309a2c2901605b413cf84dcd3ab
+2018-10-30T08:20:20.597656Z
+272
 ios2
 
 
@@ -537,7 +537,7 @@ ios2
 
 
 
-3271
+3278
 
 UINavigationController+CLPlayerRotation.h
 file

@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UICollectionView           *WeiZhuQinCollectionView;
 @property (nonatomic, retain) UICollectionViewFlowLayout *layout;
 @property (nonatomic, strong) NSMutableArray             *WeiZhuQinAry;
+
 @end
 
 @implementation WeiZhuQinViewController

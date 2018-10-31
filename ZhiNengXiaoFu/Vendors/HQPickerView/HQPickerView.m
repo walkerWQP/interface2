@@ -18,13 +18,13 @@
 
 @interface HQPickerView ()<UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (nonatomic, strong) UIPickerView *pickerView;
-@property (nonatomic, strong) UIView *bgView;
-@property (nonatomic, strong) UIButton *cancelBtn;
-@property (nonatomic, strong) UIButton *completionBtn;
-@property (nonatomic, strong) UIView* line;
+@property (nonatomic, strong) UIPickerView   *pickerView;
+@property (nonatomic, strong) UIView         *bgView;
+@property (nonatomic, strong) UIButton       *cancelBtn;
+@property (nonatomic, strong) UIButton       *completionBtn;
+@property (nonatomic, strong) UIView         *line;
 @property (nonatomic, strong) NSMutableArray *array;
-@property (nonatomic, copy) NSString *selectedStr;
+@property (nonatomic, copy) NSString         *selectedStr;
 
 @end
 

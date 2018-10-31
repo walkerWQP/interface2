@@ -10,8 +10,7 @@
 
 @interface JiuQinStuCell : UICollectionViewCell
 
-@property (nonatomic, strong) UIImageView * headImg;
-
-@property (nonatomic, strong) UILabel * nameLabel;
+@property (nonatomic, strong) UIImageView  *headImg;
+@property (nonatomic, strong) UILabel      *nameLabel;
 
 @end

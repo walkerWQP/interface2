@@ -41,7 +41,6 @@
         [imageView addGestureRecognizer:tap];
         [temp addObject:imageView];
     }
-    
     self.imageViewsArray = [temp copy];
 }
 

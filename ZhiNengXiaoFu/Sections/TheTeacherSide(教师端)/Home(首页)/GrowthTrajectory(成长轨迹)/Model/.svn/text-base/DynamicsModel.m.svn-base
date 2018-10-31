@@ -50,10 +50,8 @@ extern CGFloat maxContentLabelHeight;
 
 
 - (void)setOptcomment:(NSMutableArray *)optcomment {
-    
     _optcomment = optcomment;
     self.commentArr = optcomment;
-    
 }
 
 
@@ -81,7 +79,6 @@ extern CGFloat maxContentLabelHeight;
     }else{
         _shouldShowMoreButton = YES;
     }
-    
     return _content;
 }
 

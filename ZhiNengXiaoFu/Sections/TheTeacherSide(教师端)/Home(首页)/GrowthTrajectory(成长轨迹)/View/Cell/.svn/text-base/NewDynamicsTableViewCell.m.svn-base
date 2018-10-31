@@ -27,19 +27,16 @@
     [self addSubview:self.grayBtn];
     [self addSubview:self.thumbImg];
     [self addSubview:self.dspLabel];
-    
     [self layout];
 }
 
 
 - (void)layout {
     _grayBtn.frame = self.frame;
-
     _thumbImg.left = kDynamicsGrayPicPadding;
     _thumbImg.top = kDynamicsGrayPicPadding;
     _thumbImg.width = kDynamicsGrayPicHeight;
     _thumbImg.height = kDynamicsGrayPicHeight;
-    
     _dspLabel.left = _thumbImg.right + kDynamicsNameDetailPadding;
     _dspLabel.width = self.right - kDynamicsNameDetailPadding - _dspLabel.left;
 }
@@ -126,10 +123,9 @@
         _thumbLabel.height = _layout.thumbLayout.textBoundingSize.height;
         _thumbLabel.textLayout = _layout.thumbLayout;
         lastView = _thumbLabel;
-    }else{
+    } else {
         _thumbLabel.hidden = YES;
     }
-    
     
     if (_likeArray.count != 0 && _commentArray.count != 0) {
         _dividingLine.hidden = NO;
@@ -138,7 +134,7 @@
         _dividingLine.width = self.frame.size.width;
         _dividingLine.height = .5;
         lastView = _dividingLine;
-    }else{
+    } else {
         _dividingLine.hidden = YES;
     }
     
@@ -150,7 +146,7 @@
         _commentTable.height = _layout.commentHeight;
         
         [_commentTable reloadData];
-    }else{
+    } else {
         _commentTable.hidden = YES;
     }
     
@@ -171,9 +167,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell * cell;//这里不使用重用机制(会出现评论窜位bug)
-    
     YYTextLayout * layout = self.commentArray[indexPath.row];
-    
     YYLabel * label;
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"commentCell"];

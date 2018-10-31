@@ -237,12 +237,10 @@
             NSString *str = [formatter stringFromDate:[NSDate date]];
             NSString *imageFileName = [NSString stringWithFormat:@"%@.jpeg", str];
             
-            if (length>1280)
-            {
+            if (length>1280) {
                 NSData *fData = UIImageJPEGRepresentation(image, 0.5);
                 [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
-            } else
-            {
+            } else {
                 [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
             }
             
@@ -276,7 +274,6 @@
             }
             
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -299,7 +296,6 @@
                 [UserManager logoOut];
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

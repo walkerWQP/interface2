@@ -11,7 +11,6 @@
 @interface BusinessDetailController : BaseViewController
 
 @property (nonatomic, strong) NSString *urlStr;
-
 @property (nonatomic, strong) NSString *webTitle;
 
 @end

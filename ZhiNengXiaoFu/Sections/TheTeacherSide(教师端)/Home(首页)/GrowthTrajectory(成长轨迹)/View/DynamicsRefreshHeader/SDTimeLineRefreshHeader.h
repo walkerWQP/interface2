@@ -12,7 +12,6 @@
 @interface SDTimeLineRefreshHeader : SDBaseRefreshView
 
 + (instancetype)refreshHeaderWithCenter:(CGPoint)center;
-
 @property (nonatomic, copy) void(^refreshingBlock)(void);
 
 @end

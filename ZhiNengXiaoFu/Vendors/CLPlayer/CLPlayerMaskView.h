@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CLSlider.h"
 #import "AILoadingView.h"
+
 @protocol CLPlayerMaskViewDelegate <NSObject>
 /**返回按钮代理*/
 - (void)cl_backButtonAction:(UIButton *)button;
@@ -24,9 +25,11 @@
 - (void)cl_progressSliderTouchEnded:(CLSlider *)slider;
 /**失败按钮代理*/
 - (void)cl_failButtonAction:(UIButton *)button;
+
 @end
 
 @interface CLPlayerMaskView : UIButton
+
 /**顶部工具条*/
 @property (nonatomic,strong) UIView *topToolBar;
 /**底部工具条*/

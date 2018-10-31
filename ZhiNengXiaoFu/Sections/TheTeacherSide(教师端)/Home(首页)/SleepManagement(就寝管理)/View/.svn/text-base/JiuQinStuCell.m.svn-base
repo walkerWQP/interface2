@@ -10,8 +10,7 @@
 
 @implementation JiuQinStuCell
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.headImg];
@@ -20,8 +19,7 @@
     return self;
 }
 
-- (UIImageView *)headImg
-{
+- (UIImageView *)headImg {
     if (!_headImg) {
         self.headImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width / 2 - 35, 20, 70, 70)];
         self.headImg.layer.cornerRadius = 35;
@@ -32,8 +30,7 @@
     return _headImg;
 }
 
-- (UILabel *)nameLabel
-{
+- (UILabel *)nameLabel {
     if (!_nameLabel) {
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headImg.frame.origin.x, self.headImg.frame.size.height + self.headImg.frame.origin.y + 10, 70, 15)];
         self.nameLabel.font = [UIFont systemFontOfSize:12];

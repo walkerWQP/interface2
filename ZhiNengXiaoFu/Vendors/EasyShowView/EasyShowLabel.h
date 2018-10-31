@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface EasyShowLabel : UILabel
-@property (nonatomic) UIEdgeInsets contentInset;
 
+@property (nonatomic) UIEdgeInsets contentInset;
 - (instancetype)initWithContentInset:(UIEdgeInsets)contentInset ;
 
 @end

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DCCycleScrollViewCell : UICollectionViewCell
+
 @property (nonatomic,strong) UIImageView *imageView;
-@property (nonatomic,assign) CGFloat imgCornerRadius;
+@property (nonatomic,assign) CGFloat     imgCornerRadius;
+
 @end

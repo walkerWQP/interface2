@@ -41,8 +41,6 @@
     [self.YiZhuQinCollectionView registerClass:[JiuQinStuCell class] forCellWithReuseIdentifier:@"JiuQinStuCellId"];
 }
 
-
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [SingletonHelper manager].yidaoAry.count;
 }

@@ -36,15 +36,13 @@
         self.titleLabel.font = [UIFont systemFontOfSize:15];
         self.titleLabel.textColor = RGB(51, 51, 51);
         self.titleLabel.text = @"三年级二班";
-        
     }
     return _titleLabel;
 }
 
 
 
-- (UIView *)lineView
-{
+- (UIView *)lineView {
     if (!_lineView) {
         self.lineView = [[UIView alloc] initWithFrame:CGRectMake(10, 70, APP_WIDTH - 20, 0.8)];
         self.lineView.backgroundColor = fengeLineColor;

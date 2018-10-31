@@ -26,6 +26,7 @@
     [hud show:YES view:hud.toast];
     return hud;
 }
+
 #pragma mark 加载成功动画
 + (instancetype)showSuccessfulAnimatedText:(NSString *)ShowText {
     [WProgressHUD hideAllHUDAnimated:NO];
@@ -35,6 +36,7 @@
     [self performSelector:@selector(DelayHideHud) withObject:nil afterDelay:1.5];
     return hud;
 }
+
 #pragma mark 加载错误动画
 + (instancetype)showErrorAnimatedText:(NSString *)ShowText {
     [WProgressHUD hideAllHUDAnimated:NO];
@@ -44,6 +46,7 @@
     [self performSelector:@selector(DelayHideHud) withObject:nil afterDelay:1.5];
     return hud;
 }
+
 #pragma mark 文字提示
 + (instancetype)showDpromptText:(NSString *)showText {
     [WProgressHUD hideAllHUDAnimated:NO];
@@ -54,11 +57,11 @@
     return hud;
 }
 
-
 //延迟隐藏hud
 + (void)DelayHideHud {
     [WProgressHUD hideAllHUDAnimated:YES];
 }
+
 #pragma mark 隐藏
 + (NSUInteger)hideAllHUDAnimated:(BOOL)animated {
     NSMutableArray *huds = [NSMutableArray array];
@@ -119,6 +122,7 @@ static CGFloat toastWidth = 100;
     }
     return self;
 }
+
 #pragma mark 加载动画
 - (void)loadingAnimated {
     
@@ -135,6 +139,7 @@ static CGFloat toastWidth = 100;
     [_toast addSubview:showTextLabel];
     
 }
+
 #pragma mark 成功效果
 - (void)pictureCorrect {
     CGFloat height =_toast.frame.size.height-50;
@@ -175,6 +180,7 @@ static CGFloat toastWidth = 100;
     [_toast addSubview:showTextLabel];
     
 }
+
 #pragma mark 错误效果
 - (void)picturError {
     CGFloat height =_toast.frame.size.height - 50;
@@ -210,7 +216,6 @@ static CGFloat toastWidth = 100;
     [layer addAnimation:animation forKey:NSStringFromSelector(@selector(strokeEnd))];
     [errorView.layer addSublayer:layer];
     
-    
     UILabel * showTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, errorView.bottom + 7, _toast.width - 10, 20)];
     showTextLabel.text = _tipText;
     showTextLabel.font = [UIFont systemFontOfSize:14];
@@ -240,10 +245,9 @@ static CGFloat toastWidth = 100;
         _showTextLabel.width = size.width+10;
         _showTextLabel.height = size.height+10;
     }
-    
     _showTextLabel.center=CGPointMake(APP_WIDTH / 2, APP_HEIGHT / 2);
-    
 }
+
 #pragma mark SETORGET
 - (void)setTipText:(NSString *)tipText {
     _tipText = tipText;
@@ -253,8 +257,6 @@ static CGFloat toastWidth = 100;
 - (void)setType:(WHUDType)type {
     _type = type;
 }
-
-
 
 - (void)show:(BOOL)animated view:(UIView *)view {
     view.hidden = NO;

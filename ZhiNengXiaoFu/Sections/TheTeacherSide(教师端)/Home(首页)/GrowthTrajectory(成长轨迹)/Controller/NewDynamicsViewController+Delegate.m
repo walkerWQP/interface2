@@ -67,9 +67,7 @@
     layout.model.isOpening = !layout.model.isOpening;
     [layout resetLayout];
     CGRect cellRect = [self.dynamicsTable rectForRowAtIndexPath:indexPath];
-    
     [self.dynamicsTable reloadData];
-    
     if (cellRect.origin.y < self.dynamicsTable.contentOffset.y + 64) {
         [self.dynamicsTable scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
@@ -167,7 +165,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [WProgressHUD hideAllHUDAnimated:YES];
@@ -179,7 +176,6 @@
 -(void)DidClickCommentInDynamicsCell:(NewDynamicsTableViewCell *)cell {
     NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
     self.commentIndexPath = indexPath;
-    
     self.commentInputTF.placeholder = @"输入评论...";
     [self.commentInputTF becomeFirstResponder];
     self.commentInputTF.hidden = NO;
@@ -343,46 +339,43 @@
         
     } else {
     
-    NSInteger commentRow = self.commentIndexPath.row;
-    NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
-    DynamicsModel * model = layout.model;
-    if (![self.commentInputTF.text isEqualToString:@""]) {
-#pragma mark ======= 上传评论 =======
-        [WProgressHUD showHUDShowText:@"正在加载中..."];
-        NSDictionary *dataDic = @{@"key":[UserManager key],@"album_id":[NSString stringWithFormat:@"%ld",model.album_id],@"content":self.commentInputTF.text};
-        [[HttpRequestManager sharedSingleton] POST:AddDiscussURL parameters:dataDic success:^(NSURLSessionDataTask *task, id responseObject) {
-            [WProgressHUD hideAllHUDAnimated:YES];
-            if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-                [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
-                NSInteger commentRow = self.commentIndexPath.row;
-                NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
-                DynamicsModel * model = layout.model;
-                NSMutableArray *arr = [DynamicsCommentItemModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-                
-                model.optcomment = [arr copy];
-                [layout resetLayout];
-                [self.dynamicsTable reloadRowsAtIndexPaths:@[self.commentIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-            } else {
-                if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
-                    [UserManager logoOut];
-                } else {
+        NSInteger commentRow = self.commentIndexPath.row;
+        NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
+        DynamicsModel * model = layout.model;
+        if (![self.commentInputTF.text isEqualToString:@""]) {
+    #pragma mark ======= 上传评论 =======
+            [WProgressHUD showHUDShowText:@"正在加载中..."];
+            NSDictionary *dataDic = @{@"key":[UserManager key],@"album_id":[NSString stringWithFormat:@"%ld",model.album_id],@"content":self.commentInputTF.text};
+            [[HttpRequestManager sharedSingleton] POST:AddDiscussURL parameters:dataDic success:^(NSURLSessionDataTask *task, id responseObject) {
+                [WProgressHUD hideAllHUDAnimated:YES];
+                if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
+                    [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
+                    NSInteger commentRow = self.commentIndexPath.row;
+                    NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
+                    DynamicsModel * model = layout.model;
+                    NSMutableArray *arr = [DynamicsCommentItemModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
                     
+                    model.optcomment = [arr copy];
+                    [layout resetLayout];
+                    [self.dynamicsTable reloadRowsAtIndexPaths:@[self.commentIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+                } else {
+                    if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
+                        [UserManager logoOut];
+                    } else {
+                        
+                    }
+                    [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
                 }
-                [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-                
-            }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [WProgressHUD hideAllHUDAnimated:YES];
-        }];
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                [WProgressHUD hideAllHUDAnimated:YES];
+            }];
+            
+          }
         
-    }
-        
-    }
-    
-    self.commentInputTF.text = nil;
-    [self.commentInputTF resignFirstResponder];
-    
-    return YES;
+        }
+        self.commentInputTF.text = nil;
+        [self.commentInputTF resignFirstResponder];
+        return YES;
     
 }
 

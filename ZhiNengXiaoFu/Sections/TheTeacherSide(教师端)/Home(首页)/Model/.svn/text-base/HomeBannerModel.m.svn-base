@@ -10,7 +10,6 @@
 
 @implementation HomeBannerModel
 + (NSDictionary *)replacedKeyFromPropertyName {
-    
     return @{@"ID": @"id"};
 }
 @end

@@ -10,7 +10,7 @@
 
 @interface PickerModel : NSObject
 
-@property(nonatomic,strong) NSArray *cities;
+@property(nonatomic,strong) NSArray  *cities;
 @property(nonatomic,strong) NSString *province;
 
 
