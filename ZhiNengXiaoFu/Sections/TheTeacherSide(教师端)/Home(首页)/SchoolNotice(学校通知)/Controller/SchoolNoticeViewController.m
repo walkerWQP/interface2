@@ -141,13 +141,10 @@
     self.schoolNoticeCollectionView.delegate = self;
     self.schoolNoticeCollectionView.dataSource = self;
     [self.view addSubview:self.schoolNoticeCollectionView];
-    
     [self.schoolNoticeCollectionView registerClass:[ClassDetailsCell class] forCellWithReuseIdentifier:ClassDetailsCell_CollectionView];
-    
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
     self.headImgView.backgroundColor = [UIColor clearColor];
     [self.schoolNoticeCollectionView addSubview:self.headImgView];
-
 }
 
 #pragma mark - <UICollectionViewDelegate, UICollectionViewDataSource>

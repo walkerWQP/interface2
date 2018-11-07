@@ -111,7 +111,6 @@
     self.ongoingCollectionView.dataSource = self;
     [self.view addSubview:self.ongoingCollectionView];
     [self.ongoingCollectionView registerClass:[OngoingCell class] forCellWithReuseIdentifier:OngoingCell_CollectionView];
-    
 }
 
 #pragma mark - <UICollectionViewDelegate, UICollectionViewDataSource>

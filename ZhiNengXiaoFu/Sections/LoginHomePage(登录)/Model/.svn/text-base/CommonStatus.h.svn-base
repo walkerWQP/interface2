@@ -11,6 +11,6 @@
 @interface CommonStatus : NSObject
 
 @property (nonatomic, assign) NSInteger status;
-@property (nonatomic, copy) NSString * msg;
+@property (nonatomic, copy) NSString    *msg;
 
 @end

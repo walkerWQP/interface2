@@ -16,6 +16,4 @@
 @property (nonatomic, strong) NSString    *typeStr;
 @property (nonatomic, strong) NSString    *studentID;
 
-
-
 @end

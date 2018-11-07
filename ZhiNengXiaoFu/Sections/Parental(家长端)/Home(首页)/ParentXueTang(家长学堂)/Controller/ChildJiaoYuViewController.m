@@ -51,8 +51,7 @@
     [self.ChildJiaoYuTableView.mj_header beginRefreshing];
     //上拉刷新
     self.ChildJiaoYuTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopic)];
-    
-    
+
 }
 
 - (void)loadNewTopic {
@@ -95,7 +94,6 @@
 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
@@ -111,7 +109,6 @@
         self.ChildJiaoYuTableView.delegate = self;
         self.ChildJiaoYuTableView.dataSource = self;
         self.ChildJiaoYuTableView.backgroundColor = backColor;
-
         _ChildJiaoYuTableView.estimatedRowHeight = 0;
         _ChildJiaoYuTableView.estimatedSectionHeaderHeight = 0;
         _ChildJiaoYuTableView.estimatedSectionFooterHeight = 0;

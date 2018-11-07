@@ -13,14 +13,14 @@
 
 @interface WeiLanViewController ()<AMapLocationManagerDelegate, AMapGeoFenceManagerDelegate, MAMapViewDelegate, UIGestureRecognizerDelegate>
 
-@property (nonatomic, strong) MAMapView * mapView;
+@property (nonatomic, strong) MAMapView           *mapView;
 @property (nonatomic, strong) AMapGeoFenceManager *geoFenceManager;
-@property (nonatomic, strong) CLLocation *userLocation;  //获得自己的位置，方便demo添加围栏进行测试，
-@property (nonatomic, strong) MACircle *circleOverlay;
-@property (nonatomic, strong) UISlider * slider;
-@property (nonatomic, strong) MAPointAnnotation * annotation;
-@property (nonatomic, strong) UITextField * shuruText;
-@property (nonatomic, strong) UIButton * baoCunBtn;
+@property (nonatomic, strong) CLLocation          *userLocation;  //获得自己的位置，方便demo添加围栏进行测试，
+@property (nonatomic, strong) MACircle            *circleOverlay;
+@property (nonatomic, strong) UISlider            *slider;
+@property (nonatomic, strong) MAPointAnnotation   *annotation;
+@property (nonatomic, strong) UITextField         *shuruText;
+@property (nonatomic, strong) UIButton            *baoCunBtn;
 
 @end
 
@@ -170,11 +170,8 @@
     CGPoint touchPoint = [gestureRecognizer locationInView:_mapView];
     CLLocationCoordinate2D touchMapCoordinate =
     [_mapView convertPoint:touchPoint toCoordinateFromView:_mapView];
-    
     _annotation.coordinate = touchMapCoordinate;
-    
     [_mapView addAnnotation:_annotation];
-    
     _circleOverlay.coordinate = touchMapCoordinate;
 
 //    [self setLocationWithLatitude:touchMapCoordinate.latitude AndLongitude:touchMapCoordinate.longitude];
@@ -185,7 +182,6 @@
 - (void)sliderValueChanged:(UISlider *)slider {
     
     NSLog(@"slider value%f",slider.value);
-    
     self.circleOverlay.radius = slider.value * 2000;
     
 }
@@ -306,14 +302,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

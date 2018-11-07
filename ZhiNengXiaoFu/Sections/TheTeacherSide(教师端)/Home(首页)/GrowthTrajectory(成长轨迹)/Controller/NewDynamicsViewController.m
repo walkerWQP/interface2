@@ -148,7 +148,6 @@
         [self.classBtn addSubview:img];
     }
     
-   
     self.rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [self.rightBtn setImage:[UIImage imageNamed:@"相机"] forState:UIControlStateNormal];
     self.rightBtn.titleLabel.font = titFont;
@@ -252,7 +251,6 @@
                             DynamicsCommentItemModel * commentModel = [DynamicsCommentItemModel new];
                             [commentModel setValuesForKeysWithDictionary:dic];
                             [tempComments addObject:commentModel];
-
                     }
                     model.commentArr = [tempComments copy];
                     NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
@@ -261,6 +259,7 @@
                 self.zanwushuju.alpha = 0;
                 [self.dynamicsTable reloadData];
             }
+            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -297,7 +296,6 @@
             } else {
                 
                 NSMutableArray *dataArr = [NSMutableArray array];
-                
                 for (NSDictionary *dic in [responseObject objectForKey:@"data"]) {
                     [dataArr addObject:dic];
                 }
@@ -307,7 +305,6 @@
                 }
                 
                 NSMutableArray *array = [NSMutableArray array];
-                
                 for (NSDictionary *dict in dataArr) {
                     [array addObject:dict];
                 }
@@ -334,11 +331,9 @@
                         [tempComments addObject:commentModel];
                         
                     }
-                    
                     model.commentArr = [tempComments copy];
                     NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
                     [self.layoutsArr addObject:layout];
-                    
                 }
                 self.zanwushuju.alpha = 0;
                 [self.dynamicsTable reloadData];
@@ -363,9 +358,7 @@
     [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.userNameStr = [[responseObject objectForKey:@"data"] objectForKey:@"name"];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -441,7 +434,6 @@
         self.classID = model.ID;
         self.pageID = 1;
         [self.classBtn setTitle:model.name forState:UIControlStateNormal];
-        
         [self.fakeDatasource removeAllObjects];
         [self.layoutsArr removeAllObjects];
         
@@ -474,8 +466,6 @@
 
 - (void)setup {
     [self.view addSubview:self.dynamicsTable];
-//    [self.dynamicsTable addSubview:self.headImgView];
-    
 }
 
 
@@ -512,7 +502,6 @@
         _commentInputTF.backgroundColor = [UIColor lightGrayColor];
         _commentInputTF.delegate = self;
         _commentInputTF.textColor = [UIColor whiteColor];
-
         _commentInputTF.returnKeyType = UIReturnKeySend;
 
     }

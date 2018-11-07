@@ -130,6 +130,7 @@
  @param phoneNum 电话号
  */
 - (void)DynamicsCell:(NewDynamicsTableViewCell *)cell didClickUrl:(NSString *)url PhoneNum:(NSString *)phoneNum;
+
 @end
 
 

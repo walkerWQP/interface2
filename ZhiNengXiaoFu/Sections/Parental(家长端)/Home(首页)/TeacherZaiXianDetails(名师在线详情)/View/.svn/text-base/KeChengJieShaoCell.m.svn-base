@@ -44,7 +44,6 @@
     self.shanChangLabel.textColor = [UIColor blackColor];
     [self addSubview:self.shanChangLabel];
     
-    
     self.shanChangConnectLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.shanChangImg.frame.origin.y + self.shanChangImg.frame.size.height + 15, APP_WIDTH - 30, 50)];
     self.shanChangConnectLabel.numberOfLines = 0;
     self.shanChangConnectLabel.font = [UIFont systemFontOfSize:13];

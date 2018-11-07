@@ -28,7 +28,6 @@
     [super viewWillAppear:animated];
     [self setNetWork];
     [self.view addSubview:self.JingJiActivityDetailsTableView];
-    
     [self.JingJiActivityDetailsTableView registerNib:[UINib nibWithNibName:@"TongZhiDetailsCell" bundle:nil] forCellReuseIdentifier:@"TongZhiDetailsCellId"];
 }
 
@@ -60,7 +59,6 @@
     ChangeActivitiesVC.introduction = self.jingJiHuoDongListModol.introduction;
     ChangeActivitiesVC.start = self.jingJiHuoDongListModol.start;
     ChangeActivitiesVC.end = self.jingJiHuoDongListModol.end;
-    
     [self.navigationController pushViewController:ChangeActivitiesVC animated:YES];
     
 }
@@ -70,7 +68,6 @@
         self.JingJiActivityDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT) style:UITableViewStyleGrouped];
         self.JingJiActivityDetailsTableView.backgroundColor = [UIColor whiteColor];
         self.JingJiActivityDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
         self.JingJiActivityDetailsTableView.delegate = self;
         self.JingJiActivityDetailsTableView.dataSource = self;
     }
@@ -81,7 +78,6 @@
     
     NSDictionary * dic = @{@"key":[UserManager key], @"id":self.JingJiActivityDetailsId};
     [[HttpRequestManager sharedSingleton] POST:activityDetail parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
              self.Hnew = 0;
             self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant = 0;
@@ -102,7 +98,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -123,13 +118,9 @@
                 self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant += (newH + 10);
                 imageViewNew.frame =CGRectMake(0, self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant - newH,self.tongZhiDetailsCell.PicView.bounds.size.width, H * self.tongZhiDetailsCell.PicView.bounds.size.width / w);
             }
-            
             [self.JingJiActivityDetailsTableView reloadData];
-            
         }];
-        
         [self.tongZhiDetailsCell.PicView addSubview:imageViewNew];
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -183,16 +174,12 @@
         self.tongZhiDetailsCell.webView.navigationDelegate = self;
         self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.alpha = 0;
         
-        
-        
         if (self.jingJiHuoDongListModol.introduction.length>0) {
             
             [self.tongZhiDetailsCell.webView loadHTMLString:[NSString stringWithFormat:@"<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='black'><meta name='format-detection' content='telephone=no'><style type='text/css'>img{width:%fpx}</style>%@", APP_WIDTH -20 , self.jingJiHuoDongListModol.introduction] baseURL:nil];
             
         }
-        
     }
-    
     return self.tongZhiDetailsCell;
 }
 
@@ -255,7 +242,6 @@
             
         }
     }
-    
 }
 
 

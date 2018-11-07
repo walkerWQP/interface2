@@ -976,6 +976,7 @@
 		CD9C16CA216F27720094E897 /* YYCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCollectionViewLayout.m; sourceTree = "<group>"; };
 		CD9C16CC216F3AD20094E897 /* ParentXueTangNewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParentXueTangNewViewController.h; sourceTree = "<group>"; };
 		CD9C16CD216F3AD20094E897 /* ParentXueTangNewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParentXueTangNewViewController.m; sourceTree = "<group>"; };
+		CDB42850218FD41E0035244A /* libstdc  .6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc  .6.0.9.tbd"; path = "usr/lib/libstdc  .6.0.9.tbd"; sourceTree = SDKROOT; };
 		CDF2967C216DE9C800D87410 /* HomePageTongZhiView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageTongZhiView.h; sourceTree = "<group>"; };
 		CDF2967D216DE9C800D87410 /* HomePageTongZhiView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageTongZhiView.m; sourceTree = "<group>"; };
 		CDF2967F216E08A100D87410 /* SchoolTongTaiMoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolTongTaiMoreCell.h; sourceTree = "<group>"; };
@@ -3376,6 +3377,7 @@
 		F1498AB69964EAF91B5B6160 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDB42850218FD41E0035244A /* libstdc  .6.0.9.tbd */,
 				98A612BC215220C9009F92A5 /* libc++abi.tbd */,
 				98A612BA215220B5009F92A5 /* libc++.1.tbd */,
 				9812106E2151D99E00106D06 /* libc++.tbd */,
@@ -4104,9 +4106,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DuXiuKeJi.YiShanZhiHui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e63a581b-17ad-4dc0-90cf-10817a89c5c3";
 				PROVISIONING_PROFILE_SPECIFIER = YiShanZhiHuiDis;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -4135,9 +4141,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DuXiuKeJi.YiShanZhiHui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e63a581b-17ad-4dc0-90cf-10817a89c5c3";
 				PROVISIONING_PROFILE_SPECIFIER = YiShanZhiHuiDis;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

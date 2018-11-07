@@ -18,11 +18,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
         [self makeSchoolDynamicCellCellUI];
-        
-        
-      
     }
     return self;
 }
@@ -40,19 +36,16 @@
     self.headerImg.layer.masksToBounds = YES;
     [self.backImg addSubview:self.headerImg];
     
-    
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 24, self.backImg.frame.size.width - (((kScreenWidth - 30) * 119 / 364 - 40) * 112 / 82) - 50, 15)];
     self.titleLabel.font = [UIFont systemFontOfSize:15];
     self.titleLabel.textColor = RGBA(51, 51, 51, 1);
     [self.backImg addSubview:self.titleLabel];
-    
     
     self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 6, self.titleLabel.frame.size.width, 30)];
     self.contentLabel.numberOfLines = 2;
     self.contentLabel.font = [UIFont systemFontOfSize:11];
     self.contentLabel.textColor = RGBA(119, 119, 119, 1);
     [self.backImg addSubview:self.contentLabel];
-    
     
     self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, self.contentLabel.frame.origin.y + self.contentLabel.frame.size.height + 8, 100, 10)];
     self.timeLabel.textColor = RGBA(170, 170, 170, 1);

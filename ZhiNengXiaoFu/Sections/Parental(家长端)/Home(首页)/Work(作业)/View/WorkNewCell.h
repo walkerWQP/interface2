@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WorkNewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *WorkNewImg;
 @property (weak, nonatomic) IBOutlet UIImageView *WorkNewIconImg;
-@property (weak, nonatomic) IBOutlet UILabel *WorkNewFenLeiLabel;
-@property (weak, nonatomic) IBOutlet UILabel *WorkNewTacherLabel;
-@property (weak, nonatomic) IBOutlet UILabel *WorkNewTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *WorkNewFenLeiLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *WorkNewTacherLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *WorkNewTimeLabel;
 
 @end
 

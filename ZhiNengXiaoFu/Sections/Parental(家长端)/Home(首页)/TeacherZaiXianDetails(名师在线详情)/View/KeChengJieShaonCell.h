@@ -10,8 +10,8 @@
 
 @interface KeChengJieShaonCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *userImg;
-@property (weak, nonatomic) IBOutlet UILabel *userNName;
-@property (weak, nonatomic) IBOutlet UILabel *jieShaoLabel;
-@property (weak, nonatomic) IBOutlet UILabel *shanChangConnectLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *userNName;
+@property (weak, nonatomic) IBOutlet UILabel     *jieShaoLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *shanChangConnectLabel;
 
 @end

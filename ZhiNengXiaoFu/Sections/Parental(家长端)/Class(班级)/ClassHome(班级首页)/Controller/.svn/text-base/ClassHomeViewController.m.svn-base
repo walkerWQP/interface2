@@ -70,7 +70,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
         [self.classCollectionView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -122,16 +121,12 @@
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    
     return 20;
-    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize itemSize = CGSizeZero;
-    
     itemSize = CGSizeMake(APP_WIDTH, 70);
-    
     return itemSize;
 }
 
@@ -156,7 +151,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -167,7 +161,6 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     TheClassInformationViewController *theClassInformationVC = [TheClassInformationViewController new];
     [self.navigationController pushViewController:theClassInformationVC animated:YES];
-    
 }
 
 

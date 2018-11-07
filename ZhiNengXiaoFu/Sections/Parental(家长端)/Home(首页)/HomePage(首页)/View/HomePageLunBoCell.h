@@ -12,8 +12,8 @@
 @interface HomePageLunBoCell : UICollectionViewCell<SDCycleScrollViewDelegate>
 
 @property (nonatomic, retain) SDCycleScrollView *cycleScrollView2;
-@property (nonatomic, retain) NSMutableArray * dataHeaderSourceAry;
-@property (nonatomic, retain) NSMutableArray * dataHeaderSourceAryImg;
+@property (nonatomic, retain) NSMutableArray    *dataHeaderSourceAry;
+@property (nonatomic, retain) NSMutableArray    *dataHeaderSourceAryImg;
 
 - (void)getClassData;
 @end

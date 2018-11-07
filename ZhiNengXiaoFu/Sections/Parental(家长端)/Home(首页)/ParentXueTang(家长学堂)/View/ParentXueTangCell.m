@@ -10,8 +10,7 @@
 
 @implementation ParentXueTangCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self creatUI];
@@ -19,8 +18,7 @@
     return self;
 }
 
-- (void)creatUI
-{
+- (void)creatUI {
     self.ShiPinListImg = [[UIImageView alloc] initWithFrame:CGRectMake(10, 15, 136, 97)];
     self.ShiPinListImg.image = [UIImage imageNamed:@"视频列表"];
     [self addSubview:self.ShiPinListImg];
@@ -76,7 +74,6 @@
     self.biaoQianThreeLabel.layer.borderColor = [UIColor colorWithRed:0 / 255.0 green:172 / 255.0 blue:241 / 255.0 alpha:1].CGColor;
     [self addSubview:self.biaoQianThreeLabel];
     
-    
     self.liulanImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.ShiPinListImg.frame.origin.x + self.ShiPinListImg.frame.size.width + 10, self.biaoQianOneLabel.frame.origin.y + self.biaoQianOneLabel.frame.size.height + 17, 15, 9)];
     self.liulanImg.image = [UIImage imageNamed:@"眼睛"];
     [self addSubview:self.liulanImg];
@@ -111,7 +108,6 @@
 //    self.jiShuLabel.font = [UIFont systemFontOfSize:12];
 //    self.jiShuLabel.textColor = COLOR(167, 167, 167, 1);
 //    [self addSubview:self.jiShuLabel];
-    
     
 }
 

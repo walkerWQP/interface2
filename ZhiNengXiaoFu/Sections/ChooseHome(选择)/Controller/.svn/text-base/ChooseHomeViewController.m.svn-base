@@ -11,8 +11,8 @@
 #import "LoginHomePageViewController.h"
 @interface ChooseHomeViewController ()
 
-@property (nonatomic, strong) UIButton * teachaerBtn;
-@property (nonatomic, strong) UIButton * ParentBtn;
+@property (nonatomic, strong) UIButton *teachaerBtn;
+@property (nonatomic, strong) UIButton *ParentBtn;
 
 @end
 

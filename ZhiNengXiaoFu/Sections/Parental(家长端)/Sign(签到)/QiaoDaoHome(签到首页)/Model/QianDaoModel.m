@@ -10,8 +10,7 @@
 
 @implementation QianDaoModel
 
-- (NSMutableArray *)record
-{
+- (NSMutableArray *)record {
     if (!_record) {
         self.record = [@[]mutableCopy];
     }

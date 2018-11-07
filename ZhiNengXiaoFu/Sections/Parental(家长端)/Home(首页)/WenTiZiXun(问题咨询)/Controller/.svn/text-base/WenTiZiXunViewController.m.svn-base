@@ -14,7 +14,7 @@
 
 @interface WenTiZiXunViewController ()
 
-@property (nonatomic, strong) UITableView * WenTiZiXunTableView;
+@property (nonatomic, strong) UITableView     *WenTiZiXunTableView;
 @property (nonatomic,strong) JohnTopTitleView *titleView;
 
 @end

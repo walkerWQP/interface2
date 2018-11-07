@@ -13,14 +13,12 @@
 
 @interface HomePageTongZhiView ()<UIScrollViewDelegate>
 
-@property (nonatomic,strong) UIScrollView *ccpScrollView;
-@property (nonatomic,assign) CGFloat labelW;
-
-@property (nonatomic,assign) CGFloat labelH;
-@property (nonatomic,strong) NSTimer *timer;
-
-@property (nonatomic,assign) int page;
-@property (nonatomic, strong) NSMutableArray * objAry;
+@property (nonatomic,strong) UIScrollView    *ccpScrollView;
+@property (nonatomic,assign) CGFloat         labelW;
+@property (nonatomic,assign) CGFloat         labelH;
+@property (nonatomic,strong) NSTimer         *timer;
+@property (nonatomic,assign) int             page;
+@property (nonatomic, strong) NSMutableArray *objAry;
 
 
 @end
@@ -30,7 +28,6 @@
 - (UIScrollView *)ccpScrollView {
     
     if (_ccpScrollView == nil) {
-        
         _ccpScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         _ccpScrollView.backgroundColor = [UIColor whiteColor];
         _ccpScrollView.showsHorizontalScrollIndicator = NO;
@@ -38,23 +35,20 @@
         _ccpScrollView.scrollEnabled = NO;
         _ccpScrollView.pagingEnabled = YES;
         [self addSubview:_ccpScrollView];
-        
         [_ccpScrollView setContentOffset:CGPointMake(0 , self.labelH) animated:YES];
     }
-    
     return _ccpScrollView;
+    
 }
 
-- (NSMutableArray *)objAry
-{
+- (NSMutableArray *)objAry {
     if (!_objAry) {
         self.objAry = [@[]mutableCopy];
     }
     return _objAry;
 }
 
-- (NSMutableArray *)titleNewArray
-{
+- (NSMutableArray *)titleNewArray {
     if (!_titleNewArray) {
         self.titleNewArray = [@[]mutableCopy];
     }
@@ -65,17 +59,11 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     
     if (self = [super initWithFrame:frame]) {
-        
         self.labelW = frame.size.width;
-        
         self.labelH = frame.size.height;
-        
         self.ccpScrollView.delegate = self;
-        
         [self addTimer];
-        
     }
-    
     return self;
 }
 
@@ -83,7 +71,6 @@
 - (void)setTitleArray:(NSMutableArray *)titleArray {
     
     _titleArray = titleArray;
-    
     if (titleArray == nil) {
         [self removeTimer];
         return;
@@ -94,19 +81,14 @@
     }
     
     id lastObj = [titleArray lastObject];
-    
     NSMutableArray *objArray = [[NSMutableArray alloc] init];
-    
     [objArray addObject:lastObj];
     [objArray addObjectsFromArray:titleArray];
-    
     self.titleNewArray = objArray;
     
     //CGFloat contentW = 0;
     CGFloat contentH = self.labelH *objArray.count;
-    
     self.ccpScrollView.contentSize = CGSizeMake(0, contentH);
-    
     CGFloat labelW = self.ccpScrollView.frame.size.width;
     self.labelW = labelW;
     CGFloat labelH = self.ccpScrollView.frame.size.height;
@@ -115,9 +97,7 @@
     
     //防止重复赋值数据叠加
     for (id label in self.ccpScrollView.subviews) {
-        
         [label removeFromSuperview];
-        
     }
     
     for (int i = 0; i < objArray.count; i++) {
@@ -157,45 +137,32 @@
 - (void)clickTheLabel:(UITapGestureRecognizer *)tap {
     
     if (self.clickLabelBlock) {
-        
         NSInteger index = [[[self.titleNewArray objectAtIndex:tap.view.tag] objectForKey:@"id"] integerValue];
-
         NSInteger tag = tap.view.tag - 1;
         
         if (tag < 100) {
-            
             tag = 100 + (self.titleArray.count - 1);
-            
         }
         self.clickLabelBlock(index,self.titleArray[tag - 100]);
-        
     }
-    
 }
 
 - (void) clickTitleLabel:(clickLabelBlock) clickLabelBlock {
-    
     self.clickLabelBlock = clickLabelBlock;
-    
 }
 
 - (void)setIsCanScroll:(BOOL)isCanScroll {
     
     if (isCanScroll) {
-        
         self.ccpScrollView.scrollEnabled = YES;
-        
     } else {
-        
         self.ccpScrollView.scrollEnabled = NO;
-        
     }
     
 }
 - (void)setBGColor:(UIColor *)BGColor {
     
     _BGColor = BGColor;
-    
     self.backgroundColor = BGColor;
     
 }
@@ -225,7 +192,7 @@
     
     
 //   oldPoint.y += self.ccpScrollView.frame.size.height;
-    NSLog(@"+++++++++++++++++%.f, ------------------%.f",oldPoint,oldPoint.y);
+    
     [self.ccpScrollView setContentOffset:oldPoint animated:YES];
     
 }

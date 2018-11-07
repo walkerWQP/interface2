@@ -73,9 +73,7 @@
 
 - (void)setNetWork:(NSInteger)page {
     NSDictionary * dic = @{@"key":[UserManager key], @"status":@0,@"page":[NSString stringWithFormat:@"%ld", page]};
-    
     [[HttpRequestManager sharedSingleton] POST:ConsultConsultList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         //结束头部刷新
         [self.WeiHuiFuTableView.mj_header endRefreshing];
         //结束尾部刷新
@@ -88,7 +86,6 @@
             
             if (self.WeiHuiFuAry.count == 0) {
                 self.zanwushuju.alpha = 1;
-                
             } else {
                 self.zanwushuju.alpha = 0;
             }
@@ -152,7 +149,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WeiHuiFuCell * cell = [tableView dequeueReusableCellWithIdentifier:@"WeiHuiFuCellId" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     if (self.WeiHuiFuAry.count != 0) {
         ConsultListModel * model = [self.WeiHuiFuAry objectAtIndex:indexPath.row];
         [cell.WeiHuiFuUserIconImg sd_setImageWithURL:[NSURL URLWithString:model.s_headimg] placeholderImage:[UIImage imageNamed:@"user"]];
@@ -160,7 +156,6 @@
         cell.WeiHuiFuQuestionLabel.text = model.question;
     }
     return cell;
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

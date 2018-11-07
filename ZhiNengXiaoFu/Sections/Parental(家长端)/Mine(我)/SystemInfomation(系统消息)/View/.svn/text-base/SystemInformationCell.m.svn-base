@@ -34,7 +34,6 @@
         self.titleLabel.textColor = COLOR(51, 51, 51, 1);
         self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
         self.titleLabel.numberOfLines = 1;
-
     }
     return _titleLabel;
 }

@@ -10,5 +10,5 @@
 
 @interface SchoolDongTaiDetailsViewController : UIViewController
 
-@property (nonatomic, copy) NSString * schoolDongTaiId;
+@property (nonatomic, copy) NSString *schoolDongTaiId;
 @end

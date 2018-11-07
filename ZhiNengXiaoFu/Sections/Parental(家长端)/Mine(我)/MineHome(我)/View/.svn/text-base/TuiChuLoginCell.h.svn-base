@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TuiChuLoginCell : UITableViewCell
-@property (nonatomic, strong) UIButton * tuichuLoginBtn;
+
+@property (nonatomic, strong) UIButton *tuichuLoginBtn;
 
 @end

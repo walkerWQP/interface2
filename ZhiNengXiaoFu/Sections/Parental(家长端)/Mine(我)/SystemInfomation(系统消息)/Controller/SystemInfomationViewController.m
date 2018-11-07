@@ -10,8 +10,8 @@
 #import "SystemInformationCell.h"
 
 @interface SystemInfomationViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, strong) UITableView * systemInfomationTableView;
-@property (nonatomic, strong) NSMutableArray * leaveListAry;
+@property (nonatomic, strong) UITableView    *systemInfomationTableView;
+@property (nonatomic, strong) NSMutableArray *leaveListAry;
 @end
 
 @implementation SystemInfomationViewController

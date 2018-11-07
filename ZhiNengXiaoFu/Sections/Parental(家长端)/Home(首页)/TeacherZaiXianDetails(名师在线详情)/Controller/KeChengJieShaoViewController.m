@@ -10,7 +10,7 @@
 #import "KeChengJieShaonCell.h"
 @interface KeChengJieShaoViewController ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) UITableView * KeChengJieShaoTableView;
+@property (nonatomic, strong) UITableView *KeChengJieShaoTableView;
 
 
 @end

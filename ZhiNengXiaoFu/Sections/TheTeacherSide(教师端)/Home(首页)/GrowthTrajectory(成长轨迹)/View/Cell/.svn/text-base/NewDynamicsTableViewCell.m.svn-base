@@ -32,13 +32,13 @@
 
 
 - (void)layout {
-    _grayBtn.frame = self.frame;
-    _thumbImg.left = kDynamicsGrayPicPadding;
-    _thumbImg.top = kDynamicsGrayPicPadding;
-    _thumbImg.width = kDynamicsGrayPicHeight;
+    _grayBtn.frame   = self.frame;
+    _thumbImg.left   = kDynamicsGrayPicPadding;
+    _thumbImg.top    = kDynamicsGrayPicPadding;
+    _thumbImg.width  = kDynamicsGrayPicHeight;
     _thumbImg.height = kDynamicsGrayPicHeight;
-    _dspLabel.left = _thumbImg.right + kDynamicsNameDetailPadding;
-    _dspLabel.width = self.right - kDynamicsNameDetailPadding - _dspLabel.left;
+    _dspLabel.left   = _thumbImg.right + kDynamicsNameDetailPadding;
+    _dspLabel.width  = self.right - kDynamicsNameDetailPadding - _dspLabel.left;
 }
 
 - (UIButton *)grayBtn {
@@ -100,19 +100,18 @@
 
 
 - (void)setWithLikeArr:(NSMutableArray *)likeArr CommentArr:(NSMutableArray *)commentArr DynamicsLayout:(NewDynamicsLayout *)layout {
-    _likeArray = likeArr;
+    _likeArray        = likeArr;
     self.commentArray = layout.commentLayoutArr;
-    _layout = layout;
+    _layout           = layout;
     [self layoutView];
 }
 
 
 - (void)layoutView {
-    _bgImgView.top = 0;
-    _bgImgView.left = 0;
-    _bgImgView.width = self.frame.size.width;
+    _bgImgView.top    = 0;
+    _bgImgView.left   = 0;
+    _bgImgView.width  = self.frame.size.width;
     _bgImgView.height = _layout.thumbCommentHeight;
-    
     UIView * lastView = _bgImgView;
     
     if (_likeArray.count != 0) {
@@ -129,11 +128,11 @@
     
     if (_likeArray.count != 0 && _commentArray.count != 0) {
         _dividingLine.hidden = NO;
-        _dividingLine.top = _thumbLabel.bottom;
-        _dividingLine.left = 0;
-        _dividingLine.width = self.frame.size.width;
+        _dividingLine.top    = _thumbLabel.bottom;
+        _dividingLine.left   = 0;
+        _dividingLine.width  = self.frame.size.width;
         _dividingLine.height = .5;
-        lastView = _dividingLine;
+        lastView             = _dividingLine;
     } else {
         _dividingLine.hidden = YES;
     }
@@ -176,10 +175,10 @@
         [cell addSubview:label];
     }
     
-    label.top = kDynamicsGrayPicPadding;
-    label.left = kDynamicsNameDetailPadding;
-    label.width = self.frame.size.width - kDynamicsNameDetailPadding*2;
-    label.height = layout.textBoundingSize.height;
+    label.top        = kDynamicsGrayPicPadding;
+    label.left       = kDynamicsNameDetailPadding;
+    label.width      = self.frame.size.width - kDynamicsNameDetailPadding*2;
+    label.height     = layout.textBoundingSize.height;
     label.textLayout = layout;
     
     return cell;
@@ -225,11 +224,11 @@
 
 - (UITableView *)commentTable {
     if (!_commentTable) {
-        _commentTable = [UITableView new];
-        _commentTable.dataSource = self;
-        _commentTable.delegate = self;
-        _commentTable.scrollEnabled = NO;
-        _commentTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _commentTable                 = [UITableView new];
+        _commentTable.dataSource      = self;
+        _commentTable.delegate        = self;
+        _commentTable.scrollEnabled   = NO;
+        _commentTable.separatorStyle  = UITableViewCellSeparatorStyleNone;
         _commentTable.backgroundColor = [UIColor clearColor];
     }
     return _commentTable;
@@ -279,25 +278,25 @@
     [_portrait sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.head_img]] placeholderImage:[UIImage imageNamed:@"user"]];
     
     //昵称
-    _nameLabel.text = model.name;
-    _nameLabel.top = kDynamicsNormalPadding;
-    _nameLabel.left = _portrait.right + kDynamicsPortraitNamePadding;
-    CGSize nameSize = [_nameLabel sizeThatFits:CGSizeZero];
-    _nameLabel.width = nameSize.width;
+    _nameLabel.text   = model.name;
+    _nameLabel.top    = kDynamicsNormalPadding;
+    _nameLabel.left   = _portrait.right + kDynamicsPortraitNamePadding;
+    CGSize nameSize   = [_nameLabel sizeThatFits:CGSizeZero];
+    _nameLabel.width  = nameSize.width;
     _nameLabel.height = kDynamicsNameHeight;
     
     
     //描述
-    _detailLabel.left = _nameLabel.left;
-    _detailLabel.top = _nameLabel.bottom + kDynamicsNameDetailPadding;
-    _detailLabel.width = APP_WIDTH - kDynamicsNormalPadding * 2 - kDynamicsPortraitNamePadding - kDynamicsPortraitWidthAndHeight;
-    _detailLabel.height = layout.detailLayout.textBoundingSize.height;
+    _detailLabel.left       = _nameLabel.left;
+    _detailLabel.top        = _nameLabel.bottom + kDynamicsNameDetailPadding;
+    _detailLabel.width      = APP_WIDTH - kDynamicsNormalPadding * 2 - kDynamicsPortraitNamePadding - kDynamicsPortraitWidthAndHeight;
+    _detailLabel.height     = layout.detailLayout.textBoundingSize.height;
     _detailLabel.textLayout = layout.detailLayout;
-    lastView = _detailLabel;
+    lastView                = _detailLabel;
     
     //展开/收起按钮
-    _moreLessDetailBtn.left = _nameLabel.left;
-    _moreLessDetailBtn.top = _detailLabel.bottom + kDynamicsNameDetailPadding;
+    _moreLessDetailBtn.left   = _nameLabel.left;
+    _moreLessDetailBtn.top    = _detailLabel.bottom + kDynamicsNameDetailPadding;
     _moreLessDetailBtn.height = kDynamicsMoreLessButtonHeight;
     [_moreLessDetailBtn sizeToFit];
     
@@ -309,7 +308,6 @@
         }else{
             [_moreLessDetailBtn setTitle:@"全文" forState:UIControlStateNormal];
         }
-        
         lastView = _moreLessDetailBtn;
     } else {
         _moreLessDetailBtn.hidden = YES;
@@ -317,13 +315,11 @@
     //图片集
     if (model.img.count != 0) {
         _picContainerView.hidden = NO;
-        
         _picContainerView.left = _nameLabel.left;
         _picContainerView.top = lastView.bottom + kDynamicsNameDetailPadding;
         _picContainerView.width = layout.photoContainerSize.width;
         _picContainerView.height = layout.photoContainerSize.height;
         _picContainerView.picPathStringsArray = model.img;
-        
         lastView = _picContainerView;
     } else {
         _picContainerView.hidden = YES;
@@ -331,35 +327,30 @@
     //头条
     if (model.pagetype == 1) {
         _grayView.hidden = NO;
-        
         _grayView.left = _nameLabel.left;
         _grayView.top = lastView.bottom + kDynamicsNameDetailPadding;
         _grayView.width = _detailLabel.right - _grayView.left;
         _grayView.height = kDynamicsGrayBgHeight;
-        
         [_grayView.thumbImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.likeArr]]];
         _grayView.dspLabel.height = layout.dspLayout.textBoundingSize.height;
         _grayView.dspLabel.centerY = _grayView.thumbImg.centerY;
         _grayView.dspLabel.textLayout = layout.dspLayout;
-        
         lastView = _grayView;
     }else{
         _grayView.hidden = YES;
     }
     
     //时间
-    _dateLabel.left = _detailLabel.left;
-    _dateLabel.top = lastView.bottom + kDynamicsPortraitNamePadding;
-    _dateLabel.text = model.create_time;
-    CGSize dateSize = [_dateLabel sizeThatFits:CGSizeMake(200, kDynamicsNameHeight)];
-    _dateLabel.width = dateSize.width;
+    _dateLabel.left   = _detailLabel.left;
+    _dateLabel.top    = lastView.bottom + kDynamicsPortraitNamePadding;
+    _dateLabel.text   = model.create_time;
+    CGSize dateSize   = [_dateLabel sizeThatFits:CGSizeMake(200, kDynamicsNameHeight)];
+    _dateLabel.width  = dateSize.width;
     _dateLabel.height = kDynamicsNameHeight;
-    
-    
-    _deleteBtn.left = _dateLabel.right + kDynamicsPortraitNamePadding;
-    _deleteBtn.top = _dateLabel.top;
+    _deleteBtn.left   = _dateLabel.right + kDynamicsPortraitNamePadding;
+    _deleteBtn.top    = _dateLabel.top;
     CGSize deleteSize = [_deleteBtn sizeThatFits:CGSizeMake(100, kDynamicsNameHeight)];
-    _deleteBtn.width = deleteSize.width;
+    _deleteBtn.width  = deleteSize.width;
     _deleteBtn.height = kDynamicsNameHeight;
     
     //更多
@@ -370,9 +361,9 @@
     if (model.likeArr.count != 0 || model.commentArr.count != 0) {
         _thumbCommentView.hidden = NO;
         //点赞/评论
-        _thumbCommentView.left = _detailLabel.left;
-        _thumbCommentView.top = _dateLabel.bottom + kDynamicsPortraitNamePadding;
-        _thumbCommentView.width = _detailLabel.width;
+        _thumbCommentView.left   = _detailLabel.left;
+        _thumbCommentView.top    = _dateLabel.bottom + kDynamicsPortraitNamePadding;
+        _thumbCommentView.width  = _detailLabel.width;
         _thumbCommentView.height = layout.thumbCommentHeight;
         
         [_thumbCommentView setWithLikeArr:model.likeArr CommentArr:model.commentArr DynamicsLayout:layout];
@@ -382,9 +373,9 @@
     
     
     //分割线
-    _dividingLine.left = 15;
+    _dividingLine.left   = 15;
     _dividingLine.height = .5;
-    _dividingLine.width = APP_WIDTH - 15;
+    _dividingLine.width  = APP_WIDTH - 15;
     _dividingLine.bottom = layout.height - .5;
     
     WS(weakSelf);
@@ -411,7 +402,7 @@
 #pragma mark - 弹出JRMenu
 - (void)presentMenuController {
     
-    DynamicsModel * model = _layout.model;
+    DynamicsModel *model = _layout.model;
     if (!model.isThumb) {//点赞
         if (!_jrMenuView) {
             _jrMenuView = [[JRMenuView alloc] init];
@@ -639,14 +630,14 @@
     //// 再然后，把间隔的秒数折算成天数和小时数：
     NSString *dateStr = @"";
     
-    if (time<=60) {  //// 1分钟以内的
+    if (time <= 60) {  //// 1分钟以内的
         dateStr = @"刚刚";
-    } else if(time<=60*60){  ////  一个小时以内的
+    } else if(time <= 60 * 60){  ////  一个小时以内的
         
-        int mins = time/60;
+        int mins = time / 60;
         dateStr = [NSString stringWithFormat:@"%d分钟前",mins];
         
-    } else if(time<=60*60*24){   //// 在两天内的
+    } else if(time <= 60 * 60 * 24){   //// 在两天内的
         
         [dateFormatter setDateFormat:@"YYYY/MM/dd"];
         NSString * need_yMd = [dateFormatter stringFromDate:needFormatDate];
@@ -656,7 +647,7 @@
         if ([need_yMd isEqualToString:now_yMd]) {
             //// 在同一天
             dateStr = [NSString stringWithFormat:@"今天 %@",[dateFormatter stringFromDate:needFormatDate]];
-        }else{
+        } else {
             ////  昨天
             dateStr = [NSString stringWithFormat:@"昨天 %@",[dateFormatter stringFromDate:needFormatDate]];
         }
@@ -670,14 +661,12 @@
             ////  在同一年
             [dateFormatter setDateFormat:@"MM月dd日"];
             dateStr = [dateFormatter stringFromDate:needFormatDate];
-        }else{
+        } else {
             [dateFormatter setDateFormat:@"yyyy/MM/dd"];
             dateStr = [dateFormatter stringFromDate:needFormatDate];
         }
     }
-    
     return dateStr;
-    
 }
 
 

@@ -11,11 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WorkNewTwoCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UILabel *WorkNewTwoTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *WorkNewTwoTitleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *WorkNewTwoIconImg;
-@property (weak, nonatomic) IBOutlet UILabel *WorkNewTwoNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *WorkNewTwoTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *WorkNewTwoFenLeiLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *WorkNewTwoNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *WorkNewTwoTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *WorkNewTwoFenLeiLabel;
 
 @end
 

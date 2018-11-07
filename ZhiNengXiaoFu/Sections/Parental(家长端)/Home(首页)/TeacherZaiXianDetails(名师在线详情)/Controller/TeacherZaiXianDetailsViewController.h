@@ -10,5 +10,6 @@
 
 @interface TeacherZaiXianDetailsViewController : UIViewController
 
-@property (nonatomic, copy) NSString * teacherZaiXianDetailsId;
+@property (nonatomic, copy) NSString *teacherZaiXianDetailsId;
+
 @end

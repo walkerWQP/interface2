@@ -97,18 +97,13 @@
         bigViewT.userInteractionEnabled = YES;
         [self.scrollView addSubview:bigViewT];
     }
-    
-//    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, (kScreenWidth - 40) / 3 * 144 / 235 + 15, kScreenWidth, 10)];
-//    lineView.backgroundColor = [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1];
-//    [self addSubview:lineView];
 }
 
 -(void)buttonClick:(UIButton *)button
 {
     NSDictionary *dic=self.array[button.tag];
     NSString *str=[NSString stringWithFormat:@"%@",dic[@"id"]];//dic[@"id"];
-    if (_HomePageJingJiViewDelegate && [_HomePageJingJiViewDelegate respondsToSelector:@selector(jumpToAnswerHomePageJingJi:weizhi:)])
-    {
+    if (_HomePageJingJiViewDelegate && [_HomePageJingJiViewDelegate respondsToSelector:@selector(jumpToAnswerHomePageJingJi:weizhi:)]) {
         [_HomePageJingJiViewDelegate jumpToAnswerHomePageJingJi:str weizhi:@""];
     }
 }

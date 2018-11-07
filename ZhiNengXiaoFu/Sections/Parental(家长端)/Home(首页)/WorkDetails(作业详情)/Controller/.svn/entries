@@ -1,7 +1,7 @@
 10
 
 dir
-271
+272
 http://ios2@61.132.226.224:8081/svn/duxiu/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/Parental(%E5%AE%B6%E9%95%BF%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/WorkDetails(%E4%BD%9C%E4%B8%9A%E8%AF%A6%E6%83%85)/Controller
 http://ios2@61.132.226.224:8081/svn/duxiu
 
@@ -28,14 +28,14 @@ d466fc26-aeb2-6048-8488-bbf0a50f055a
 
 WorkDetailsViewController.m
 file
+277
 
 
 
-
-2018-10-27T07:16:29.000000Z
-f00cf8ec67ccd06368545371df917fd9
-2018-10-27T07:21:54.210937Z
-265
+2018-11-05T02:42:09.000000Z
+473b98903682137b34458b0d682dbdbb
+2018-11-05T09:57:42.036132Z
+277
 ios2
 
 
@@ -58,18 +58,18 @@ ios2
 
 
 
-11772
+11633
 
 WorkDetailsViewController.h
 file
+277
 
 
 
-
-2018-09-20T07:55:46.000000Z
-15f1e145b466ccac48da8947854a621d
-2018-09-11T08:05:51.029296Z
-80
+2018-11-05T02:42:09.000000Z
+5e83e1c61efd5e8ca0258cff8e0d54c5
+2018-11-05T09:57:42.036132Z
+277
 ios2
 
 
@@ -92,5 +92,5 @@ ios2
 
 
 
-484
+487
 

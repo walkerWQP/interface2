@@ -10,9 +10,9 @@
 
 @interface WeiHuiFuCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *WeiHuiFuUserIconImg;
-@property (weak, nonatomic) IBOutlet UILabel *WeiHuiFuNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *WeiHuiFuQuestionLabel;
-@property (weak, nonatomic) IBOutlet UIButton *WeiHuiFuBtn;
-@property (weak, nonatomic) IBOutlet UIView *WeiHuiFuLineView;
+@property (weak, nonatomic) IBOutlet UILabel     *WeiHuiFuNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *WeiHuiFuQuestionLabel;
+@property (weak, nonatomic) IBOutlet UIButton    *WeiHuiFuBtn;
+@property (weak, nonatomic) IBOutlet UIView      *WeiHuiFuLineView;
 
 @end

@@ -10,7 +10,6 @@
 
 @implementation OngoingModel
 + (NSDictionary *)replacedKeyFromPropertyName {
-    
     return @{@"ID": @"id"};
 }
 @end

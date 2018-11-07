@@ -55,10 +55,8 @@
     [self.view addSubview:self.ChildJiaoYuTableView];
     self.ChildJiaoYuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.ChildJiaoYuTableView registerClass:[ParentXueTangCell class] forCellReuseIdentifier:@"ParentXueTangCellId"];
-    
     [self.ChildJiaoYuTableView registerNib:[UINib nibWithNibName:@"TeacherListNCell" bundle:nil] forCellReuseIdentifier:@"TeacherListNCellId"];
 
-    
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 350, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
@@ -74,19 +72,16 @@
     self.ChildJiaoYuTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopic)];
     
      [self getBannersURLData];
-    
-      self.biaoji = 1;
+     self.biaoji = 1;
 }
 
 
 - (void)getBannersURLData {
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"11"};
-    NSLog(@"%@",[UserManager key]);
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
             self.bannerArr = [BannerModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-            
             [self.ChildJiaoYuTableView reloadData];
             
         } else {
@@ -96,7 +91,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -385,8 +379,7 @@
                 cell.TeacherListNThreeLabel.text = [model.label objectAtIndex:2];
             }
         }
-    
-    return cell;
+      return cell;
     }
 }
 
@@ -406,7 +399,6 @@
         ParentXueTangModel * model = [self.ChildJiaoYuAry objectAtIndex:indexPath.row];
         parentXueTangDetailsVC.ParentXueTangDetailsId = model.ID;
     }
-    
     [self.navigationController pushViewController:parentXueTangDetailsVC animated:YES];
 }
 

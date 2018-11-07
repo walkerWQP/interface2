@@ -36,7 +36,6 @@
     self.bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, APP_WIDTH - 20, APP_HEIGHT * 0.3)];
     self.bgView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.bgView];
-    
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 60, 60)];
     self.headImgView.layer.masksToBounds = YES;
     self.headImgView.layer.cornerRadius = 30;
@@ -47,7 +46,6 @@
     }
     
     [self.bgView addSubview:self.headImgView];
-    
     self.problemLabel = [[UILabel alloc] initWithFrame:CGRectMake(20 + self.headImgView.frame.size.width, 10, self.bgView.frame.size.width - self.headImgView.frame.size.width - 30, 30)];
     self.problemLabel.textColor = titlColor;
     self.problemLabel.font = titFont;

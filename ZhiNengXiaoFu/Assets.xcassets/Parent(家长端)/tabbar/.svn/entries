@@ -1,7 +1,7 @@
 10
 
 dir
-271
+272
 http://ios2@61.132.226.224:8081/svn/duxiu/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Assets.xcassets/Parent(%E5%AE%B6%E9%95%BF%E7%AB%AF)/tabbar
 http://ios2@61.132.226.224:8081/svn/duxiu
 
@@ -44,7 +44,7 @@ file
 
 
 
-2018-10-15T08:33:09.000000Z
+2018-10-31T08:13:24.000000Z
 31cc68f34934a99c0b0c1bebde56309c
 2018-10-16T02:35:21.379882Z
 210
@@ -72,15 +72,15 @@ ios2
 
 62
 
-首页选中.imageset
-dir
-
 我的选中.imageset
 dir
 
-首页未选.imageset
+首页选中.imageset
 dir
 
 我的未选.imageset
+dir
+
+首页未选.imageset
 dir
 

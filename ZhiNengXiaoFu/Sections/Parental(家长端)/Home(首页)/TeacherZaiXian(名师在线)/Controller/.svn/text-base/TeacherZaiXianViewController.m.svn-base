@@ -14,10 +14,10 @@
 
 @interface TeacherZaiXianViewController ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) UITableView * TeacherZaiXianTableView;
-@property (nonatomic, strong) NSMutableArray * TeacherZaiXianAry;
-@property (nonatomic, assign) NSInteger     page;
-@property (nonatomic, strong) UIImageView * zanwushuju;
+@property (nonatomic, strong) UITableView    *TeacherZaiXianTableView;
+@property (nonatomic, strong) NSMutableArray *TeacherZaiXianAry;
+@property (nonatomic, assign) NSInteger      page;
+@property (nonatomic, strong) UIImageView    *zanwushuju;
 
 @end
 
@@ -33,17 +33,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"名师在线";
-    
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor redColor];
     self.view.backgroundColor = [UIColor whiteColor];
-    
     if (@available(iOS 11.0, *)) {
         self.TeacherZaiXianTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    
     [self.view addSubview:self.TeacherZaiXianTableView];
     self.TeacherZaiXianTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.TeacherZaiXianTableView registerNib:[UINib nibWithNibName:@"TeacherListNCell" bundle:nil] forCellReuseIdentifier:@"TeacherListNCellId"];
@@ -93,13 +90,10 @@
             
             if (self.TeacherZaiXianAry.count == 0) {
                 self.zanwushuju.alpha = 1;
-
             } else {
                 self.zanwushuju.alpha = 0;
             }
-            
             [self.TeacherZaiXianTableView reloadData];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -107,7 +101,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
@@ -170,7 +163,6 @@
                 cell.TeacherListNBoFangCi.text = [NSString stringWithFormat:@"%.1f万次播放", num];
             } else {
                 cell.TeacherListNBoFangCi.text = [NSString stringWithFormat:@"%ld次播放", model.view];
-
             }
             cell.TeacherListNFenLeiLabel.text = [NSString stringWithFormat:@"所属分类:%@", model.t_name];
             

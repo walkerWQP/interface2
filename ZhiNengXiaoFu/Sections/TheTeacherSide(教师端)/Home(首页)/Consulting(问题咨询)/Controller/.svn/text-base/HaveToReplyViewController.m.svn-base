@@ -44,13 +44,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self makeHaveToReplyViewControllerUI];
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
     [self.haveToReplyCollectionView addSubview:self.zanwushuju];
-
 }
 
 - (void)loadNewTopic {
@@ -67,9 +65,7 @@
 - (void)getConsultListURLData:(NSInteger)page {
     
     NSDictionary * dic = @{@"key":[UserManager key], @"status":@1,@"page":[NSString stringWithFormat:@"%ld",page]};
-    
     [[HttpRequestManager sharedSingleton] POST:ConsultConsultList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         //结束头部刷新
         [self.haveToReplyCollectionView.mj_header endRefreshing];
         //结束尾部刷新
@@ -94,7 +90,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -112,7 +107,6 @@
     self.haveToReplyCollectionView.delegate = self;
     self.haveToReplyCollectionView.dataSource = self;
     [self.view addSubview:self.haveToReplyCollectionView];
-    
     [self.haveToReplyCollectionView registerClass:[HaveToReplyCell class] forCellWithReuseIdentifier:HaveToReplyCell_CollectionView];
 }
 

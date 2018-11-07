@@ -10,8 +10,7 @@
 
 @implementation PersonIconCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self addSubview:self.nameLabel];
@@ -22,8 +21,7 @@
     return self;
 }
 
-- (UILabel *)nameLabel
-{
+- (UILabel *)nameLabel {
     if (!_nameLabel) {
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 70 / 2 - 10, 100, 20)];
         self.nameLabel.textColor = COLOR(51, 51, 51, 1);
@@ -41,8 +39,7 @@
 //    return _moreImg;
 //}
 
-- (UIImageView *)iConImg
-{
+- (UIImageView *)iConImg {
     if (!_iConImg) {
         self.iConImg = [[UIImageView alloc] initWithFrame:CGRectMake(APP_WIDTH - 15 - 50, 10 , 50, 50)];
         self.iConImg.layer.cornerRadius = 25;
@@ -51,10 +48,8 @@
     return _iConImg;
 }
 
-- (UIView *)lineView
-{
+- (UIView *)lineView {
     if (!_lineView) {
-        
         self.lineView = [[UIView alloc] initWithFrame:CGRectMake(20, 69, APP_WIDTH - 20, 1)];
         self.lineView.backgroundColor = COLOR(232, 232, 232, 1);
     }

@@ -13,19 +13,19 @@
 
 @property (nonatomic, strong) UIView *thumbView;
 @property (nonatomic, assign) CGSize largeImageSize;
-@property (nonatomic, strong) NSURL *largeImageURL;
+@property (nonatomic, strong) NSURL  *largeImageURL;
 
 @end
 
 
 @interface YYPhotoGroupView : UIView
 
-@property (nonatomic, readonly) NSArray *groupItems;
-@property (nonatomic, readonly) NSInteger currentPage;
-@property (nonatomic, assign) BOOL blurEffectBackground;
-@property (nonatomic, assign) BOOL showAnimated;
-@property (nonatomic, assign) BOOL showPageControl;
-@property (nonatomic, weak) UIViewController * superView;
+@property (nonatomic, readonly) NSArray      *groupItems;
+@property (nonatomic, readonly) NSInteger    currentPage;
+@property (nonatomic, assign) BOOL           blurEffectBackground;
+@property (nonatomic, assign) BOOL           showAnimated;
+@property (nonatomic, assign) BOOL           showPageControl;
+@property (nonatomic, weak) UIViewController *superView;
 
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;

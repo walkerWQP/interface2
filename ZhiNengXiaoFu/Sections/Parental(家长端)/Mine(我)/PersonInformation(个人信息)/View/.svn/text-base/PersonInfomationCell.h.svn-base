@@ -10,10 +10,10 @@
 
 @interface PersonInfomationCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel * nameLabel;
-@property (nonatomic, strong) UILabel * titleLabel;
-@property (nonatomic, strong) UIView * lineView;
-@property (nonatomic, strong) UILabel * newTitleLabel;
-@property (nonatomic, strong) UIImageView * moreImg;
+@property (nonatomic, strong) UILabel     *nameLabel;
+@property (nonatomic, strong) UILabel     *titleLabel;
+@property (nonatomic, strong) UIView      *lineView;
+@property (nonatomic, strong) UILabel     *newTitleLabel;
+@property (nonatomic, strong) UIImageView *moreImg;
 
 @end

@@ -57,23 +57,19 @@
     self.titleView.backgroundColor = backColor;
     self.titleView = [[JohnTopTitleView alloc]initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
     [self.view addSubview:self.titleView];
-    
     self.rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
     [self.rightBtn setTitle:@"切换班级" forState:UIControlStateNormal];
     self.rightBtn.titleLabel.font = titFont;
     [self.rightBtn addTarget:self action:@selector(rightBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightBtn];
-    
     [self getClassURLData];
-    
 }
 
 
 - (void)rightBtn:(UIButton *)sender {
     NSLog(@"点击选择班级");
     [self getClassURLDataForClassID];
-    
 }
 
 - (void)getClassConditionURLData:(NSString *)type classID:(NSString *)classID {  //1全部学生
@@ -92,7 +88,6 @@
             self.titleView.hidden = YES;
             [self.titleArray removeAllObjects];
             [self makeSignClassViewControllerUI];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -100,7 +95,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -128,7 +122,6 @@
 }
 
 - (NSArray <UIViewController *>*)setChildVC{
-    
     //总数
     TotalNumberViewController *totalNumberVC = [[TotalNumberViewController alloc]init];
     totalNumberVC.ID = self.ID;
@@ -154,7 +147,6 @@
 }
 
 - (void)getClassURLData {
-    
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
@@ -172,7 +164,6 @@
                 [self getClassConditionURLData:@"1" classID:self.ID];
             }
             
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -180,10 +171,8 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
         
     }];
 }
@@ -192,7 +181,6 @@
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.classNameArr = [PublishJobModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             NSMutableArray * ary = [@[]mutableCopy];
             for (PublishJobModel * model in self.classNameArr) {
@@ -207,7 +195,6 @@
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
             } else {
                 
-                
             }
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
@@ -218,8 +205,7 @@
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-        
+    
     }];
 }
 

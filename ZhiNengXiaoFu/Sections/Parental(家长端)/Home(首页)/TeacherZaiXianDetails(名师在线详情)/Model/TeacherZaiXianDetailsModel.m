@@ -11,7 +11,6 @@
 @implementation TeacherZaiXianDetailsModel
 
 + (NSDictionary *)replacedKeyFromPropertyName {
-    
     return @{@"ID": @"id"};
 }
 

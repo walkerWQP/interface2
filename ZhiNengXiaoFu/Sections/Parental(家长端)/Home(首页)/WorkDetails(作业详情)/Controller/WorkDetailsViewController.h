@@ -10,9 +10,8 @@
 
 @interface WorkDetailsViewController : UIViewController
 
-@property (nonatomic, copy) NSString * workId;
-
-@property (nonatomic, strong) NSString  *typeID;
+@property (nonatomic, copy) NSString     *workId;
+@property (nonatomic, strong) NSString   *typeID;
 @property (nonatomic, strong) NSString   *ID;
 @property (nonatomic, strong) NSString   *titleStr;
 @property (nonatomic, strong) NSString   *content;

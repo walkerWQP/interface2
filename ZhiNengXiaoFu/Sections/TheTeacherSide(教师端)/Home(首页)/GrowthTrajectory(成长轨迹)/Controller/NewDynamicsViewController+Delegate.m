@@ -88,11 +88,11 @@
         return;
     }
     
-    NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
+    NSIndexPath *indexPath = [self.dynamicsTable indexPathForCell:cell];
     self.commentIndexPath = indexPath;
 
-    NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
-    DynamicsModel * model = layout.model;
+    NewDynamicsLayout *layout = self.layoutsArr[indexPath.row];
+    DynamicsModel *model = layout.model;
     
     [WProgressHUD showHUDShowText:@"正在加载中..."];
     //PraiseURL
@@ -107,11 +107,9 @@
             model.isThumb = YES;
             NSDictionary *dic = [responseObject objectForKey:@"data"];
              NSMutableArray *arr = [DynamicsLikeItemModel mj_objectArrayWithKeyValuesArray:[dic objectForKey:@"praise"]];
-            
             model.likeArr = [arr copy];
             [layout resetLayout];
             [self.dynamicsTable reloadRowsAtIndexPaths:@[self.commentIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -220,7 +218,6 @@
                         
                     }
                     [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-                    
                 }
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 [WProgressHUD hideAllHUDAnimated:YES];
@@ -255,9 +252,7 @@
         }];
         
         UIAlertAction *alertF = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
             NSLog(@"点击了取消");
-            
         }];
         
         [actionSheet addAction:alertT];
@@ -339,43 +334,43 @@
         
     } else {
     
-        NSInteger commentRow = self.commentIndexPath.row;
-        NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
-        DynamicsModel * model = layout.model;
-        if (![self.commentInputTF.text isEqualToString:@""]) {
-    #pragma mark ======= 上传评论 =======
-            [WProgressHUD showHUDShowText:@"正在加载中..."];
-            NSDictionary *dataDic = @{@"key":[UserManager key],@"album_id":[NSString stringWithFormat:@"%ld",model.album_id],@"content":self.commentInputTF.text};
-            [[HttpRequestManager sharedSingleton] POST:AddDiscussURL parameters:dataDic success:^(NSURLSessionDataTask *task, id responseObject) {
-                [WProgressHUD hideAllHUDAnimated:YES];
-                if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-                    [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
-                    NSInteger commentRow = self.commentIndexPath.row;
-                    NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
-                    DynamicsModel * model = layout.model;
-                    NSMutableArray *arr = [DynamicsCommentItemModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-                    
-                    model.optcomment = [arr copy];
-                    [layout resetLayout];
-                    [self.dynamicsTable reloadRowsAtIndexPaths:@[self.commentIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    NSInteger commentRow = self.commentIndexPath.row;
+    NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
+    DynamicsModel * model = layout.model;
+    if (![self.commentInputTF.text isEqualToString:@""]) {
+#pragma mark ======= 上传评论 =======
+        [WProgressHUD showHUDShowText:@"正在加载中..."];
+        NSDictionary *dataDic = @{@"key":[UserManager key],@"album_id":[NSString stringWithFormat:@"%ld",model.album_id],@"content":self.commentInputTF.text};
+        [[HttpRequestManager sharedSingleton] POST:AddDiscussURL parameters:dataDic success:^(NSURLSessionDataTask *task, id responseObject) {
+            [WProgressHUD hideAllHUDAnimated:YES];
+            if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
+                [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
+                NSInteger commentRow = self.commentIndexPath.row;
+                NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
+                DynamicsModel * model = layout.model;
+                NSMutableArray *arr = [DynamicsCommentItemModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
+                
+                model.optcomment = [arr copy];
+                [layout resetLayout];
+                [self.dynamicsTable reloadRowsAtIndexPaths:@[self.commentIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+            } else {
+                if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
+                    [UserManager logoOut];
                 } else {
-                    if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
-                        [UserManager logoOut];
-                    } else {
-                        
-                    }
-                    [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
+                    
                 }
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                [WProgressHUD hideAllHUDAnimated:YES];
-            }];
-            
-          }
+                [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [WProgressHUD hideAllHUDAnimated:YES];
+        }];
         
-        }
-        self.commentInputTF.text = nil;
-        [self.commentInputTF resignFirstResponder];
-        return YES;
+      }
+        
+    }
+    self.commentInputTF.text = nil;
+    [self.commentInputTF resignFirstResponder];
+    return YES;
     
 }
 

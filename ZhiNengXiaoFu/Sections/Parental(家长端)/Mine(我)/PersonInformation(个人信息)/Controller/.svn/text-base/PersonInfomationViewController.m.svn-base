@@ -46,9 +46,7 @@
 
 - (void)setNetWork {
     NSDictionary * dic = @{@"key":[UserManager key]};
-    
     [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         self.personInfo = [PersonInformationModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
         [self.personInfomationTableView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -102,14 +100,14 @@
     
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            PersonIconCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PersonIconCellId" forIndexPath:indexPath];
+            PersonIconCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonIconCellId" forIndexPath:indexPath];
             cell.nameLabel.text = @"头像";
             cell.selectionStyle =  UITableViewCellSelectionStyleNone;
             
             [cell.iConImg sd_setImageWithURL:[NSURL URLWithString:self.personInfo.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
             return cell;
         } else {
-            PersonInfomationCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PersonInfomationCellId" forIndexPath:indexPath];
+            PersonInfomationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonInfomationCellId" forIndexPath:indexPath];
             if (self.nameAry.count != 0) {
                 cell.nameLabel.text = [self.nameAry objectAtIndex:indexPath.row];
             }
@@ -158,7 +156,7 @@
             return cell;
         }
     } else {
-        ExitCell *  cell = [tableView dequeueReusableCellWithIdentifier:@"ExitCellId" forIndexPath:indexPath];
+        ExitCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExitCellId" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.exitBtn addTarget:self action:@selector(exitBtn:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -199,7 +197,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 2) {
-        
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
             [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
         } else {

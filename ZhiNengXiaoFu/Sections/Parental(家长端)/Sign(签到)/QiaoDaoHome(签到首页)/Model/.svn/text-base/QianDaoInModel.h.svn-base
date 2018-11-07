@@ -10,11 +10,10 @@
 
 @interface QianDaoInModel : NSObject
 
-@property (nonatomic, copy) NSString * create_time;
+@property (nonatomic, copy) NSString    *create_time;
 @property (nonatomic, assign) NSInteger type;
-@property (nonatomic, copy) NSString * video;
-@property (nonatomic, copy) NSString * week;
-
-@property (nonatomic, copy) NSString * ID;
+@property (nonatomic, copy) NSString    *video;
+@property (nonatomic, copy) NSString    *week;
+@property (nonatomic, copy) NSString    *ID;
 
 @end

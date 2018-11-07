@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface JiuQinItemCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *JiuQinItemNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *JiuQinItemNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *JiuQinItemStateImg;
 @property (weak, nonatomic) IBOutlet UIImageView *JiuQinItemStateTwoImg;
-@property (weak, nonatomic) IBOutlet UILabel *JiuQinItemXingQiLabel;
-@property (weak, nonatomic) IBOutlet UILabel *JiuQinItemTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *JiuQinItemXingQiLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *JiuQinItemTimeLabel;
 
 @end

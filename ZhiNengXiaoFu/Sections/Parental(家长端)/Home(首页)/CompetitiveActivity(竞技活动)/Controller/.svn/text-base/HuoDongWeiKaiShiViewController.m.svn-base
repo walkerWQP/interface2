@@ -73,7 +73,6 @@
             }
             if (self.ongoingArr.count == 0) {
                 self.zanwushuju.alpha = 1;
-                
             } else {
                 self.zanwushuju.alpha = 0;
             }
@@ -85,7 +84,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
@@ -103,9 +101,7 @@
     self.ongoingCollectionView.delegate = self;
     self.ongoingCollectionView.dataSource = self;
     [self.view addSubview:self.ongoingCollectionView];
-    
     [self.ongoingCollectionView registerClass:[OngoingCell class] forCellWithReuseIdentifier:OngoingCell_CollectionView];
-    
 }
 
 #pragma mark - <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -125,7 +121,6 @@
     
      if (self.ongoingArr.count != 0) {
         JingJiHuoDongListModel * model = [self.ongoingArr objectAtIndex:indexPath.row];
-        
         [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
         cell.titleLabel.text = model.title;
         cell.timeLabel.text = [NSString stringWithFormat:@"活动日期:%@-%@", model.start, model.end];
@@ -137,16 +132,12 @@
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    
     return 20;
-    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize itemSize = CGSizeZero;
-    
     itemSize = CGSizeMake(APP_WIDTH,200);
-    
     return itemSize;
 }
 

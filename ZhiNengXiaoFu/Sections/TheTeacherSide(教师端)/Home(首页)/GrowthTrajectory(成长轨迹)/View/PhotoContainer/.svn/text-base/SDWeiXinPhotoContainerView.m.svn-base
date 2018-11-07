@@ -147,7 +147,6 @@
         perRowItemCount = 3;
     }
     CGFloat margin = 5;
-    
     CGFloat w = perRowItemCount * itemW + (perRowItemCount - 1) * margin;
     int columnCount = ceilf(picPathStringsArray.count * 1.0 / perRowItemCount);
     CGFloat h = columnCount * itemH + (columnCount - 1) * margin;

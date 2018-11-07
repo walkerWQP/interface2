@@ -9,5 +9,7 @@
 #import "BaseViewController.h"
 
 @interface AskLeaveViewController : BaseViewController
+
 @property (nonatomic, strong) NSString    *ID;
+
 @end

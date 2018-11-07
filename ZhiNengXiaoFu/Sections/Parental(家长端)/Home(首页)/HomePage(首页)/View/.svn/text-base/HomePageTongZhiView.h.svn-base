@@ -14,29 +14,16 @@ typedef void(^clickLabelBlock)(NSInteger ID,NSString *titleString);
 @interface HomePageTongZhiView : UIView
 
 @property (nonatomic,strong) NSMutableArray *titleArray;
-
 @property (nonatomic,strong) NSMutableArray *titleNewArray;
-
-@property (nonatomic,assign) BOOL isCanScroll;
-
+@property (nonatomic,assign) BOOL           isCanScroll;
 @property (nonatomic,copy)void(^clickLabelBlock)(NSInteger index,NSString *titleString);
-
-@property (nonatomic,strong) UIColor *titleColor;
-
-@property (nonatomic,strong) UIColor *BGColor;
-
-@property (nonatomic,assign) CGFloat titleFont;
-
+@property (nonatomic,strong) UIColor        *titleColor;
+@property (nonatomic,strong) UIColor        *BGColor;
+@property (nonatomic,assign) CGFloat        titleFont;
 
 - (void)removeTimer;
-
-
 - (void)addTimer;
-
-
-
 - (void) clickTitleLabel:(clickLabelBlock) clickLabelBlock;
-
 
 @end
 

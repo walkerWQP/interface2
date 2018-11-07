@@ -32,7 +32,6 @@
     self.TeacherListNThreeView.layer.borderWidth = 1;
     self.TeacherListNThreeView.layer.borderColor = [UIColor colorWithRed:0 / 255.0 green:172 / 255.0 blue:241 / 255.0 alpha:.6].CGColor;
     
-    
     self.XueXiLabel.layer.cornerRadius = 10;
     self.XueXiLabel.layer.masksToBounds = YES;
     

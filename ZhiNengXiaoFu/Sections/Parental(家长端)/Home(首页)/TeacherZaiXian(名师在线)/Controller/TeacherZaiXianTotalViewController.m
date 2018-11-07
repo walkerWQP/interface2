@@ -13,13 +13,13 @@
 
 @interface TeacherZaiXianTotalViewController ()<LTAdvancedScrollViewDelegate>
 @property(copy, nonatomic) NSArray <UIViewController *> *viewControllers;
-@property(copy, nonatomic) NSArray <NSString *> *titles;
-@property(strong, nonatomic) LTLayout           *layout;
-@property(strong, nonatomic) LTAdvancedManager  *managerView;
-@property(strong, nonatomic) LTHeaderView       *headerView;
-@property (nonatomic, strong) NSMutableArray    *bannerArr;
-@property (nonatomic, strong) NSMutableArray    *nameAry;
-@property (nonatomic, strong) NSMutableArray    *IdNameAry;
+@property(copy, nonatomic) NSArray <NSString *>         *titles;
+@property(strong, nonatomic) LTLayout                   *layout;
+@property(strong, nonatomic) LTAdvancedManager          *managerView;
+@property(strong, nonatomic) LTHeaderView               *headerView;
+@property (nonatomic, strong) NSMutableArray            *bannerArr;
+@property (nonatomic, strong) NSMutableArray            *nameAry;
+@property (nonatomic, strong) NSMutableArray            *IdNameAry;
 
 @end
 
@@ -60,7 +60,6 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = RGB(138,201,237);
     
-
     //获取视频类型列表
     [self getLieBiao];
 }
@@ -94,7 +93,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
@@ -105,12 +103,8 @@
     
     [self.view addSubview:self.managerView];
     __block TeacherZaiXianTotalViewController * BlockSelf = self;
-
     [self.managerView setAdvancedDidSelectIndexHandle:^(NSInteger index) {
-        NSLog(@"%ld", index);
-
-        [SingletonHelper manager].teacherZaiXianId = [[[BlockSelf.IdNameAry objectAtIndex:index] objectForKey:@"id"] integerValue];
-        
+       [SingletonHelper manager].teacherZaiXianId = [[[BlockSelf.IdNameAry objectAtIndex:index] objectForKey:@"id"] integerValue];
     }];
 }
 
@@ -123,10 +117,8 @@
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
             self.bannerArr = [BannerModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-            
             if (self.bannerArr.count == 0) {
                 self.headerView.back.image = [UIImage imageNamed:@"banner"];
-
             } else {
                 BannerModel * model = [self.bannerArr objectAtIndex:0];
                 [self.headerView.back sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"banner"]];
@@ -139,7 +131,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];

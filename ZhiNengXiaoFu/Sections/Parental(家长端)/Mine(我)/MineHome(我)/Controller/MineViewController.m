@@ -24,28 +24,23 @@
 #import "HelperCenterModel.h"
 #import "AdviceFeedbackViewController.h"
 
-@interface MineViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+@interface MineViewController ()<UIAlertViewDelegate>
 
 //@property (nonatomic, strong) UITableView * mineTabelView;
-@property (nonatomic, strong) NSMutableArray * mineAry;
-@property (nonatomic, strong) PersonInformationModel * personInfo;
+@property (nonatomic, strong) NSMutableArray         *mineAry;
+@property (nonatomic, strong) PersonInformationModel *personInfo;
+@property (nonatomic, assign) NSInteger              bangdingState;
+@property (nonatomic, strong) UIWebView              *webView;
+@property (nonatomic, strong) UILabel                *nameLabel;
+@property (nonatomic, strong) UIImageView            *iconImg;
+@property (nonatomic, strong)  UIImageView           *touxiangIcon;
+@property (nonatomic, strong) NSMutableArray         *iconAry;
+@property (nonatomic, strong) NSMutableArray         *titleAry;
+@property (nonatomic, strong)  UIView                *bottom;
+@property (nonatomic, strong) HelperCenterModel      *helperCenterModel;
+@property (nonatomic, strong) UIView                 *back;
+@property (nonatomic, strong) UILabel                *natureLabel;
 
-@property (nonatomic, assign) NSInteger bangdingState;
-
-@property (nonatomic, strong) UIWebView * webView;
-
-@property (nonatomic, strong) UILabel * nameLabel;
-@property (nonatomic, strong) UIImageView * iconImg;
-@property (nonatomic, strong)  UIImageView * touxiangIcon;
-
-@property (nonatomic, strong) NSMutableArray * iconAry;
-@property (nonatomic, strong) NSMutableArray * titleAry;
-@property (nonatomic, strong)  UIView * bottom;
-
-@property (nonatomic, strong) HelperCenterModel * helperCenterModel;
-@property (nonatomic, strong) UIView * back;
-
-@property (nonatomic, strong) UILabel * natureLabel;
 @end
 
 @implementation MineViewController
@@ -166,9 +161,7 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
-        NSLog(@"%@", responseObject);
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
@@ -190,13 +183,10 @@
 
 - (void)setNetWork {
     NSDictionary * dic = @{@"key":[UserManager key]};
-    
     [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         self.personInfo = [PersonInformationModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
         
         self.nameLabel.text = self.personInfo.name;
-        
         if (self.personInfo.nature == 1) {
             self.natureLabel.text = @"走读生";
         } else {
@@ -301,17 +291,13 @@
 //根据高度度求宽度  text 计算的内容  Height 计算的高度 font字体大小
 + (CGFloat)getWidthWithText:(NSString *)text height:(CGFloat)height font:(CGFloat)font{
     
-    CGRect rect = [text boundingRectWithSize:CGSizeMake(MAXFLOAT, height)
-                                     options:NSStringDrawingUsesLineFragmentOrigin
-                                  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]}
-                                     context:nil];
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(MAXFLOAT, height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]}context:nil];
     return rect.size.width;
 }
 
 #pragma mark - 有就寝管理
 - (void)itmeTap:(UITapGestureRecognizer *)sender {
     
-    NSLog(@"%ld", sender.view.tag);
     switch (sender.view.tag) {
         case 0:
         {
@@ -341,7 +327,6 @@
         {
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
                 [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
-                
             } else {
                 BindMobilePhoneViewController * bingMoblie = [[BindMobilePhoneViewController alloc] init];
                 if (self.personInfo.mobile == nil || [self.personInfo.mobile isEqualToString:@""]) {
@@ -416,7 +401,6 @@
         {
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
                 [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
-                
             } else {
                 BindMobilePhoneViewController * bingMoblie = [[BindMobilePhoneViewController alloc] init];
                 if (self.personInfo.mobile == nil || [self.personInfo.mobile isEqualToString:@""]) {

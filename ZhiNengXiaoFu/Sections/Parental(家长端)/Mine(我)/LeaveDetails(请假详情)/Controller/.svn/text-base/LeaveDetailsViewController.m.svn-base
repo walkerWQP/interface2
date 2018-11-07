@@ -25,8 +25,7 @@
 -(void)viewWillAippear:(BOOL)animated {
     [super viewWillAppear:animated];
     //去除导航栏下方的横线
-    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init]
-                                                  forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc]init]];
     
 }
@@ -34,10 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"请假详情";
-    
     self.leaveDetailsTableView.dataSource = self;
     self.leaveDetailsTableView.delegate = self;
-    
     self.leaveDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.leaveDetailsTableView];
     [self.leaveDetailsTableView registerClass:[LeaveDetailsHeaderCell class] forCellReuseIdentifier:@"LeaveDetailsHeaderCellId"];
@@ -101,7 +98,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         

@@ -195,8 +195,8 @@
             NSString *str = [formatter stringFromDate:[NSDate date]];
             NSString *imageFileName = [NSString stringWithFormat:@"%@.jpeg", str];
             
-            if (length>1280) {
-                NSData *fData = UIImageJPEGRepresentation(image, 0.5);
+            if (length > 1280) {
+                NSData *fData = UIImageJPEGRepresentation(image, 0.3);
                 [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
             } else {
                 [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
@@ -247,7 +247,6 @@
                     
                 }
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [WProgressHUD hideAllHUDAnimated:YES];
@@ -294,24 +293,21 @@
 }
 
 -(void)pickerView:(UIView *)pickerView result:(NSString *)string index:(NSInteger)index{
-    [self.subjectsBtn setTitle:string forState:UIControlStateNormal];
-    PublishJobModel *model = [self.publishJobArr objectAtIndex:index];
-    if (model.ID == nil) {
-        [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
-    } else {
-        self.courseID = model.ID;
+    if (self.publishJobArr.count != 0) {
+        [self.subjectsBtn setTitle:string forState:UIControlStateNormal];
+        PublishJobModel *model = [self.publishJobArr objectAtIndex:index];
+        if (model.ID == nil) {
+            [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
+        } else {
+            self.courseID = model.ID;
+        }
     }
-    
-    NSLog(@"%@",model.ID);
-    
 }
 
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
     [self.view endEditing:YES];
-    
 }
 
 @end

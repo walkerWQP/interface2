@@ -78,22 +78,18 @@
             }
             if (self.isAboutToBeginArr.count == 0) {
                 self.zanwushuju.alpha = 1;
-                
             } else {
                 self.zanwushuju.alpha = 0;
                 [self.isAboutToBeginCollectionView reloadData];
             }
-            
         } else {
             
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
-
             } else {
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
         [self.isAboutToBeginCollectionView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -109,7 +105,6 @@
     self.isAboutToBeginCollectionView.delegate = self;
     self.isAboutToBeginCollectionView.dataSource = self;
     [self.view addSubview:self.isAboutToBeginCollectionView];
-    
     [self.isAboutToBeginCollectionView registerClass:[OngoingCell class] forCellWithReuseIdentifier:OngoingCell_CollectionView];
 }
 
@@ -150,14 +145,15 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    OngoingModel *model = [self.isAboutToBeginArr objectAtIndex:indexPath.row];
-    JingJiActivityDetailsViewController *jingJiActivityDetailsVC = [JingJiActivityDetailsViewController new];
-    if (model.ID == nil) {
-        [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
-    } else {
-        jingJiActivityDetailsVC.JingJiActivityDetailsId = model.ID;
-        
-        [self.navigationController pushViewController:jingJiActivityDetailsVC animated:YES];
+    if (self.isAboutToBeginArr.count != 0) {
+        OngoingModel *model = [self.isAboutToBeginArr objectAtIndex:indexPath.row];
+        JingJiActivityDetailsViewController *jingJiActivityDetailsVC = [JingJiActivityDetailsViewController new];
+        if (model.ID == nil) {
+            [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
+        } else {
+            jingJiActivityDetailsVC.JingJiActivityDetailsId = model.ID;
+            [self.navigationController pushViewController:jingJiActivityDetailsVC animated:YES];
+        }
     }
 }
 

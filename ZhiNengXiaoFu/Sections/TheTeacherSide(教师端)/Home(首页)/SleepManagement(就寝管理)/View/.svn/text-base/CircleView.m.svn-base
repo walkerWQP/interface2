@@ -47,7 +47,7 @@
             });
         }
         
-    }else{
+    } else {
         
 //        self.numbLb.attributedText = [self labelStytle:progress];
         
@@ -60,6 +60,7 @@
         [self.grain setMask:self.mainLine];
     }
 }
+
 -(NSMutableAttributedString*)labelStytle:(NSInteger)value{
     NSString* pace=[NSString stringWithFormat:@"%ld%@",value,@"%"];
     NSMutableAttributedString* pace1=[[NSMutableAttributedString alloc]initWithString:pace];
@@ -117,7 +118,6 @@
         _mainLine.strokeColor = [UIColor redColor].CGColor;
         _mainLine.lineWidth = _strokelineWidth;
         [self.layer addSublayer:_mainLine];
-
     }
     return _mainLine;
 }

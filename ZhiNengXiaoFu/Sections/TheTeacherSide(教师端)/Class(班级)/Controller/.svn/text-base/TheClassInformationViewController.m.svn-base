@@ -65,7 +65,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] isEqualToString:@"2"]) {
         [self getClassURLData];
     } else {
@@ -79,7 +78,6 @@
     self.view.backgroundColor = backColor;
     self.title = @"班级信息";
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] isEqualToString:@"2"]) {
-
     self.rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
     [self.rightBtn setTitle:@"切换班级" forState:UIControlStateNormal];
     self.rightBtn.titleLabel.font = titFont;
@@ -96,7 +94,6 @@
 - (void)rightBtn:(UIButton *)sender {
     NSLog(@"点击选择班级");
     [self getClassURLDataForClassID];
-    
 }
 
 - (void)getClassURLDataForClassID {
@@ -119,7 +116,6 @@
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
             } else {
                 
-                
             }
             
         } else {
@@ -129,7 +125,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -169,7 +164,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -208,7 +202,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -325,7 +318,6 @@
     self.remarksLabel.isTop = YES;
     [self.bgView addSubview:self.remarksLabel];
     
-    
 }
 
 - (void)teachersBtn:(UIButton *)sender {
@@ -346,19 +338,13 @@
                     self.webView = [[UIWebView alloc] initWithFrame:CGRectZero];
                 }
                 [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneStr]]]];
-                
             }];
             
             UIAlertAction *alertF = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                
                 NSLog(@"点击了取消");
-                
             }];
-            
             [actionSheet addAction:alertT];
-            
             [actionSheet addAction:alertF];
-            
             [self presentViewController:actionSheet animated:YES completion:nil];
         }
     } else {

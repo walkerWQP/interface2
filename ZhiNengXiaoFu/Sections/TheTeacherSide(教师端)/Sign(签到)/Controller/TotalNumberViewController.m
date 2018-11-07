@@ -31,14 +31,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     //下拉刷新
     self.totalNumberCollectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopic)];
     //自动更改透明度
     self.totalNumberCollectionView.mj_header.automaticallyChangeAlpha = YES;
     //进入刷新状态
     [self.totalNumberCollectionView.mj_header beginRefreshing];
-    
 }
 
 - (void)loadNewTopic {
@@ -49,7 +47,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     //总数
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
@@ -66,12 +63,9 @@
 
 
 - (void)getClassConditionURLData:(NSString *)type {
-    
     NSDictionary *dic = @{@"key":[UserManager key],@"class_id":self.ID,@"type":type};
     [[HttpRequestManager sharedSingleton] POST:classConditionURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-      
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
            self.totalNumberArr = [TotalNumberModel mj_objectArrayWithKeyValuesArray:[[responseObject objectForKey:@"data"] objectForKey:@"students"]];
             if (self.totalNumberArr.count == 0) {
                 self.zanwushuju.alpha = 1;
@@ -88,7 +82,6 @@
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
         }
-        
         //结束头部刷新
         [self.totalNumberCollectionView.mj_header endRefreshing];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -105,7 +98,6 @@
     self.totalNumberCollectionView.delegate = self;
     self.totalNumberCollectionView.dataSource = self;
     [self.view addSubview:self.totalNumberCollectionView];
-    
     [self.totalNumberCollectionView registerClass:[TotalNumberCell class] forCellWithReuseIdentifier:TotalNumberCell_CollectionView];
 }
 
@@ -119,7 +111,6 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     UICollectionViewCell *gridcell = nil;
     TotalNumberCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:TotalNumberCell_CollectionView forIndexPath:indexPath];
     if (self.totalNumberArr.count != 0) {
@@ -144,7 +135,7 @@
 
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 20;
+    return 10;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -168,7 +159,6 @@
                 } else {
                     LeaveTheDetailsVC.typeStr = @"1";
                     LeaveTheDetailsVC.studentID= model.ID;
-                    
                     [self.navigationController pushViewController:LeaveTheDetailsVC animated:YES];
                 }
             }
@@ -179,7 +169,6 @@
                 QianDaoViewController *qianDaoVC = [QianDaoViewController new];
                 qianDaoVC.studentId = model.ID;
                 [self.navigationController pushViewController:qianDaoVC animated:YES];
-                
             }
                 break;
             case 3:
@@ -197,8 +186,7 @@
     } else {
         
     }
-    
-    
+
 }
 
 @end

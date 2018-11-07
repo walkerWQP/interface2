@@ -8,7 +8,8 @@
 
 #import "ChangeActivitiesViewController.h"
 
-@interface ChangeActivitiesViewController ()<UITextFieldDelegate,HZQDatePickerViewDelegate,LQPhotoPickerViewDelegate,HQPickerViewDelegate,UIScrollViewDelegate> {
+@interface ChangeActivitiesViewController ()<UITextFieldDelegate,HZQDatePickerViewDelegate,LQPhotoPickerViewDelegate,HQPickerViewDelegate,UIScrollViewDelegate>
+{
     HZQDatePickerView *_pikerView;
 }
 
@@ -46,14 +47,12 @@
     self.launchEventScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.2);
     self.launchEventScrollView.bounces = YES;
     self.launchEventScrollView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
-    
     self.launchEventScrollView.maximumZoomScale = 2.0;//最多放大到两倍
     self.launchEventScrollView.minimumZoomScale = 0.5;//最多缩小到0.5倍
     //设置是否允许缩放超出倍数限制，超出后弹回
     self.launchEventScrollView.bouncesZoom = YES;
     //设置委托
     self.launchEventScrollView.delegate = self;
-    
     [self.view addSubview:self.launchEventScrollView];
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, APP_WIDTH - 20, 30)];
@@ -149,7 +148,6 @@
     self.releaseBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [self.releaseBtn addTarget:self action:@selector(releaseBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.launchEventScrollView addSubview:self.releaseBtn];
-    
     self.launchEventScrollView.backgroundColor = backColor;
 }
 
@@ -176,8 +174,6 @@
     }
     
     if (![self.beginTimeBtn.titleLabel.text isEqualToString:@"开始时间"] && ![self.endTimeBtn.titleLabel.text isEqualToString:@"结束时间"]) {
-        //        [self compareDate:self.beginTimeBtn.titleLabel.text withDate:self.endTimeBtn.titleLabel.text];
-        
         NSDateFormatter *dateformater = [[NSDateFormatter alloc] init];
         [dateformater setDateFormat:@"yyyy-MM-dd"];
         NSDate *dta = [[NSDate alloc] init];
@@ -192,7 +188,6 @@
             [WProgressHUD showErrorAnimatedText:@"开始时间不能小于结束时间"];
             [self.beginTimeBtn setTitle:@"开始时间" forState:UIControlStateNormal];
             [self.endTimeBtn setTitle:@"结束时间" forState:UIControlStateNormal];
-            
             return;
         }
     }

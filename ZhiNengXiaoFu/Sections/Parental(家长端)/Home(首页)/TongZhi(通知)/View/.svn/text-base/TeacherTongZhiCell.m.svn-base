@@ -36,7 +36,6 @@
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.imgView.frame.size.width + self.imgView.frame.origin.x + 16, 26, APP_WIDTH - 10 - (self.imgView.frame.size.width + self.imgView.frame.origin.x + 16), 16)];
         self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
         self.titleLabel.textColor = COLOR(51, 51, 51, 1);
-        
     }
     return _titleLabel;
 }

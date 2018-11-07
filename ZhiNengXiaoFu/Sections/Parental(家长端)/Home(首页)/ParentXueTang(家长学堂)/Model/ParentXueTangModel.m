@@ -11,13 +11,11 @@
 @implementation ParentXueTangModel
 
 + (NSDictionary *)replacedKeyFromPropertyName {
-    
     return @{@"ID": @"id"};
 }
 
 
-- (NSMutableArray *)label
-{
+- (NSMutableArray *)label {
     if (!_label) {
         self.label = [@[]mutableCopy];
     }

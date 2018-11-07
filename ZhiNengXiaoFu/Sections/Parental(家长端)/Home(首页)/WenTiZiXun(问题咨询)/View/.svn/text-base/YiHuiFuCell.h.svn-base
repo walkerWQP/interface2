@@ -11,18 +11,13 @@
 @interface YiHuiFuCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *userIcon;
-
-@property (weak, nonatomic) IBOutlet UILabel *userName;
-
-@property (weak, nonatomic) IBOutlet UILabel *questionLabel;
-@property (weak, nonatomic) IBOutlet UIView *lineViewT;
-
-@property (weak, nonatomic) IBOutlet UIView *lineView;
-
+@property (weak, nonatomic) IBOutlet UILabel     *userName;
+@property (weak, nonatomic) IBOutlet UILabel     *questionLabel;
+@property (weak, nonatomic) IBOutlet UIView      *lineViewT;
+@property (weak, nonatomic) IBOutlet UIView      *lineView;
 @property (weak, nonatomic) IBOutlet UIImageView *userIconT;
-
-@property (weak, nonatomic) IBOutlet UILabel *userNameT;
-@property (weak, nonatomic) IBOutlet UILabel *questionLabelT;
+@property (weak, nonatomic) IBOutlet UILabel     *userNameT;
+@property (weak, nonatomic) IBOutlet UILabel     *questionLabelT;
 
 
 @end

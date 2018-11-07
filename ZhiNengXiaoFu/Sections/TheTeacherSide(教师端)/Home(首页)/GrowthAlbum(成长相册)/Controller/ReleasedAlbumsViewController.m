@@ -13,20 +13,15 @@
 
 @interface ReleasedAlbumsViewController ()<PickerViewResultDelegate,LQPhotoPickerViewDelegate>
 
-@property (nonatomic, strong) UILabel   *nameLabel;
-@property (nonatomic, strong) UIButton  *nameBtn;
-
+@property (nonatomic, strong) UILabel         *nameLabel;
+@property (nonatomic, strong) UIButton        *nameBtn;
 //上传图片内容
-@property (nonatomic, strong) UILabel      *uploadPicturesLabel;
-@property (nonatomic, strong) UIView       *myPicture;
-
-@property (nonatomic, strong) UIButton     *releasedBtn;
-
+@property (nonatomic, strong) UILabel         *uploadPicturesLabel;
+@property (nonatomic, strong) UIView          *myPicture;
+@property (nonatomic, strong) UIButton        *releasedBtn;
 @property (nonatomic, strong) NSMutableArray  *publishJobArr;
-
 @property (nonatomic, strong) NSMutableArray  *imgFiledArr;
-
-@property (nonatomic, strong) NSString    *courseID;
+@property (nonatomic, strong) NSString        *courseID;
 
 
 @end
@@ -81,7 +76,6 @@
     imgView.image = [UIImage imageNamed:@"下拉"];
     [self.nameBtn addSubview:imgView];
     
-    
     self.uploadPicturesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.nameLabel.frame.size.height + self.nameBtn.frame.size.height + 60, APP_WIDTH - 20, 30)];
     self.uploadPicturesLabel.text = @"上传图片内容(最多只能上传三张)";
     self.uploadPicturesLabel.textColor = titlColor;
@@ -92,14 +86,10 @@
     self.myPicture.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.myPicture];
     
-    if (!self.LQPhotoPicker_superView)
-    {
+    if (!self.LQPhotoPicker_superView) {
         self.LQPhotoPicker_superView = self.myPicture;
-        
         self.LQPhotoPicker_imgMaxCount = 3;
-        
         [self LQPhotoPicker_initPickerView];
-        
         self.LQPhotoPicker_delegate = self;
     }
     
@@ -116,7 +106,6 @@
     [self.releasedBtn addTarget:self action:@selector(releasedBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.releasedBtn];
     
-    
 }
 
 - (void)releasedBtn:(UIButton *)sender {
@@ -124,16 +113,11 @@
         [WProgressHUD showErrorAnimatedText:@"请选择班级"];
         return;
     } else {
-        
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
             [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
-            
-        }else
-        {
+        } else {
             [self setShangChuanTupian];
-
         }
-        
     }
 }
 
@@ -144,12 +128,10 @@
 - (void)setShangChuanTupian {
     
     [self LQPhotoPicker_getBigImageDataArray];
-    
     NSDictionary * params = @{@"key":[UserManager key],@"upload_type":@"img", @"upload_img_type":@"album"};
     [WProgressHUD showHUDShowText:@"加载中..."];
     [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        for (int i = 0; i < self.LQPhotoPicker_bigImageArray.count; i++)
-        {
+        for (int i = 0; i < self.LQPhotoPicker_bigImageArray.count; i++) {
             UIImage * image = self.LQPhotoPicker_bigImageArray[i];
             NSData *imageData = UIImageJPEGRepresentation(image,1);
             float length=[imageData length]/1000;
@@ -162,12 +144,12 @@
             if (length>1280) {
                 NSData *fData = UIImageJPEGRepresentation(image, 0.5);
                 [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
-                
-            }else{
+            } else {
                 [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
             }
             
         }
+        
     } progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WProgressHUD hideAllHUDAnimated:YES];
@@ -178,7 +160,6 @@
                 [self.imgFiledArr addObject:arr[i]];
             }
             NSDictionary *dataDic = [NSDictionary dictionary];
-            
             dataDic = @{@"key":[UserManager key],@"class_id":self.courseID,@"img":self.imgFiledArr};
             [self postDataForUploadURL:dataDic];
         } else {
@@ -193,7 +174,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
         [WProgressHUD hideAllHUDAnimated:YES];
-        
     }];
     
 }
@@ -213,7 +193,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -237,26 +216,17 @@
             } else {
                 PickerView *vi = [[PickerView alloc] init];
                 vi.array = ary;
-                
                 vi.type = PickerViewTypeHeigh;
                 vi.selectComponent = 0;
                 vi.delegate = self;
                 [[[UIApplication sharedApplication] keyWindow] addSubview:vi];
             }
             
-           
-//            HQPickerView *picker = [[HQPickerView alloc]initWithFrame:self.view.bounds];
-//            picker.delegate = self ;
-//            picker.customArr = ary;
-//            [self.view addSubview:picker];
-            
             if (self.publishJobArr.count == 0) {
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
             } else {
                 
-                
             }
-            
             
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
@@ -265,26 +235,17 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
 }
 -(void)pickerView:(UIView *)pickerView result:(NSString *)string index:(NSInteger)index{
-
     [self.nameBtn setTitle:string forState:UIControlStateNormal];
     PublishJobModel *model = [self.publishJobArr objectAtIndex:index];
     self.courseID = model.ID;
     NSLog(@"%@",model.ID);
 }
 
-//- (void)pickerView:(UIPickerView *)pickerView didSelectText:(NSString *)text  index:(NSInteger)index{
-//    [self.nameBtn setTitle:text forState:UIControlStateNormal];
-//    PublishJobModel *model = [self.publishJobArr objectAtIndex:index];
-//    self.courseID = model.ID;
-//    NSLog(@"%@",model.ID);
-//
-//}
 
 
 @end

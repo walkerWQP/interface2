@@ -10,12 +10,12 @@
 
 @interface KeChengJieShaoCell : UITableViewCell
 
-@property (nonatomic, strong) UIImageView * userImg;
-@property (nonatomic, strong) UILabel * userNName;
-@property (nonatomic, strong) UILabel * jieShaoLabel;
-@property (nonatomic, strong) UIImageView * shanChangImg;
-@property (nonatomic, strong) UILabel * shanChangLabel;
-@property (nonatomic, strong) UILabel * shanChangConnectLabel;
-@property (nonatomic, strong) UIView * lineView;
+@property (nonatomic, strong) UIImageView *userImg;
+@property (nonatomic, strong) UILabel     *userNName;
+@property (nonatomic, strong) UILabel     *jieShaoLabel;
+@property (nonatomic, strong) UIImageView *shanChangImg;
+@property (nonatomic, strong) UILabel     *shanChangLabel;
+@property (nonatomic, strong) UILabel     *shanChangConnectLabel;
+@property (nonatomic, strong) UIView      *lineView;
 
 @end

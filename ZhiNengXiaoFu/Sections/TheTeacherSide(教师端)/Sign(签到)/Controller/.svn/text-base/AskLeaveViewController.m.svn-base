@@ -82,7 +82,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -97,7 +96,6 @@
     self.askLeaveCollectionView.delegate = self;
     self.askLeaveCollectionView.dataSource = self;
     [self.view addSubview:self.askLeaveCollectionView];
-    
     [self.askLeaveCollectionView registerClass:[TotalNumberCell class] forCellWithReuseIdentifier:TotalNumberCell_CollectionView];
 }
 
@@ -111,7 +109,6 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     UICollectionViewCell *gridcell = nil;
     TotalNumberCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:TotalNumberCell_CollectionView forIndexPath:indexPath];
     if (self.askLeaveArr.count != 0) {
@@ -136,7 +133,7 @@
 
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 20;
+    return 10;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -160,7 +157,6 @@
                 } else {
                     LeaveTheDetailsVC.typeStr = @"1";
                     LeaveTheDetailsVC.studentID= model.ID;
-                    
                     [self.navigationController pushViewController:LeaveTheDetailsVC animated:YES];
                 }
             }

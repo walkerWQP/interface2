@@ -10,8 +10,7 @@
 
 @implementation JingJiActivityCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = COLOR(246, 246, 246, 1);
@@ -28,8 +27,7 @@
     return self;
 }
 
-- (UILabel *)timeLabel
-{
+- (UILabel *)timeLabel {
     if (!_timeLabel) {
         self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 14, APP_WIDTH - 30, 15)];
         self.timeLabel.textColor = COLOR(170, 170, 170, 1);
@@ -38,8 +36,7 @@
     return _timeLabel;
 }
 
-- (UIView *)backView
-{
+- (UIView *)backView {
     if (!_backView) {
         self.backView = [[UIView alloc] initWithFrame:CGRectMake(15, self.timeLabel.frame.size.height + self.timeLabel.frame.origin.y + 10, APP_WIDTH - 30, 130)];
         self.backView.backgroundColor = [UIColor whiteColor];
@@ -49,8 +46,7 @@
     return _backView;
 }
 
-- (UILabel *)titleLabel
-{
+- (UILabel *)titleLabel {
     if (!_titleLabel) {
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 12, self.backView.frame.size.width, 15)];
         self.titleLabel.textColor = COLOR(119, 119, 119, 1);
@@ -61,8 +57,7 @@
     return _titleLabel;
 }
 
-- (UILabel *)connectLabel
-{
+- (UILabel *)connectLabel {
     if (!_connectLabel) {
         self.connectLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.titleLabel.frame.size.height + self.titleLabel.frame.origin.y + 10, self.backView.frame.size.width - 30, 40)];
         self.connectLabel.textColor = COLOR(170, 170, 170, 1);
@@ -72,8 +67,7 @@
     return _connectLabel;
 }
 
-- (UIView *)lineView
-{
+- (UIView *)lineView {
     if (!_lineView) {
         self.lineView = [[UIView alloc] initWithFrame:CGRectMake(15, self.connectLabel.frame.size.height + self.connectLabel.frame.origin.y + 10, self.backView.frame.size.width - 30, 1)];
         self.lineView.backgroundColor = COLOR(223, 223, 223, 1);
@@ -81,8 +75,7 @@
     return _lineView;
 }
 
-- (UILabel *)chakanDetaislLabel
-{
+- (UILabel *)chakanDetaislLabel {
     if (!_chakanDetaislLabel) {
         self.chakanDetaislLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.backView.frame.size.width / 2 - 40, self.lineView.frame.size.height + self.lineView.frame.origin.y + 10, 80, 15)];
         self.chakanDetaislLabel.textColor = COLOR(170, 170, 170, 1);
@@ -91,8 +84,7 @@
     return _chakanDetaislLabel;
 }
 
-- (UIImageView *)moreImg
-{
+- (UIImageView *)moreImg {
     if (!_moreImg) {
         self.moreImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.chakanDetaislLabel.frame.origin.x + self.chakanDetaislLabel.frame.size.width + 4, self.chakanDetaislLabel.frame.origin.y, 15, 15)];
     }

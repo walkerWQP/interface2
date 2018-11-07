@@ -36,13 +36,10 @@
         NSUserDefaults * pushJudge = [NSUserDefaults standardUserDefaults];
         [pushJudge setObject:@""forKey:@"notify"];
         [pushJudge synchronize];//记得立即同步
-//       [self.navigationController setNavigationBarHidden:NO animated:YES];
 
     } else {
-//        self.navigationItem.leftBarButtonItem=nil;
+        
     }
-    
-  
 }
 
 - (void)rebackToRootViewAction {
@@ -63,7 +60,6 @@
 - (void)rightBtn:(UIButton *)sender {
     NSLog(@"点击修改");
     ChangeViewController *ChangeVC = [ChangeViewController new];
-    
     if (self.tongZhiId != nil) {
         ChangeVC.ID = self.tongZhiId;
         ChangeVC.titleStr = self.tongZhiDetailsModel.title;
@@ -73,7 +69,6 @@
     } else {
         [WProgressHUD showErrorAnimatedText:@"数据不正确,请重新加载"];
     }
-    
 }
 
 
@@ -82,7 +77,6 @@
         self.tongZhiDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT) style:UITableViewStyleGrouped];
         self.tongZhiDetailsTableView.backgroundColor = backColor;
         self.tongZhiDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
         self.tongZhiDetailsTableView.delegate = self;
         self.tongZhiDetailsTableView.dataSource = self;
     }
@@ -103,7 +97,7 @@
                     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
                     [button setTitle:@"修改" forState:UIControlStateNormal];
                     button.titleLabel.font = titFont;
-                   [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                     [button addTarget:self action:@selector(rightBtn:) forControlEvents:UIControlEventTouchUpInside];
                     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
                 }
@@ -146,11 +140,8 @@
                     self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant += (newH + 10);
                     imageViewNew.frame =CGRectMake(0, self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant - newH,self.tongZhiDetailsCell.PicView.bounds.size.width, H * self.tongZhiDetailsCell.PicView.bounds.size.width / w);
                 }
-                
                 [self.tongZhiDetailsTableView reloadData];
-                
             }];
-            
             [self.tongZhiDetailsCell.PicView addSubview:imageViewNew];
         }
     
@@ -185,7 +176,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     self.tongZhiDetailsCell  = [tableView dequeueReusableCellWithIdentifier:@"TongZhiDetailsCellId" forIndexPath:indexPath];
     self.tongZhiDetailsCell.selectionStyle = UITableViewCellSelectionStyleNone;
-
     self.tongZhiDetailsCell.TongZhiDetailsTitleLabel.text = self.tongZhiDetailsModel.title;
     self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.text = self.tongZhiDetailsModel.content;
     self.tongZhiDetailsCell.TongZhiDetailsTimeLabel.text = self.tongZhiDetailsModel.create_time;
@@ -219,12 +209,10 @@
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     
     NSString *heightString4 = @"document.body.scrollHeight";
-    
     [webView evaluateJavaScript:heightString4 completionHandler:^(id _Nullable item, NSError * _Nullable error) {
         
         CGFloat currentHeight = [item doubleValue];
         NSInteger width = APP_WIDTH - 30;
-        
 //        self.titleText = self.tongZhiDetailsModel.title;
         NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:30]};
         CGSize size = [self.tongZhiDetailsModel.title boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
@@ -249,7 +237,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSInteger width = APP_WIDTH - 30;
-    
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:30]};
     CGSize size = [self.tongZhiDetailsModel.title boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
     

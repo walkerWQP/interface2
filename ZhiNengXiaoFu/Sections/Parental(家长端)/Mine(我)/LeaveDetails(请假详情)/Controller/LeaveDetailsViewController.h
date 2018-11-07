@@ -10,6 +10,6 @@
 
 @interface LeaveDetailsViewController : BaseViewController
 
-@property (nonatomic, copy) NSString * leaveDetailsId;
+@property (nonatomic, copy) NSString *leaveDetailsId;
 
 @end

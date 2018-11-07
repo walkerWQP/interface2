@@ -57,9 +57,6 @@
     self.detailsLabel.textAlignment = NSTextAlignmentLeft;
     [self.titleView addSubview:self.detailsLabel];
     
-    
-    
-    
 }
 
 - (void)awakeFromNib {

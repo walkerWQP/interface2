@@ -33,18 +33,17 @@
 
 
 @interface AppDelegate ()<JPUSHRegisterDelegate, UNUserNotificationCenterDelegate>
-@property (nonatomic, assign) NSInteger force;
 
-@property (nonatomic, strong) NSDictionary * remoteNotificationUserInfo;
+@property (nonatomic, assign) NSInteger    force;
+@property (nonatomic, strong) NSDictionary *remoteNotificationUserInfo;
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-
-    
+   
+    [[UITabBar appearance] setTranslucent:NO];
     //设置引导页面
     [self setGuideViewWithUIWindow:self.window];
     //延时2秒
@@ -138,7 +137,7 @@
 - (void)setHuoQuShangXianBanBen {
     NSDictionary * dic = @{@"system":@"2"};
     [[HttpRequestManager sharedSingleton] POST:versionGetVersion parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
+        
         //一句代码实现检测更新
         self.force = [[[responseObject objectForKey:@"data"] objectForKey:@"force"] integerValue];
         

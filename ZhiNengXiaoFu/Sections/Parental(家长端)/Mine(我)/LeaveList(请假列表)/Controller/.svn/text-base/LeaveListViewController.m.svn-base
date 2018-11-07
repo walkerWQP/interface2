@@ -102,20 +102,15 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
 }
 
 
-
-
 - (void)setNetWork:(NSInteger)page {
     NSDictionary * dic = @{@"key":[UserManager key],@"page":[NSString stringWithFormat:@"%ld",page]};
-    
     [[HttpRequestManager sharedSingleton] POST:leaveLeaveList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         //结束头部刷新
         [self.leaveListTableView.mj_header endRefreshing];
         //结束尾部刷新
@@ -202,11 +197,9 @@
         if (model.status == 1) {
             cell.stateLabel.text = @"已批准";
             cell.stateLabel.textColor = tabBarColor;
-          
         } else {
             cell.stateLabel.text = @"审核中";
             cell.stateLabel.textColor = RGB(218, 23, 55);
-
         }
         return cell;
     }

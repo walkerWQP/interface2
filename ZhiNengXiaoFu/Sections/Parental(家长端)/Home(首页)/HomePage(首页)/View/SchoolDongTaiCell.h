@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SchoolDongTaiCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *SchoolDongTaiImg;
-@property (weak, nonatomic) IBOutlet UILabel *SchoolDongTaiTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *SchoolDongTaiConnectLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *SchoolDongTaiTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *SchoolDongTaiConnectLabel;
 
 @end
 

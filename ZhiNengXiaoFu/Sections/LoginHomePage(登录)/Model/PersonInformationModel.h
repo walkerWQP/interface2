@@ -11,42 +11,41 @@
 @interface PersonInformationModel : NSObject<NSCoding>
 
 //班级id
-@property (nonatomic, assign) NSInteger class_id;
+@property (nonatomic, assign) NSInteger      class_id;
 //头像
-@property (nonatomic, copy) NSString * head_img;
+@property (nonatomic, copy) NSString         *head_img;
 //手机号
-@property (nonatomic, copy) NSString * mobile;
+@property (nonatomic, copy) NSString         *mobile;
 //用户id
-@property (nonatomic, copy) NSString * ID;
+@property (nonatomic, copy) NSString         *ID;
 //姓名
-@property (nonatomic, copy) NSString * name;
+@property (nonatomic, copy) NSString         *name;
 //学生性质
-@property (nonatomic, assign) NSInteger nature;
+@property (nonatomic, assign) NSInteger      nature;
 //密码
-@property (nonatomic, copy) NSString * password;
+@property (nonatomic, copy) NSString         *password;
 //学校id
-@property (nonatomic, assign) NSInteger school_id;
+@property (nonatomic, assign) NSInteger      school_id;
 //token
-@property (nonatomic, copy) NSString * token;
+@property (nonatomic, copy) NSString         *token;
 //用户账号
-@property (nonatomic, copy) NSString * usernum;
+@property (nonatomic, copy) NSString         *usernum;
 //性别
-@property (nonatomic, assign) NSInteger sex;
+@property (nonatomic, assign) NSInteger      sex;
 //学校名字
-@property (nonatomic, copy) NSString * school_name;
+@property (nonatomic, copy) NSString         *school_name;
 //家长班级名称
-@property (nonatomic, copy) NSString * class_name_s;
+@property (nonatomic, copy) NSString         *class_name_s;
 //老师班级名称
-@property (nonatomic, strong) NSMutableArray * class_name_t;
+@property (nonatomic, strong) NSMutableArray *class_name_t;
 //教师班级id
-@property (nonatomic, strong) NSMutableArray *  class_id_t;
+@property (nonatomic, strong) NSMutableArray *class_id_t;
 //是否是班主任0否1是
-@property (nonatomic, assign) NSInteger is_adviser;
+@property (nonatomic, assign) NSInteger      is_adviser;
 //学校是否开启宿舍管理0否1是
-@property (nonatomic, assign) NSInteger dorm_open;
-
+@property (nonatomic, assign) NSInteger      dorm_open;
 //key
-@property (nonatomic, copy) NSString * key;
+@property (nonatomic, copy) NSString         *key;
 
 
 @end

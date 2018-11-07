@@ -55,8 +55,6 @@
     self.YiHuiFuTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopic)];
 }
 
-
-
 - (void)loadNewTopic {
     self.page = 1;
     [self.yiHuiFuAry removeAllObjects];
@@ -67,8 +65,6 @@
     self.page += 1;
     [self setNetWork:self.page];
 }
-
-
 
 - (void)setNetWork:(NSInteger)page {
     NSDictionary * dic = @{@"key":[UserManager key], @"status":@1,@"page":[NSString stringWithFormat:@"%ld",page]};
@@ -84,7 +80,6 @@
             for (ConsultListModel *model in arr) {
                 [self.yiHuiFuAry addObject:model];
             }
-            
             if (self.yiHuiFuAry.count == 0) {
                 self.zanwushuju.alpha = 1;
                 

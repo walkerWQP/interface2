@@ -11,19 +11,19 @@
 @interface JingJiActivityCell : UITableViewCell
 
 //时间
-@property (nonatomic, strong) UILabel * timeLabel;
+@property (nonatomic, strong) UILabel     *timeLabel;
 //背景
-@property (nonatomic, strong) UIView * backView;
+@property (nonatomic, strong) UIView      *backView;
 //标题
-@property (nonatomic, strong) UILabel * titleLabel;
+@property (nonatomic, strong) UILabel     *titleLabel;
 //内容
-@property (nonatomic, strong) UILabel * connectLabel;
+@property (nonatomic, strong) UILabel     *connectLabel;
 //线
-@property (nonatomic, strong) UIView * lineView;
+@property (nonatomic, strong) UIView      *lineView;
 //查看详情
-@property (nonatomic, strong) UILabel * chakanDetaislLabel;
+@property (nonatomic, strong) UILabel     *chakanDetaislLabel;
 //更多图片
-@property (nonatomic, strong) UIImageView * moreImg;
+@property (nonatomic, strong) UIImageView *moreImg;
 
 
 @end

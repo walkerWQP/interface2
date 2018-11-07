@@ -10,10 +10,10 @@
 
 @interface SchoolDongTaiModel : NSObject
 
-@property (nonatomic, copy) NSString * ID;
-@property (nonatomic, copy) NSString * create_time;
-@property (nonatomic, copy) NSString * img;
-@property (nonatomic, copy) NSString * title;
-@property (nonatomic, copy) NSString * content;
+@property (nonatomic, copy) NSString *ID;
+@property (nonatomic, copy) NSString *create_time;
+@property (nonatomic, copy) NSString *img;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *content;
 
 @end

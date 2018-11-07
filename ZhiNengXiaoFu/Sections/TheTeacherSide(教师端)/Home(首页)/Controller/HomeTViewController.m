@@ -184,7 +184,7 @@
         }
         
         [[HttpRequestManager sharedSingleton] POST:UserSavePushId parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-           
+            
             if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
                 
             } else {
@@ -204,24 +204,12 @@
 
 - (void)unObserveAllNotifications {
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-    [defaultCenter removeObserver:self
-                             name:kJPFNetworkDidSetupNotification
-                           object:nil];
-    [defaultCenter removeObserver:self
-                             name:kJPFNetworkDidCloseNotification
-                           object:nil];
-    [defaultCenter removeObserver:self
-                             name:kJPFNetworkDidRegisterNotification
-                           object:nil];
-    [defaultCenter removeObserver:self
-                             name:kJPFNetworkDidLoginNotification
-                           object:nil];
-    [defaultCenter removeObserver:self
-                             name:kJPFNetworkDidReceiveMessageNotification
-                           object:nil];
-    [defaultCenter removeObserver:self
-                             name:kJPFServiceErrorNotification
-                           object:nil];
+    [defaultCenter removeObserver:self name:kJPFNetworkDidSetupNotification object:nil];
+    [defaultCenter removeObserver:self name:kJPFNetworkDidCloseNotification object:nil];
+    [defaultCenter removeObserver:self name:kJPFNetworkDidRegisterNotification object:nil];
+    [defaultCenter removeObserver:self name:kJPFNetworkDidLoginNotification object:nil];
+    [defaultCenter removeObserver:self name:kJPFNetworkDidReceiveMessageNotification object:nil];
+    [defaultCenter removeObserver:self name:kJPFServiceErrorNotification object:nil];
 }
 
 - (void)networkDidSetup:(NSNotification *)notification {
@@ -498,9 +486,7 @@
             [view setDetail:array];
             [cell.contentView addSubview:view];
             return cell;
-            
         }
-        
     } else {
         
         if (self.dongtaiAry.count == 0) {
@@ -523,7 +509,7 @@
             [cell.contentView addSubview:zanwuLabel];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
-            
+
         } else {
             
             SchoolDongTaiCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SchoolDongTaiCellId" forIndexPath:indexPath];

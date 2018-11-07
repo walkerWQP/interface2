@@ -11,19 +11,19 @@
 @interface LeaveListItemCell : UITableViewCell
 
 //个人请假情况
-@property (nonatomic, strong) UILabel * titleLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
 //请假时间
-@property (nonatomic, strong) UILabel * LeaveTimeLabel;
+@property (nonatomic, strong) UILabel *LeaveTimeLabel;
 //请假原因
-@property (nonatomic, strong) UILabel * LeaveReasonLabel;
+@property (nonatomic, strong) UILabel *LeaveReasonLabel;
 //请假状态
-@property (nonatomic, strong) UILabel * stateLabel;
+@property (nonatomic, strong) UILabel *stateLabel;
 //粉色圈圈
-@property (nonatomic, strong) UIView * fenQuan;
+@property (nonatomic, strong) UIView  *fenQuan;
 //绿色圈圈
-@property (nonatomic, strong) UIView * lvQuan;
+@property (nonatomic, strong) UIView  *lvQuan;
 //线
-@property (nonatomic, strong) UIView * lineView;
+@property (nonatomic, strong) UIView  *lineView;
 
 
 @end

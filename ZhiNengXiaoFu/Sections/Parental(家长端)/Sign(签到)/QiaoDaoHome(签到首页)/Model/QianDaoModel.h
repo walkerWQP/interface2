@@ -10,9 +10,8 @@
 
 @interface QianDaoModel : NSObject
 
-@property (nonatomic, copy) NSString * head_img;
-@property (nonatomic, copy) NSString * name;
-@property (nonatomic, strong) NSMutableArray * record;
-
-@property (nonatomic, assign) int nature;
+@property (nonatomic, copy) NSString         *head_img;
+@property (nonatomic, copy) NSString         *name;
+@property (nonatomic, strong) NSMutableArray *record;
+@property (nonatomic, assign) int            nature;
 @end

@@ -95,7 +95,6 @@
     self.hasBeenCollectionView.delegate = self;
     self.hasBeenCollectionView.dataSource = self;
     [self.view addSubview:self.hasBeenCollectionView];
-    
     [self.hasBeenCollectionView registerClass:[TotalNumberCell class] forCellWithReuseIdentifier:TotalNumberCell_CollectionView];
 }
 
@@ -134,7 +133,7 @@
 
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 20;
+    return 10;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -169,7 +168,6 @@
                 QianDaoViewController *qianDaoVC = [QianDaoViewController new];
                 qianDaoVC.studentId = model.ID;
                 [self.navigationController pushViewController:qianDaoVC animated:YES];
-                
             }
                 break;
             case 3:
@@ -180,7 +178,6 @@
                 [self.navigationController pushViewController:qianDaoVC animated:YES];
             }
                 break;
-                
             default:
                 break;
         }

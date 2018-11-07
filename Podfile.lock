@@ -14,12 +14,12 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - AMap3DMap-NO-IDFA (6.4.0):
+  - AMap3DMap-NO-IDFA (6.5.0):
     - AMapFoundation-NO-IDFA (~> 1.5)
-  - AMapFoundation-NO-IDFA (1.5.4)
+  - AMapFoundation-NO-IDFA (1.5.5)
   - AMapLocation-NO-IDFA (2.6.1):
     - AMapFoundation-NO-IDFA (~> 1.4)
-  - AMapSearch-NO-IDFA (6.1.1):
+  - AMapSearch-NO-IDFA (6.5.0):
     - AMapFoundation-NO-IDFA (~> 1.4)
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
@@ -36,9 +36,9 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - JCore (1.2.2)
-  - JPush (3.1.0):
-    - JCore (~> 1.2.0)
+  - JCore (1.2.5)
+  - JPush (3.1.1.1):
+    - JCore (~> 1.2.5)
   - LTScrollView (0.2.0)
   - Masonry (1.1.0)
   - MJExtension (3.0.15.1)
@@ -90,13 +90,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  AMap3DMap-NO-IDFA: 8c3b4420b6f0520e44cab25e97ca9457e00dbba0
-  AMapFoundation-NO-IDFA: 09761b7e59a54fe82057ae78a191069182d6f98f
+  AMap3DMap-NO-IDFA: 8cdbdce78a17fe1170e208fc6371875aec81533e
+  AMapFoundation-NO-IDFA: a09d8cef57c10d4f841595829a574bcea67fc323
   AMapLocation-NO-IDFA: ffd69b8b88f553d0b252d4967bf301ad2afff9c0
-  AMapSearch-NO-IDFA: 848e148a31876217a1094e6be3448e95d1688b6a
+  AMapSearch-NO-IDFA: 9d989bd376133fdba233f0f8dc5dce8642267e0b
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
-  JCore: f14c0549968a63c22e246a4875aa9d428446f373
-  JPush: 5921e25ad13e0386351079217b009f2039084eac
+  JCore: 14706de2640b25fb77dbd02332696491407f37c9
+  JPush: 25dd9013fbe106082c14f9f30a82364ee98852fb
   LTScrollView: 1a18ae14884eb99c27f0222203aedaccd21b72fc
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756

@@ -9,6 +9,7 @@
 #import "TheClassInformationViewController.h"
 #import "ClassHomeModel.h"
 #import "PublishJobModel.h"
+
 @interface TheClassInformationViewController ()<WPopupMenuDelegate,UIWebViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView    *theClassInformationScrollView;
@@ -65,7 +66,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] isEqualToString:@"2"]) {
         [self getClassURLData];
     } else {
@@ -79,7 +79,6 @@
     self.view.backgroundColor = backColor;
     self.title = @"班级信息";
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] isEqualToString:@"2"]) {
-
     self.rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
     [self.rightBtn setTitle:@"切换班级" forState:UIControlStateNormal];
     self.rightBtn.titleLabel.font = titFont;
@@ -96,14 +95,12 @@
 - (void)rightBtn:(UIButton *)sender {
     NSLog(@"点击选择班级");
     [self getClassURLDataForClassID];
-    
 }
 
 - (void)getClassURLDataForClassID {
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.classNameArr = [PublishJobModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             NSMutableArray * ary = [@[]mutableCopy];
             for (PublishJobModel * model in self.classNameArr) {
@@ -114,14 +111,11 @@
             } else {
                 [WPopupMenu showRelyOnView:self.rightBtn titles:ary icons:nil menuWidth:140 delegate:self];
             }
-            
             if (self.publishJobArr.count == 0) {
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
             } else {
                 
-                
             }
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -129,7 +123,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -137,7 +130,6 @@
 
 #pragma mark - YBPopupMenuDelegate
 - (void)WPopupMenuDidSelectedAtIndex:(NSInteger)index WPopupMenu:(WPopupMenu *)WPopupMenu {
-    
     if (self.classNameArr.count != 0) {
         PublishJobModel *model = [self.classNameArr objectAtIndex:index];
         if (model.ID == nil) {
@@ -158,7 +150,6 @@
     }
     
     [[HttpRequestManager sharedSingleton] POST:userClassInfo parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             ClassHomeModel * model = [ClassHomeModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
             [self makeTheClassInformationViewControllerUI:model];
@@ -169,7 +160,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -183,13 +173,12 @@
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.publishJobArr = [PublishJobModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             NSMutableArray * ary = [@[]mutableCopy];
             for (PublishJobModel * model in self.publishJobArr) {
                 [ary addObject:[NSString stringWithFormat:@"%@", model.ID]];
             }
-            
+
             if (self.publishJobArr.count == 0) {
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
             } else {
@@ -208,7 +197,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -325,7 +313,6 @@
     self.remarksLabel.isTop = YES;
     [self.bgView addSubview:self.remarksLabel];
     
-    
 }
 
 - (void)teachersBtn:(UIButton *)sender {
@@ -346,19 +333,13 @@
                     self.webView = [[UIWebView alloc] initWithFrame:CGRectZero];
                 }
                 [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneStr]]]];
-                
             }];
             
             UIAlertAction *alertF = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                
                 NSLog(@"点击了取消");
-                
             }];
-            
             [actionSheet addAction:alertT];
-            
             [actionSheet addAction:alertF];
-            
             [self presentViewController:actionSheet animated:YES completion:nil];
         }
     } else {

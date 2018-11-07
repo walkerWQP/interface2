@@ -86,7 +86,6 @@
         //结束尾部刷新
         [self.offTheListCollectionView.mj_footer endRefreshing];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             NSMutableArray *arr = [OffTheListModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             for (OffTheListModel *model in arr) {
                 [self.offTheListArr addObject:model];
@@ -97,7 +96,6 @@
                 self.zanwushuju.alpha = 0;
                 [self.offTheListCollectionView reloadData];
             }
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -105,7 +103,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -121,13 +118,10 @@
     self.offTheListCollectionView.delegate = self;
     self.offTheListCollectionView.dataSource = self;
     [self.view addSubview:self.offTheListCollectionView];
-    
     [self.offTheListCollectionView registerClass:[OffTheListCell class] forCellWithReuseIdentifier:OffTheListCell_CollectionView];
-    
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
     self.headImgView.backgroundColor = [UIColor clearColor];
     [self.offTheListCollectionView addSubview:self.headImgView];
-
 }
 
 
@@ -136,7 +130,6 @@
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"9"};
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.bannerArr = [BannerModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             if (self.bannerArr.count == 0) {
                 self.headImgView.image = [UIImage imageNamed:@"教师端活动管理banner"];
@@ -145,7 +138,6 @@
                 [self.headImgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"教师端活动管理banner"]];
                 [self.offTheListCollectionView reloadData];
             }
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -153,7 +145,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -192,7 +183,6 @@
         gridcell = cell;
     }
     return gridcell;
-    
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -201,24 +191,24 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize itemSize = CGSizeZero;
-    
     itemSize = CGSizeMake(APP_WIDTH, 160);
-    
     return itemSize;
 }
 
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    OffTheListModel *model = [self.offTheListArr objectAtIndex:indexPath.row];
-    LeaveTheDetailsViewController *leaveTheDetailsVC = [LeaveTheDetailsViewController new];
-    if (model.ID == nil || model.name == nil) {
-        [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
-    } else {
-        leaveTheDetailsVC.ID = model.ID;
-        leaveTheDetailsVC.name = model.name;
-        leaveTheDetailsVC.headImg = model.head_img;
-        [self.navigationController pushViewController:leaveTheDetailsVC animated:YES];
+    if (self.offTheListArr.count != 0) {
+        OffTheListModel *model = [self.offTheListArr objectAtIndex:indexPath.row];
+        LeaveTheDetailsViewController *leaveTheDetailsVC = [LeaveTheDetailsViewController new];
+        if (model.ID == nil || model.name == nil) {
+            [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
+        } else {
+            leaveTheDetailsVC.ID = model.ID;
+            leaveTheDetailsVC.name = model.name;
+            leaveTheDetailsVC.headImg = model.head_img;
+            [self.navigationController pushViewController:leaveTheDetailsVC animated:YES];
+        }
     }
 }
 

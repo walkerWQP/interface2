@@ -31,7 +31,7 @@
 #import <JPUSHService.h>
 @interface HomePageJViewController ()<NewPagedFlowViewDelegate, NewPagedFlowViewDataSource, UITableViewDelegate, UITableViewDataSource, HomePageJingJiViewDelegate, DCCycleScrollViewDelegate>
 
-@property (nonatomic, strong) NSString  * schoolName;
+@property (nonatomic, strong) NSString           *schoolName;
 /**
  *  图片数组
  */
@@ -167,12 +167,10 @@
                 } else {
                     
                 }
-                
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"%@", error);
         }];
-        
     }];
 }
 
@@ -540,7 +538,6 @@
             
             [cell.contentView addSubview:view];
             return cell;
-       
         }
        
     } else {
@@ -614,8 +611,6 @@
         titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:17];
         titleLabel.textColor = RGB(51, 51, 51);
         [header addSubview:titleLabel];
-        
-       
         
         UILabel * moreLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - 55, 14 + 10, 25, 12)];
         moreLabel.text = @"更多";
@@ -760,7 +755,6 @@
 }
 
 - (void)didSelectCell:(UIView *)subView withSubViewIndex:(NSInteger)subIndex {
-    
     NSLog(@"点击了第%ld张图",(long)subIndex + 1);
 }
 

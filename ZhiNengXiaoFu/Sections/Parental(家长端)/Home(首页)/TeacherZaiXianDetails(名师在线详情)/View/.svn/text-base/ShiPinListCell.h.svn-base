@@ -10,13 +10,12 @@
 
 @interface ShiPinListCell : UITableViewCell
 
-@property (nonatomic, strong) UIImageView * ShiPinListImg;
-@property (nonatomic, strong) UIImageView * bofangImg;
-@property (nonatomic, strong) UILabel * bofangLabel;
-@property (nonatomic, strong) UILabel * titleLabel;
-
-@property (nonatomic, strong) UIImageView * naozhongImg;
-@property (nonatomic, strong) UILabel * timeLabel;
-@property (nonatomic, strong) UIView * lineView;
+@property (nonatomic, strong) UIImageView *ShiPinListImg;
+@property (nonatomic, strong) UIImageView *bofangImg;
+@property (nonatomic, strong) UILabel     *bofangLabel;
+@property (nonatomic, strong) UILabel     *titleLabel;
+@property (nonatomic, strong) UIImageView *naozhongImg;
+@property (nonatomic, strong) UILabel     *timeLabel;
+@property (nonatomic, strong) UIView      *lineView;
 
 @end

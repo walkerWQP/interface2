@@ -66,9 +66,9 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.title = self.titleStr;
-    
     [self.view addSubview:self.homeWorkTableView];
     [self.homeWorkTableView registerClass:[TongZhiCell class] forCellReuseIdentifier:@"TongZhiCellId"];
     self.homeWorkTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -201,12 +201,10 @@
         
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
             [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
-
         } else {
             //先删数据 再删UI
             HomeWorkModel * model = [self.homeWorkArr objectAtIndex:indexPath.row];
             [self WorkDeleteHomeWorkData:model.ID];
-            
             [self.homeWorkArr removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
@@ -272,7 +270,6 @@
             } else {
                 [imgs sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"banner"]];
             }
-
         }
         [cell addSubview:imgs];
         return cell;
@@ -281,7 +278,6 @@
         if (self.homeWorkArr.count != 0) {
             HomeWorkModel * model = [self.homeWorkArr objectAtIndex:indexPath.row];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             if (![model.img isEqualToString:@""] || model.img != nil) {
                 [cell.headImgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"作业占位符"]];
@@ -319,7 +315,6 @@
 }
 
 - (void)rightBtn:(UIButton *)sender {
-    
     NSLog(@"点击发布通知");
     PublishJobViewController *publishJobVC = [[PublishJobViewController alloc] init];
     if (self.ID == nil) {

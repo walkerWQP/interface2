@@ -51,7 +51,6 @@
 //layoutAttributesForItemAtIndexPath
 -(UICollectionViewLayoutAttributes*)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize itemSize=[self.delegate YYCollectionViewLayoutForCollectionView:self.collectionView withLayout:self atIndexPath:indexPath];
-    
     UICollectionViewLayoutAttributes*attibutes=[UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     BOOL isLeftNow =_leftOy<_rightOy;
     
@@ -59,7 +58,6 @@
         CGFloat x=PADDING;
         attibutes.frame=CGRectMake(x, _leftOy, _itemWidth,itemSize.height);
         _leftOy+=itemSize.height;
-        
     } else {
         CGFloat x=PADDING*2+_itemWidth;
         attibutes.frame=CGRectMake(x, _rightOy, _itemWidth, itemSize.height);

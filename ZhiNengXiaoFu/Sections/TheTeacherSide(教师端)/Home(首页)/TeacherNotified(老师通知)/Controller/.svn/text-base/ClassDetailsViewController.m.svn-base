@@ -41,10 +41,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     [self getBannersURLData];
     self.page  = 1;
-    
     //下拉刷新
     self.classDetailsTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopic)];
     //自动更改透明度
@@ -65,16 +63,13 @@
     button.titleLabel.font = titFont;
     [button addTarget:self action:@selector(rightBtn:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    
     [self.view addSubview:self.classDetailsTableView];
     [self.classDetailsTableView registerClass:[ClassDetailsTableViewCell class] forCellReuseIdentifier:@"ClassDetailsTableViewCellID"];
     self.classDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
     [self.classDetailsTableView addSubview:self.zanwushuju];
-    
 }
 
 - (void)loadNewTopic {
@@ -92,9 +87,7 @@
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"3"};
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.bannerArr = [BannerModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-            
             if (self.bannerArr.count == 0) {
                 self.headImgView.image = [UIImage imageNamed:@"教师端活动管理banner"];
             } else {
@@ -109,7 +102,6 @@
             } else {
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -123,9 +115,7 @@
         [self.classDetailsTableView.mj_header endRefreshing];
         //结束尾部刷新
         [self.classDetailsTableView.mj_footer endRefreshing];
-        
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             NSMutableArray *arr = [ClassDetailsModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             for (ClassDetailsModel *model in arr) {
                 [self.classDetailsArr addObject:model];
@@ -144,7 +134,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -179,18 +168,15 @@
             //先删数据 再删UI
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
                 [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
-                
             } else {
                 ClassDetailsModel * model = [self.classDetailsArr objectAtIndex:indexPath.row];
                 [self.classDetailsArr removeObjectAtIndex:indexPath.row];
                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 [self deleteNoticeURLForData:model.ID];
-           
             }
             
         }];
         return @[deleteAction];
-
 }
 
 - (void)deleteNoticeURLForData:(NSString *)ID {
@@ -210,7 +196,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -272,25 +257,25 @@
             } else {
                 [imgs sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"banner"]];
             }
-            
         }
-        
         [cell addSubview:imgs];
         return cell;
     } else {
         ClassDetailsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ClassDetailsTableViewCellID" forIndexPath:indexPath];
-        ClassDetailsModel * model = [self.classDetailsArr objectAtIndex:indexPath.row];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if ([model.img isEqualToString:@""] || model.img == nil) {
-            cell.headImgView.image = [UIImage imageNamed:@"老师通知占位符"];
-        } else {
-            [cell.headImgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"老师通知占位符"]];
+        if (self.classDetailsArr.count != 0) {
+            ClassDetailsModel * model = [self.classDetailsArr objectAtIndex:indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if ([model.img isEqualToString:@""] || model.img == nil) {
+                cell.headImgView.image = [UIImage imageNamed:@"老师通知占位符"];
+            } else {
+                [cell.headImgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"老师通知占位符"]];
+            }
+            cell.titleLabel.text = model.title;
+            cell.subjectsLabel.text = model.content;
+            cell.timeLabel.text = model.create_time;
         }
-        cell.titleLabel.text = model.title;
-        cell.subjectsLabel.text = model.content;
-        cell.timeLabel.text = model.create_time;
         return cell;
     }
     
@@ -302,7 +287,6 @@
     } else {
         return 80;
     }
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

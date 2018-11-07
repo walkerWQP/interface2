@@ -9,6 +9,7 @@
 #import "BaiDuQuanJingViewController.h"
 #import <BaiduPanoSDK/BaiduPanoramaView.h>
 #import <BaiduPanoSDK/BaiduPanoUtils.h>
+
 @interface BaiDuQuanJingViewController ()<BaiduPanoramaViewDelegate>
 @property(strong, nonatomic) BaiduPanoramaView  *panoramaView;
 

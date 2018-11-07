@@ -127,9 +127,7 @@
         polylineRenderer.lineJoinType = kMALineJoinRound;
         polylineRenderer.lineCapType  = kCGLineCapButt;
         polylineRenderer.lineDashType = kMALineDashTypeNone;
-        
         return polylineRenderer;
-        
     }
     return nil;
 }
@@ -157,12 +155,8 @@
 
 
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location reGeocode:(AMapLocationReGeocode *)reGeocode {
-    NSLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
     
-    
-    NSLog(@"reGeocode:%@", reGeocode);
     CLLocationCoordinate2D commonPolylineCoords[2];
-    
     commonPolylineCoords[0].latitude = location.coordinate.latitude;
     commonPolylineCoords[0].longitude = location.coordinate.longitude;
     commonPolylineCoords[1].latitude = 34.797254;
@@ -254,7 +248,6 @@
                 [self dismissViewControllerAnimated:YES completion:^{
                     
                 }];
-
             }];
             [alert addAction:action];
             continue;
@@ -265,11 +258,8 @@
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
         }];
         [alert addAction:action];
-        
     }
-    
     [self presentViewController:alert animated:YES completion:nil];
-
 }
 
 //苹果地图
@@ -282,7 +272,6 @@
     MKMapItem *currentLoc = [MKMapItem mapItemForCurrentLocation];
     //终点位置
     MKMapItem *toLocation = [[MKMapItem alloc]initWithPlacemark:[[MKPlacemark alloc]initWithCoordinate:loc addressDictionary:nil] ];
-    
     NSArray *items = @[currentLoc,toLocation];
     //第一个
     NSDictionary *dic = @{

@@ -17,7 +17,6 @@
         [self addSubview:self.headImg];
         [self addSubview:self.nameLabel];
         [self addSubview:self.typeLabel];
-
     }
     return self;
 }
@@ -54,7 +53,6 @@
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headImg.frame.origin.x + self.headImg.frame.size.width + 32, self.headImg.frame.origin.y + 25, APP_WIDTH - (self.headImg.frame.origin.x + self.headImg.frame.size.width + 32 + 105), 20)];
         self.nameLabel.textColor = titlColor;
         self.nameLabel.font = [UIFont systemFontOfSize:18];
-
     }
     return _nameLabel;
 }

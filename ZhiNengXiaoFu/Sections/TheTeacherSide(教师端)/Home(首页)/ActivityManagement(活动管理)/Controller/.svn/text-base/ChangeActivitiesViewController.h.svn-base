@@ -10,11 +10,11 @@
 
 @interface ChangeActivitiesViewController : BaseViewController
 
-@property (nonatomic, copy) NSString * ID;
+@property (nonatomic, copy) NSString *ID;
 //@property (nonatomic, copy) NSString * img;
-@property (nonatomic, copy) NSString * start;
-@property (nonatomic, copy) NSString * end;
-@property (nonatomic, copy) NSString * titleStr;
-@property (nonatomic, copy) NSString * introduction;
+@property (nonatomic, copy) NSString *start;
+@property (nonatomic, copy) NSString *end;
+@property (nonatomic, copy) NSString *titleStr;
+@property (nonatomic, copy) NSString *introduction;
 
 @end

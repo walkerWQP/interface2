@@ -19,6 +19,7 @@
 }
 
 - (void)makeDidNotReturnCellUI {
+    
     self.contentView.backgroundColor = [UIColor whiteColor];
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 60, 60)];
     self.headImgView.layer.masksToBounds = YES;

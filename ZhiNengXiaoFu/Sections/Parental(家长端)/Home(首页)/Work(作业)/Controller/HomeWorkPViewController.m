@@ -145,11 +145,8 @@
                 } else {
                      [self.itemHeights addObject:@(52 + (kScreenWidth - 30) / 2 + 10)];
                 }
-                
             }
-            
             [self.HomeWorkPTableView reloadData];
-
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -157,15 +154,12 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
     }];
 }
-
-
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -204,8 +198,6 @@
     } else {
         return nil;
     }
-   
-    
 }
 
 

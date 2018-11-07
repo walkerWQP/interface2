@@ -72,7 +72,6 @@
 - (void)setNetWork:(NSInteger)page {
     NSDictionary * dic = @{@"key":[UserManager key],@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:indexFenceGetFence parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         //结束头部刷新
         [self.WeiLanListTableView.mj_header endRefreshing];
         //结束尾部刷新
@@ -190,7 +189,6 @@
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [self WorkDeleteData:model.ID];
         }
-       
     }];
     return @[deleteAction];
 }
@@ -200,12 +198,11 @@
     NSDictionary *dic = @{@"key":[UserManager key],@"id":workID};
     [[HttpRequestManager sharedSingleton] POST:indexFenceDeleteFence parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
             [self.WeiLanListAry removeAllObjects];
             [self.WeiLanListTableView reloadData];
             [self setNetWork:1];
-            
+        
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];

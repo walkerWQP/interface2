@@ -12,13 +12,10 @@
 
 //横线
 @property (nonatomic, strong) UIView * lineView;
-
 //头像
 @property (nonatomic, strong) UIImageView * headImg;
-
 //名字
 @property (nonatomic, strong) UILabel * nameLabel;
-
 //类型
 @property (nonatomic, strong) UILabel * typeLabel;
 

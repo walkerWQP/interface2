@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface LTHeaderView : UIView
-@property(strong, nonatomic) UIImageView * back;
 
-@property(strong, nonatomic) UIImageView * backTwo;;
+@property(strong, nonatomic) UIImageView *back;
+@property(strong, nonatomic) UIImageView *backTwo;;
 
 @end

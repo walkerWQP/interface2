@@ -10,14 +10,12 @@
 
 @interface WeiLanListModel : NSObject
 
-@property (nonatomic, copy) NSString * ID;
-@property (nonatomic, copy) NSString * create_time;
-@property (nonatomic, copy) NSString * name;
-
+@property (nonatomic, copy) NSString     *ID;
+@property (nonatomic, copy) NSString     *create_time;
+@property (nonatomic, copy) NSString     *name;
 @property (nonatomic, assign) NSInteger  radius;
-
-@property (nonatomic, assign) CGFloat  longitude;
-@property (nonatomic, assign) CGFloat  latitude;
+@property (nonatomic, assign) CGFloat    longitude;
+@property (nonatomic, assign) CGFloat    latitude;
 
 
 @end

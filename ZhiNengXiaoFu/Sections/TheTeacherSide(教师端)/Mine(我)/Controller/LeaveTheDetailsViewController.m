@@ -66,8 +66,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"请假详情";
@@ -78,11 +76,9 @@
         NSUserDefaults * pushJudge = [NSUserDefaults standardUserDefaults];
         [pushJudge setObject: @"" forKey:@"notify"];
         [pushJudge synchronize];//记得立即同步
-        
     } else {
         
     }
-
 }
 
 - (void)rebackToRootViewAction {
@@ -96,10 +92,8 @@
     NSDictionary *dic = @{@"key":[UserManager key],@"student_id":studentId};
     [[HttpRequestManager sharedSingleton] POST:studentTodayLeaveURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.toSchoolSituationModel = [ToSchoolSituationModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
             [self makeLeaveTheDetailsViewControllerUI];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -107,7 +101,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -119,19 +112,15 @@
     NSDictionary *dic = @{@"key":[UserManager key],@"id":self.ID};
     [[HttpRequestManager sharedSingleton] POST:leaveLeaveDetail parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.leaveListModel = [LeaveListModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
             [self makeLeaveTheDetailsViewControllerUI];
-            
         } else {
-            if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402)
-            {
+            if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
             } else {
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -144,14 +133,12 @@
     self.launchEventScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.2);
     self.launchEventScrollView.bounces = YES;
     self.launchEventScrollView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
-    
     self.launchEventScrollView.maximumZoomScale = 2.0;//最多放大到两倍
     self.launchEventScrollView.minimumZoomScale = 0.5;//最多缩小到0.5倍
     //设置是否允许缩放超出倍数限制，超出后弹回
     self.launchEventScrollView.bouncesZoom = YES;
     //设置委托
     self.launchEventScrollView.delegate = self;
-    
     [self.view addSubview:self.launchEventScrollView];
     
     self.firstView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 200)];
@@ -225,7 +212,6 @@
     } else {
         self.EndLabel.text = self.leaveListModel.end;
     }
-    
     [self.StartEndView addSubview:self.EndLabel];
     
     
@@ -361,7 +347,6 @@
 }
 
 
-
 - (void)submitBtn : (UIButton *)sender {
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
         [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
@@ -370,14 +355,11 @@
         [WProgressHUD showErrorAnimatedText:@"审核内容不能为空"];
         return;
     } else {
-       
         NSDictionary *dic = @{@"key":[UserManager key],@"id":self.ID,@"remark":self.noteTextView.text};
         [[HttpRequestManager sharedSingleton] POST:leaveHandleLeave parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
             if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-                
                 [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
                 [self.navigationController popViewControllerAnimated:YES];
-                
             } else {
                 if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                     [UserManager logoOut];

@@ -36,8 +36,7 @@
     self.backgroundColor = [UIColor blueColor];
 //    [self addSubview:self.testLabel];
     [self addSubview:self.backTwo];
-
-     [self addSubview:self.back];
+    [self addSubview:self.back];
 }
 
 -(void)tagGesture:(UITapGestureRecognizer *)gesture {
@@ -86,7 +85,6 @@
 - (UIImageView *)backTwo {
     if (!_backTwo) {
         _backTwo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-       
         _backTwo.image = [UIImage imageNamed:@"banner底部"];
     }
     return _backTwo;

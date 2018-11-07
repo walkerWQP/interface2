@@ -32,7 +32,6 @@
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             NSMutableArray * ary = [BannerModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             for (BannerModel * model in ary) {
                 [self.dataHeaderSourceAryImg addObject:model.img];

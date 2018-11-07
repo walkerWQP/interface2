@@ -52,15 +52,12 @@
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.teacherZaiXianDetailsModel = [TeacherZaiXianDetailsModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
             self.title = self.teacherZaiXianDetailsModel.title;
-
             if ([self.teacherZaiXianDetailsModel.video_url isEqualToString:@""]) {
-                
                 UIImageView * back = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 200)];
                 [back sd_setImageWithURL:[NSURL URLWithString:self.teacherZaiXianDetailsModel.img] placeholderImage:nil];
                 [self.view addSubview:back];
             } else {
                 [self setBoFang];
-                
             }
             
         } else {
@@ -98,7 +95,6 @@
                 [self.view addSubview:back];
             } else {
                 [self setBoFang];
-
             }
             
         } else {

@@ -136,7 +136,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -146,46 +145,23 @@
 -(void)cleanCacheAndCookie{
     
     //清除cookies
-    
     NSHTTPCookie *cookie;
-    
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    
     for (cookie in [storage cookies]){
-        
         [storage deleteCookie:cookie];
-        
     }
     
     //清除UIWebView的缓存
-    
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    
     NSURLCache * cache = [NSURLCache sharedURLCache];
-    
     [cache removeAllCachedResponses];
-    
     [cache setDiskCapacity:0];
-    
     [cache setMemoryCapacity:0];
     
 }
 
 
 - (void)prepareViews {
-    
-//        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"];
-//
-//        NSString *htmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-//
-//        NSURL *url = [[NSURL alloc] initWithString:filePath];
-//
-//        [self.webView loadHTMLString:htmlString baseURL:url];
-//    if (self.webView == nil) {
-//        self.webView = [[UIWebView alloc]initWithFrame:self.view.frame];
-//        self.webView.delegate = self;
-//        [self.view addSubview:self.webView];
-//    }
     self.webView = [[UIWebView alloc]initWithFrame:self.view.frame];
     self.webView.delegate = self;
     [self.bgView addSubview:self.webView];

@@ -39,18 +39,15 @@
     self.headerImg.layer.masksToBounds = YES;
     [self.backImg addSubview:self.headerImg];
     
-    
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake( (kScreenWidth - 20) * 129 / 364 - 40 + 20 + 10, 24, self.backImg.frame.size.width - ((kScreenWidth - 20) * 129 / 364 - 40 + 20 + 10 ) - 20, 15)];
     self.titleLabel.font = [UIFont systemFontOfSize:15];
     self.titleLabel.textColor = RGBA(51, 51, 51, 1);
     [self.backImg addSubview:self.titleLabel];
     
-    
     self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 10, self.titleLabel.frame.size.width, 26)];
     self.contentLabel.font = [UIFont systemFontOfSize:13];
     self.contentLabel.textColor = RGBA(119, 119, 119, 1);
     [self.backImg addSubview:self.contentLabel];
-    
     
     self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x, self.contentLabel.frame.origin.y + self.contentLabel.frame.size.height + 8, 100, 10)];
     self.timeLabel.textColor = RGBA(170, 170, 170, 1);

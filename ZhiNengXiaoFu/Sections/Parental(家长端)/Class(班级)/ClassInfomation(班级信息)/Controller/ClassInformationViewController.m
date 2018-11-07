@@ -65,7 +65,6 @@
     self.headTeacherNameLabel.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:self.headTeacherNameLabel];
 
-
     self.keRenTeacherNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 180, 120, 20)];
     self.keRenTeacherNameLabel.text = @"阿刁(语文)";
     self.keRenTeacherNameLabel.textColor = COLOR(51, 51, 51, 1);

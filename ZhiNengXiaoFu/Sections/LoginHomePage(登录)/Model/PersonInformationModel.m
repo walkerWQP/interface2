@@ -20,20 +20,20 @@
     
     if (self = [super init]) {
         
-        self.ID = [aDecoder decodeObjectForKey:@"ID"];
-        self.head_img = [aDecoder decodeObjectForKey:@"head_img"];
-        self.mobile = [aDecoder decodeObjectForKey:@"mobile"];
-        self.class_id = [aDecoder decodeIntegerForKey:@"class_id"];
-        self.name = [aDecoder decodeObjectForKey:@"name"];
-        self.nature = [aDecoder decodeIntegerForKey:@"nature"];
-        self.password = [aDecoder decodeObjectForKey:@"password"];
-        self.school_id = [aDecoder decodeIntegerForKey:@"school_id"];
-        self.sex = [aDecoder decodeIntegerForKey:@"sex"];
-        self.token = [aDecoder decodeObjectForKey:@"token"];
-        self.usernum = [aDecoder decodeObjectForKey:@"usernum"];
+        self.ID           = [aDecoder decodeObjectForKey:@"ID"];
+        self.head_img     = [aDecoder decodeObjectForKey:@"head_img"];
+        self.mobile       = [aDecoder decodeObjectForKey:@"mobile"];
+        self.class_id     = [aDecoder decodeIntegerForKey:@"class_id"];
+        self.name         = [aDecoder decodeObjectForKey:@"name"];
+        self.nature       = [aDecoder decodeIntegerForKey:@"nature"];
+        self.password     = [aDecoder decodeObjectForKey:@"password"];
+        self.school_id    = [aDecoder decodeIntegerForKey:@"school_id"];
+        self.sex          = [aDecoder decodeIntegerForKey:@"sex"];
+        self.token        = [aDecoder decodeObjectForKey:@"token"];
+        self.usernum      = [aDecoder decodeObjectForKey:@"usernum"];
         self.class_name_s = [aDecoder decodeObjectForKey:@"class_name_s"];
         self.class_name_t = [aDecoder decodeObjectForKey:@"class_name_t"];
-        self.school_name = [aDecoder decodeObjectForKey:@"school_name"];
+        self.school_name  = [aDecoder decodeObjectForKey:@"school_name"];
 
     }
     return self;

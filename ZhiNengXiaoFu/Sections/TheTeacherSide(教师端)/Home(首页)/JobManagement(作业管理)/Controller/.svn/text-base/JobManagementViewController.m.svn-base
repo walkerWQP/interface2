@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) UIImageView    *zanwushuju;
 @property (nonatomic, strong) NSMutableArray *bannerArr;
+
 @end
 
 @implementation JobManagementViewController
@@ -49,7 +50,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"作业管理";
-
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
@@ -61,7 +61,6 @@
     self.jobManagementCollectionView.mj_header.automaticallyChangeAlpha = YES;
     //进入刷新状态
     [self.jobManagementCollectionView.mj_header beginRefreshing];
-    
 }
 
 - (void)getClassData {
@@ -116,7 +115,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -133,9 +131,7 @@
     self.jobManagementCollectionView.delegate = self;
     self.jobManagementCollectionView.dataSource = self;
     [self.view addSubview:self.jobManagementCollectionView];
-    
     [self.jobManagementCollectionView registerClass:[TeacherNotifiedCell class] forCellWithReuseIdentifier:TeacherNotifiedCell_CollectionView];
-    
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
     self.headImgView.backgroundColor = [UIColor clearColor];
     [self.jobManagementCollectionView addSubview:self.headImgView];
@@ -152,8 +148,6 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
     UICollectionViewCell *gridcell = nil;
     TeacherNotifiedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:TeacherNotifiedCell_CollectionView forIndexPath:indexPath];
     if (self.jobManagementArr.count != 0) {
@@ -178,7 +172,6 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (self.jobManagementArr.count != 0) {
         TeacherNotifiedModel *model = [self.jobManagementArr objectAtIndex:indexPath.row];
         HomeWorkViewController *homeWorkVC = [[HomeWorkViewController alloc] init];

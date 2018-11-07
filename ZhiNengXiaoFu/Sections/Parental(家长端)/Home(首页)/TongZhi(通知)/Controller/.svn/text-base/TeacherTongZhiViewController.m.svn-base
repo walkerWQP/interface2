@@ -35,9 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.page = 1;
-    
     self.view.backgroundColor = [UIColor whiteColor];
-    
     [self.view addSubview:self.teacherTongZhiTableView];
     [self.teacherTongZhiTableView registerClass:[TongZhiNewCell class] forCellReuseIdentifier:@"TongZhiNewCellId"];
     self.teacherTongZhiTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -107,7 +105,6 @@
     if (!_teacherTongZhiTableView) {
         self.teacherTongZhiTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH - APP_TABH + 10) style:UITableViewStylePlain];
         self.teacherTongZhiTableView.backgroundColor = [UIColor whiteColor];
-
         self.teacherTongZhiTableView.delegate = self;
         self.teacherTongZhiTableView.dataSource = self;
         _teacherTongZhiTableView.estimatedRowHeight = 0;

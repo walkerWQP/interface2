@@ -11,7 +11,6 @@
 @implementation WorkModel
 
 + (NSDictionary *)replacedKeyFromPropertyName {
-    
     return @{@"ID": @"id"};
 }
 

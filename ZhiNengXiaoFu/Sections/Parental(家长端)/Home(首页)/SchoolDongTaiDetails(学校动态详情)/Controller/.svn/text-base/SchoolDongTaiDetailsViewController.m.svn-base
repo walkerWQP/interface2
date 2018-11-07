@@ -78,7 +78,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
@@ -90,7 +89,6 @@
         self.schoolDongTaiDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT) style:UITableViewStyleGrouped];
         self.schoolDongTaiDetailsTableView.backgroundColor = [UIColor whiteColor];
         self.schoolDongTaiDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
         self.schoolDongTaiDetailsTableView.delegate = self;
         self.schoolDongTaiDetailsTableView.dataSource = self;
     }
@@ -112,12 +110,9 @@
                 imageViewNew.frame =CGRectMake(0, self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant - newH,self.tongZhiDetailsCell.PicView.bounds.size.width, H * self.tongZhiDetailsCell.PicView.bounds.size.width / w);
             }
             [self.schoolDongTaiDetailsTableView reloadData];
-            
         }];
-        
         [self.tongZhiDetailsCell.PicView addSubview:imageViewNew];
     }
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

@@ -59,14 +59,12 @@
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
     self.headImgView.backgroundColor = [UIColor clearColor];
     self.newGuidelinesTableView.tableHeaderView = self.headImgView;
-    
     self.headImgView.image = [UIImage imageNamed:@"教师端活动管理banner"];
     [self.newGuidelinesTableView registerNib:[UINib nibWithNibName:@"TongZhiDetailsCell" bundle:nil] forCellReuseIdentifier:@"TongZhiDetailsCellId"];
 }
 
 - (void)getBannersURLData {
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"10"};
-    
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
@@ -137,12 +135,9 @@
                 imageViewNew.frame =CGRectMake(0, self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant - newH,self.tongZhiDetailsCell.PicView.bounds.size.width, H * self.tongZhiDetailsCell.PicView.bounds.size.width / w);
             }
             [self.newGuidelinesTableView reloadData];
-            
         }];
-        
         [self.tongZhiDetailsCell.PicView addSubview:imageViewNew];
     }
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -181,15 +176,13 @@
     if (self.Hnew ==0) {
         
         self.tongZhiDetailsCell.webView.hidden = NO;
-    self.tongZhiDetailsCell.webView.userInteractionEnabled = YES;
-        
+        self.tongZhiDetailsCell.webView.userInteractionEnabled = YES;
         self.tongZhiDetailsCell.webView.UIDelegate = self;
-    self.tongZhiDetailsCell.webView.navigationDelegate = self;
-    self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.alpha = 0;
-        
-        if (self.workDetailsModel.content.length>0) {
-            
-            [self.tongZhiDetailsCell.webView loadHTMLString:[NSString stringWithFormat:@"<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='black'><meta name='format-detection' content='telephone=no'><style type='text/css'>img{width:%fpx}</style>%@", APP_WIDTH - 20, self.workDetailsModel.content] baseURL:nil];
+        self.tongZhiDetailsCell.webView.navigationDelegate = self;
+        self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.alpha = 0;
+            if (self.workDetailsModel.content.length>0) {
+                
+                [self.tongZhiDetailsCell.webView loadHTMLString:[NSString stringWithFormat:@"<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='black'><meta name='format-detection' content='telephone=no'><style type='text/css'>img{width:%fpx}</style>%@", APP_WIDTH - 20, self.workDetailsModel.content] baseURL:nil];
             
         }
     }

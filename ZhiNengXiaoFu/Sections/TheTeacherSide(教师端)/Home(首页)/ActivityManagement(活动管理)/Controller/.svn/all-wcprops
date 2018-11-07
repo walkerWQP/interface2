@@ -6,8 +6,8 @@ END
 ChangeActivitiesViewController.h
 K 25
 svn:wc:ra_dav:version-url
-V 324
-/svn/duxiu/!svn/ver/80/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/ActivityManagement(%E6%B4%BB%E5%8A%A8%E7%AE%A1%E7%90%86)/Controller/ChangeActivitiesViewController.h
+V 325
+/svn/duxiu/!svn/ver/278/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/ActivityManagement(%E6%B4%BB%E5%8A%A8%E7%AE%A1%E7%90%86)/Controller/ChangeActivitiesViewController.h
 END
 LaunchEventViewController.h
 K 25
@@ -19,7 +19,7 @@ TomorrowViewController.m
 K 25
 svn:wc:ra_dav:version-url
 V 317
-/svn/duxiu/!svn/ver/269/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/ActivityManagement(%E6%B4%BB%E5%8A%A8%E7%AE%A1%E7%90%86)/Controller/TomorrowViewController.m
+/svn/duxiu/!svn/ver/274/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/ActivityManagement(%E6%B4%BB%E5%8A%A8%E7%AE%A1%E7%90%86)/Controller/TomorrowViewController.m
 END
 ActivityManagementViewController.m
 K 25
@@ -37,7 +37,7 @@ ChangeActivitiesViewController.m
 K 25
 svn:wc:ra_dav:version-url
 V 325
-/svn/duxiu/!svn/ver/269/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/ActivityManagement(%E6%B4%BB%E5%8A%A8%E7%AE%A1%E7%90%86)/Controller/ChangeActivitiesViewController.m
+/svn/duxiu/!svn/ver/278/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/ActivityManagement(%E6%B4%BB%E5%8A%A8%E7%AE%A1%E7%90%86)/Controller/ChangeActivitiesViewController.m
 END
 OngoingViewController.h
 K 25
@@ -49,19 +49,19 @@ LaunchEventViewController.m
 K 25
 svn:wc:ra_dav:version-url
 V 320
-/svn/duxiu/!svn/ver/269/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/ActivityManagement(%E6%B4%BB%E5%8A%A8%E7%AE%A1%E7%90%86)/Controller/LaunchEventViewController.m
+/svn/duxiu/!svn/ver/278/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/ActivityManagement(%E6%B4%BB%E5%8A%A8%E7%AE%A1%E7%90%86)/Controller/LaunchEventViewController.m
 END
 IsAboutToBeginViewController.m
 K 25
 svn:wc:ra_dav:version-url
 V 323
-/svn/duxiu/!svn/ver/269/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/ActivityManagement(%E6%B4%BB%E5%8A%A8%E7%AE%A1%E7%90%86)/Controller/IsAboutToBeginViewController.m
+/svn/duxiu/!svn/ver/278/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/ActivityManagement(%E6%B4%BB%E5%8A%A8%E7%AE%A1%E7%90%86)/Controller/IsAboutToBeginViewController.m
 END
 OngoingViewController.m
 K 25
 svn:wc:ra_dav:version-url
 V 316
-/svn/duxiu/!svn/ver/269/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/ActivityManagement(%E6%B4%BB%E5%8A%A8%E7%AE%A1%E7%90%86)/Controller/OngoingViewController.m
+/svn/duxiu/!svn/ver/278/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Home(%E9%A6%96%E9%A1%B5)/ActivityManagement(%E6%B4%BB%E5%8A%A8%E7%AE%A1%E7%90%86)/Controller/OngoingViewController.m
 END
 TomorrowViewController.h
 K 25

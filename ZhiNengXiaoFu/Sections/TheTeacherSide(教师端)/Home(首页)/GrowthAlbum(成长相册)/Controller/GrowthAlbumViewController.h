@@ -10,12 +10,9 @@
 
 @interface GrowthAlbumViewController : UIViewController
 
-@property (nonatomic, strong) NSString *urlStr;
-
-@property (nonatomic, strong) NSString *webTitle;
-
-@property (nonatomic, strong) NSString *classID;
-
+@property (nonatomic, strong) NSString  *urlStr;
+@property (nonatomic, strong) NSString  *webTitle;
+@property (nonatomic, strong) NSString  *classID;
 @property (nonatomic, strong) NSString  *typeID;
 
 @end

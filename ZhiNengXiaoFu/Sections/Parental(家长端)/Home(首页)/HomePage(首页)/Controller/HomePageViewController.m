@@ -66,11 +66,8 @@
     [self setUser];
     self.layout = [[UICollectionViewFlowLayout alloc] init];
     self.HomePageCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH) collectionViewLayout:self.layout];
-
     self.HomePageCollectionView.backgroundColor = [UIColor whiteColor];
-
     self.view.backgroundColor = [UIColor whiteColor];
-    
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:173/ 255.0 green:228 / 255.0 blue: 211 / 255.0 alpha:1];
@@ -171,7 +168,6 @@
         }
         
         self.numberAry = [NSMutableArray arrayWithObjects:notice,homework,@"0",@"0",@"0",consult,activity,dynamic,@"0" ,nil];
-        
         
         [self.HomePageCollectionView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

@@ -96,7 +96,6 @@
         [fatherVC addChildViewController:vc];
         [self.pageScrollView addSubview:vc.view];
     }
-    
 }
 
 

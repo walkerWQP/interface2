@@ -255,7 +255,6 @@
            [WProgressHUD showErrorAnimatedText:@"开始时间不能小于结束时间"];
             [self.beginTimeBtn setTitle:@"开始时间" forState:UIControlStateNormal];
             [self.endTimeBtn setTitle:@"结束时间" forState:UIControlStateNormal];
-            
             return;
         }
     }
@@ -292,12 +291,10 @@
                     
                 }
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [WProgressHUD hideAllHUDAnimated:YES];
         }];
-    
 }
 
 - (void)setShangChuanTupian {
@@ -314,12 +311,10 @@
             formatter.dateFormat = @"yyyyMMddHHmmss";
             NSString *str = [formatter stringFromDate:[NSDate date]];
             NSString *imageFileName = [NSString stringWithFormat:@"%@.jpeg", str];
-            // 上传图片，以文件流的格式 image/jpg/png/jpeg
-            //            [formData appendPartWithFileData:btnCImgStr name:[NSString stringWithFormat:@"img%d",i+1] fileName:imageFileName mimeType:@"image/jpeg"];
+    
             if (length>1280) {
                 NSData *fData = UIImageJPEGRepresentation(image, 0.5);
                 [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
-                
             } else {
                 [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
             }
@@ -352,7 +347,6 @@
             } else {
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -403,7 +397,6 @@
     [self.view endEditing:YES];
     self.timeID = 0;
     [self setupDateView:DateTypeOfEnd];
-    
 }
 
 - (void)beginTimeBtn : (UIButton *)sender {
@@ -412,7 +405,6 @@
     self.timeID = 0;
     [self setupDateView:DateTypeOfStart];
     [self.endTimeBtn setTitle:@"结束时间" forState:UIControlStateNormal];
-    
 }
 
 -(void)pickerView:(UIView *)pickerView result:(NSString *)string index:(NSInteger)index {

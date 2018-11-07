@@ -35,7 +35,6 @@
     [super viewWillAppear:animated];
     [self setNetWork];
     [self.view addSubview:self.WorkDetailsTableView];
-    
     [self.WorkDetailsTableView registerNib:[UINib nibWithNibName:@"TongZhiDetailsCell" bundle:nil] forCellReuseIdentifier:@"TongZhiDetailsCellId"];
 }
 
@@ -107,17 +106,13 @@
     
     NSDictionary * dic = @{@"key":[UserManager key], @"id":self.workId};
     [[HttpRequestManager sharedSingleton] POST:workHomeWorkDetails parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.Hnew = 0;
             self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant = 0;
             [self.tongZhiDetailsCell.PicView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-            
             self.workDetailsModel = [TongZhiDetailsModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
-            
 //            [self.imgAry addObject:self.workDetailsModel.img];
             [self configureImage];
-            
             [self.WorkDetailsTableView reloadData];
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
@@ -147,12 +142,9 @@
                 imageViewNew.frame =CGRectMake(0, self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant - newH,self.tongZhiDetailsCell.PicView.bounds.size.width, H * self.tongZhiDetailsCell.PicView.bounds.size.width / w);
             }
             [self.WorkDetailsTableView reloadData];
-            
         }];
-        
         [self.tongZhiDetailsCell.PicView addSubview:imageViewNew];
     }
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -234,9 +226,6 @@
         [self.WorkDetailsTableView reloadData];
         
     }];
-    
-    
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -264,9 +253,6 @@
             return  self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant + 150  + size.height + self.Hnew;
         }
     }
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

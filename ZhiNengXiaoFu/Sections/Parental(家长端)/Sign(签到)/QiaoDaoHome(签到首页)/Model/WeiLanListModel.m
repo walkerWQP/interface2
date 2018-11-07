@@ -10,7 +10,6 @@
 #import "PrefixHeader.pch"
 @implementation WeiLanListModel
 + (NSDictionary *)replacedKeyFromPropertyName {
-    
     return @{@"ID": @"id"};
 }
 

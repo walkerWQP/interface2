@@ -36,7 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发布通知";
-    
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [button setTitle:@"发布" forState:UIControlStateNormal];
     button.titleLabel.font = titFont;
@@ -52,7 +51,6 @@
 - (void)makeClassNoticeViewControllerUI {
     
     self.view.backgroundColor = backColor;
-    
     self.noticeNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, APP_WIDTH, 30)];
     self.noticeNameLabel.text = @"通知名称";
     self.noticeNameLabel.textColor =titlColor;
@@ -94,7 +92,6 @@
     self.uploadPicturesLabel.font = titFont;
     [self.view addSubview:self.uploadPicturesLabel];
     
-
     self.myPicture = [[UIView alloc] initWithFrame:CGRectMake(10, self.noticeNameLabel.frame.size.height + self.noticeNameTextField.frame.size.height + self.noticeContentLabel.frame.size.height + self.noticeContentTextView.frame.size.height + self.uploadPicturesLabel.frame.size.height + 40, APP_WIDTH - 20, 80)];
     self.myPicture.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.myPicture];
@@ -102,11 +99,8 @@
     //打开照相机拍照
     if (!self.LQPhotoPicker_superView) {
         self.LQPhotoPicker_superView = self.myPicture;
-        
         self.LQPhotoPicker_imgMaxCount = 3;
-        
         [self LQPhotoPicker_initPickerView];
-        
         self.LQPhotoPicker_delegate = self;
     }
 }
@@ -138,14 +132,12 @@
     } else {
         [self setShangChuanTupian];
     }
-    
-    
+
 }
 
 - (void)setShangChuanTupian {
     
     [self LQPhotoPicker_getBigImageDataArray];
-    
     NSDictionary * params = @{@"key":[UserManager key],@"upload_type":@"img", @"upload_img_type":@"notice"};
     [WProgressHUD showHUDShowText:@"加载中..."];
     [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -178,7 +170,6 @@
             }
             
             NSDictionary *dataDic = [NSDictionary dictionary];
-    
             dataDic = @{@"key":[UserManager key],@"class_id":self.classID,@"title":self.noticeNameTextField.text,@"content":self.noticeContentTextView.text,@"img":self.imgFiledArr};
             [self postDataForRelease:dataDic];
            
@@ -186,9 +177,7 @@
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
             } else {
-
                 NSDictionary *dataDic = [NSDictionary dictionary];
                 dataDic = @{@"key":[UserManager key],@"class_id":self.classID,@"title":self.noticeNameTextField.text,@"content":self.noticeContentTextView.text,@"img":@""};
                 [self postDataForRelease:dataDic];

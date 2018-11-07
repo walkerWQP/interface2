@@ -42,7 +42,6 @@
 - (void)makeChangePasswordViewControllerUI {
     
     self.view.backgroundColor = backColor;
-    
     self.oldPasswordText = [[UITextField alloc] initWithFrame:CGRectMake(20, 100, APP_WIDTH - 60, 30)];
     self.oldPasswordText.font = titFont;
     self.oldPasswordText.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"输入旧密码" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:157/255.0 green:157/255.0 blue:157/255.0 alpha:1.0]}];
@@ -122,7 +121,6 @@
         return;
     }
     
-    
     if (self.againText.text.length < 6) {
         [WProgressHUD showErrorAnimatedText:@"请输入最少6位密码"];
         return;
@@ -137,17 +135,13 @@
         NSDictionary *dic = @{@"key":[UserManager key],@"old_password":oldPasswordStr,@"new_password":newPasswordStr};
         [self updatePasswordURLForData:dic];
     }
-    
-    
 }
 
 - (void)updatePasswordURLForData:(NSDictionary *)dic {
     [[HttpRequestManager sharedSingleton] POST:updatePasswordURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
             [UserManager logoOut];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];

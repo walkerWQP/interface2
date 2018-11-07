@@ -22,9 +22,7 @@
     self.lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 , APP_WIDTH, 10)];
     self.lineView.backgroundColor = backColor;
     [self.contentView addSubview:self.lineView];
-    
     self.backgroundColor = [UIColor whiteColor];
-    
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 15, 60, 60)];
 //    self.headImgView.layer.cornerRadius = self.headImgView.frame.size.width/2.0;
 //    self.headImgView.layer.masksToBounds = YES;

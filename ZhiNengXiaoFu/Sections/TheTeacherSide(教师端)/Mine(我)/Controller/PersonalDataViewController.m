@@ -67,13 +67,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     if (section == 0) {
         return self.nameArr.count;
     } else {
         return 1;
     }
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -85,7 +83,6 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
     if (section == 0) {
         return nil;
     } else {
@@ -93,7 +90,6 @@
         headerView.backgroundColor = backColor;
         return headerView;
     }
-    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -153,7 +149,6 @@
         return cell;
     }
     
-
 }
 
 

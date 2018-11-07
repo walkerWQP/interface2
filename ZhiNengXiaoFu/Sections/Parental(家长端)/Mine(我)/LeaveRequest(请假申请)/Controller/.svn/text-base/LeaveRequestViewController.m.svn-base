@@ -111,7 +111,6 @@
     submit.layer.cornerRadius = 4;
     submit.layer.masksToBounds = YES;
     [self.view addSubview:submit];
-    
     [submit addTarget:self action:@selector(submitBtn:) forControlEvents:UIControlEventTouchDown];
     submit.userInteractionEnabled = YES;
 }

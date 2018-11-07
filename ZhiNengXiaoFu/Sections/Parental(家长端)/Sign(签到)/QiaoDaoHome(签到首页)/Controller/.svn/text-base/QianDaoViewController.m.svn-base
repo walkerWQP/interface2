@@ -15,13 +15,13 @@
 
 @interface QianDaoViewController ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak)   CLPlayerView *playerView;
-@property (nonatomic, strong) UITableView * QianDaoTableView;
-@property (nonatomic, strong) NSMutableArray * QianDaoAry;
-@property (nonatomic, strong) UIView * backView;
-@property (nonatomic, strong) QianDaoModel * qianDaoModel;
-@property (nonatomic, strong) UIImageView * close;
-@property (nonatomic, strong) UIImageView *zanwushuju;
+@property (nonatomic, weak)   CLPlayerView   *playerView;
+@property (nonatomic, strong) UITableView    *QianDaoTableView;
+@property (nonatomic, strong) NSMutableArray *QianDaoAry;
+@property (nonatomic, strong) UIView         *backView;
+@property (nonatomic, strong) QianDaoModel   *qianDaoModel;
+@property (nonatomic, strong) UIImageView    *close;
+@property (nonatomic, strong) UIImageView    *zanwushuju;
 
 @end
 
@@ -48,7 +48,6 @@
         
     [self.QianDaoTableView registerClass:[QianDaoPsersonCell class] forCellReuseIdentifier:@"QianDaoPsersonCellId"];
     [self.QianDaoTableView registerClass:[QianDaoItemCell class] forCellReuseIdentifier:@"QianDaoItemCellId"];
-
     self.QianDaoTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
@@ -276,8 +275,7 @@
 
 - (void)dingweiClick:(UIBarButtonItem *)sender {
     DingWeiViewController * VC = [[DingWeiViewController alloc] init];
-    [self.navigationController pushViewController:VC animated:YES];
-}
+    [self.navigationController pushViewController:VC animated:YES]; }
 
 - (void)imgTap:(UITapGestureRecognizer *)sender {
     

@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WorkCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *WorkImg;
-@property (weak, nonatomic) IBOutlet UILabel *WorkTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *WorkConnectLabel;
-@property (weak, nonatomic) IBOutlet UILabel *WorkTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *WorkTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *WorkConnectLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *WorkTimeLabel;
 
 @end
 

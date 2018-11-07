@@ -11,7 +11,6 @@
 @implementation LeaveListModel
 
 + (NSDictionary *)replacedKeyFromPropertyName {
-    
     return @{@"ID": @"id"};
 }
 

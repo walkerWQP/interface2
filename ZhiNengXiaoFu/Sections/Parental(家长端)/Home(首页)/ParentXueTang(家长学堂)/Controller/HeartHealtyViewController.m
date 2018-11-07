@@ -67,7 +67,6 @@
 - (void)setNetWork:(NSInteger)page {
     NSDictionary * dic = @{@"key":[UserManager key], @"type":@2, @"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:pschoolGetList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         //结束头部刷新
         [self.HeartHealtyTableView.mj_header endRefreshing];
         //结束尾部刷新
@@ -80,7 +79,6 @@
             }
             if (self.ChildJiaoYuAry.count == 0) {
                 self.zanwushuju.alpha = 1;
-                
             } else {
                 self.zanwushuju.alpha = 0;
                 [self.HeartHealtyTableView reloadData];
@@ -93,7 +91,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);

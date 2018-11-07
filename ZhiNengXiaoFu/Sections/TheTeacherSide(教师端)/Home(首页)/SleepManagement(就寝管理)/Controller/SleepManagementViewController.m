@@ -14,7 +14,6 @@
 #import "StudentJiuQinModel.h"
 @interface SleepManagementViewController ()<WPopupMenuDelegate>
 
-//
 @property (nonatomic, strong) UIButton                *rightBtn;
 @property (nonatomic, strong) NSMutableArray          *publishJobArr;
 @property (nonatomic, strong) JohnTopTitleView        *titleView;
@@ -166,7 +165,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [SingletonHelper manager].biaojiJiuQinColor = 0;
-
 }
 
 
@@ -174,7 +172,6 @@
 - (void)rightBtn:(UIButton *)sender {
     
     NSLog(@"点击发布");
-    
     NSMutableArray * ary = [@[]mutableCopy];
     for (PublishJobModel * model in self.publishJobArr) {
         [ary addObject:[NSString stringWithFormat:@"%@", model.name]];
@@ -184,7 +181,6 @@
         [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
     } else {
         self.qufenClassTime = 1;
-
         [WPopupMenu showRelyOnView:self.rightBtn titles:ary icons:nil menuWidth:140 delegate:self];
     }
 }
@@ -206,15 +202,12 @@
             self.timeAry = [[responseObject objectForKey:@"data"] objectForKey:@"day_list"];
             
             if (self.timeAry.count != 0) {
-               
                 self.timeLabel.text = [self.timeAry objectAtIndex:0];
             }
-            
             
             if (self.timeAry.count == 0) {
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
             } else {
-                
                 
             }
             
@@ -226,7 +219,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -252,9 +244,7 @@
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
             } else {
                 
-                
             }
-            
             
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
@@ -263,7 +253,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -311,14 +300,12 @@
             [_circleV circleWithProgress:bilie andIsAnimate:YES];
             
         } else {
-            if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402)
-            {
+            if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
             } else {
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -339,19 +326,15 @@
     } else {
         if (self.timeAry.count != 0) {
             
-        
             NSString * timeStr = [self.timeAry objectAtIndex:index];
-             NSLog(@"%@",timeStr);
-             self.timeLabel.text  = timeStr;
+            NSLog(@"%@",timeStr);
+            self.timeLabel.text  = timeStr;
             self.timeN = timeStr;
             [self postGetTeacherFour];
         } else {
             [WProgressHUD showSuccessfulAnimatedText:@"暂无数据"];
-
         }
-        
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {

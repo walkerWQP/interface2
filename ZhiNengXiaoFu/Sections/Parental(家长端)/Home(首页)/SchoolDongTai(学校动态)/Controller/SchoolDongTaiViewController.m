@@ -50,9 +50,7 @@
     self.page = 1;
     [self.view addSubview:self.schoolDynamicTableView];
     self.schoolDynamicTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
     [self getBannersURLData];
-
     [self.schoolDynamicTableView registerClass:[SchoolTongTaiMoreCell class] forCellReuseIdentifier:@"SchoolTongTaiMoreCellId"];
     //下拉刷新
     self.schoolDynamicTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopic)];
@@ -62,7 +60,6 @@
     [self.schoolDynamicTableView.mj_header beginRefreshing];
     //上拉刷新
     self.schoolDynamicTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopic)];
-    
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
 }
@@ -124,12 +121,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
- 
         SchoolDongTaiDetailsViewController * schoolDongTaivc = [[SchoolDongTaiDetailsViewController alloc] init];
         if (self.schoolDynamicArr.count != 0) {
             
             SchoolDongTaiModel * model = [self.schoolDynamicArr objectAtIndex:indexPath.row];
-            
             schoolDongTaivc.schoolDongTaiId = model.ID;
         }
         [self.navigationController pushViewController:schoolDongTaivc animated:YES];
@@ -176,31 +171,20 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
         SchoolTongTaiMoreCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SchoolTongTaiMoreCellId" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-         if (self.schoolDynamicArr.count != 0) {
+        if (self.schoolDynamicArr.count != 0) {
         SchoolDongTaiModel * model = [self.schoolDynamicArr objectAtIndex:indexPath.row];
-        
         [cell.headerImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
         cell.titleLabel.text = model.title;
         cell.timeLabel.text = model.create_time;
              cell.contentLabel.text = model.content;
-         }
+        }
         return cell;
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-//    if (indexPath.section == 0) {
-//        return 170;
-//    }else
-//    {
-        return (kScreenWidth - 30) * 119 / 364 + 10;
-//    }
-    
+    return (kScreenWidth - 30) * 119 / 364 + 10;
 }
 
 

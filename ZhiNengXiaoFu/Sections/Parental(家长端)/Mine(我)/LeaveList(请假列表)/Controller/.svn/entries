@@ -1,7 +1,7 @@
 10
 
 dir
-271
+272
 http://ios2@61.132.226.224:8081/svn/duxiu/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/Parental(%E5%AE%B6%E9%95%BF%E7%AB%AF)/Mine(%E6%88%91)/LeaveList(%E8%AF%B7%E5%81%87%E5%88%97%E8%A1%A8)/Controller
 http://ios2@61.132.226.224:8081/svn/duxiu
 
@@ -28,14 +28,14 @@ d466fc26-aeb2-6048-8488-bbf0a50f055a
 
 LeaveListViewController.m
 file
+277
 
 
 
-
-2018-10-26T07:22:01.000000Z
-889e0f7c7b4deb5fd5ab7a8e7213ac67
-2018-10-26T07:19:59.132812Z
-260
+2018-11-05T08:16:53.000000Z
+a6488c2eb0ba0cf08f1e906fa666289b
+2018-11-05T09:57:42.036132Z
+277
 ios2
 
 
@@ -58,7 +58,7 @@ ios2
 
 
 
-9887
+9829
 
 LeaveListViewController.h
 file
@@ -66,7 +66,7 @@ file
 
 
 
-2018-09-20T07:55:45.000000Z
+2018-10-31T08:13:17.000000Z
 90db868fb1bb1d81747f4e7ddc12819d
 2018-09-11T08:05:51.029296Z
 80

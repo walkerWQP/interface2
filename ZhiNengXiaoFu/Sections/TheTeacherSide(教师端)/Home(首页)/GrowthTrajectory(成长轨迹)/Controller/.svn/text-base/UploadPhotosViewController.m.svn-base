@@ -183,10 +183,8 @@
             return;
         } else if (self.LQPhotoPicker_smallImageArray.count == 0) {
             NSDictionary *dataDic = [NSDictionary dictionary];
-            
             dataDic = @{@"key":[UserManager key],@"img":self.imgFiledArr, @"content":self.shuRuNeiRonTextView.text};
             [self postDataForUploadURL:dataDic];
-            
         } else if ([self.shuRuNeiRonTextView.text isEqualToString:@""]) {
             [self setShangChuanTupian];
         } else {
@@ -202,10 +200,8 @@
             return;
         } else if (self.LQPhotoPicker_smallImageArray.count == 0) {
             NSDictionary *dataDic = [NSDictionary dictionary];
-            
             dataDic = @{@"key":[UserManager key],@"class_id":self.courseID,@"img":self.imgFiledArr, @"content":self.shuRuNeiRonTextView.text};
             [self postDataForUploadURL:dataDic];
-            
         } else if ([self.shuRuNeiRonTextView.text isEqualToString:@""]) {
             [self setShangChuanTupian];
         } else {
@@ -222,8 +218,6 @@
 - (void)setShangChuanTupian {
     
     [self LQPhotoPicker_getBigImageDataArray];
-    
-    
     NSDictionary * params = @{@"key":[UserManager key],@"upload_type":@"img", @"upload_img_type":@"album"};
     [WProgressHUD showHUDShowText:@"加载中..."];
     [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -272,12 +266,10 @@
             } else {
                 
             }
-            
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       
         [WProgressHUD hideAllHUDAnimated:YES];
     }];
     
@@ -308,7 +300,6 @@
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.publishJobArr = [PublishJobModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             NSMutableArray * ary = [@[]mutableCopy];
             for (PublishJobModel * model in self.publishJobArr) {
@@ -319,7 +310,6 @@
             } else {
                 PickerView *vi = [[PickerView alloc] init];
                 vi.array = ary;
-                
                 vi.type = PickerViewTypeHeigh;
                 vi.selectComponent = 0;
                 vi.delegate = self;
@@ -339,18 +329,17 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
 }
 
 -(void)pickerView:(UIView *)pickerView result:(NSString *)string index:(NSInteger)index {
-    
-    [self.nameBtn setTitle:string forState:UIControlStateNormal];
-    PublishJobModel *model = [self.publishJobArr objectAtIndex:index];
-    self.courseID = model.ID;
-    
+    if (self.publishJobArr.count != 0) {
+        [self.nameBtn setTitle:string forState:UIControlStateNormal];
+        PublishJobModel *model = [self.publishJobArr objectAtIndex:index];
+        self.courseID = model.ID;
+    }
 }
 
 

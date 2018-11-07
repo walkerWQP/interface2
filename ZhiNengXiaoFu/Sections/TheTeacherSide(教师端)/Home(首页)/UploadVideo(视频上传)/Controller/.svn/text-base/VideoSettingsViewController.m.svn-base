@@ -27,7 +27,7 @@
 @property (nonatomic, strong) UILabel     *costLabel;
 @property (nonatomic, strong) UITextField *costTextField;
 @property (nonatomic, strong) UILabel     *yuanLabel;
-@property (nonatomic, strong) NSString  *is_chargeStr;//收费0否1是
+@property (nonatomic, strong) NSString    *is_chargeStr;//收费0否1是
 //保存
 @property (nonatomic, strong) UIButton    *saveBtn;
 
@@ -50,7 +50,7 @@
     [button addTarget:self action:@selector(rightBtn:) forControlEvents:UIControlEventTouchUpInside];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    
+
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, APP_WIDTH - 20, 30)];
     self.titleLabel.text = @"视频标题";
     self.titleLabel.font = titFont;
@@ -126,7 +126,6 @@
 - (void)makeCostView {
     
     self.saveBtn.hidden = YES;
-    
     self.costView = [[UIView alloc] initWithFrame:CGRectMake(10, self.titleLabel.frame.size.height + self.titleField.frame.size.height + self.describeLabel.frame.size.height + self.describeTextView.frame.size.height + self.publicBtn.frame.size.height + 60, APP_WIDTH - 20, 50)];
     [self.view addSubview:self.costView];
     self.costView.backgroundColor = [UIColor whiteColor];
@@ -247,7 +246,6 @@
     [[HttpRequestManager sharedSingleton] POST:toDeleteURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -262,9 +260,7 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
     [self.view endEditing:YES];
-    
 }
 
 @end

@@ -14,30 +14,27 @@
 @interface LoginHomePageViewController ()
 
 //记住登录选择图片
-@property (nonatomic, strong) UIButton * chooseBtn;
+@property (nonatomic, strong) UIButton               *chooseBtn;
 //教师选择图片
-@property (nonatomic, strong) UIButton * teacherChooseBtn;
+@property (nonatomic, strong) UIButton               *teacherChooseBtn;
 //家长选择图片
-@property (nonatomic, strong) UIButton * parentChooseBtn;
+@property (nonatomic, strong) UIButton               *parentChooseBtn;
 //教师选中状态
-@property (nonatomic, assign) NSInteger teacherChooseState;
+@property (nonatomic, assign) NSInteger              teacherChooseState;
 //家长选中状态
-@property (nonatomic, assign) NSInteger parentChooseState;
+@property (nonatomic, assign) NSInteger              parentChooseState;
 //记住登录状态
-@property (nonatomic, assign) NSInteger jizhuLoginChooseState;
+@property (nonatomic, assign) NSInteger              jizhuLoginChooseState;
 //用户名
-@property (nonatomic, strong) UITextField * zhangHaoTextField;
+@property (nonatomic, strong) UITextField            *zhangHaoTextField;
 //密码
-@property (nonatomic, strong) UITextField * miMaTextfield;
+@property (nonatomic, strong) UITextField            *miMaTextfield;
 
-@property (nonatomic, strong) PersonInformationModel * personInfoModel;
+@property (nonatomic, strong) PersonInformationModel *personInfoModel;
 //游客登录
-@property (nonatomic, strong) UIButton * youkeLogin;
-
-
-@property (nonatomic, strong)  UILabel * parentLabel;
-
-@property (nonatomic, strong)  UILabel * teacherLabel;
+@property (nonatomic, strong) UIButton               *youkeLogin;
+@property (nonatomic, strong)  UILabel               *parentLabel;
+@property (nonatomic, strong)  UILabel               *teacherLabel;
 @end
 
 @implementation LoginHomePageViewController
@@ -195,7 +192,6 @@
         [WProgressHUD showHUDShowText:@"加载中..."];
         
         [[HttpRequestManager sharedSingleton] POST:indexVisitorLogin parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"%@",responseObject);
             [WProgressHUD hideAllHUDAnimated:YES];
             
             if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
@@ -216,11 +212,7 @@
                 [user setObject:data forKey:@"personInfo"];
                 //同步到本地
                 [user synchronize];
-                
-              
                 [[NSUserDefaults standardUserDefaults] setObject:self.personInfoModel.key forKey:@"key"];
-                
-                
                 [SingletonHelper manager].personInfoModel = self.personInfoModel;
                 TotalTabBarController * totalTabBarVC = [[TotalTabBarController alloc] init];
                 UIWindow *window = [UIApplication sharedApplication].keyWindow;
@@ -318,13 +310,10 @@
 
             NSDictionary * dic = @{@"usernum":self.zhangHaoTextField.text, @"password":passwordStr, @"identity":chooseLoginState, @"system":system, @"sign":newstr};
             [WProgressHUD showHUDShowText:@"加载中..."];
-
             [[HttpRequestManager sharedSingleton] POST:LOGIN parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
                 NSLog(@"%@",responseObject);
                 [WProgressHUD hideAllHUDAnimated:YES];
-
                 if ([[responseObject objectForKey:@"status"] integerValue] == 200){
-                    
                     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"youkeState"];
                     if (self.jizhuLoginChooseState == 1) {
                      
@@ -366,38 +355,27 @@
                     NSString * key = [[SingletonHelper manager] encode:keyDic];
                     [[NSUserDefaults standardUserDefaults] setObject:key forKey:@"key"];
                   
-                    
                     [SingletonHelper manager].personInfoModel = self.personInfoModel;
                     TotalTabBarController * totalTabBarVC = [[TotalTabBarController alloc] init];
                     UIWindow *window = [UIApplication sharedApplication].keyWindow;
                     //把自定义标签视图控制器totalTabBarVC 作为window的rootViewController(根视图控制器)
                     
                     [window.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-
-                    
                     window.rootViewController = totalTabBarVC;
-                    
                     [self.zhangHaoTextField resignFirstResponder];
                     [self.miMaTextfield resignFirstResponder];
                     
-                    
 //                    [self pushJiGuangId];
-
-
                 } else {
                     [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
                 }
                
-                
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 NSLog(@"%@", error);
                 [WProgressHUD hideAllHUDAnimated:YES];
             }];
-     }
-        
-        
-       
+       }
+
     }
 }
 

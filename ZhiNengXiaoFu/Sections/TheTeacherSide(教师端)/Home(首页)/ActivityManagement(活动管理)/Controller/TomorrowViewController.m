@@ -78,14 +78,12 @@
             }
             if (self.tomorrowArr.count == 0) {
                 self.zanwushuju.alpha = 1;
-                
             } else {
                 self.zanwushuju.alpha = 0;
                 [self.tomorrowCollectionView reloadData];
             }
             
         } else {
-
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
 
@@ -108,7 +106,6 @@
     self.tomorrowCollectionView.delegate = self;
     self.tomorrowCollectionView.dataSource = self;
     [self.view addSubview:self.tomorrowCollectionView];
-    
     [self.tomorrowCollectionView registerClass:[OngoingCell class] forCellWithReuseIdentifier:OngoingCell_CollectionView];
 }
 

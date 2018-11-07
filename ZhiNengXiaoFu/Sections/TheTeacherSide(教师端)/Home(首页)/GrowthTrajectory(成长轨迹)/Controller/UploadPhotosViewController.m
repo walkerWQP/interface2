@@ -190,6 +190,7 @@
         } else {
             [self setShangChuanTupian];
         }
+        
     } else {
         if (self.courseID == nil) {
             [WProgressHUD showErrorAnimatedText:@"请选择班级"];
@@ -256,7 +257,9 @@
             } else {
                 dataDic = @{@"key":[UserManager key],@"class_id":self.courseID,@"img":self.imgFiledArr, @"content":self.shuRuNeiRonTextView.text};
             }
+            
             [self postDataForUploadURL:dataDic];
+            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -297,7 +300,6 @@
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.publishJobArr = [PublishJobModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             NSMutableArray * ary = [@[]mutableCopy];
             for (PublishJobModel * model in self.publishJobArr) {
@@ -308,7 +310,6 @@
             } else {
                 PickerView *vi = [[PickerView alloc] init];
                 vi.array = ary;
-                
                 vi.type = PickerViewTypeHeigh;
                 vi.selectComponent = 0;
                 vi.delegate = self;
@@ -334,11 +335,11 @@
 }
 
 -(void)pickerView:(UIView *)pickerView result:(NSString *)string index:(NSInteger)index {
-    
-    [self.nameBtn setTitle:string forState:UIControlStateNormal];
-    PublishJobModel *model = [self.publishJobArr objectAtIndex:index];
-    self.courseID = model.ID;
-    
+    if (self.publishJobArr.count != 0) {
+        [self.nameBtn setTitle:string forState:UIControlStateNormal];
+        PublishJobModel *model = [self.publishJobArr objectAtIndex:index];
+        self.courseID = model.ID;
+    }
 }
 
 

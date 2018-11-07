@@ -34,9 +34,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.page = 1;
-    
     [self makePublicClassViewControllerUI];
-    
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
@@ -86,7 +84,6 @@
                 self.zanwushuju.alpha = 0;
                 [self.publicClassCollectionView reloadData];
             }
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -94,7 +91,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -109,7 +105,6 @@
     self.publicClassCollectionView.delegate = self;
     self.publicClassCollectionView.dataSource = self;
     [self.view addSubview:self.publicClassCollectionView];
-    
     [self.publicClassCollectionView registerClass:[PublicClassCell class] forCellWithReuseIdentifier:PublicClassCell_CollectionView];
 }
 
@@ -140,14 +135,12 @@
 
 - (void)playBtn : (UIButton *)sender {
     NSLog(@"点击播放按钮");
-    
     TeacherZaiXianDetailsViewController *teacherZaiXianDetailsVC = [[TeacherZaiXianDetailsViewController alloc] init]; teacherZaiXianDetailsVC.teacherZaiXianDetailsId = self.videoID;
     [self.navigationController pushViewController:teacherZaiXianDetailsVC animated:YES];
 }
 
 - (void)setUpBtn : (UIButton *)sender {
     NSLog(@"点击设置");
-    
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {

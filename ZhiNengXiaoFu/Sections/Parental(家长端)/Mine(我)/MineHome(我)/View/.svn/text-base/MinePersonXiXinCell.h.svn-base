@@ -10,9 +10,9 @@
 
 @interface MinePersonXiXinCell : UITableViewCell
 
-@property (nonatomic, strong) UIImageView * userImg;
-@property (nonatomic, strong) UILabel * userName;
-@property (nonatomic, strong) UILabel * userZiLiao;
-@property (nonatomic, strong) UIImageView * nextImg;
+@property (nonatomic, strong) UIImageView *userImg;
+@property (nonatomic, strong) UILabel     *userName;
+@property (nonatomic, strong) UILabel     *userZiLiao;
+@property (nonatomic, strong) UIImageView *nextImg;
 
 @end

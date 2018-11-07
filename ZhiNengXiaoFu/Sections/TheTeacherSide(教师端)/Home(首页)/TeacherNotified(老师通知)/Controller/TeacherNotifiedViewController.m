@@ -57,16 +57,13 @@
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
     [self.view addSubview:self.zanwushuju];
-    
     [self makeTeacherNotifiedViewControllerUI];
-    
     //下拉刷新
     self.teacherNotifiedCollectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopic)];
     //自动更改透明度
     self.teacherNotifiedCollectionView.mj_header.automaticallyChangeAlpha = YES;
     //进入刷新状态
     [self.teacherNotifiedCollectionView.mj_header beginRefreshing];
-    
 }
 
 - (void)getClassData {
@@ -108,9 +105,7 @@
     self.teacherNotifiedCollectionView.delegate = self;
     self.teacherNotifiedCollectionView.dataSource = self;
     [self.view addSubview:self.teacherNotifiedCollectionView];
-    
     [self.teacherNotifiedCollectionView registerClass:[TeacherNotifiedCell class] forCellWithReuseIdentifier:TeacherNotifiedCell_CollectionView];
-    
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
     self.headImgView.backgroundColor = [UIColor clearColor];
     [self.teacherNotifiedCollectionView addSubview:self.headImgView];
@@ -140,7 +135,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -156,7 +150,6 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     UICollectionViewCell *gridcell = nil;
     TeacherNotifiedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:TeacherNotifiedCell_CollectionView forIndexPath:indexPath];
     if (self.teacherNotifiedArr.count != 0) {
@@ -181,10 +174,8 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (self.teacherNotifiedArr.count != 0) {
         TeacherNotifiedModel *model = [self.teacherNotifiedArr objectAtIndex:indexPath.row];
-        
         ClassDetailsViewController *ClassDetailsVC = [[ClassDetailsViewController alloc] init];
         if (model.ID == nil || model.name == nil) {
             [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];

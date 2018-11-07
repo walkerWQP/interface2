@@ -42,7 +42,6 @@
     [super viewDidLoad];
     self.title = @"学校动态";
     self.page = 1;
-    
     [self makeSchoolDynamicViewControllerUI];
     //下拉刷新
     self.schoolDynamicCollectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopic)];
@@ -140,9 +139,7 @@
     self.schoolDynamicCollectionView.delegate = self;
     self.schoolDynamicCollectionView.dataSource = self;
     [self.view addSubview:self.schoolDynamicCollectionView];
-    
     [self.schoolDynamicCollectionView registerClass:[SchoolDynamicCellCell class] forCellWithReuseIdentifier:SchoolDynamicCellCell_CollectionView];
-    
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
     self.headImgView.backgroundColor = [UIColor clearColor];
     [self.schoolDynamicCollectionView addSubview:self.headImgView];
@@ -158,7 +155,6 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     UICollectionViewCell *gridcell = nil;
     SchoolDynamicCellCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:SchoolDynamicCellCell_CollectionView forIndexPath:indexPath];
     if (self.schoolDynamicArr.count != 0) {

@@ -55,7 +55,6 @@
         [cell.headImg sd_setImageWithURL:[NSURL URLWithString:model.student_head_img] placeholderImage:[UIImage imageNamed:@"user"]] ;
         cell.nameLabel.text = model.student_name;
     }
-    
     return cell;
 }
 

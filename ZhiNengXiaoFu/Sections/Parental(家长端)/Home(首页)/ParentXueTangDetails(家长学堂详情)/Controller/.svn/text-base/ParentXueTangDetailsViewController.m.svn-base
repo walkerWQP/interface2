@@ -61,35 +61,26 @@
 
 - (void)LoadWebView {
     self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 200, APP_WIDTH, APP_HEIGHT - 64-20 - 200)];
-    
     self.webView.backgroundColor = [UIColor whiteColor];
     [self.webView setOpaque:NO];
     self.webView.delegate = self;
     [self.view addSubview:self.webView];
-    
     [self.webView loadHTMLString:self.parentXueTangDetailsModel.content baseURL:nil];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView*)webView {
-    
     //重写contentSize,防止左右滑动
-    
     CGSize size = webView.scrollView.contentSize;
-    
     size.width= webView.scrollView.frame.size.width;
-    
     webView.scrollView.contentSize= size;
-    
 }
 
 
 
 - (void)setBoFang {
     CLPlayerView *playerView = [[CLPlayerView alloc] initWithFrame:CGRectMake(0, 0, self.view.CLwidth, 200)];
-    
     _playerView = playerView;
     [self.view addSubview:_playerView];
-    
     //    //重复播放，默认不播放
     _playerView.repeatPlay = YES;
     //    //当前控制器是否支持旋转，当前页面支持旋转的时候需要设置，告知播放器

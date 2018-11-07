@@ -48,9 +48,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self makeDidNotReturnViewControllerUI];
-    
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
@@ -70,7 +68,6 @@
 
 - (void)getConsultConsultListURLData :(NSInteger )page {
     NSDictionary * dic = @{@"key":[UserManager key], @"status":@0,@"page":[NSString stringWithFormat:@"%ld",page]};
-    
     [[HttpRequestManager sharedSingleton] POST:ConsultConsultList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
         [self.didNotReturnCollectionView.mj_header endRefreshing];
@@ -89,7 +86,6 @@
                 self.zanwushuju.alpha = 0;
                 [self.didNotReturnCollectionView reloadData];
             }
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -113,7 +109,6 @@
     self.didNotReturnCollectionView.delegate = self;
     self.didNotReturnCollectionView.dataSource = self;
     [self.view addSubview:self.didNotReturnCollectionView];
-    
     [self.didNotReturnCollectionView registerClass:[DidNotReturnCell class] forCellWithReuseIdentifier:DidNotReturnCell_CollectionView];
 }
 

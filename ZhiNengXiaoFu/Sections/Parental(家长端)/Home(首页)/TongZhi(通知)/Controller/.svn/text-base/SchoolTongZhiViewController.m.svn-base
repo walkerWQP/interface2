@@ -202,7 +202,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     TongZhiDetailsViewController * tongZhiDetails  = [[TongZhiDetailsViewController alloc] init];
     if (self.schoolTongZhiAry.count != 0) {
         TongZhiModel * model = [self.schoolTongZhiAry objectAtIndex:indexPath.row];

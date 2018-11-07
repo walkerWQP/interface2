@@ -13,7 +13,7 @@
 #endif /* URLMacro_h */
 
 //正式
-#define YUMING  @"http://www.ksznxt.com/"
+#define YUMING  @"http://app.duxiukeji.com/"
 //#define YUMING  @"http://yszh.myzm.site/"
 
 //测试

@@ -10,9 +10,9 @@
 
 @interface PersonIconCell : UITableViewCell
 
-@property (nonatomic, strong) UIImageView * iConImg;
-@property (nonatomic, strong) UILabel * nameLabel;
+@property (nonatomic, strong) UIImageView *iConImg;
+@property (nonatomic, strong) UILabel     *nameLabel;
 //@property (nonatomic, strong) UIImageView * moreImg;
-@property (nonatomic, strong) UIView * lineView;
+@property (nonatomic, strong) UIView      *lineView;
 
 @end

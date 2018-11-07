@@ -24,9 +24,8 @@
 #import "HelperCenterModel.h"
 #import "NewDynamicsViewController.h"
 
-@interface MyViewController ()<UITableViewDelegate, UITableViewDataSource,UIAlertViewDelegate>
+@interface MyViewController ()<UIAlertViewDelegate>
 
-@property (nonatomic, strong) UITableView            *myTabelView;
 @property (nonatomic, strong) NSMutableArray         *myArr;
 @property (nonatomic, strong) PersonInformationModel *model;
 @property (nonatomic, strong) HelperCenterModel      *helperCenterModel;
@@ -188,9 +187,7 @@
                 nameLabel.font = [UIFont systemFontOfSize:13];
                 nameLabel.text = [dic objectForKey:@"title"];
                 [itemView addSubview:nameLabel];
-                
             }
-            
         } else {
             NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新", nil];
             NSMutableArray * TitleAry = [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈", nil];
@@ -209,8 +206,7 @@
                 [self.bottom addSubview:itemView];
                 
                 itemView.tag = i;
-                
-
+            
                 UITapGestureRecognizer * itmeTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itmeTap1:)];
                 itemView.userInteractionEnabled = YES;
                 [itemView addGestureRecognizer:itmeTap1];
@@ -424,7 +420,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

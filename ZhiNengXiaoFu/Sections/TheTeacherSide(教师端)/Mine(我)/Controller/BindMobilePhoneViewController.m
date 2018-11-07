@@ -74,7 +74,6 @@
     self.launchEventScrollView.minimumZoomScale = 0.5;//最多缩小到0.5倍
     self.launchEventScrollView.bouncesZoom = YES; //设置是否允许缩放超出倍数限制，超出后弹回
     self.launchEventScrollView.delegate = self;//设置委托
-    
     [self.view addSubview:self.launchEventScrollView];
     
     self.backImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT * 0.4)];
@@ -86,11 +85,6 @@
     self.whiteImgView.image = [UIImage imageNamed:@"底版"];
     self.whiteImgView.userInteractionEnabled = YES;
     [self.launchEventScrollView addSubview:self.whiteImgView];
-    
-//    self.phoneImgView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 40, 15, 20)];
-//    self.phoneImgView.image = [UIImage imageNamed:@"手机图标"];
-//    self.phoneImgView.userInteractionEnabled = YES;
-//    [self.whiteImgView addSubview:self.phoneImgView];
     
     self.phoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 40, 50, 20)];
     self.phoneLabel.text = @"手机号";
@@ -116,8 +110,6 @@
     self.phoneTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.phoneImg addSubview:self.phoneTextField];
     
-//    self.verImgView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 80 + self.phoneLabel.frame.size.height + self.phoneTextField.frame.size.height, 15, 20)];
-//    self.verImgView.image = [UIImage imageNamed:@"验证码"];
     [self.whiteImgView addSubview:self.verImgView];
     
     self.verLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 80 + self.phoneLabel.frame.size.height + self.phoneTextField.frame.size.height, 50, 20)];
@@ -169,7 +161,6 @@
 
 #pragma mark ======= 提交 =======
 - (void)submitBtn:(UIButton *)sender {
-    
     if ([self.typeStr isEqualToString:@"1"]) { //绑定手机号码
         if ([self.phoneTextField.text isEqualToString:@""] || self.phoneTextField.text == nil) {
             [WProgressHUD showErrorAnimatedText:@"手机号不能为空,请重新输入"];
@@ -202,10 +193,8 @@
     [[HttpRequestManager sharedSingleton] POST:ChangeMobileURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         [WProgressHUD hideAllHUDAnimated:YES];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
             [self.navigationController popViewControllerAnimated:YES];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -213,7 +202,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [WProgressHUD hideAllHUDAnimated:YES];
@@ -226,10 +214,8 @@
     [[HttpRequestManager sharedSingleton] POST:BindMobileURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         [WProgressHUD hideAllHUDAnimated:YES];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
             [self.navigationController popViewControllerAnimated:YES];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -237,7 +223,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [WProgressHUD hideAllHUDAnimated:YES];
@@ -246,7 +231,6 @@
 
 #pragma mark ======= 获取验证码 =======
 - (void)verificationBtn:(UIButton *)sender {
-
     if ([self.phoneTextField.text isEqualToString:@""] || self.phoneTextField.text == nil) {
         [WProgressHUD showErrorAnimatedText:@"手机号不能为空,请重新输入"];
     } else if ([self valiMobile:self.phoneTextField.text] == NO) {
@@ -254,12 +238,9 @@
     } else {
         NSLog(@"手机号正确");
         [self.verificationBtn startCountDownTime:60 withCountDownBlock:^{
-            
             NSLog(@"开始倒计时");
-            
             NSDictionary *dic = @{@"key":[UserManager key],@"mobile":self.phoneTextField.text};
             [self getSendCodeData:dic];
-            
         }];
     }
 }
@@ -267,9 +248,7 @@
 - (void)getSendCodeData:(NSDictionary *)dic {
     [[HttpRequestManager sharedSingleton] POST:SendCodeURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -277,7 +256,6 @@
                 
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
@@ -286,33 +264,19 @@
 
 #pragma mark ======= 判断手机号码格式是否正确 =======
 - (BOOL)valiMobile:(NSString *)mobile {
-    
     mobile = [mobile stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
     if (mobile.length != 11) {
-        
         return NO;
-        
-    }else{
+    } else {
         NSString *CM_NUM = @"1(3[0-9]|4[0-9]|5[0-9]|6[0-9]|7[0-9]|8[0-9]|9[0-9])\\d{8}$";
-        
         NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM_NUM];
-        
         BOOL isMatch1 = [pred1 evaluateWithObject:mobile];
-        
-        
         if (isMatch1) {
-            
             return YES;
-            
-        }else{
-            
+        } else {
             return NO;
-            
         }
-        
     }
-    
 }
 
     

@@ -87,7 +87,6 @@
         self.stateLabel.font = [UIFont systemFontOfSize:12];
         self.stateLabel.textAlignment = NSTextAlignmentCenter;
         self.stateLabel.textColor = [UIColor whiteColor];
-
     }
     return _stateLabel;
 }

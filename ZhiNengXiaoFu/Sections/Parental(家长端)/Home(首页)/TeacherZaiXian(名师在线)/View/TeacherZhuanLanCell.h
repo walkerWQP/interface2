@@ -10,13 +10,12 @@
 
 @interface TeacherZhuanLanCell : UITableViewCell
 
-@property (nonatomic, strong) UIImageView * UserIcon;
-@property (nonatomic, strong) UILabel * UserName;
-@property (nonatomic, strong) UILabel * titleLabel;
-@property (nonatomic, strong) UILabel * subTitleLabel;
-@property (nonatomic, strong) UILabel * timeLabel;
-
-@property (nonatomic, strong) UIImageView * stateImg;
-@property (nonatomic, strong) UILabel * stateLabel;
+@property (nonatomic, strong) UIImageView *UserIcon;
+@property (nonatomic, strong) UILabel     *UserName;
+@property (nonatomic, strong) UILabel     *titleLabel;
+@property (nonatomic, strong) UILabel     *subTitleLabel;
+@property (nonatomic, strong) UILabel     *timeLabel;
+@property (nonatomic, strong) UIImageView *stateImg;
+@property (nonatomic, strong) UILabel     *stateLabel;
 
 @end

@@ -11,7 +11,6 @@
 @implementation SchoolDongTaiModel
 
 + (NSDictionary *)replacedKeyFromPropertyName {
-    
     return @{@"ID": @"id"};
 }
 @end

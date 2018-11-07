@@ -25,7 +25,6 @@
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
     [self makeConsultingViewControllerUI];
-    
     NSUserDefaults*pushJudge = [NSUserDefaults standardUserDefaults];
     
     if([[pushJudge objectForKey:@"notify"]isEqualToString:@"push"]) {
@@ -34,7 +33,6 @@
         NSUserDefaults * pushJudge = [NSUserDefaults standardUserDefaults];
         [pushJudge setObject:@""forKey:@"notify"];
         [pushJudge synchronize];//记得立即同步
-        
     } else {
         
     }
@@ -54,8 +52,6 @@
     self.titleView.title = titleArray;
     [self.titleView setupViewControllerWithFatherVC:self childVC:[self setChildVC]];
     [self.view addSubview:self.titleView];
-    
-    
 }
 
 - (NSArray <UIViewController *>*)setChildVC {

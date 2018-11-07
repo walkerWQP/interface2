@@ -12,7 +12,8 @@ static const CGFloat criticalY = -140.f;
 
 #define kSDTimeLineRefreshHeaderRotateAnimationKey @"RotateAnimationKey"
 
-@implementation SDTimeLineRefreshHeader {
+@implementation SDTimeLineRefreshHeader
+{
     CABasicAnimation *_rotateAnimation;
 }
 
@@ -31,7 +32,6 @@ static const CGFloat criticalY = -140.f;
 
 - (void)setupView {
     self.backgroundColor = [UIColor clearColor];
-    
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AlbumReflashIcon"]];
     self.bounds = imageView.bounds;
     [self addSubview:imageView];
