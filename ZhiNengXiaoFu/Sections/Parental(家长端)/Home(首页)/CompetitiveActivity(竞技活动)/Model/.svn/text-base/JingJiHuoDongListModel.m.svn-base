@@ -9,7 +9,9 @@
 #import "JingJiHuoDongListModel.h"
 
 @implementation JingJiHuoDongListModel
+
 + (NSDictionary *)replacedKeyFromPropertyName {
     return @{@"ID": @"id"};
 }
+
 @end

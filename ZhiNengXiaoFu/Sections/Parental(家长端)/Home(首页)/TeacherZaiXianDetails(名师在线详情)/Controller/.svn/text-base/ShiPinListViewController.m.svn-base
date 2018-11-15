@@ -41,31 +41,10 @@
     [self.view addSubview:self.shiPinListTableView];
     self.shiPinListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.shiPinListTableView registerNib:[UINib nibWithNibName:@"TeacherListNCell" bundle:nil] forCellReuseIdentifier:@"TeacherListNCellId"];
-
-//    //下拉刷新
-//    self.shiPinListTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopic)];
-//    //自动更改透明度
-//    self.shiPinListTableView.mj_header.automaticallyChangeAlpha = YES;
-//    //进入刷新状态
-//    [self.shiPinListTableView.mj_header beginRefreshing];
-//    //上拉刷新
-//    self.shiPinListTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopic)];
     [self setNetWork];
 
 }
 
-
-
-//- (void)loadNewTopic {
-//    self.page = 1;
-//    [self.shiPinListAry removeAllObjects];
-//    [self setNetWork:self.page];
-//}
-//
-//- (void)loadMoreTopic {
-//    self.page += 1;
-//    [self setNetWork:self.page];
-//}
 
 - (void)setNetWork {
     NSDictionary * dic = @{@"key":[UserManager key], @"t_id":[NSString stringWithFormat:@"%ld", self.teacherZaiXianDetailsModel.t_id]};
@@ -79,10 +58,8 @@
             for (TeacherZaiXianModel *model in arr) {
                 [self.shiPinListAry addObject:model];
             }
-            
             if (self.shiPinListAry.count == 0) {
                 self.zanwushuju.alpha = 1;
-                
             } else {
                 self.zanwushuju.alpha = 0;
                 [self.shiPinListTableView reloadData];
@@ -133,7 +110,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.shiPinListAry.count;
-    
 }
 
 
@@ -156,7 +132,6 @@
             cell.TeacherListNBoFangCi.text = [NSString stringWithFormat:@"%.1f万次播放", num];
         } else {
             cell.TeacherListNBoFangCi.text = [NSString stringWithFormat:@"%ld次播放", model.view];
-            
         }
         cell.TeacherListNFenLeiLabel.text = [NSString stringWithFormat:@"所属分类:%@", model.t_name];
         
@@ -201,14 +176,12 @@
             cell.TeacherListNThreeLabel.text = [model.label objectAtIndex:2];
         }
     }
-    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.shiPinListAry.count != 0) {
         TeacherZaiXianModel * model = [self.shiPinListAry objectAtIndex:indexPath.row];
-        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"shipinListBoFang" object:@{@"SchoolDongTaiModel":model}];
     }
 }

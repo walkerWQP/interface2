@@ -40,7 +40,7 @@
 @property (nonatomic, strong) UIImageView         *img;
 @property (nonatomic, strong) NSMutableArray      *bannerArr;
 @property (nonatomic, strong) NSMutableArray      *imgArr;
-@property (nonatomic, strong) DCCycleScrollView   *banner;
+@property (nonatomic, strong) HW3DBannerView      *banner;
 @property (nonatomic, strong) NSMutableArray      *tongzhiAry;
 @property (nonatomic, strong) NSMutableArray      *workAry;
 @property (nonatomic, strong) NSMutableArray      *jingJiAry;
@@ -89,16 +89,11 @@
     UIImage *image4 = [UIImage imageNamed:@"banner"];
     UIImage *image5 = [UIImage imageNamed:@"请假列表背景图"];
     self.imageArray = [NSMutableArray arrayWithObjects:image1,image2,image3, image4,image5,nil];
-    
     self.view.backgroundColor = [UIColor whiteColor];
     [self setUser];
-    
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
-    
     [self.view addSubview:self.HomePageJTabelView];
-    
     self.HomePageJTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
     [self.HomePageJTabelView registerNib:[UINib nibWithNibName:@"WorkCell" bundle:nil] forCellReuseIdentifier:@"WorkCellId"];
     [self.HomePageJTabelView registerNib:[UINib nibWithNibName:@"SchoolDongTaiCell" bundle:nil] forCellReuseIdentifier:@"SchoolDongTaiCellId"];
     
@@ -226,7 +221,6 @@
 
 //点击图片的代理
 -(void)cycleScrollView:(DCCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    NSLog(@"index = %ld",(long)index);
     BannerModel *model = self.bannerArr[index];
     NSLog(@"%@",model.ID);
     NSLog(@"%@",model.url);
@@ -240,7 +234,6 @@
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             [self.bannerArr removeAllObjects];
             [self.imgArr removeAllObjects];
-            NSLog(@"%@",[responseObject objectForKey:@"data"]);
             NSDictionary *dataDic = [responseObject objectForKey:@"data"];
             self.bannerArr = [HomeBannerModel mj_objectArrayWithKeyValuesArray:[dataDic objectForKey:@"banner"]];
             for (NSDictionary *bannerDict in [dataDic objectForKey:@"banner"]) {
@@ -250,8 +243,8 @@
             }
             
             self.tongzhiAry = [dataDic objectForKey:@"notice"];
-            self.workAry = [dataDic objectForKey:@"homework"];
-            self.jingJiAry = [dataDic objectForKey:@"activity"];
+            self.workAry    = [dataDic objectForKey:@"homework"];
+            self.jingJiAry  = [dataDic objectForKey:@"activity"];
             self.dongtaiAry = [dataDic objectForKey:@"dynamic"];
             
             if (self.imgArr.count == 0) {
@@ -354,14 +347,28 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
         [self.banner removeAllSubviews];
         [self.banner removeFromSuperview];
-        self.banner = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 150) shouldInfiniteLoop:YES imageGroups:self.imgArr];
-        self.banner.autoScrollTimeInterval = 3;
-        self.banner.autoScroll = YES;
-        self.banner.isZoom = YES;
-        self.banner.itemSpace = 0;
-        self.banner.imgCornerRadius = 10;
-        self.banner.itemWidth = self.view.frame.size.width - 100;
-        self.banner.delegate = self;
+        _banner = [HW3DBannerView initWithFrame:CGRectMake(0, 0, kScreenWidth, 150) imageSpacing:10 imageWidth:APP_WIDTH - 50];
+        _banner.initAlpha = 0.5; // 设置两边卡片的透明度
+        _banner.imageRadius = 10; // 设置卡片圆角
+        _banner.imageHeightPoor = 10; // 设置中间卡片与两边卡片的高度差
+        // 设置要加载的图片
+        if (self.imageArray.count != 0) {
+            self.banner.data = self.imgArr;
+        }
+        _banner.placeHolderImage = [UIImage imageNamed:@"教师端活动管理banner"]; // 设置占位图片
+        [cell addSubview:self.banner];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        _banner.clickImageBlock = ^(NSInteger currentIndex) { // 点击中间图片的回调
+            
+        };
+//        self.banner = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 150) shouldInfiniteLoop:YES imageGroups:self.imgArr];
+//        self.banner.autoScrollTimeInterval = 3;
+//        self.banner.autoScroll = YES;
+//        self.banner.isZoom = YES;
+//        self.banner.itemSpace = 0;
+//        self.banner.imgCornerRadius = 10;
+//        self.banner.itemWidth = self.view.frame.size.width - 100;
+//        self.banner.delegate = self;
         [cell addSubview:self.banner];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -394,7 +401,6 @@
             [back setBackgroundImage:[UIImage imageNamed:[imgAry objectAtIndex:i]] forState:UIControlStateNormal];
             [back addTarget:self action:@selector(backBtn:) forControlEvents:UIControlEventTouchDown];
             back.tag = i;
-
             [self.FiveView addSubview:back];
             
             UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(back.frame.origin.x - 5, back.frame.origin.y + back.frame.size.height + 5, 50, 15)];
@@ -408,7 +414,6 @@
         UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 80, kScreenWidth, 10)];
         lineView.backgroundColor = [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1];
         [self.FiveView addSubview:lineView];
-        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else if (indexPath.section == 2) {
@@ -429,33 +434,23 @@
         }
         
         if (self.tongzhiAry.count > 0) {
-//            if (self.ccspView) {
-//
-//            }else
-//            {
-                self.tongZhiImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 10, 46, 39)];
-                self.tongZhiImg.image = [UIImage imageNamed:@"通知New"];
-                [cell addSubview:self.tongZhiImg];
-                
-                UITapGestureRecognizer * tongzhiTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tongzhiTap:)];
-                self.tongZhiImg.userInteractionEnabled = YES;
-                [self.tongZhiImg addGestureRecognizer:tongzhiTap];
-                
-                self.ccspView  =[[HomePageTongZhiView alloc] initWithFrame:CGRectMake(46 + 15 + 10, 0, kScreenWidth, 60)];
-                self.ccspView.titleArray = self.tongzhiAry;
-                
-                __weak typeof(self)blockSelf = self;
-                [ self.ccspView setClickLabelBlock:^(NSInteger index, NSString * _Nonnull titleString)
-                 {
-                     [blockSelf setClick:index];
-                 }];
-                [cell.contentView addSubview: self.ccspView];
-//            }
-         
+            self.tongZhiImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 10, 46, 39)];
+            self.tongZhiImg.image = [UIImage imageNamed:@"通知New"];
+            [cell addSubview:self.tongZhiImg];
             
-//            UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 60, kScreenWidth, 10)];
-//            lineView.backgroundColor = [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1];
-//            [cell.contentView addSubview:lineView];
+            UITapGestureRecognizer * tongzhiTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tongzhiTap:)];
+            self.tongZhiImg.userInteractionEnabled = YES;
+            [self.tongZhiImg addGestureRecognizer:tongzhiTap];
+            
+            self.ccspView  =[[HomePageTongZhiView alloc] initWithFrame:CGRectMake(46 + 15 + 10, 0, kScreenWidth, 60)];
+            self.ccspView.titleArray = self.tongzhiAry;
+            
+            __weak typeof(self)blockSelf = self;
+            [ self.ccspView setClickLabelBlock:^(NSInteger index, NSString * _Nonnull titleString)
+             {
+                 [blockSelf setClick:index];
+             }];
+            [cell.contentView addSubview: self.ccspView];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -480,9 +475,10 @@
             zanwuLabel.font = [UIFont systemFontOfSize:13];
             [cell.contentView addSubview:zanwuLabel];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
             return cell;
+            
         } else {
+            
             WorkCell * cell = [tableView dequeueReusableCellWithIdentifier:@"WorkCellId" forIndexPath:indexPath];
             NSDictionary * dic = [self.workAry objectAtIndex:indexPath.row];
             [cell.WorkImg sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"head_img"]] placeholderImage:[UIImage imageNamed:@"user"]];
@@ -490,8 +486,8 @@
             cell.WorkConnectLabel.text = [dic objectForKey:@"course_name"];
             cell.WorkTimeLabel.text = [dic objectForKey:@"create_time"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
             return cell;
+            
         }
         
     } else if (indexPath.section == 4) {
@@ -514,8 +510,8 @@
             zanwuLabel.font = [UIFont systemFontOfSize:13];
             [cell.contentView addSubview:zanwuLabel];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
             return cell;
+            
         } else {
             
             static NSString *CellIdentifier = @"TableViewCell6";
@@ -535,7 +531,6 @@
             view.frame=CGRectMake(0,0, kScreenWidth,  (kScreenWidth - 40) / 3 * 144 / 235 + 25 - 10);
             view.HomePageJingJiViewDelegate = self;
             [view setDetail:array];
-            
             [cell.contentView addSubview:view];
             return cell;
         }
@@ -561,17 +556,18 @@
             zanwuLabel.font = [UIFont systemFontOfSize:13];
             [cell.contentView addSubview:zanwuLabel];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
             return cell;
+            
         } else {
-        SchoolDongTaiCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SchoolDongTaiCellId" forIndexPath:indexPath];
-        NSDictionary * dic = [self.dongtaiAry objectAtIndex:indexPath.row];
-        [cell.SchoolDongTaiImg sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"img"]]];
-        cell.SchoolDongTaiTitleLabel.text = [dic objectForKey:@"title"];
-        cell.SchoolDongTaiConnectLabel.text = [dic objectForKey:@"content"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        return cell;
+            
+            SchoolDongTaiCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SchoolDongTaiCellId" forIndexPath:indexPath];
+            NSDictionary * dic = [self.dongtaiAry objectAtIndex:indexPath.row];
+            [cell.SchoolDongTaiImg sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"img"]]];
+            cell.SchoolDongTaiTitleLabel.text = [dic objectForKey:@"title"];
+            cell.SchoolDongTaiConnectLabel.text = [dic objectForKey:@"content"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+            
         }
     }
 }
@@ -630,8 +626,8 @@
         clickView.userInteractionEnabled = YES;
         clickView.tag = section;
         [clickView addGestureRecognizer:headerTap];
-        
         return header;
+        
     } else {
         return nil;
     }
@@ -782,7 +778,7 @@
 
 #pragma mark ======= 获取个人信息数据 =======
 - (void)setUser {
-    NSDictionary * dic = @{@"key":[UserManager key]};
+    NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.schoolName = [[responseObject objectForKey:@"data"] objectForKey:@"school_name"];

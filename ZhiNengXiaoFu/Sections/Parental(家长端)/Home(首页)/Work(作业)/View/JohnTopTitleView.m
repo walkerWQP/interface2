@@ -31,8 +31,6 @@
 #pragma mark - 初始化设置
 - (void)setting{
     self.backgroundColor = [UIColor whiteColor];
-    
-    //title
     _titleHeight = 40.f;
     self.titleSegment = [[UISegmentedControl alloc]initWithFrame:CGRectMake(0, 0, ViewWidth,_titleHeight)];
     self.titleSegment.tintColor = [UIColor clearColor];
@@ -97,7 +95,6 @@
         [self.pageScrollView addSubview:vc.view];
     }
 }
-
 
 #pragma mark - 联动设置
 - (void)pageChange:(UISegmentedControl *)seg {

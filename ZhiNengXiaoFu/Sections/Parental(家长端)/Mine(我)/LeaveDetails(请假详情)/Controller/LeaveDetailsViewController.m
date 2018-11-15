@@ -27,7 +27,6 @@
     //去除导航栏下方的横线
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc]init]];
-    
 }
 
 - (void)viewDidLoad {
@@ -39,12 +38,11 @@
     [self.view addSubview:self.leaveDetailsTableView];
     [self.leaveDetailsTableView registerClass:[LeaveDetailsHeaderCell class] forCellReuseIdentifier:@"LeaveDetailsHeaderCellId"];
     [self.leaveDetailsTableView registerNib:[UINib nibWithNibName:@"LeaveDetailsDownCell" bundle:nil] forCellReuseIdentifier:@"LeaveDetailsDownCellId"];
-    
-    NSUserDefaults*pushJudge = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *pushJudge = [NSUserDefaults standardUserDefaults];
     if([[pushJudge objectForKey:@"notify"]isEqualToString:@"push"]) {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回拷贝"] style:UIBarButtonItemStylePlain target:self action:@selector(rebackToRootViewAction)];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-        NSUserDefaults * pushJudge = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *pushJudge = [NSUserDefaults standardUserDefaults];
         [pushJudge setObject: @"" forKey:@"notify"];
         [pushJudge synchronize];//记得立即同步
         
@@ -57,7 +55,6 @@
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    
     [self setNetWork];
     [self setUser];
 }
@@ -68,16 +65,15 @@
 
 
 - (void)rebackToRootViewAction {
-    NSUserDefaults * pushJudge = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *pushJudge = [NSUserDefaults standardUserDefaults];
     [pushJudge setObject:@""forKey:@"notify"];
     [pushJudge synchronize];//记得立即同步
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)setUser {
-    NSDictionary * dic = @{@"key":[UserManager key]};
+    NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         self.model = [PersonInformationModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
         [self.leaveDetailsTableView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -86,7 +82,7 @@
 }
 
 - (void)setNetWork {
-    NSDictionary * dic = @{@"key":[UserManager key], @"id":self.leaveDetailsId};
+    NSDictionary *dic = @{@"key":[UserManager key], @"id":self.leaveDetailsId};
     [[HttpRequestManager sharedSingleton] POST:leaveLeaveDetail parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.leaveListModel = [LeaveListModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
@@ -124,7 +120,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        LeaveDetailsHeaderCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LeaveDetailsHeaderCellId" forIndexPath:indexPath];
+        LeaveDetailsHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LeaveDetailsHeaderCellId" forIndexPath:indexPath];
         cell.selectionStyle =  UITableViewCellSelectionStyleNone;
         cell.StartLabel.text = self.leaveListModel.start;
         cell.EndLabel.text = self.leaveListModel.end;
@@ -132,20 +128,17 @@
         cell.userNameLabel.text = self.model.name;
         return cell;
     } else {
-        LeaveDetailsDownCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LeaveDetailsDownCellId" forIndexPath:indexPath];
+        LeaveDetailsDownCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LeaveDetailsDownCellId" forIndexPath:indexPath];
         if (self.leaveListModel.status == 1) {
             cell.LeaveDetailsDownShenHeState.text = @"已批准";
             cell.LeaveDetailsDownShenHeState.textColor = tabBarColor;
-            
         } else {
             cell.LeaveDetailsDownShenHeState.text = @"审核中";
             cell.LeaveDetailsDownShenHeState.textColor = RGB(218, 23, 55);
-            
         }
         cell.LeaveDetailsDownLeaveSeason.text = self.leaveListModel.reason;
         cell.LeaveDetailsDownBeiZhu.text = self.leaveListModel.remark;
         cell.selectionStyle =  UITableViewCellSelectionStyleNone;
-
         return cell;
     }
 }

@@ -322,6 +322,8 @@
 		CD4E2D6E216DDA01008F1DA2 /* HomePageJingJiView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E2D69216DDA00008F1DA2 /* HomePageJingJiView.m */; };
 		CD4E2D74216DDA3B008F1DA2 /* PGIndexBannerSubiew.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E2D70216DDA3B008F1DA2 /* PGIndexBannerSubiew.m */; };
 		CD4E2D75216DDA3B008F1DA2 /* NewPagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E2D71216DDA3B008F1DA2 /* NewPagedFlowView.m */; };
+		CD93D03E219AA3BD00327AD6 /* UIView+Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = CD93D03A219AA3BD00327AD6 /* UIView+Banner.m */; };
+		CD93D03F219AA3BD00327AD6 /* HW3DBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD93D03D219AA3BD00327AD6 /* HW3DBannerView.m */; };
 		CD9C16BE216EED920094E897 /* TongZhiNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9C16BD216EED920094E897 /* TongZhiNewCell.m */; };
 		CD9C16C2216EFFF40094E897 /* WorkNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9C16C0216EFFF40094E897 /* WorkNewCell.m */; };
 		CD9C16C3216EFFF40094E897 /* WorkNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD9C16C1216EFFF40094E897 /* WorkNewCell.xib */; };
@@ -964,6 +966,10 @@
 		CD4E2D71216DDA3B008F1DA2 /* NewPagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPagedFlowView.m; sourceTree = "<group>"; };
 		CD4E2D72216DDA3B008F1DA2 /* PGIndexBannerSubiew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGIndexBannerSubiew.h; sourceTree = "<group>"; };
 		CD4E2D73216DDA3B008F1DA2 /* NewPagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPagedFlowView.h; sourceTree = "<group>"; };
+		CD93D03A219AA3BD00327AD6 /* UIView+Banner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Banner.m"; sourceTree = "<group>"; };
+		CD93D03B219AA3BD00327AD6 /* UIView+Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Banner.h"; sourceTree = "<group>"; };
+		CD93D03C219AA3BD00327AD6 /* HW3DBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HW3DBannerView.h; sourceTree = "<group>"; };
+		CD93D03D219AA3BD00327AD6 /* HW3DBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HW3DBannerView.m; sourceTree = "<group>"; };
 		CD9C16BC216EED920094E897 /* TongZhiNewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TongZhiNewCell.h; sourceTree = "<group>"; };
 		CD9C16BD216EED920094E897 /* TongZhiNewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TongZhiNewCell.m; sourceTree = "<group>"; };
 		CD9C16BF216EFFF40094E897 /* WorkNewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkNewCell.h; sourceTree = "<group>"; };
@@ -1864,8 +1870,8 @@
 		0429F600210C68DE00C32957 /* TongZhi(通知) */ = {
 			isa = PBXGroup;
 			children = (
-				983CD95E2111B6DF0050508C /* Model */,
 				0429F605210C696A00C32957 /* Controller */,
+				983CD95E2111B6DF0050508C /* Model */,
 				0429F602210C696900C32957 /* View */,
 			);
 			path = "TongZhi(通知)";
@@ -2827,6 +2833,10 @@
 		989B604C216F284300DDCC7B /* 轮播图 */ = {
 			isa = PBXGroup;
 			children = (
+				CD93D03C219AA3BD00327AD6 /* HW3DBannerView.h */,
+				CD93D03D219AA3BD00327AD6 /* HW3DBannerView.m */,
+				CD93D03B219AA3BD00327AD6 /* UIView+Banner.h */,
+				CD93D03A219AA3BD00327AD6 /* UIView+Banner.m */,
 				989B6052216F285200DDCC7B /* DCCycleScrollView.h */,
 				989B6051216F285200DDCC7B /* DCCycleScrollView.m */,
 				989B604E216F285200DDCC7B /* DCCycleScrollViewCell.h */,
@@ -3732,6 +3742,7 @@
 				989382DF21226A60007A9EBD /* ToSchoolSituationModel.m in Sources */,
 				045A95082113119700030E56 /* WorkDetailsViewController.m in Sources */,
 				98D89DEC21103C7800355626 /* Encryption.m in Sources */,
+				CD93D03E219AA3BD00327AD6 /* UIView+Banner.m in Sources */,
 				98E69522211C1FDF00660B14 /* PublicClassModel.m in Sources */,
 				98C01EF02114562200D625DA /* PublishJobModel.m in Sources */,
 				0413D6BD210F06C900CB34A6 /* ParentXueTangCell.m in Sources */,
@@ -3765,6 +3776,7 @@
 				98AD7EB3210F11BD00641231 /* LaunchEventViewController.m in Sources */,
 				0428109B2108070F00E2CA14 /* TuiChuLoginCell.m in Sources */,
 				042AA43B211D276300E3AACB /* ParentXueTangModel.m in Sources */,
+				CD93D03F219AA3BD00327AD6 /* HW3DBannerView.m in Sources */,
 				98D89DB82110054100355626 /* TotalNumberViewController.m in Sources */,
 				0432F2C82123F99800E78FB4 /* TeacherListNCell.m in Sources */,
 				04251B9A2115453B0090CD3C /* ConsultListModel.m in Sources */,

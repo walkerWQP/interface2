@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HomePageJingJiView : UIView
 
 @property(nonatomic,retain)id <HomePageJingJiViewDelegate>HomePageJingJiViewDelegate;
-@property(nonatomic,strong)NSArray *array;
+@property(nonatomic,strong)NSArray         *array;
 @property (strong, nonatomic) UIScrollView *scrollView;
 
 -(void)setDetail:(NSArray *)array;

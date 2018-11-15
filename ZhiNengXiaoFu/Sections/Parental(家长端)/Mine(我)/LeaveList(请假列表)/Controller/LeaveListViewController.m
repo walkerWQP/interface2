@@ -80,11 +80,9 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"请假" style:UIBarButtonItemStyleDone target:self action:@selector(rightButton:)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15], NSFontAttributeName, nil] forState:UIControlStateNormal];
-
     [self.view addSubview:self.leaveListTableView];
     self.leaveListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.leaveListTableView registerClass:[LeaveListItemCell class] forCellReuseIdentifier:@"LeaveListItemCellId"];
-    
 }
 
 
@@ -120,7 +118,6 @@
             for (LeaveListModel *model in arr) {
                 [self.leaveListAry addObject:model];
             }
-            
             if (self.leaveListAry.count == 0) {
                 self.zanwushuju.alpha = 1;
             } else {
@@ -178,20 +175,19 @@
             }
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UIImageView * imgs = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
+        UIImageView *imgs = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
         if (self.bannerArr.count == 0) {
             //            imgs.image = [UIImage imageNamed:@"教师端活动管理banner"];
         } else {
-            BannerModel * model = [self.bannerArr objectAtIndex:0];
+            BannerModel *model = [self.bannerArr objectAtIndex:0];
             [imgs sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"banner"]];
         }
         [cell addSubview:imgs];
         return cell;
     } else {
-        LeaveListItemCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LeaveListItemCellId" forIndexPath:indexPath];
+        LeaveListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LeaveListItemCellId" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        LeaveListModel * model = [self.leaveListAry objectAtIndex:indexPath.row];
+        LeaveListModel *model = [self.leaveListAry objectAtIndex:indexPath.row];
         cell.LeaveTimeLabel.text = [NSString stringWithFormat:@"请假时间: %@ 至 %@", model.start, model.end];
         cell.LeaveReasonLabel.text = model.reason;
         if (model.status == 1) {
@@ -232,12 +228,12 @@
 }
 
 - (void)rightButton:(UIBarButtonItem *)sender {
-    LeaveRequestViewController * leaveRequestVC = [[LeaveRequestViewController alloc] init];
+    LeaveRequestViewController *leaveRequestVC = [[LeaveRequestViewController alloc] init];
     [self.navigationController pushViewController:leaveRequestVC animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    LeaveDetailsViewController * leaveDetailsVC = [[LeaveDetailsViewController alloc] init];
+    LeaveDetailsViewController *leaveDetailsVC = [[LeaveDetailsViewController alloc] init];
     LeaveListModel * model = [self.leaveListAry objectAtIndex:indexPath.row];
     leaveDetailsVC.leaveDetailsId = model.ID;
     [self.navigationController pushViewController:leaveDetailsVC animated:YES];

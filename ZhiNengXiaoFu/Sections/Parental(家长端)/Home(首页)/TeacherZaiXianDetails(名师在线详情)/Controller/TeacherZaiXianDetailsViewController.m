@@ -16,9 +16,9 @@
 #import "TeacherZaiXianModel.h"
 
 @interface TeacherZaiXianDetailsViewController ()
-@property (nonatomic,weak) CLPlayerView *playerView;
 
-@property (nonatomic,strong) JohnTopTitleView *titleView;
+@property (nonatomic,weak) CLPlayerView                 *playerView;
+@property (nonatomic,strong) JohnTopTitleView           *titleView;
 @property (nonatomic,strong) TeacherZaiXianDetailsModel * teacherZaiXianDetailsModel;
 @end
 
@@ -27,17 +27,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = backColor;
-   
     [self setNetWork:self.teacherZaiXianDetailsId];
     self.navigationItem.hidesBackButton = YES;
-    
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shiPinList:) name:@"shipinListBoFang" object:nil];
 }
 
 - (void)shiPinList:(NSNotification *)nofity {
-  
    TeacherZaiXianModel * model =  [[nofity object] objectForKey:@"SchoolDongTaiModel"];
     [self.playerView removeFromSuperview];
     [_playerView destroyPlayer];
@@ -46,14 +43,13 @@
 }
 
 -  (void)setNetWorkN:(NSString *)str {
-    NSDictionary * dic = @{@"key":[UserManager key], @"id":str};
+    NSDictionary *dic = @{@"key":[UserManager key], @"id":str};
     [[HttpRequestManager sharedSingleton] POST:indexOnlineVideoById parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.teacherZaiXianDetailsModel = [TeacherZaiXianDetailsModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
             self.title = self.teacherZaiXianDetailsModel.title;
             if ([self.teacherZaiXianDetailsModel.video_url isEqualToString:@""]) {
-                UIImageView * back = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 200)];
+                UIImageView *back = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 200)];
                 [back sd_setImageWithURL:[NSURL URLWithString:self.teacherZaiXianDetailsModel.img] placeholderImage:nil];
                 [self.view addSubview:back];
             } else {
@@ -64,7 +60,6 @@
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
             } else if ([[responseObject objectForKey:@"status"] integerValue] == 405) {
                 UIImageView * back = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 200)];
                 [back sd_setImageWithURL:[NSURL URLWithString:self.teacherZaiXianDetailsModel.img] placeholderImage:nil];
@@ -80,15 +75,12 @@
 }
 
 - (void)setNetWork:(NSString *)str {
-    NSDictionary * dic = @{@"key":[UserManager key], @"id":str};
+    NSDictionary *dic = @{@"key":[UserManager key], @"id":str};
     [[HttpRequestManager sharedSingleton] POST:indexOnlineVideoById parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-       
         self.teacherZaiXianDetailsModel = [TeacherZaiXianDetailsModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
         self.title = self.teacherZaiXianDetailsModel.title;
         [self createUI];
-
         if ([[responseObject objectForKey:@"status"] integerValue] == 200 ) {
-            
             if ([self.teacherZaiXianDetailsModel.video_url isEqualToString:@""]) {
                 UIImageView * back = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 200)];
                 [back sd_setImageWithURL:[NSURL URLWithString:self.teacherZaiXianDetailsModel.img] placeholderImage:nil];
@@ -101,9 +93,8 @@
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
                 [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-
             } else if ([[responseObject objectForKey:@"status"] integerValue] == 405) {
-                UIImageView * back = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 200)];
+                UIImageView *back = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 200)];
                 [back sd_setImageWithURL:[NSURL URLWithString:self.teacherZaiXianDetailsModel.img] placeholderImage:nil];
                 [self.view addSubview:back];
             } else {

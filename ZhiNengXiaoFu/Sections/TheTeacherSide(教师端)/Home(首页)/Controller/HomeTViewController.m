@@ -44,7 +44,7 @@
 @property (nonatomic, strong) NSString            *className;
 @property (nonatomic, strong) NSMutableArray      *bannerArr;
 @property (nonatomic, strong) NSMutableArray      *imgArr;
-@property (nonatomic, strong) DCCycleScrollView   *banner;
+@property (nonatomic, strong) HW3DBannerView     *banner;
 @property (nonatomic, strong) NSMutableArray      *classArr;
 @property (nonatomic, strong) NSMutableArray      *activityArr;
 @property (nonatomic, strong) NSMutableArray      *tongzhiAry;
@@ -318,15 +318,29 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
         [self.banner removeAllSubviews];
         [self.banner removeFromSuperview];
-        self.banner = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 150) shouldInfiniteLoop:YES imageGroups:self.imgArr];
-        self.banner.autoScrollTimeInterval = 3;
-        self.banner.autoScroll = YES;
-        self.banner.isZoom = YES;
-        self.banner.itemSpace = 0;
-        self.banner.imgCornerRadius = 10;
-        self.banner.itemWidth = self.view.frame.size.width - 100;
-        self.banner.delegate = self;
+        _banner = [HW3DBannerView initWithFrame:CGRectMake(0, 0, kScreenWidth, 150) imageSpacing:10 imageWidth:APP_WIDTH - 50];
+        _banner.initAlpha = 0.5; // 设置两边卡片的透明度
+        _banner.imageRadius = 10; // 设置卡片圆角
+        _banner.imageHeightPoor = 10; // 设置中间卡片与两边卡片的高度差
+        // 设置要加载的图片
+        if (self.imgArr.count != 0) {
+            self.banner.data = self.imgArr;
+        }
+        _banner.placeHolderImage = [UIImage imageNamed:@"教师端活动管理banner"]; // 设置占位图片
         [cell addSubview:self.banner];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        _banner.clickImageBlock = ^(NSInteger currentIndex) { // 点击中间图片的回调
+            
+        };
+//        self.banner = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 150) shouldInfiniteLoop:YES imageGroups:self.imgArr];
+//        self.banner.autoScrollTimeInterval = 3;
+//        self.banner.autoScroll = YES;
+//        self.banner.isZoom = YES;
+//        self.banner.itemSpace = 0;
+//        self.banner.imgCornerRadius = 10;
+//        self.banner.itemWidth = self.view.frame.size.width - 100;
+//        self.banner.delegate = self;
+//        [cell addSubview:self.banner];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
         

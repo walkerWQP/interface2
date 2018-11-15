@@ -66,8 +66,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"请假详情";
@@ -94,10 +92,8 @@
     NSDictionary *dic = @{@"key":[UserManager key],@"student_id":studentId};
     [[HttpRequestManager sharedSingleton] POST:studentTodayLeaveURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.toSchoolSituationModel = [ToSchoolSituationModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
             [self makeLeaveTheDetailsViewControllerUI];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -112,14 +108,11 @@
 }
 
 - (void)getLeaveLeaveDetailData {
-    
     NSDictionary *dic = @{@"key":[UserManager key],@"id":self.ID};
     [[HttpRequestManager sharedSingleton] POST:leaveLeaveDetail parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.leaveListModel = [LeaveListModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
             [self makeLeaveTheDetailsViewControllerUI];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -350,8 +343,8 @@
             self.noteTextView.editable = YES;
         }
     }
+    
 }
-
 
 
 - (void)submitBtn : (UIButton *)sender {
@@ -362,14 +355,11 @@
         [WProgressHUD showErrorAnimatedText:@"审核内容不能为空"];
         return;
     } else {
-       
         NSDictionary *dic = @{@"key":[UserManager key],@"id":self.ID,@"remark":self.noteTextView.text};
         [[HttpRequestManager sharedSingleton] POST:leaveHandleLeave parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
             if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-                
                 [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
                 [self.navigationController popViewControllerAnimated:YES];
-                
             } else {
                 if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                     [UserManager logoOut];

@@ -72,7 +72,7 @@
 
 - (void)setNetWork {
     [self.QianDaoAry removeAllObjects];
-    NSDictionary * dic  = [NSDictionary dictionary];
+    NSDictionary *dic  = [NSDictionary dictionary];
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] isEqualToString:@"2"]) {
         dic = @{@"key":[UserManager key], @"student_id":self.studentId};
     } else {
@@ -154,13 +154,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        QianDaoPsersonCell * cell = [tableView dequeueReusableCellWithIdentifier:@"QianDaoPsersonCellId" forIndexPath:indexPath];
+        QianDaoPsersonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QianDaoPsersonCellId" forIndexPath:indexPath];
         cell.itemLabel.text = self.qianDaoModel.name;
         [cell.itemImg sd_setImageWithURL:[NSURL URLWithString:self.qianDaoModel.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
         cell.selectionStyle =  UITableViewCellSelectionStyleNone;
         return cell;
     } else {
-        QianDaoItemCell * cell = [tableView dequeueReusableCellWithIdentifier:@"QianDaoItemCellId" forIndexPath:indexPath];
+        QianDaoItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QianDaoItemCellId" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (self.QianDaoAry.count != 0) {
             QianDaoInModel * model = [self.QianDaoAry objectAtIndex:indexPath.row];
@@ -197,10 +197,10 @@
     if (indexPath.section == 0) {
 
     } else {
-        QianDaoInModel * model = [self.QianDaoAry objectAtIndex:indexPath.row];
+        QianDaoInModel *model = [self.QianDaoAry objectAtIndex:indexPath.row];
         self.backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
         self.backView.backgroundColor = COLOR(0, 0, 0, 0.2);
-        UITapGestureRecognizer * backTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backTap:)];
+        UITapGestureRecognizer *backTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backTap:)];
         self.backView.userInteractionEnabled = YES;
         [self.backView addGestureRecognizer:backTap];
         [[[UIApplication sharedApplication] keyWindow] addSubview:self.backView];
@@ -242,23 +242,13 @@
         }];
         //播放完成回调
         [_playerView endPlay:^{
-            //销毁播放器
-            //        [_playerView destroyPlayer];
-            //        _playerView = nil;
             NSLog(@"播放完成");
         }];
-//        UIImageView * img = [[UIImageView alloc] initWithFrame:CGRectMake(15, APP_HEIGHT / 2 - (APP_WIDTH - 30) * 210 / 345 / 2, APP_WIDTH - 30 , (APP_WIDTH - 30) * 210 / 345)];
-//        img.image = [UIImage imageNamed:@"监控"];
-//        UITapGestureRecognizer * imgTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgTap:)];
-//        img.userInteractionEnabled = YES;
-//        [img addGestureRecognizer:imgTap];
-//        [self.backView addSubview:img];
-        
-        
+
         
        self.close = [[UIImageView alloc] initWithFrame:CGRectMake(_playerView.frame.size.width + _playerView.frame.origin.x - 10, _playerView.frame.origin.y - 10, 20 , 20)];
         self.close.image = [UIImage imageNamed:@"guanbi"];
-        UITapGestureRecognizer * closeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeTap:)];
+        UITapGestureRecognizer *closeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeTap:)];
         self.close.userInteractionEnabled = YES;
         [self.close addGestureRecognizer:closeTap];
         [[[UIApplication sharedApplication] keyWindow] addSubview:self.close];
@@ -274,7 +264,7 @@
 }
 
 - (void)dingweiClick:(UIBarButtonItem *)sender {
-    DingWeiViewController * VC = [[DingWeiViewController alloc] init];
+    DingWeiViewController *VC = [[DingWeiViewController alloc] init];
     [self.navigationController pushViewController:VC animated:YES]; }
 
 - (void)imgTap:(UITapGestureRecognizer *)sender {
@@ -286,7 +276,6 @@
     [_playerView destroyPlayer];
     _playerView = nil;
     [_playerView removeFromSuperview];
-
     [self.close removeFromSuperview];
 }
 
@@ -294,7 +283,6 @@
     [self.backView removeFromSuperview];
     [self.close removeFromSuperview];
     [_playerView removeFromSuperview];
-
     [_playerView destroyPlayer];
     _playerView = nil;
 }

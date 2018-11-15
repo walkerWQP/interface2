@@ -10,6 +10,6 @@
 
 @interface ParentXueTangDetailsViewController : UIViewController
 
-@property (nonatomic, copy) NSString * ParentXueTangDetailsId;
+@property (nonatomic, copy) NSString *ParentXueTangDetailsId;
 
 @end

@@ -31,7 +31,7 @@
     self.title = @"我的咨询";
     self.view.backgroundColor = COLOR(247, 247, 247, 1);
     
-    UILabel * questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 70, 20)];
+    UILabel *questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 70, 20)];
     questionLabel.text = @"问题";
     questionLabel.textColor = COLOR(51, 51, 51, 1);
     questionLabel.font = [UIFont systemFontOfSize:17];
@@ -48,7 +48,7 @@
     self.myZiXunTextView.layer.borderWidth = 1;
     [self.view addSubview:self.myZiXunTextView];
     
-    UILabel * chooseTeacher = [[UILabel alloc] initWithFrame:CGRectMake(15, self.myZiXunTextView.frame.origin.y + self.myZiXunTextView.frame.size.height + 15, 100, 20)];
+    UILabel *chooseTeacher = [[UILabel alloc] initWithFrame:CGRectMake(15, self.myZiXunTextView.frame.origin.y + self.myZiXunTextView.frame.size.height + 15, 100, 20)];
     chooseTeacher.text = @"选择老师";
     chooseTeacher.textColor = COLOR(51, 51, 51, 1);
     chooseTeacher.font = [UIFont systemFontOfSize:17];
@@ -65,15 +65,15 @@
     self.chooseTeacherLabel.layer.borderWidth = 1;
     [self.view addSubview:self.chooseTeacherLabel];
     
-    UIImageView * xialaImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.chooseTeacherLabel.frame.size.width - 8 - 15, 22, 8, 6)];
+    UIImageView *xialaImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.chooseTeacherLabel.frame.size.width - 8 - 15, 22, 8, 6)];
     xialaImg.image = [UIImage imageNamed:@"下拉"];
     [self.chooseTeacherLabel addSubview:xialaImg];
     
-    UITapGestureRecognizer * chooseTeacherTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseTeacherTap:)];
+    UITapGestureRecognizer *chooseTeacherTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseTeacherTap:)];
     self.chooseTeacherLabel.userInteractionEnabled = YES;
     [self.chooseTeacherLabel addGestureRecognizer:chooseTeacherTap];
     
-    UIButton * submit = [[UIButton alloc] initWithFrame:CGRectMake(APP_WIDTH / 2 - 212 / 2, self.chooseTeacherLabel.frame.origin.y + self.chooseTeacherLabel.frame.size.height + 30, 212, 37)];
+    UIButton *submit = [[UIButton alloc] initWithFrame:CGRectMake(APP_WIDTH / 2 - 212 / 2, self.chooseTeacherLabel.frame.origin.y + self.chooseTeacherLabel.frame.size.height + 30, 212, 37)];
 //    [submit setBackgroundImage:[UIImage imageNamed:@"提交问题"] forState:UIControlStateNormal];
     submit.layer.masksToBounds = YES;
     submit.layer.cornerRadius  = 5;
@@ -95,7 +95,7 @@
     if (![self.myZiXunTextView.text isEqualToString:@" 请输入问题"] && ![self.myZiXunTextView.text isEqualToString:@""]) {
         
         if (self.userGetStuTeaModel.teacher_id != nil) {
-            NSDictionary * dic = @{@"teacher_id":self.userGetStuTeaModel.teacher_id, @"teacher_name":self.userGetStuTeaModel.teacher_name, @"course_name":self.userGetStuTeaModel.course_name, @"key":[UserManager key], @"question":self.myZiXunTextView.text};
+            NSDictionary *dic = @{@"teacher_id":self.userGetStuTeaModel.teacher_id, @"teacher_name":self.userGetStuTeaModel.teacher_name, @"course_name":self.userGetStuTeaModel.course_name, @"key":[UserManager key], @"question":self.myZiXunTextView.text};
             [[HttpRequestManager sharedSingleton] POST:ConsultQuestion parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
                 if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
                     [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
@@ -117,29 +117,23 @@
 
 - (void)chooseTeacherTap:(UITapGestureRecognizer *)sender {
     [self.view endEditing:YES];
-    NSDictionary * dic = @{@"key":[UserManager key]};
+    NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:UserGetStudentTeachers parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
             self.courseAry = [UserGetStuTeaModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-            
-            NSMutableArray * ary = [@[]mutableCopy];
+            NSMutableArray *ary = [@[]mutableCopy];
             for (UserGetStuTeaModel * model in self.courseAry) {
                 [ary addObject:[NSString stringWithFormat:@"%@ (%@)", model.teacher_name, model.course_name]];
             }
             
             PickerView *vi = [[PickerView alloc] init];
             vi.array = ary;
-
             vi.type = PickerViewTypeHeigh;
             vi.selectComponent = 0;
             vi.delegate = self;
             [[[UIApplication sharedApplication] keyWindow] addSubview:vi];
 
-//            HQPickerView *picker = [[HQPickerView alloc]initWithFrame:self.view.bounds];
-//            picker.delegate = self ;
-//            picker.customArr = ary;
-//            [self.view addSubview:picker];
         } else {
             
         }

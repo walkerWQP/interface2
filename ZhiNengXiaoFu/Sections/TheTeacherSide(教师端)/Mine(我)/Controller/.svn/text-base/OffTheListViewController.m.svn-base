@@ -78,7 +78,6 @@
 }
 
 - (void)getOffTheListData:(NSInteger)page {
-
     NSDictionary *dic = @{@"key":[UserManager key],@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:leaveLeaveList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
@@ -160,7 +159,6 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     UICollectionViewCell *gridcell = nil;
     OffTheListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:OffTheListCell_CollectionView forIndexPath:indexPath];
     if (self.offTheListArr.count != 0) {

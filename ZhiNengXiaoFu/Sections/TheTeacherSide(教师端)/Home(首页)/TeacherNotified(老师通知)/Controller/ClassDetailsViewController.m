@@ -91,7 +91,7 @@
             if (self.bannerArr.count == 0) {
                 self.headImgView.image = [UIImage imageNamed:@"教师端活动管理banner"];
             } else {
-                BannerModel * model = [self.bannerArr objectAtIndex:0];
+                BannerModel *model = [self.bannerArr objectAtIndex:0];
                 [self.headImgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"教师端活动管理banner"]];
                 [self.classDetailsTableView reloadData];
             }
@@ -169,7 +169,7 @@
             if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
                 [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
             } else {
-                ClassDetailsModel * model = [self.classDetailsArr objectAtIndex:indexPath.row];
+                ClassDetailsModel *model = [self.classDetailsArr objectAtIndex:indexPath.row];
                 [self.classDetailsArr removeObjectAtIndex:indexPath.row];
                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 [self deleteNoticeURLForData:model.ID];
@@ -261,9 +261,9 @@
         [cell addSubview:imgs];
         return cell;
     } else {
-        ClassDetailsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ClassDetailsTableViewCellID" forIndexPath:indexPath];
+        ClassDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ClassDetailsTableViewCellID" forIndexPath:indexPath];
         if (self.classDetailsArr.count != 0) {
-            ClassDetailsModel * model = [self.classDetailsArr objectAtIndex:indexPath.row];
+            ClassDetailsModel *model = [self.classDetailsArr objectAtIndex:indexPath.row];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;

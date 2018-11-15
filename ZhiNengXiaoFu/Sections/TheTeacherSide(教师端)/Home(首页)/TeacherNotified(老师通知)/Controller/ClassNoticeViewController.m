@@ -126,7 +126,6 @@
         return;
     } else if (self.LQPhotoPicker_smallImageArray.count == 0) {
         NSDictionary *dataDic = [NSDictionary dictionary];
-        
         dataDic = @{@"key":[UserManager key],@"class_id":self.classID,@"title":self.noticeNameTextField.text,@"content":self.noticeContentTextView.text,@"img":@""};
         [self postDataForRelease:dataDic];
     } else {
@@ -193,15 +192,12 @@
 
 #pragma mark ======= 发布 =======
 - (void)postDataForRelease:(NSDictionary *)dic{
-    
         [WProgressHUD showHUDShowText:@"加载中..."];
         [[HttpRequestManager sharedSingleton] POST:publishURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
             [WProgressHUD hideAllHUDAnimated:YES];
             if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-                
                 [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
                 [self.navigationController popViewControllerAnimated:YES];
-                
             } else {
                 if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                     [UserManager logoOut];

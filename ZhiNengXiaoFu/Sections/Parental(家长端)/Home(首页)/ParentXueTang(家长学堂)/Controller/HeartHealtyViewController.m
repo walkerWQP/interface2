@@ -65,7 +65,7 @@
 }
 
 - (void)setNetWork:(NSInteger)page {
-    NSDictionary * dic = @{@"key":[UserManager key], @"type":@2, @"page":[NSString stringWithFormat:@"%ld",page]};
+    NSDictionary *dic = @{@"key":[UserManager key], @"type":@2, @"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:pschoolGetList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
         [self.HeartHealtyTableView.mj_header endRefreshing];
@@ -106,7 +106,6 @@
         self.HeartHealtyTableView.delegate = self;
         self.HeartHealtyTableView.dataSource = self;
         self.HeartHealtyTableView.backgroundColor = backColor;
-
         _HeartHealtyTableView.estimatedRowHeight = 0;
         _HeartHealtyTableView.estimatedSectionHeaderHeight = 0;
         _HeartHealtyTableView.estimatedSectionFooterHeight = 0;
@@ -143,12 +142,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    ParentXueTangCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ParentXueTangCellId" forIndexPath:indexPath];
+    ParentXueTangCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ParentXueTangCellId" forIndexPath:indexPath];
     cell.selectionStyle =  UITableViewCellSelectionStyleNone;
     
     if (self.ChildJiaoYuAry) {
-        ParentXueTangModel * model = [self.ChildJiaoYuAry objectAtIndex:indexPath.row];
+        ParentXueTangModel *model = [self.ChildJiaoYuAry objectAtIndex:indexPath.row];
         cell.titleLabel.text = model.title;
         [cell.ShiPinListImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
         if (model.view > 9999) {
@@ -206,7 +204,6 @@
             cell.biaoQianThreeLabel.text = [model.label objectAtIndex:2];
         }
     }
-    
     return cell;
 }
 
@@ -215,12 +212,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ParentXueTangDetailsViewController * parentXueTangDetailsVC = [[ParentXueTangDetailsViewController alloc] init];
+    ParentXueTangDetailsViewController *parentXueTangDetailsVC = [[ParentXueTangDetailsViewController alloc] init];
     if (self.ChildJiaoYuAry.count != 0) {
-        ParentXueTangModel * model = [self.ChildJiaoYuAry objectAtIndex:indexPath.row];
+        ParentXueTangModel *model = [self.ChildJiaoYuAry objectAtIndex:indexPath.row];
         parentXueTangDetailsVC.ParentXueTangDetailsId = model.ID;
     }
-   
     [self.navigationController pushViewController:parentXueTangDetailsVC animated:YES];
 }
 

@@ -12,10 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
     self.WorkNewTwoIconImg.layer.cornerRadius = 15;
     self.WorkNewTwoIconImg.layer.masksToBounds = YES;
-    
     self.WorkNewTwoFenLeiLabel.layer.cornerRadius = 5;
     self.WorkNewTwoFenLeiLabel.layer.masksToBounds = YES;
 }

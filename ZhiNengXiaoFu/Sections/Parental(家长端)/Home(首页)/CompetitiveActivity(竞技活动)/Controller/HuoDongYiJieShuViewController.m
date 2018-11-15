@@ -33,7 +33,6 @@
     [super viewDidLoad];
     self.page = 1;
     [self makeOngoingViewControllerUI];
-    
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
@@ -60,7 +59,7 @@
 }
 
 - (void)setNetWork:(NSInteger)page {
-    NSDictionary * dic = @{@"key":[UserManager key], @"status":@3,@"page":[NSString stringWithFormat:@"%ld",page]};
+    NSDictionary *dic = @{@"key":[UserManager key], @"status":@3,@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:activityActivityList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
         [self.ongoingCollectionView.mj_header endRefreshing];
@@ -71,7 +70,6 @@
             for (JingJiHuoDongListModel *model in arr) {
                 [self.ongoingArr addObject:model];
             }
-            
             if (self.ongoingArr.count == 0) {
                 self.zanwushuju.alpha = 1;
             } else {
@@ -116,11 +114,10 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     UICollectionViewCell *gridcell = nil;
     OngoingCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:OngoingCell_CollectionView forIndexPath:indexPath];
      if (self.ongoingArr.count != 0) {
-        JingJiHuoDongListModel * model = [self.ongoingArr objectAtIndex:indexPath.row];
+        JingJiHuoDongListModel *model = [self.ongoingArr objectAtIndex:indexPath.row];
         [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
         cell.titleLabel.text = model.title;
         cell.timeLabel.text = [NSString stringWithFormat:@"活动日期:%@-%@", model.start, model.end];
@@ -128,7 +125,6 @@
      }
     gridcell = cell;
     return gridcell;
-    
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -144,15 +140,14 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    JingJiActivityDetailsViewController * jjA = [[JingJiActivityDetailsViewController alloc] init];
-     if (self.ongoingArr.count != 0) {
-    JingJiHuoDongListModel * model = [self.ongoingArr objectAtIndex:indexPath.row];
+        JingJiActivityDetailsViewController *jjA = [[JingJiActivityDetailsViewController alloc] init];
+         if (self.ongoingArr.count != 0) {
+        JingJiHuoDongListModel * model = [self.ongoingArr objectAtIndex:indexPath.row];
 
-    jjA.JingJiActivityDetailsId = model.ID;
+        jjA.JingJiActivityDetailsId = model.ID;
      }
     [self.navigationController pushViewController:jjA animated:YES];
     NSLog(@"%ld",indexPath.row);
-    
 }
 
 - (void)didReceiveMemoryWarning {

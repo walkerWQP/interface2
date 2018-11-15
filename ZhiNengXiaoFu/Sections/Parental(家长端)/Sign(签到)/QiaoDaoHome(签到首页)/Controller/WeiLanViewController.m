@@ -122,14 +122,14 @@
     
     if ([self.shuruText.text isEqualToString:@""]) {
         
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:@"请输入描述" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"请输入描述" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [alert show];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [alert dismissWithClickedButtonIndex:0 animated:YES];
         });
 
     } else {
-        NSDictionary * dic = @{@"key":[UserManager key], @"name":self.shuruText.text, @"radius":[NSString stringWithFormat:@"%f", self.circleOverlay.radius], @"longitude":[NSString stringWithFormat:@"%f", self.circleOverlay.coordinate.longitude], @"latitude":[NSString stringWithFormat:@"%f", self.circleOverlay.coordinate.latitude]};
+        NSDictionary *dic = @{@"key":[UserManager key], @"name":self.shuruText.text, @"radius":[NSString stringWithFormat:@"%f", self.circleOverlay.radius], @"longitude":[NSString stringWithFormat:@"%f", self.circleOverlay.coordinate.longitude], @"latitude":[NSString stringWithFormat:@"%f", self.circleOverlay.coordinate.latitude]};
         [[HttpRequestManager sharedSingleton] POST:indexFenceAddFence parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
             if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
                 [self.navigationController popViewControllerAnimated:YES];

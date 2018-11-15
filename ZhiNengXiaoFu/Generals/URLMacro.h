@@ -14,10 +14,7 @@
 
 //正式
 #define YUMING  @"http://app.duxiukeji.com/"
-//#define YUMING  @"http://yszh.myzm.site/"
 
-//测试
-//#define YUMING  @"http://school.ksznxt.com/"
 
 
 //登录接口

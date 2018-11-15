@@ -113,7 +113,6 @@
         return;
     }
     
-    
     if ([self.typeID isEqualToString:@"1"]) {
         if ([self.titleField.text isEqualToString:@""]) {
             [WProgressHUD showErrorAnimatedText:@"请输入通知标题"];
@@ -146,7 +145,6 @@
 
 //修改通知
 - (void)UpdateNoticeURLData:(NSDictionary *)dic {
-    
     [[HttpRequestManager sharedSingleton] POST:updateNoticeURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
@@ -167,7 +165,6 @@
 
 //修改作业
 - (void)UpdateHomeWorkData:(NSDictionary *)dic {
-    
     [[HttpRequestManager sharedSingleton] POST:updateHomeWork parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
       
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {

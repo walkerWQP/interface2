@@ -74,14 +74,12 @@
     self.launchEventScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.2);
     self.launchEventScrollView.bounces = YES;
     self.launchEventScrollView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
-    
     self.launchEventScrollView.maximumZoomScale = 2.0;//最多放大到两倍
     self.launchEventScrollView.minimumZoomScale = 0.5;//最多缩小到0.5倍
     //设置是否允许缩放超出倍数限制，超出后弹回
     self.launchEventScrollView.bouncesZoom = YES;
     //设置委托
     self.launchEventScrollView.delegate = self;
-    
     [self.view addSubview:self.launchEventScrollView];
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, APP_WIDTH - 20, 30)];
@@ -275,7 +273,6 @@
 }
 
 - (void)postDataForActivityPublish:(NSDictionary *)dic {
-
         [WProgressHUD showHUDShowText:@"加载中..."];
         [[HttpRequestManager sharedSingleton] POST:activityPublish parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
             [WProgressHUD hideAllHUDAnimated:YES];
@@ -298,12 +295,11 @@
 }
 
 - (void)setShangChuanTupian {
-    
     NSDictionary * params = @{@"key":[UserManager key],@"upload_type":@"img", @"upload_img_type":@"activity"};
     [WProgressHUD showHUDShowText:@"加载中..."];
     [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (int i = 0; i < self.LQPhotoPicker_bigImageArray.count; i++) {
-            UIImage * image = self.LQPhotoPicker_bigImageArray[i];
+            UIImage *image = self.LQPhotoPicker_bigImageArray[i];
             NSData *imageData = UIImageJPEGRepresentation(image,1);
             float length=[imageData length]/1000;
             
@@ -422,15 +418,14 @@
 
 
 - (void)getClassData {
-    
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
             self.jobManagementArr = [TeacherNotifiedModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-            NSMutableArray * ary = [@[]mutableCopy];
-            for (TeacherNotifiedModel * model in self.jobManagementArr) {
+            NSMutableArray *ary = [@[]mutableCopy];
+            for (TeacherNotifiedModel *model in self.jobManagementArr) {
                 [ary addObject:[NSString stringWithFormat:@"%@", model.name]];
             }
             if (ary.count == 0) {

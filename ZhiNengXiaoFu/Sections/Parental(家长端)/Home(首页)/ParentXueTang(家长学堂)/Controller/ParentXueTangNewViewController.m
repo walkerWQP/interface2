@@ -71,8 +71,8 @@
     //上拉刷新
     self.ChildJiaoYuTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopic)];
     
-     [self getBannersURLData];
-     self.biaoji = 1;
+    [self getBannersURLData];
+    self.biaoji = 1;
 }
 
 
@@ -109,9 +109,7 @@
 }
 
 - (void)setNetWork:(NSInteger)page {
-    
-    NSDictionary * dic = [NSDictionary dictionary];
-    
+    NSDictionary *dic = [NSDictionary dictionary];
     if (self.biaoji == 1) {
          dic = @{@"key":[UserManager key], @"type":@1,@"page":[NSString stringWithFormat:@"%ld",page]};
     } else if (self.biaoji == 2) {
@@ -185,7 +183,7 @@
      if (section == 0) {
          return nil;
      } else {
-         UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
+         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
          
          self.back = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
          if (self.biaoji == 1) {
@@ -234,12 +232,12 @@
          }
          [headerView addSubview:self.xinliImg];
          
-         UIButton * left = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth / 2, 40)];
+         UIButton *left = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth / 2, 40)];
          [left addTarget:self action:@selector(left:) forControlEvents:UIControlEventTouchDown];
          left.userInteractionEnabled = YES;
          [headerView addSubview:left];
 
-         UIButton * right = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth / 2, 0, kScreenWidth / 2, 40)];
+         UIButton *right = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth / 2, 0, kScreenWidth / 2, 40)];
          [right addTarget:self action:@selector(right:) forControlEvents:UIControlEventTouchDown];
          right.userInteractionEnabled = YES;
          [headerView addSubview:right];
@@ -304,7 +302,7 @@
             }
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UIImageView * imgs = [[UIImageView alloc] initWithFrame:CGRectMake(15, 0, APP_WIDTH - 30, 170)];
+        UIImageView *imgs = [[UIImageView alloc] initWithFrame:CGRectMake(15, 0, APP_WIDTH - 30, 170)];
         imgs.contentMode = UIViewContentModeScaleAspectFill;
         imgs.clipsToBounds = YES;
         imgs.layer.cornerRadius  = 10;
@@ -312,19 +310,18 @@
         if (self.bannerArr.count == 0) {
             //            imgs.image = [UIImage imageNamed:@"教师端活动管理banner"];
         } else {
-            BannerModel * model = [self.bannerArr objectAtIndex:0];
+            BannerModel *model = [self.bannerArr objectAtIndex:0];
             [imgs sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"教师端活动管理banner"]];
         }
         [cell addSubview:imgs];
         return cell;
     } else {
-        TeacherListNCell * cell = [tableView dequeueReusableCellWithIdentifier:@"TeacherListNCellId" forIndexPath:indexPath];
+        TeacherListNCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TeacherListNCellId" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.LiuLanTopCon.constant = 15;
       
         if (self.ChildJiaoYuAry.count != 0) {
-            
-            ParentXueTangModel * model = [self.ChildJiaoYuAry objectAtIndex:indexPath.row];
+            ParentXueTangModel *model = [self.ChildJiaoYuAry objectAtIndex:indexPath.row];
             [cell.TeacherListNImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"缩略图"]];
             cell.TeacherListNImg.contentMode = UIViewContentModeScaleAspectFill;
             cell.TeacherListNImg.clipsToBounds = YES;
@@ -394,9 +391,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ParentXueTangDetailsViewController * parentXueTangDetailsVC = [[ParentXueTangDetailsViewController alloc] init];
+    ParentXueTangDetailsViewController *parentXueTangDetailsVC = [[ParentXueTangDetailsViewController alloc] init];
     if (self.ChildJiaoYuAry.count != 0) {
-        ParentXueTangModel * model = [self.ChildJiaoYuAry objectAtIndex:indexPath.row];
+        ParentXueTangModel *model = [self.ChildJiaoYuAry objectAtIndex:indexPath.row];
         parentXueTangDetailsVC.ParentXueTangDetailsId = model.ID;
     }
     [self.navigationController pushViewController:parentXueTangDetailsVC animated:YES];

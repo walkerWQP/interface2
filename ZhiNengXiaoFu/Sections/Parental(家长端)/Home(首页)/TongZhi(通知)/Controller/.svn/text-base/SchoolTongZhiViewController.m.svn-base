@@ -33,7 +33,6 @@
 
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     self.view.backgroundColor = backColor;
     self.title = @"学校通知";
@@ -41,7 +40,6 @@
     [self.view addSubview:self.schoolTongZhiTableView];
     [self.schoolTongZhiTableView registerClass:[TongZhiNewCell class] forCellReuseIdentifier:@"TongZhiNewCellId"];
     self.schoolTongZhiTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
@@ -68,7 +66,6 @@
 }
 
 - (void)getNetWork:(NSInteger)page {
-
     if ([self.typeStr isEqualToString:@"1"]) {
         NSDictionary *dic = @{@"key":[UserManager key], @"page":[NSString stringWithFormat:@"%ld",page],@"is_school":@"1"};
         [[HttpRequestManager sharedSingleton] POST:noticeListURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -76,22 +73,18 @@
             [self.schoolTongZhiTableView.mj_header endRefreshing];
             //结束尾部刷新
             [self.schoolTongZhiTableView.mj_footer endRefreshing];
-            
             if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-                
                 NSMutableArray *arr = [TongZhiModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
                 for (TongZhiModel *model in arr) {
                     [self.schoolTongZhiAry addObject:model];
                 }
                 if (self.schoolTongZhiAry.count == 0) {
                     self.zanwushuju.alpha = 1;
-                    
                 } else {
                     self.zanwushuju.alpha = 0;
                     [self.schoolTongZhiTableView reloadData];
                 }
                 [self.schoolTongZhiTableView reloadData];
-                
             } else {
                 if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                     [UserManager logoOut];
@@ -105,7 +98,7 @@
         }];
         
     } else {
-        NSDictionary * dic = @{@"key":[UserManager key], @"is_school":@1,@"page":[NSString stringWithFormat:@"%ld",page]};
+        NSDictionary *dic = @{@"key":[UserManager key], @"is_school":@1,@"page":[NSString stringWithFormat:@"%ld",page]};
         [[HttpRequestManager sharedSingleton] POST:JIAZHANGCHAKANTONGZHILIEBIAO parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
              //结束头部刷新
              [self.schoolTongZhiTableView.mj_header endRefreshing];
@@ -118,7 +111,6 @@
                  }
                  if (self.schoolTongZhiAry.count == 0) {
                      self.zanwushuju.alpha = 1;
-                     
                  } else {
                      self.zanwushuju.alpha = 0;
                      [self.schoolTongZhiTableView reloadData];
@@ -136,10 +128,7 @@
          } failure:^(NSURLSessionDataTask *task, NSError *error) {
          }];
     }
-    
 }
-
-
 
 
 - (UITableView *)schoolTongZhiTableView {
@@ -173,8 +162,6 @@
     return nil;
 }
 
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.schoolTongZhiAry.count;
 }
@@ -184,10 +171,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    TongZhiNewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"TongZhiNewCellId" forIndexPath:indexPath];
+    TongZhiNewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TongZhiNewCellId" forIndexPath:indexPath];
     if (self.schoolTongZhiAry.count != 0) {
-        TongZhiModel * model = [self.schoolTongZhiAry objectAtIndex:indexPath.row];
+        TongZhiModel *model = [self.schoolTongZhiAry objectAtIndex:indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.headerImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"通知图标"]];
         cell.titleLabel.text = model.title;
@@ -202,9 +188,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    TongZhiDetailsViewController * tongZhiDetails  = [[TongZhiDetailsViewController alloc] init];
+    TongZhiDetailsViewController *tongZhiDetails  = [[TongZhiDetailsViewController alloc] init];
     if (self.schoolTongZhiAry.count != 0) {
-        TongZhiModel * model = [self.schoolTongZhiAry objectAtIndex:indexPath.row];
+        TongZhiModel *model = [self.schoolTongZhiAry objectAtIndex:indexPath.row];
         tongZhiDetails.tongZhiId = model.ID;
     }
     [self.navigationController pushViewController:tongZhiDetails animated:YES];

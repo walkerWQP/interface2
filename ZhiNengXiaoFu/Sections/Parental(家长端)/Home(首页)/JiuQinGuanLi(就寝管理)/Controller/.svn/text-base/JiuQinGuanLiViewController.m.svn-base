@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UIImageView    *zanwushuju;
 //封装就寝model
 @property (nonatomic, strong) QianDaoModel   *qianDaoModel;
+
 @end
 
 @implementation JiuQinGuanLiViewController
@@ -73,12 +74,10 @@
 - (void)getNetWork:(NSInteger)page {
     NSDictionary * dic = @{@"key":[UserManager key],@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:indexDormGetDormRecord parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         //结束头部刷新
         [self.JiuQinGuanLiTableView.mj_header endRefreshing];
         //结束尾部刷新
         [self.JiuQinGuanLiTableView.mj_footer endRefreshing];
-        
         self.qianDaoModel = [QianDaoModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
         
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
@@ -88,7 +87,6 @@
             }
             if (self.JiuQinGuanLiAry.count == 0) {
                 self.zanwushuju.alpha = 1;
-                
             } else {
                 self.zanwushuju.alpha = 0;
             }
@@ -116,8 +114,6 @@
     }
     return _JiuQinGuanLiTableView;
 }
-
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0;
@@ -150,26 +146,22 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
    if (indexPath.section == 0) {
-        JiuQinPersonCell * cell = [tableView dequeueReusableCellWithIdentifier:@"JiuQinPersonCellId" forIndexPath:indexPath];
+        JiuQinPersonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JiuQinPersonCellId" forIndexPath:indexPath];
        cell.nameLabel.text = self.qianDaoModel.name;
        [cell.headImg sd_setImageWithURL:[NSURL URLWithString:self.qianDaoModel.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
-    
        if (self.qianDaoModel.nature == 1) {
            cell.typeLabel.text = @"类型:走读生";
-
        } else {
            cell.typeLabel.text = @"类型:住校生";
-
        }
         cell.selectionStyle =  UITableViewCellSelectionStyleNone;
         return cell;
     } else {
-        JiuQinItemCell * cell = [tableView dequeueReusableCellWithIdentifier:@"JiuQinItemCellId" forIndexPath:indexPath];
+        JiuQinItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JiuQinItemCellId" forIndexPath:indexPath];
         cell.selectionStyle =  UITableViewCellSelectionStyleNone;
         if (self.JiuQinGuanLiAry.count != 0) {
-            QianDaoInModel * model = [self.JiuQinGuanLiAry objectAtIndex:indexPath.row];
+            QianDaoInModel *model = [self.JiuQinGuanLiAry objectAtIndex:indexPath.row];
             if (model.type == 1) {
                 cell.JiuQinItemNameLabel.text = @"入寝";
                 cell.JiuQinItemStateImg.image = [UIImage imageNamed:@"就寝矩形"];
@@ -193,9 +185,6 @@
         return 73;
     }
 }
-
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -98,7 +98,6 @@
 
 
 - (void)getNoticeListData:(NSInteger)page {
-    
     NSDictionary *dic = @{@"key":[UserManager key], @"page":[NSString stringWithFormat:@"%ld",page],@"is_school":@"1"};
     [[HttpRequestManager sharedSingleton] POST:noticeListURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
@@ -129,7 +128,6 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];
-    
 }
 
 - (void)mkeSchoolNoticeViewControllerUI {

@@ -43,7 +43,7 @@
     [super viewDidLoad];
     self.title = @"登录";
     self.view.backgroundColor = backColor;
-    UIImageView * backImg  = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 275)];
+    UIImageView *backImg  = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 275)];
     backImg.image = [UIImage imageNamed:@"背景"];
     [self.view addSubview:backImg];
     
@@ -51,12 +51,12 @@
     self.teacherChooseState = 1;
     
     //用户名的背景view
-    UIView * userName = [[UIView alloc] initWithFrame:CGRectMake(66, backImg.frame.origin.y + backImg.frame.size.height + 62 + 18 + 12, self.view.frame.size.width - 132, 1)];
+    UIView *userName = [[UIView alloc] initWithFrame:CGRectMake(66, backImg.frame.origin.y + backImg.frame.size.height + 62 + 18 + 12, self.view.frame.size.width - 132, 1)];
     userName.backgroundColor = RGB(230, 230, 230);
     [self.view addSubview:userName];
     
     //用户名图片
-    UIImageView * userImg  = [[UIImageView alloc] initWithFrame:CGRectMake(userName.frame.origin.x + 5, backImg.frame.origin.y + backImg.frame.size.height + 62, 16, 18)];
+    UIImageView *userImg  = [[UIImageView alloc] initWithFrame:CGRectMake(userName.frame.origin.x + 5, backImg.frame.origin.y + backImg.frame.size.height + 62, 16, 18)];
     userImg.image = [UIImage imageNamed:@"用户名"];
     [self.view addSubview:userImg];
 
@@ -68,12 +68,12 @@
     [self.view  addSubview:self.zhangHaoTextField];
     
     //密码背景图
-    UIView * passWordView = [[UIView alloc] initWithFrame:CGRectMake(66, userName.frame.origin.y + userName.frame.size.height + 56, self.view.frame.size.width - 132, 1)];
+    UIView *passWordView = [[UIView alloc] initWithFrame:CGRectMake(66, userName.frame.origin.y + userName.frame.size.height + 56, self.view.frame.size.width - 132, 1)];
     passWordView.backgroundColor = RGB(230, 230, 230);
     [self.view addSubview:passWordView];
     
     //密码图片
-    UIImageView * mimaImg  = [[UIImageView alloc] initWithFrame:CGRectMake(passWordView.frame.origin.x + 5, userName.frame.origin.y + userName.frame.size.height + 35, 19, 10)];
+    UIImageView *mimaImg  = [[UIImageView alloc] initWithFrame:CGRectMake(passWordView.frame.origin.x + 5, userName.frame.origin.y + userName.frame.size.height + 35, 19, 10)];
     mimaImg.image = [UIImage imageNamed:@"密码"];
     [self.view addSubview:mimaImg];
     
@@ -92,7 +92,7 @@
     [self.view addSubview:self.chooseBtn];
     
     //记住登录状态
-    UILabel * jiZhuLoginState = [[UILabel alloc] initWithFrame:CGRectMake(self.chooseBtn.frame.size.width + self.chooseBtn.frame.origin.x + 5, self.chooseBtn.frame.origin.y, 80, 13)];
+    UILabel *jiZhuLoginState = [[UILabel alloc] initWithFrame:CGRectMake(self.chooseBtn.frame.size.width + self.chooseBtn.frame.origin.x + 5, self.chooseBtn.frame.origin.y, 80, 13)];
     jiZhuLoginState.text = @"记住登录状态";
     jiZhuLoginState.textColor = COLOR(170, 170, 170, 1);
     jiZhuLoginState.font = [UIFont systemFontOfSize:13];
@@ -112,7 +112,7 @@
     self.parentChooseBtn.userInteractionEnabled = YES;
     [self.view addSubview:self.parentChooseBtn];
     
-    UIButton * parentChooseBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.parentLabel.frame.origin.x - 20, self.chooseBtn.frame.origin.y - 3, 40, 25)];
+    UIButton *parentChooseBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.parentLabel.frame.origin.x - 20, self.chooseBtn.frame.origin.y - 3, 40, 25)];
     [parentChooseBtn addTarget:self action:@selector(parentChooseBtn:) forControlEvents:UIControlEventTouchDown];
     parentChooseBtn.userInteractionEnabled = YES;
      [self.view addSubview:parentChooseBtn];
@@ -133,13 +133,13 @@
     [self.view addSubview:self.teacherChooseBtn];
     
     
-    UIButton * teacherChooseBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.teacherLabel.frame.origin.x - 20, self.chooseBtn.frame.origin.y - 3, 40, 25)];
+    UIButton *teacherChooseBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.teacherLabel.frame.origin.x - 20, self.chooseBtn.frame.origin.y - 3, 40, 25)];
     [teacherChooseBtn addTarget:self action:@selector(teacherChooseBtn:) forControlEvents:UIControlEventTouchDown];
     teacherChooseBtn.userInteractionEnabled = YES;
     [self.view addSubview:teacherChooseBtn];
     
     //登录
-    UIButton * loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(userName.frame.origin.x, jiZhuLoginState.frame.origin.y + jiZhuLoginState.frame.size.height + 42, APP_WIDTH - 132, 40)];
+    UIButton *loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(userName.frame.origin.x, jiZhuLoginState.frame.origin.y + jiZhuLoginState.frame.size.height + 42, APP_WIDTH - 132, 40)];
 //    loginBtn.backgroundColor = COLOR(57, 218, 175, 1);
     [loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
     [loginBtn setBackgroundImage:[UIImage imageNamed:@"登录按钮"] forState:UIControlStateNormal];
@@ -160,10 +160,7 @@
     self.youkeLogin.titleLabel.font = [UIFont systemFontOfSize:13];
     [self.view addSubview:self.youkeLogin];
     
-    
-    
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"shifouJizhuLogin"] isEqualToString:@"1"]) {
-        
         self.zhangHaoTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"TeacherUserName"];
         self.miMaTextfield.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"TeacherUserMiMa"];
         self.jizhuLoginChooseState = 1;
@@ -172,8 +169,6 @@
         self.jizhuLoginChooseState = 0;
         [self.chooseBtn setBackgroundImage:[UIImage imageNamed:@"圆角矩形"] forState:UIControlStateNormal];
     }
-    
-    
     NSLog(@"JPUSHServiceIsRegistrationID%@", [JPUSHService registrationID]);
 }
 
@@ -181,7 +176,7 @@
 - (void)youkeLogin:(UIButton *)sender {
     if (self.teacherChooseState == 1 || self.parentChooseState == 1) {
         
-        NSString * chooseLoginState = [[NSString alloc] init];
+        NSString *chooseLoginState = [[NSString alloc] init];
         if (self.teacherChooseState == 1) {
             chooseLoginState = @"2";
         } else if (self.parentChooseState == 1) {
@@ -195,9 +190,7 @@
             [WProgressHUD hideAllHUDAnimated:YES];
             
             if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-                
                  [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"youkeState"];
-                
                 if (self.teacherChooseState == 1) {
                     [[NSUserDefaults standardUserDefaults] setObject:@"2" forKey:@"chooseLoginState"];
                 } else if (self.parentChooseState == 1) {
@@ -214,7 +207,7 @@
                 [user synchronize];
                 [[NSUserDefaults standardUserDefaults] setObject:self.personInfoModel.key forKey:@"key"];
                 [SingletonHelper manager].personInfoModel = self.personInfoModel;
-                TotalTabBarController * totalTabBarVC = [[TotalTabBarController alloc] init];
+                TotalTabBarController *totalTabBarVC = [[TotalTabBarController alloc] init];
                 UIWindow *window = [UIApplication sharedApplication].keyWindow;
                 //把自定义标签视图控制器totalTabBarVC 作为window的rootViewController(根视图控制器)
                 
@@ -231,7 +224,6 @@
             [WProgressHUD hideAllHUDAnimated:YES];
         }];
     }
-    
 }
 
 //家长选择
@@ -277,11 +269,9 @@
     if (self.jizhuLoginChooseState == 0) {
         [self.chooseBtn setBackgroundImage:[UIImage imageNamed:@"对勾"] forState:UIControlStateNormal];
         self.jizhuLoginChooseState = 1;
-      
     } else {
         [self.chooseBtn setBackgroundImage:[UIImage imageNamed:@"圆角矩形"] forState:UIControlStateNormal];
         self.jizhuLoginChooseState = 0;
-        
     }
 }
 
@@ -289,9 +279,7 @@
 - (void)login:(UIButton *)sender {
     [self.view endEditing:YES];
     if (self.teacherChooseState == 1 || self.parentChooseState == 1) {
-        
-        NSString * chooseLoginState = [[NSString alloc] init];
-        
+        NSString *chooseLoginState = [[NSString alloc] init];
         if (self.teacherChooseState == 1) {
             chooseLoginState = @"2";
         } else if (self.parentChooseState == 1) {
@@ -304,14 +292,13 @@
             [WProgressHUD showErrorAnimatedText:@"请输入密码"];
         } else {
         
-            NSString * newstr = [Encryption MD5ForLower32Bate:@"iosduxiu2018"];
-            NSString * passwordStr = [Encryption MD5ForLower32Bate:self.miMaTextfield.text];
-            NSString * system = [[SingletonHelper manager] encode:@"ios"];
+            NSString *newstr = [Encryption MD5ForLower32Bate:@"iosduxiu2018"];
+            NSString *passwordStr = [Encryption MD5ForLower32Bate:self.miMaTextfield.text];
+            NSString *system = [[SingletonHelper manager] encode:@"ios"];
 
-            NSDictionary * dic = @{@"usernum":self.zhangHaoTextField.text, @"password":passwordStr, @"identity":chooseLoginState, @"system":system, @"sign":newstr};
+            NSDictionary *dic = @{@"usernum":self.zhangHaoTextField.text, @"password":passwordStr, @"identity":chooseLoginState, @"system":system, @"sign":newstr};
             [WProgressHUD showHUDShowText:@"加载中..."];
             [[HttpRequestManager sharedSingleton] POST:LOGIN parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-                NSLog(@"%@",responseObject);
                 [WProgressHUD hideAllHUDAnimated:YES];
                 if ([[responseObject objectForKey:@"status"] integerValue] == 200){
                     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"youkeState"];
@@ -351,12 +338,12 @@
                     //同步到本地
                     [user synchronize];
                     
-                    NSString * keyDic = [NSString stringWithFormat:@"%ld:%@:%@:%@", self.personInfoModel.school_id, self.personInfoModel.ID, chooseLoginState, self.personInfoModel.token];
-                    NSString * key = [[SingletonHelper manager] encode:keyDic];
+                    NSString *keyDic = [NSString stringWithFormat:@"%ld:%@:%@:%@", self.personInfoModel.school_id, self.personInfoModel.ID, chooseLoginState, self.personInfoModel.token];
+                    NSString *key = [[SingletonHelper manager] encode:keyDic];
                     [[NSUserDefaults standardUserDefaults] setObject:key forKey:@"key"];
                   
                     [SingletonHelper manager].personInfoModel = self.personInfoModel;
-                    TotalTabBarController * totalTabBarVC = [[TotalTabBarController alloc] init];
+                    TotalTabBarController *totalTabBarVC = [[TotalTabBarController alloc] init];
                     UIWindow *window = [UIApplication sharedApplication].keyWindow;
                     //把自定义标签视图控制器totalTabBarVC 作为window的rootViewController(根视图控制器)
                     
@@ -411,13 +398,10 @@
 //}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
     [self.view endEditing:YES];
-    
 }
 
-- (void)backItem:(UIButton *)sender
-{
+- (void)backItem:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 

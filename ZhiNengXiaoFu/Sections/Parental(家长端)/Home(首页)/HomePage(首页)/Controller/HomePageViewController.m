@@ -75,10 +75,7 @@
     self.HomePageCollectionView.delegate = self;
     self.HomePageCollectionView.dataSource = self;
     [self.view addSubview:self.HomePageCollectionView];
-    
     [self.HomePageCollectionView registerClass:[HomePageLunBoCell class] forCellWithReuseIdentifier:@"HomePageLunBoCellId"];
-//    [self.HomePageCollectionView registerClass:[HomePageItemCell class] forCellWithReuseIdentifier:@"HomePageItemCellId"];
-    
     [self.HomePageCollectionView registerNib:[UINib nibWithNibName:@"HomePageItemNCell" bundle:nil] forCellWithReuseIdentifier:@"HomePageItemNCellId"];
     
     NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"通知",@"作业",@"成长手册",@"名师在线",@"家长学堂",@"问题咨询",@"竞技活动",@"学校动态",@"新生指南", nil];
@@ -117,8 +114,6 @@
                       selector:@selector(serviceError:)
                           name:kJPFServiceErrorNotification
                         object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(qiangzhiGengXin:) name:@"qiangzhiGengXin" object:nil];
-//    [self setHuoQuShangXianBanBen];
     
     [self pushJiGuangId];
     
@@ -130,7 +125,6 @@
 - (void)huoQuNumber {
     NSDictionary * dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:UserGetUnreadNumber parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         HomePageNumberModel * model = [HomePageNumberModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
         NSString * activity = [[NSString alloc] init];
         if (model.activity > 9) {
@@ -179,7 +173,6 @@
 
 - (void)pushJiGuangId {
     [self.HomePageCollectionView reloadData];
-    
     [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
         NSDictionary * dic = [NSDictionary dictionary];
         if (registrationID == nil) {
@@ -250,9 +243,7 @@
 - (void)networkDidLogin:(NSNotification *)notification {
     
     NSLog(@"已登录");
-    
     if ([JPUSHService registrationID]) {
-        
         NSLog(@"get RegistrationID");
     }
 }
@@ -279,20 +270,16 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
-        HomePageLunBoCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomePageLunBoCellId" forIndexPath:indexPath];
-//        [cell getClassData];
+        HomePageLunBoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomePageLunBoCellId" forIndexPath:indexPath];
         return cell;
     } else {
-        HomePageItemNCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomePageItemNCellId" forIndexPath:indexPath];
+        HomePageItemNCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomePageItemNCellId" forIndexPath:indexPath];
         if (self.homePageAry.count != 0) {
-            NSDictionary * dic = [self.homePageAry objectAtIndex:indexPath.row];
-            
+            NSDictionary *dic = [self.homePageAry objectAtIndex:indexPath.row];
             cell.itemImg.image = [UIImage imageNamed:[dic objectForKey:@"img"]];
             cell.titleLabel.text = [dic objectForKey:@"title"];
-            
             if (self.numberAry.count > indexPath.row) {
                 NSString * str = [self.numberAry objectAtIndex:indexPath.row];
-                
                 if ([str isEqualToString:@"0"]) {
                     cell.NumberLabel.alpha = 0;
                 } else {
@@ -301,7 +288,6 @@
                 }
             }
         }
-        
         return cell;
     }
     
@@ -324,33 +310,32 @@
         
     } else {
         if (indexPath.row == 0) {
-            TongZhiViewController * teacherTongZhiVC = [[TongZhiViewController alloc] init];
+            TongZhiViewController *teacherTongZhiVC = [[TongZhiViewController alloc] init];
             [self.navigationController pushViewController:teacherTongZhiVC animated:YES];
             
         } else if (indexPath.row == 1) {
-            HomeWorkPViewController * homeWorkVC = [[HomeWorkPViewController alloc] init];
+            HomeWorkPViewController *homeWorkVC = [[HomeWorkPViewController alloc] init];
             [self.navigationController pushViewController:homeWorkVC animated:YES];
         } else if (indexPath.row == 2) {
-
             NSLog(@"点击成长轨迹");
             NewDynamicsViewController *newDynamicsVC = [NewDynamicsViewController new];
             newDynamicsVC.typeStr = @"1";
             [self.navigationController pushViewController:newDynamicsVC animated:YES];
 
         } else if (indexPath.row == 3) {
-            TeacherZaiXianTotalViewController * teacherZaiXianVC = [[TeacherZaiXianTotalViewController alloc] init];
+            TeacherZaiXianTotalViewController *teacherZaiXianVC = [[TeacherZaiXianTotalViewController alloc] init];
             [self.navigationController pushViewController:teacherZaiXianVC animated:YES];
         } else if (indexPath.row == 4) {
-           ParentXueTangViewController * parentXueTangVC = [[ParentXueTangViewController alloc] init];
+           ParentXueTangViewController *parentXueTangVC = [[ParentXueTangViewController alloc] init];
             [self.navigationController pushViewController:parentXueTangVC animated:YES];
         } else if (indexPath.row == 5) {
             WenTiZiXunViewController * wenTiZiXunVC = [[WenTiZiXunViewController alloc] init];
             [self.navigationController pushViewController:wenTiZiXunVC animated:YES];
         } else if (indexPath.row == 6) {
-            CompetitiveActivityViewController * comeptitiveActivityVC = [[CompetitiveActivityViewController alloc] init];
+            CompetitiveActivityViewController *comeptitiveActivityVC = [[CompetitiveActivityViewController alloc] init];
             [self.navigationController pushViewController:comeptitiveActivityVC animated:YES];
         } else if (indexPath.row == 7) {
-            SchoolDongTaiViewController * schoolDongTaiVC = [[SchoolDongTaiViewController alloc] init];
+            SchoolDongTaiViewController *schoolDongTaiVC = [[SchoolDongTaiViewController alloc] init];
             [self.navigationController pushViewController:schoolDongTaiVC animated:YES];
         } else if (indexPath.row == 8) {
             NewGuidelinesViewController *newGuidelinesVC = [NewGuidelinesViewController new];
@@ -366,9 +351,7 @@
 - (void)setUser {
     NSDictionary * dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.schoolName = [[responseObject objectForKey:@"data"] objectForKey:@"school_name"];
             UILabel  *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0, 200, 44)];
             titleLabel.backgroundColor = [UIColor clearColor];

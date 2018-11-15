@@ -10,9 +10,9 @@
 #import "ParentXueTangDetailsModel.h"
 @interface ParentXueTangDetailsViewController ()<UIWebViewDelegate>
 
-@property (nonatomic,weak) CLPlayerView *playerView;
-@property (nonatomic, strong) ParentXueTangDetailsModel * parentXueTangDetailsModel;
-@property (strong, nonatomic) UIWebView *webView;
+@property (nonatomic,weak) CLPlayerView                 *playerView;
+@property (nonatomic, strong) ParentXueTangDetailsModel *parentXueTangDetailsModel;
+@property (strong, nonatomic) UIWebView                 *webView;
 
 @end
 
@@ -27,20 +27,18 @@
 
 //网络请求 家长获取视频详情
 - (void)setNetWork {
-    NSDictionary * dic = @{@"key":[UserManager key], @"id":self.ParentXueTangDetailsId};
-    
+    NSDictionary *dic = @{@"key":[UserManager key], @"id":self.ParentXueTangDetailsId};
     [[HttpRequestManager sharedSingleton] POST:pschoolGetDetail parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200 || [[responseObject objectForKey:@"status"] integerValue] == 405) {
-          
+            
             self.parentXueTangDetailsModel = [ParentXueTangDetailsModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
             [self LoadWebView];
 
             self.title = self.parentXueTangDetailsModel.title;
             if ([self.parentXueTangDetailsModel.url isEqualToString:@""]) {
-                UIImageView * back = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 200)];
+                UIImageView *back = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 200)];
                 [back sd_setImageWithURL:[NSURL URLWithString:self.parentXueTangDetailsModel.img] placeholderImage:nil];
                 [self.view addSubview:back];
-                
             } else {
                 [self setBoFang];
             }
@@ -85,7 +83,6 @@
     _playerView.repeatPlay = YES;
     //    //当前控制器是否支持旋转，当前页面支持旋转的时候需要设置，告知播放器
     _playerView.isLandscape = YES;
-   
     //视频地址
     _playerView.url = [NSURL URLWithString:self.parentXueTangDetailsModel.url];
     //播放

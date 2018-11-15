@@ -32,7 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.page = 1;
-    
     self.YiHuiFuTableView.delegate = self;
     self.YiHuiFuTableView.dataSource = self;
     
@@ -67,10 +66,8 @@
 }
 
 - (void)setNetWork:(NSInteger)page {
-    NSDictionary * dic = @{@"key":[UserManager key], @"status":@1,@"page":[NSString stringWithFormat:@"%ld",page]};
-    
+    NSDictionary *dic = @{@"key":[UserManager key], @"status":@1,@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:ConsultConsultList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         //结束头部刷新
         [self.YiHuiFuTableView.mj_header endRefreshing];
         //结束尾部刷新
@@ -82,7 +79,6 @@
             }
             if (self.yiHuiFuAry.count == 0) {
                 self.zanwushuju.alpha = 1;
-                
             } else {
                 self.zanwushuju.alpha = 0;
             }
@@ -143,11 +139,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    YiHuiFuCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YiHuiFuCellId" forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    YiHuiFuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YiHuiFuCellId" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (self.yiHuiFuAry.count != 0) {
-        ConsultListModel * model = [self.yiHuiFuAry objectAtIndex:indexPath.row];
+        ConsultListModel *model = [self.yiHuiFuAry objectAtIndex:indexPath.row];
         [cell.userIcon sd_setImageWithURL:[NSURL URLWithString:model.s_headimg] placeholderImage:[UIImage imageNamed:@"user"]];
         cell.userName.text = [NSString stringWithFormat:@"%@%@问:", model.class_name ,model.student_name];
         cell.questionLabel.text = model.question;
@@ -155,23 +151,19 @@
         cell.userNameT.text = [NSString stringWithFormat:@"%@%@老师%@回复:", model.class_name, model.course_name, model.teacher_name];
         cell.questionLabelT.text = model.answer;
     }
-    
     return cell;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSInteger width = APP_WIDTH - 30;
-    
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14]};
-    
     if (self.yiHuiFuAry.count != 0) {
-        ConsultListModel * model = [self.yiHuiFuAry objectAtIndex:indexPath.row];
+        ConsultListModel *model = [self.yiHuiFuAry objectAtIndex:indexPath.row];
         CGSize size = [model.question boundingRectWithSize:CGSizeMake(width, 100000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
         CGSize size1 = [model.answer boundingRectWithSize:CGSizeMake(width, 100000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-
         return 142 + size.height + size1.height + 10;
-        
     } else {
         return 0;
     }

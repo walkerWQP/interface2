@@ -123,7 +123,7 @@
 
 - (void)configureImage {
     for (int i = 0; i < self.imgAry.count; i++) {
-        UIImageView * imageViewNew = [[UIImageView alloc] initWithFrame:CGRectMake(0, i * 210, self.tongZhiDetailsCell.PicView.bounds.size.width ,0)];
+        UIImageView *imageViewNew = [[UIImageView alloc] initWithFrame:CGRectMake(0, i * 210, self.tongZhiDetailsCell.PicView.bounds.size.width ,0)];
         
         [imageViewNew sd_setImageWithURL:[NSURL URLWithString:[self.imgAry objectAtIndex:i]] placeholderImage:nil options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             CGSize size = image.size;
@@ -174,14 +174,12 @@
     self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.text = self.workDetailsModel.content;
     self.tongZhiDetailsCell.TongZhiDetailsTimeLabel.text = self.workDetailsModel.create_time;
     if (self.Hnew ==0) {
-        
         self.tongZhiDetailsCell.webView.hidden = NO;
         self.tongZhiDetailsCell.webView.userInteractionEnabled = YES;
         self.tongZhiDetailsCell.webView.UIDelegate = self;
         self.tongZhiDetailsCell.webView.navigationDelegate = self;
         self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.alpha = 0;
-            if (self.workDetailsModel.content.length>0) {
-                
+        if (self.workDetailsModel.content.length>0) {
                 [self.tongZhiDetailsCell.webView loadHTMLString:[NSString stringWithFormat:@"<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='black'><meta name='format-detection' content='telephone=no'><style type='text/css'>img{width:%fpx}</style>%@", APP_WIDTH - 20, self.workDetailsModel.content] baseURL:nil];
             
         }
@@ -218,7 +216,6 @@
         if (self.imgAry.count == 0) {
         self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant = 0;
             return 150 + size.height;
-            
         } else {
             return  self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant + 150 + size.height;
         }

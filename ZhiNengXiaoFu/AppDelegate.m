@@ -52,16 +52,13 @@
     //高德地图
     [AMapServices sharedServices].apiKey = @"0a06fef6aaa158c44f0d88f5728b4c6c";
 
-    //极光推送
-//    [self peiZhiJiGuang:launchOptions];
-
     IQKeyboardManager * manager = [IQKeyboardManager sharedManager];
     manager.enable = YES;
     manager.shouldResignOnTouchOutside = YES;
     manager.shouldToolbarUsesTextFieldTintColor = YES;
     manager.enableAutoToolbar = YES;
     
-    
+    //极光推送
     //添加初始化 APNs 代码
     //Required
     //notice: 3.0.0 及以后版本注册可以这样写，也可以继续用之前的注册方式
@@ -90,10 +87,6 @@
     return YES;
 }
 
-- (void)peiZhiJiGuang:(NSDictionary *)launchOptions
-{
-    
-}
 
 
 //设置引导页面

@@ -98,7 +98,7 @@
 
 
 - (void)getDynamicGetListData:(NSInteger)page {
-    
+
     NSDictionary *dic = @{@"key":[UserManager key],@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:dynamicGetList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新

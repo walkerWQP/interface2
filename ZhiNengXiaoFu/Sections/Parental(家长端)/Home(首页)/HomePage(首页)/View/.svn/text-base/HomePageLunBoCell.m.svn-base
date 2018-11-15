@@ -29,7 +29,6 @@
     self.dataHeaderSourceAryImg = [@[]mutableCopy];
     NSDictionary *dic = @{@"key":[UserManager key], @"t_id":@"1"};
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             NSMutableArray * ary = [BannerModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             for (BannerModel * model in ary) {
@@ -60,12 +59,6 @@
 
 - (void)loadTicketTop {
     //网络加载 --- 创建带标题的图片轮播器
-    
-//    [self.dataHeaderSourceAryImg addObject:[UIImage imageNamed:@"教师端活动管理banner"]];
-//    [self.dataHeaderSourceAryImg addObject:[UIImage imageNamed:@"banner"]];
-//    [self.dataHeaderSourceAryImg addObject:[UIImage imageNamed:@"bannerHelper"]];
-
-    
     if (APP_WIDTH == 414) {
         self.cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.frame.size.width, 200) imageURLStringsGroup:nil]; // 模拟网络延时情景
     } else {

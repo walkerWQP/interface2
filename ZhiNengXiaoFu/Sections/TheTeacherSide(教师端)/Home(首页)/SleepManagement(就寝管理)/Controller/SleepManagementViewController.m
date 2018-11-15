@@ -170,10 +170,9 @@
 
 
 - (void)rightBtn:(UIButton *)sender {
-    
     NSLog(@"点击发布");
-    NSMutableArray * ary = [@[]mutableCopy];
-    for (PublishJobModel * model in self.publishJobArr) {
+    NSMutableArray *ary = [@[]mutableCopy];
+    for (PublishJobModel *model in self.publishJobArr) {
         [ary addObject:[NSString stringWithFormat:@"%@", model.name]];
     }
     
@@ -211,7 +210,6 @@
                 
             }
             
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -225,7 +223,6 @@
 }
 
 - (void)getClassURLData {
-    
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:indexDormGetAdviserClass parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
@@ -233,7 +230,7 @@
             self.publishJobArr = [PublishJobModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             
             if (self.publishJobArr.count != 0) {
-               PublishJobModel * publishJobModel = [self.publishJobArr objectAtIndex:0];
+               PublishJobModel *publishJobModel = [self.publishJobArr objectAtIndex:0];
                 self.classNameLabel.text = publishJobModel.name;
                 self.classId = publishJobModel.ID;
                 [self postGetTeacherFour];
@@ -316,7 +313,6 @@
     
     if (self.qufenClassTime == 1) {
         PublishJobModel *model = [self.publishJobArr objectAtIndex:index];
-        NSLog(@"%@",model.ID);
         if (model.ID == nil) {
             [WProgressHUD showSuccessfulAnimatedText:@"数据不正确,请重试"];
         } else {
@@ -325,9 +321,7 @@
         }
     } else {
         if (self.timeAry.count != 0) {
-            
-            NSString * timeStr = [self.timeAry objectAtIndex:index];
-            NSLog(@"%@",timeStr);
+            NSString *timeStr = [self.timeAry objectAtIndex:index];
             self.timeLabel.text  = timeStr;
             self.timeN = timeStr;
             [self postGetTeacherFour];

@@ -62,7 +62,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SystemInformationCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SystemInformationCellId" forIndexPath:indexPath];
+    SystemInformationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SystemInformationCellId" forIndexPath:indexPath];
     cell.titleLabel.text = @"[我们与总数据在一起]谱写新时间";
     cell.connectLabel.text = @"央视网消息(新闻联播) : 12日上午, 中共中央总书记、国家主席、中央军委主席";
     return cell;

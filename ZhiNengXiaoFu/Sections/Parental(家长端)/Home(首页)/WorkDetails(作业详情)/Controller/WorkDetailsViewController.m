@@ -20,6 +20,7 @@
 @property (nonatomic, strong) TongZhiDetailsCell  *tongZhiDetailsCell;
 @property (nonatomic, strong) NSMutableArray      *imgAry;
 @property (nonatomic, assign) CGFloat             Hnew;
+
 @end
 
 @implementation WorkDetailsViewController
@@ -44,14 +45,13 @@
     self.view.backgroundColor = backColor;
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
-    NSUserDefaults*pushJudge = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *pushJudge = [NSUserDefaults standardUserDefaults];
     if([[pushJudge objectForKey:@"notify"]isEqualToString:@"push"]) {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回拷贝"] style:UIBarButtonItemStylePlain target:self action:@selector(rebackToRootViewAction)];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
         NSUserDefaults * pushJudge = [NSUserDefaults standardUserDefaults];
         [pushJudge setObject:@""forKey:@"notify"];
         [pushJudge synchronize];//记得立即同步
-        
     } else {
         
     }
@@ -67,11 +67,10 @@
     } else {
         NSLog(@"2");
     }
-    
 }
 
 - (void)rebackToRootViewAction {
-    NSUserDefaults * pushJudge = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *pushJudge = [NSUserDefaults standardUserDefaults];
     [pushJudge setObject:@""forKey:@"notify"];
     [pushJudge synchronize];//记得立即同步
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -103,8 +102,7 @@
 }
 
 - (void)setNetWork {
-    
-    NSDictionary * dic = @{@"key":[UserManager key], @"id":self.workId};
+    NSDictionary *dic = @{@"key":[UserManager key], @"id":self.workId};
     [[HttpRequestManager sharedSingleton] POST:workHomeWorkDetails parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.Hnew = 0;
@@ -130,8 +128,7 @@
 
 - (void)configureImage {
     for (int i = 0; i < self.workDetailsModel.img.count; i++) {
-        UIImageView * imageViewNew = [[UIImageView alloc] initWithFrame:CGRectMake(0, i * 210, self.tongZhiDetailsCell.PicView.bounds.size.width ,0)];
-        
+        UIImageView *imageViewNew = [[UIImageView alloc] initWithFrame:CGRectMake(0, i * 210, self.tongZhiDetailsCell.PicView.bounds.size.width ,0)];
         [imageViewNew sd_setImageWithURL:[NSURL URLWithString:[self.workDetailsModel.img objectAtIndex:i]] placeholderImage:nil options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             CGSize size = image.size;
             CGFloat w = size.width;
@@ -182,21 +179,17 @@
     self.tongZhiDetailsCell.TongZhiDetailsTimeLabel.text  = self.workDetailsModel.create_time;
     
     if (self.Hnew ==0) {
-        
         self.tongZhiDetailsCell.webView.hidden = NO;
         //            self.newsDetailsTopCell.webView.backgroundColor = BAKit_Color_Yellow_pod;
         self.tongZhiDetailsCell.webView.userInteractionEnabled = YES;
-        
         self.tongZhiDetailsCell.webView.UIDelegate = self;
         self.tongZhiDetailsCell.webView.navigationDelegate = self;
         
         if (self.workDetailsModel.content.length>0) {
-            
             [self.tongZhiDetailsCell.webView loadHTMLString:[NSString stringWithFormat:@"<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='black'><meta name='format-detection' content='telephone=no'><style type='text/css'>img{width:%fpx}</style>%@", APP_WIDTH - 20, self.workDetailsModel.content] baseURL:nil];
         }
         
     }
-    
     return self.tongZhiDetailsCell;
 }
 
@@ -204,51 +197,37 @@
     
     NSString *heightString4 = @"document.body.scrollHeight";
     [webView evaluateJavaScript:heightString4 completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-        
-        
         CGFloat currentHeight = [item doubleValue];
         NSInteger width = APP_WIDTH - 30;
-        
         //        self.titleText = self.tongZhiDetailsModel.title;
         NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:30]};
         CGSize size = [self.workDetailsModel.title boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-        
         self.tongZhiDetailsCell.webView.frame = CGRectMake(10, 30 + size.height , APP_WIDTH - 20, currentHeight);
         //                weak_self.communityDetailsCell.communityDetailsHegiht.constant = currentHeight;
-        
         self.Hnew = currentHeight;
         NSLog(@"html 高度2：%f", currentHeight);
         self.tongZhiDetailsCell.webView.hidden =NO;
-        
         self.tongZhiDetailsCell.TongZhiDetailsTWebopCon.constant = self.Hnew + 26;
-        
         self.tongZhiDetailsCell.webView.height = currentHeight;
         [self.WorkDetailsTableView reloadData];
-        
     }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger width = APP_WIDTH - 30;
-    
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:30]};
     CGSize size = [self.workDetailsModel.title boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-    
     if (self.Hnew ==0) {
         if (self.workDetailsModel.img.count == 0) {
-            
             self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant = 0;
             return 150 + size.height;
-            
         } else {
             return  self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant + 150 + size.height;
         }
     } else {
         if (self.workDetailsModel.img.count == 0) {
-            
             self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant = 0;
             return 150 + size.height + self.Hnew;
-            
         } else {
             return  self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant + 150  + size.height + self.Hnew;
         }

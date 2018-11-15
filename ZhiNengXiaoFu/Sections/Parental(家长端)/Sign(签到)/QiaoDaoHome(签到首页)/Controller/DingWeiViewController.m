@@ -45,9 +45,7 @@
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"电子围栏" style:UIBarButtonItemStyleDone target:self action:@selector(rightBarButton:)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
-    
     self.title = @"所在位置";
-    
     self.mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.mapView];
     _mapView.showsUserLocation = YES;
@@ -62,10 +60,9 @@
     //是否显示比例尺
     [_mapView setShowsScale:YES];
     
-    
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(34.797254 ,113.59985);
     //    self.mapView.centerCoordinate = coordinate;
-    MAPointAnnotation * annotation = [[MAPointAnnotation alloc] init];
+    MAPointAnnotation *annotation = [[MAPointAnnotation alloc] init];
     annotation.coordinate = coordinate;
     annotation.title = self.title;
     [_mapView addAnnotation:annotation];
@@ -161,19 +158,16 @@
     commonPolylineCoords[0].longitude = location.coordinate.longitude;
     commonPolylineCoords[1].latitude = 34.797254;
     commonPolylineCoords[1].longitude = 113.59985;
-
-        //构造折线对象
+    //构造折线对象
     MAPolyline *commonPolyline = [MAPolyline polylineWithCoordinates:commonPolylineCoords count:2];
-
-        //在地图上添加折线对象
+    //在地图上添加折线对象
     [_mapView addOverlay:commonPolyline];
-
     [self.locationManager stopUpdatingLocation];
 }
 
 
 - (void)luXianBtn:(UIButton *)sender {
-    NSArray * ary = [NSArray arrayWithObjects:@"34.797254", @"113.59985",nil];
+    NSArray *ary = [NSArray arrayWithObjects:@"34.797254", @"113.59985",nil];
     [self doNavigationWithEndLocation:ary];
 }
 
@@ -181,14 +175,11 @@
 -(void)doNavigationWithEndLocation:(NSArray *)endLocation {
     
     //NSArray * endLocation = [NSArray arrayWithObjects:@"26.08",@"119.28", nil];
-    
     NSMutableArray *maps = [NSMutableArray array];
-    
     //苹果原生地图-苹果原生地图方法和其他不一样
     NSMutableDictionary *iosMapDic = [NSMutableDictionary dictionary];
     iosMapDic[@"title"] = @"苹果地图";
     [maps addObject:iosMapDic];
-    
     
     //百度地图
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]]) {
@@ -230,13 +221,13 @@
     quxiaoMapDic[@"title"] = @"取消";
     [maps addObject:quxiaoMapDic];
     //选择
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"选择地图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择地图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     NSInteger index = maps.count;
     for (int i = 0; i < index; i++) {
         NSString * title = maps[i][@"title"];
         //苹果原生地图方法
         if (i == 0) {
-            UIAlertAction * action = [UIAlertAction actionWithTitle:title style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertAction *action = [UIAlertAction actionWithTitle:title style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                 [self navAppleMap];
             }];
             [alert addAction:action];
@@ -244,7 +235,7 @@
         }
         
         if (i + 1 == index) {
-            UIAlertAction * action = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                 [self dismissViewControllerAnimated:YES completion:^{
                     
                 }];
@@ -253,7 +244,7 @@
             continue;
         }
         
-        UIAlertAction * action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSString *urlString = maps[i][@"url"];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
         }];

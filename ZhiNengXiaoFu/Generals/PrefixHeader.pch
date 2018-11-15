@@ -53,6 +53,7 @@
 #import <JPUSHService.h>
 #import "YYKit.h"
 #import "BlocksKit+UIKit.h"
+#import "HW3DBannerView.h"
 
 
 #define kIPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0)

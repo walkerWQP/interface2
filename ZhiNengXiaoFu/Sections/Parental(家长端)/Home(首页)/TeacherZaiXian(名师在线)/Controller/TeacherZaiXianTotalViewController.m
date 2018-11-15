@@ -12,6 +12,7 @@
 #import "PrefixHeader.pch"
 
 @interface TeacherZaiXianTotalViewController ()<LTAdvancedScrollViewDelegate>
+
 @property(copy, nonatomic) NSArray <UIViewController *> *viewControllers;
 @property(copy, nonatomic) NSArray <NSString *>         *titles;
 @property(strong, nonatomic) LTLayout                   *layout;
@@ -52,11 +53,9 @@
     self.view.backgroundColor = backColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"名师在线";
-    
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"返回白"] style:UIBarButtonItemStyleDone target:self action:@selector(backButnClicked:)];
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
-    
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = RGB(138,201,237);
     
@@ -72,15 +71,14 @@
 
 
 - (void)getLieBiao {
-    NSDictionary * dic = @{@"key":[UserManager key]};
+    NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:indexOnlineVideoTypeList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            NSMutableArray * ary = [responseObject objectForKey:@"data"];
-            NSDictionary * dic1 = @{@"id":@0,@"t_name":@"全部"};
+            NSMutableArray *ary = [responseObject objectForKey:@"data"];
+            NSDictionary *dic1 = @{@"id":@0,@"t_name":@"全部"};
             [self.IdNameAry addObject:dic1];
             [self.nameAry addObject:@"全部"];
-
-            for (NSDictionary * dic in ary) {
+            for (NSDictionary *dic in ary) {
                 [self.nameAry addObject:[dic objectForKey:@"t_name"]];
                 [self.IdNameAry addObject:dic];
             }
@@ -100,14 +98,12 @@
 }
 
 -(void)setupSubViews {
-    
     [self.view addSubview:self.managerView];
-    __block TeacherZaiXianTotalViewController * BlockSelf = self;
+    __block TeacherZaiXianTotalViewController *BlockSelf = self;
     [self.managerView setAdvancedDidSelectIndexHandle:^(NSInteger index) {
        [SingletonHelper manager].teacherZaiXianId = [[[BlockSelf.IdNameAry objectAtIndex:index] objectForKey:@"id"] integerValue];
     }];
 }
-
 
 
 #pragma mark - 获取轮播图
@@ -115,7 +111,6 @@
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"8"};
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.bannerArr = [BannerModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             if (self.bannerArr.count == 0) {
                 self.headerView.back.image = [UIImage imageNamed:@"banner"];
@@ -140,11 +135,7 @@
 -(LTAdvancedManager *)managerView {
     if (!_managerView) {
         CGFloat Y = 0;
-        CGFloat H = kIPhoneX ? (self.view.bounds.size.height - Y - 34) : self.view.bounds.size.height - Y;
-//        _managerView = [[LTAdvancedManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout headerViewHandle:^UIView * _Nonnull{
-//            return [self setupHeaderView];
-//        }];
-        
+        CGFloat H = kIPhoneX ? (self.view.bounds.size.height - Y - 34) : self.view.bounds.size.height - Y;        
         _managerView = [[LTAdvancedManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout titleView:nil headerViewHandle:^UIView * _Nonnull{
              return [self setupHeaderView];
         }];
@@ -170,7 +161,6 @@
 
 - (LTHeaderView *)setupHeaderView {
     self.headerView = [[LTHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 180.0)];
-   
     return _headerView;
 }
 
@@ -187,7 +177,6 @@
         _layout.titleMargin = 40;
         _layout.lrMargin = 15;
         _layout.titleFont = [UIFont systemFontOfSize:14];
-        /* 更多属性设置请参考 LTLayout 中 public 属性说明 */
     }
     return _layout;
 }
@@ -222,7 +211,6 @@
 }
 
 -(void)backButnClicked:(UIBarButtonItem *)sender {
-   
     [self.navigationController popViewControllerAnimated:YES];
     [SingletonHelper manager].teacherZaiXianId  = 0;
 }

@@ -31,7 +31,7 @@ BindMobilePhoneViewController.m
 K 25
 svn:wc:ra_dav:version-url
 V 258
-/svn/duxiu/!svn/ver/274/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/BindMobilePhoneViewController.m
+/svn/duxiu/!svn/ver/279/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/BindMobilePhoneViewController.m
 END
 LeaveTheDetailsViewController.h
 K 25
@@ -43,7 +43,7 @@ AdviceFeedbackViewController.m
 K 25
 svn:wc:ra_dav:version-url
 V 257
-/svn/duxiu/!svn/ver/266/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/AdviceFeedbackViewController.m
+/svn/duxiu/!svn/ver/280/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/AdviceFeedbackViewController.m
 END
 OffTheListViewController.h
 K 25
@@ -61,7 +61,7 @@ LeaveTheDetailsViewController.m
 K 25
 svn:wc:ra_dav:version-url
 V 258
-/svn/duxiu/!svn/ver/274/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/LeaveTheDetailsViewController.m
+/svn/duxiu/!svn/ver/280/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/LeaveTheDetailsViewController.m
 END
 OngoingTableViewController.h
 K 25
@@ -79,19 +79,19 @@ OffTheListViewController.m
 K 25
 svn:wc:ra_dav:version-url
 V 253
-/svn/duxiu/!svn/ver/278/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/OffTheListViewController.m
+/svn/duxiu/!svn/ver/280/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/OffTheListViewController.m
 END
 ChangePasswordViewController.m
 K 25
 svn:wc:ra_dav:version-url
 V 257
-/svn/duxiu/!svn/ver/278/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/ChangePasswordViewController.m
+/svn/duxiu/!svn/ver/280/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/ChangePasswordViewController.m
 END
 OngoingTableViewController.m
 K 25
 svn:wc:ra_dav:version-url
 V 255
-/svn/duxiu/!svn/ver/278/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/OngoingTableViewController.m
+/svn/duxiu/!svn/ver/279/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/OngoingTableViewController.m
 END
 PersonalDataViewController.h
 K 25
@@ -109,7 +109,7 @@ PersonalDataViewController.m
 K 25
 svn:wc:ra_dav:version-url
 V 255
-/svn/duxiu/!svn/ver/278/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/PersonalDataViewController.m
+/svn/duxiu/!svn/ver/280/ios/%E7%8B%AC%E7%A7%80%E7%A7%91%E6%8A%80%E4%B8%80%E5%B1%B1%E6%99%BA%E6%85%A7APP%20ios%E7%AB%AF/ZhiNengXiaoFu/ZhiNengXiaoFu/Sections/TheTeacherSide(%E6%95%99%E5%B8%88%E7%AB%AF)/Mine(%E6%88%91)/Controller/PersonalDataViewController.m
 END
 MyViewController.h
 K 25

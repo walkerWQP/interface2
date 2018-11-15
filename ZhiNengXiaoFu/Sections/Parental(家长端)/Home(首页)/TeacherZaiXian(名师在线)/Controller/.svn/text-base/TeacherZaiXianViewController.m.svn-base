@@ -49,7 +49,6 @@
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
     [self.view addSubview:self.zanwushuju];
-    
     self.glt_scrollView = self.TeacherZaiXianTableView;
 
     //下拉刷新
@@ -76,7 +75,7 @@
 }
 
 - (void)setNetWork:(NSInteger)page {
-    NSDictionary * dic = @{@"key":[UserManager key], @"page":[NSString stringWithFormat:@"%ld",page], @"t_id":[NSString stringWithFormat:@"%ld", [SingletonHelper manager].teacherZaiXianId]};
+    NSDictionary *dic = @{@"key":[UserManager key], @"page":[NSString stringWithFormat:@"%ld",page], @"t_id":[NSString stringWithFormat:@"%ld", [SingletonHelper manager].teacherZaiXianId]};
     [[HttpRequestManager sharedSingleton] POST:indexOnlineVideoListByType parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
         [self.TeacherZaiXianTableView.mj_header endRefreshing];
@@ -87,7 +86,6 @@
             for (TeacherZaiXianModel *model in arr) {
                 [self.TeacherZaiXianAry addObject:model];
             }
-            
             if (self.TeacherZaiXianAry.count == 0) {
                 self.zanwushuju.alpha = 1;
             } else {
@@ -148,12 +146,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-        TeacherListNCell * cell = [tableView dequeueReusableCellWithIdentifier:@"TeacherListNCellId" forIndexPath:indexPath];
+        TeacherListNCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TeacherListNCellId" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
        if (self.TeacherZaiXianAry.count != 0) {
-
-            TeacherZaiXianModel * model = [self.TeacherZaiXianAry objectAtIndex:indexPath.row];
+            TeacherZaiXianModel *model = [self.TeacherZaiXianAry objectAtIndex:indexPath.row];
             [cell.TeacherListNImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"缩略图"]];
            cell.TeacherListNImg.contentMode = UIViewContentModeScaleAspectFill;
            cell.TeacherListNImg.clipsToBounds = YES;
@@ -217,7 +213,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         if (self.TeacherZaiXianAry.count != 0) {
             TeacherZaiXianDetailsViewController * teacherZaiXianDetailsVC = [[TeacherZaiXianDetailsViewController alloc] init];
-            TeacherZaiXianModel * model = [self.TeacherZaiXianAry objectAtIndex:indexPath.row];
+            TeacherZaiXianModel *model = [self.TeacherZaiXianAry objectAtIndex:indexPath.row];
             teacherZaiXianDetailsVC.teacherZaiXianDetailsId = model.ID;
             [self.navigationController pushViewController:teacherZaiXianDetailsVC animated:YES];
         }

@@ -77,7 +77,6 @@
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
     [self.HomeWorkPTableView addSubview:self.zanwushuju];
-    
     [self getBannersURLData];
     
     [self.navigationController.navigationBar setTitleTextAttributes:
@@ -173,23 +172,18 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.HomeWorkPAry.count != 0) {
         WorkModel * model = [self.HomeWorkPAry objectAtIndex:indexPath.row];
-        
         if ([model.img isEqualToString:@""]) {
-            WorkNewTwoCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"WorkNewTwoCellId" forIndexPath:indexPath];
-            
+            WorkNewTwoCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"WorkNewTwoCellId" forIndexPath:indexPath];
             cell.WorkNewTwoTitleLabel.text = model.content;
             [cell.WorkNewTwoIconImg sd_setImageWithURL:[NSURL URLWithString:model.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
-            //        cell.WorkNewTacherLabel.text = model.
             cell.WorkNewTwoTimeLabel.text = model.create_time;
             cell.WorkNewTwoFenLeiLabel.text = model.course_name;
             cell.WorkNewTwoNameLabel.text = model.teacher_name;
             return cell;
         } else {
-            
-            WorkNewCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"WorkNewCellId" forIndexPath:indexPath];
+            WorkNewCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"WorkNewCellId" forIndexPath:indexPath];
             [cell.WorkNewImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
             [cell.WorkNewIconImg sd_setImageWithURL:[NSURL URLWithString:model.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
-            //        cell.WorkNewTacherLabel.text = model.
             cell.WorkNewTimeLabel.text = model.create_time;
             cell.WorkNewFenLeiLabel.text = model.course_name;
             cell.WorkNewTacherLabel.text = model.teacher_name;
@@ -208,7 +202,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     WorkDetailsViewController * workDetailsVC = [[WorkDetailsViewController alloc] init];
     if (self.HomeWorkPAry.count != 0) {
-        WorkModel * model = [self.HomeWorkPAry objectAtIndex:indexPath.row];
+        WorkModel *model = [self.HomeWorkPAry objectAtIndex:indexPath.row];
         workDetailsVC.workId = model.ID;
     }
     [self.navigationController pushViewController:workDetailsVC animated:YES];

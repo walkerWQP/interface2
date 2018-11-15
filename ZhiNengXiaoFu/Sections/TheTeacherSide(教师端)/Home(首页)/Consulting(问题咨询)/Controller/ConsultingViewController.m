@@ -26,7 +26,6 @@
      @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
     [self makeConsultingViewControllerUI];
     NSUserDefaults*pushJudge = [NSUserDefaults standardUserDefaults];
-    
     if([[pushJudge objectForKey:@"notify"]isEqualToString:@"push"]) {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"返回拷贝"] style:UIBarButtonItemStylePlain target:self action:@selector(rebackToRootViewAction)];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];

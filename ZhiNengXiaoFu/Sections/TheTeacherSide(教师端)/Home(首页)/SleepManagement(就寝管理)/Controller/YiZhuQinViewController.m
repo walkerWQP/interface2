@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 1)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 1)];
     [self.view addSubview:lineView];
     lineView.backgroundColor = [UIColor colorWithRed:238 / 255.0 green:238 / 255.0 blue:238 / 255.0 alpha:1];
     self.layout = [[UICollectionViewFlowLayout alloc] init];
@@ -50,9 +50,9 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    JiuQinStuCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"JiuQinStuCellId" forIndexPath:indexPath];
+    JiuQinStuCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"JiuQinStuCellId" forIndexPath:indexPath];
     if ([SingletonHelper manager].yidaoAry.count != 0) {
-        StudentJiuQinModel * model = [[SingletonHelper manager].yidaoAry objectAtIndex:indexPath.row];
+        StudentJiuQinModel *model = [[SingletonHelper manager].yidaoAry objectAtIndex:indexPath.row];
         [cell.headImg sd_setImageWithURL:[NSURL URLWithString:model.student_head_img] placeholderImage:[UIImage imageNamed:@"user"]] ;
         cell.nameLabel.text = model.student_name;
     }

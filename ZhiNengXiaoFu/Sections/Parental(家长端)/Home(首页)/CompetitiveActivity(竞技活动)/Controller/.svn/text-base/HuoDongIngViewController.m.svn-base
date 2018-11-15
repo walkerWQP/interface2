@@ -33,7 +33,7 @@
     [super viewDidLoad];
     self.page = 1;
     [self makeOngoingViewControllerUI];
-    
+
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
@@ -78,7 +78,6 @@
             } else {
                 self.zanwushuju.alpha = 0;
             }
-            
             [self.ongoingCollectionView reloadData];
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
@@ -122,13 +121,11 @@
     OngoingCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:OngoingCell_CollectionView forIndexPath:indexPath];
     if (self.ongoingArr.count != 0) {
         JingJiHuoDongListModel * model = [self.ongoingArr objectAtIndex:indexPath.row];
-        
         [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
         cell.titleLabel.text = model.title;
         cell.timeLabel.text = [NSString stringWithFormat:@"活动日期:%@-%@", model.start, model.end];
         cell.detailsLabel.text = model.title;
     }
-   
     gridcell = cell;
     return gridcell;
     
@@ -147,17 +144,14 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    JingJiActivityDetailsViewController * jjA = [[JingJiActivityDetailsViewController alloc] init];
-    
-     if (self.ongoingArr.count != 0) {
-    JingJiHuoDongListModel * model = [self.ongoingArr objectAtIndex:indexPath.row];
-    
-    jjA.JingJiActivityDetailsId = model.ID;
+        JingJiActivityDetailsViewController * jjA = [[JingJiActivityDetailsViewController alloc] init];
+         if (self.ongoingArr.count != 0) {
+        JingJiHuoDongListModel * model = [self.ongoingArr objectAtIndex:indexPath.row];
+        
+        jjA.JingJiActivityDetailsId = model.ID;
      }
     [self.navigationController pushViewController:jjA animated:YES];
     NSLog(@"%ld",indexPath.row);
-    
 }
 
 - (void)didReceiveMemoryWarning {

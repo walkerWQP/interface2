@@ -34,12 +34,16 @@
 }
 
 - (NSArray <UIViewController *>*)setChildVC{
-    SchoolTongZhiViewController * vc1 = [[SchoolTongZhiViewController alloc]init];
+    
+    SchoolTongZhiViewController *vc1 = [[SchoolTongZhiViewController alloc]init];
     vc1.identityID = self.teacherID;
+
     TeacherTongZhiViewController *vc2 = [[TeacherTongZhiViewController alloc]init];
     vc2.identityID = self.teacherID;
+    
     NSArray *childVC = [NSArray arrayWithObjects:vc1,vc2, nil];
     return childVC;
+    
 }
 
 #pragma mark - getter

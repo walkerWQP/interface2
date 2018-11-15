@@ -72,7 +72,7 @@
 
 
 - (void)setNetWork:(NSInteger)page {
-    NSDictionary * dic = @{@"key":[UserManager key], @"status":@0,@"page":[NSString stringWithFormat:@"%ld", page]};
+    NSDictionary *dic = @{@"key":[UserManager key], @"status":@0,@"page":[NSString stringWithFormat:@"%ld", page]};
     [[HttpRequestManager sharedSingleton] POST:ConsultConsultList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
         [self.WeiHuiFuTableView.mj_header endRefreshing];
@@ -83,7 +83,6 @@
             for (ConsultListModel *model in arr) {
                 [self.WeiHuiFuAry addObject:model];
             }
-            
             if (self.WeiHuiFuAry.count == 0) {
                 self.zanwushuju.alpha = 1;
             } else {
@@ -127,7 +126,6 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
     return nil;
 }
 
@@ -147,31 +145,29 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    WeiHuiFuCell * cell = [tableView dequeueReusableCellWithIdentifier:@"WeiHuiFuCellId" forIndexPath:indexPath];
+    
+    WeiHuiFuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WeiHuiFuCellId" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (self.WeiHuiFuAry.count != 0) {
-        ConsultListModel * model = [self.WeiHuiFuAry objectAtIndex:indexPath.row];
+        ConsultListModel *model = [self.WeiHuiFuAry objectAtIndex:indexPath.row];
         [cell.WeiHuiFuUserIconImg sd_setImageWithURL:[NSURL URLWithString:model.s_headimg] placeholderImage:[UIImage imageNamed:@"user"]];
         cell.WeiHuiFuNameLabel.text = [NSString stringWithFormat:@"%@%@问%@(%@):", model.class_name ,model.student_name, model.teacher_name, model.course_name];
         cell.WeiHuiFuQuestionLabel.text = model.question;
     }
     return cell;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger width = APP_WIDTH - 30;
-    
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14]};
-    
     if (self.WeiHuiFuAry.count != 0) {
-        ConsultListModel * model = [self.WeiHuiFuAry objectAtIndex:indexPath.row];
+        ConsultListModel *model = [self.WeiHuiFuAry objectAtIndex:indexPath.row];
         CGSize size = [model.question boundingRectWithSize:CGSizeMake(width, 100000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
         return 130 + size.height - 5;
-   
     } else {
         return 0;
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {

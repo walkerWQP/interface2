@@ -12,7 +12,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
     self.SchoolDongTaiImg.layer.cornerRadius = 5;
     self.SchoolDongTaiImg.layer.masksToBounds = YES;
 }

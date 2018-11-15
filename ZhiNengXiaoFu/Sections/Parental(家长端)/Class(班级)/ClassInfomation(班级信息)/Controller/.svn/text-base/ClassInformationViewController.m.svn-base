@@ -10,11 +10,11 @@
 
 @interface ClassInformationViewController ()
 
-@property (nonatomic, strong) UILabel *headTeacherNameLabel;
-@property (nonatomic, strong) UILabel *keRenTeacherNameLabel;
-@property (nonatomic, strong) UILabel *ClassCommitteeLabel;
-@property (nonatomic, strong) UILabel *ClassCountLabel;
-@property (nonatomic, strong) UILabel *ClassMessageLabel;
+@property (nonatomic, strong) UILabel  *headTeacherNameLabel;
+@property (nonatomic, strong) UILabel  *keRenTeacherNameLabel;
+@property (nonatomic, strong) UILabel  *ClassCommitteeLabel;
+@property (nonatomic, strong) UILabel  *ClassCountLabel;
+@property (nonatomic, strong) UILabel  *ClassMessageLabel;
 
 @end
 
@@ -25,35 +25,35 @@
     self.title = @"班级信息";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIImageView * backImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
+    UIImageView *backImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
     backImg.image = [UIImage imageNamed:@"img_class_info_bg"];
     [self.view addSubview:backImg];
     
-    UILabel * headTeacher = [[UILabel alloc] initWithFrame:CGRectMake(50, 150, 60, 20)];
+    UILabel *headTeacher = [[UILabel alloc] initWithFrame:CGRectMake(50, 150, 60, 20)];
     headTeacher.textColor = COLOR(51, 51, 51, 1);
     headTeacher.text = @"班主任:";
     headTeacher.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
     [self.view addSubview:headTeacher];
     
-    UILabel * kerenTeacher = [[UILabel alloc] initWithFrame:CGRectMake(35, 180, 70, 20)];
+    UILabel *kerenTeacher = [[UILabel alloc] initWithFrame:CGRectMake(35, 180, 70, 20)];
     kerenTeacher.text = @"科任老师:";
     kerenTeacher.textColor = COLOR(51, 51, 51, 1);
     kerenTeacher.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
     [self.view addSubview:kerenTeacher];
     
-    UILabel * ClassCommittee = [[UILabel alloc] initWithFrame:CGRectMake(35, 210, 70, 20)];
+    UILabel *ClassCommittee = [[UILabel alloc] initWithFrame:CGRectMake(35, 210, 70, 20)];
     ClassCommittee.text = @"班委班干:";
     ClassCommittee.textColor = COLOR(51, 51, 51, 1);
     ClassCommittee.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
     [self.view addSubview:ClassCommittee];
 
-    UILabel * ClassCount = [[UILabel alloc] initWithFrame:CGRectMake(35, 240, 70, 20)];
+    UILabel *ClassCount = [[UILabel alloc] initWithFrame:CGRectMake(35, 240, 70, 20)];
     ClassCount.text = @"班级人数:";
     ClassCount.textColor = COLOR(51, 51, 51, 1);
     ClassCount.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
     [self.view addSubview:ClassCount];
     
-    UILabel * ClassMessage = [[UILabel alloc] initWithFrame:CGRectMake(35, 270, 70, 20)];
+    UILabel *ClassMessage = [[UILabel alloc] initWithFrame:CGRectMake(35, 270, 70, 20)];
     ClassMessage.text = @"班级寄语:";
     ClassMessage.textColor = COLOR(51, 51, 51, 1);
     ClassMessage.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];

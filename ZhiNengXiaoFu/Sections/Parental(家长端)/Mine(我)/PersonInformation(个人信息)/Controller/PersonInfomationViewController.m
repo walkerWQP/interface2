@@ -45,7 +45,7 @@
 }
 
 - (void)setNetWork {
-    NSDictionary * dic = @{@"key":[UserManager key]};
+    NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         self.personInfo = [PersonInformationModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
         [self.personInfomationTableView reloadData];
@@ -84,7 +84,7 @@
     if (section == 0) {
         return nil;
     } else {
-        UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 10)];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 10)];
         headerView.backgroundColor = backColor;
         return headerView;
     }
@@ -103,7 +103,6 @@
             PersonIconCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonIconCellId" forIndexPath:indexPath];
             cell.nameLabel.text = @"头像";
             cell.selectionStyle =  UITableViewCellSelectionStyleNone;
-            
             [cell.iConImg sd_setImageWithURL:[NSURL URLWithString:self.personInfo.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
             return cell;
         } else {
@@ -148,10 +147,8 @@
                 
             } else if (indexPath.row == 5) {
                 cell.titleLabel.text = self.personInfo.school_name;
-                
             } else if (indexPath.row == 6) {
                 cell.titleLabel.text = self.personInfo.class_name_s;
-                
             }
             return cell;
         }
@@ -159,7 +156,6 @@
         ExitCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExitCellId" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.exitBtn addTarget:self action:@selector(exitBtn:) forControlEvents:UIControlEventTouchUpInside];
-        
         return cell;
     }
 
@@ -200,7 +196,7 @@
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
             [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
         } else {
-            BindMobilePhoneViewController * bingMoblie = [[BindMobilePhoneViewController alloc] init];
+            BindMobilePhoneViewController *bingMoblie = [[BindMobilePhoneViewController alloc] init];
             if (self.personInfo.mobile == nil || [self.personInfo.mobile isEqualToString:@""]) {
                 bingMoblie.typeStr = @"1";
             } else {

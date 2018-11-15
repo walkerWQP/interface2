@@ -45,7 +45,6 @@
     HuoDongWeiKaiShiViewController *isAboutToBeginVC = [[HuoDongWeiKaiShiViewController alloc]init];
     //明日预告
     HuoDongYiJieShuViewController *tomorrowVC = [[HuoDongYiJieShuViewController alloc]init];
-    
     NSArray *childVC = [NSArray arrayWithObjects:ongoingVC,isAboutToBeginVC,tomorrowVC, nil];
     return childVC;
 }

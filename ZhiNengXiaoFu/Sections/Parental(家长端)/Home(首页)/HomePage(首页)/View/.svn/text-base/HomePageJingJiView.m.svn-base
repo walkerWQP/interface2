@@ -13,30 +13,25 @@
 
 @implementation HomePageJingJiView
 
-- (instancetype)init
-{
+- (instancetype)init {
     if (self = [super init]) {
         self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
 
-- (NSArray *)array
-{
+- (NSArray *)array {
     if (!_array) {
         _array = [NSMutableArray array];
     }
     return _array;
 }
 
-- (void)setDetail:(NSArray *)array
-{
+- (void)setDetail:(NSArray *)array {
     self.array=array;
     
-    for (UIView *view in self.subviews)
-    {
-        if ([view isKindOfClass:[UIView class]])
-        {
+    for (UIView *view in self.subviews) {
+        if ([view isKindOfClass:[UIView class]]) {
             [view removeFromSuperview];
         }
     }
@@ -55,7 +50,7 @@
         
         NSDictionary *dic=array[i];
         if (array.count*viewWidth+array.count * 10 > self.scrollView.size.width) {
-            self.scrollView.contentSize=CGSizeMake(array.count*viewWidth+array.count*10, 0);
+        self.scrollView.contentSize=CGSizeMake(array.count*viewWidth+array.count*10, 0);
             
         }else
         {
@@ -65,13 +60,10 @@
         
         UIButton *bigView=[[UIButton alloc] init];
         bigView.frame=CGRectMake(10+i*(viewWidth+10), 0, viewWidth, viewWidth * 144 / 235);
-        
         [bigView setBackgroundColor:[UIColor whiteColor]];
         bigView.tag = i;
         bigView.layer.cornerRadius = 4;
         bigView.layer.masksToBounds = YES;
-//        [bigView addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchDown];
-//        bigView.userInteractionEnabled = YES;
         [bigView sd_setBackgroundImageWithURL:[NSURL URLWithString:[dic objectForKey:@"img"]] forState:UIControlStateNormal];
         [self.scrollView addSubview:bigView];
         
@@ -88,7 +80,6 @@
         titleLabel.textAlignment = NSTextAlignmentCenter;
         [bigView addSubview:titleLabel];
         
-
         UIButton *bigViewT=[[UIButton alloc] init];
         bigViewT.frame=CGRectMake(10+i*(viewWidth+10), 0, viewWidth, viewWidth * 144 / 235);
         [bigViewT setBackgroundColor:[UIColor clearColor]];
@@ -99,8 +90,7 @@
     }
 }
 
--(void)buttonClick:(UIButton *)button
-{
+-(void)buttonClick:(UIButton *)button {
     NSDictionary *dic=self.array[button.tag];
     NSString *str=[NSString stringWithFormat:@"%@",dic[@"id"]];//dic[@"id"];
     if (_HomePageJingJiViewDelegate && [_HomePageJingJiViewDelegate respondsToSelector:@selector(jumpToAnswerHomePageJingJi:weizhi:)]) {

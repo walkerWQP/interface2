@@ -24,31 +24,27 @@
 
 //prepareLayout
 -(void)prepareLayout {
-    //1.numberOfItemsInSection
     _itemNumbers=[self.collectionView numberOfItemsInSection:0];
-    //2.itemWidth
     _itemWidth=ITEM_WIDTH;
 }
-//collectionViewContentSize
+
+
 -(CGSize)collectionViewContentSize {
     return     CGSizeMake(SCREEN_WIDTH, MAX(_leftOy, _rightOy));
 }
-//layoutAttributesForElementsInRect
+
+
 -(NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-    // original
-    
     _leftOy=PADDING;
     _rightOy=PADDING;
-    
     NSMutableArray*attributes=[NSMutableArray arrayWithCapacity:_itemNumbers];
     for (int i=0; i<_itemNumbers; i++) {
         NSIndexPath*indexPath=[NSIndexPath indexPathForItem:i inSection:0];
-        
         [attributes addObject:[self layoutAttributesForItemAtIndexPath:indexPath]];
     }
     return attributes;
 }
-//layoutAttributesForItemAtIndexPath
+
 -(UICollectionViewLayoutAttributes*)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize itemSize=[self.delegate YYCollectionViewLayoutForCollectionView:self.collectionView withLayout:self atIndexPath:indexPath];
     UICollectionViewLayoutAttributes*attibutes=[UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];

@@ -180,7 +180,6 @@
 }
 
 - (void)setShangChuanTupian {
-    
     [self LQPhotoPicker_getBigImageDataArray];
     NSDictionary * params = @{@"key":[UserManager key],@"upload_type":@"img", @"upload_img_type":@"work"};
     [WProgressHUD showHUDShowText:@"加载中..."];
@@ -256,7 +255,6 @@
 
 
 - (void)getUserGetCourse {
-    
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:userGetCourse parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {

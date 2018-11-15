@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) UITableView *KeChengJieShaoTableView;
 
-
 @end
 
 @implementation KeChengJieShaoViewController
@@ -22,7 +21,6 @@
     self.view.backgroundColor = backColor;
     self.KeChengJieShaoTableView.delegate = self;
     self.KeChengJieShaoTableView.dataSource = self;
-    
     [self.view addSubview:self.KeChengJieShaoTableView];
     self.KeChengJieShaoTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.KeChengJieShaoTableView registerNib:[UINib nibWithNibName:@"KeChengJieShaonCell" bundle:nil] forCellReuseIdentifier:@"KeChengJieShaonCellId"];
@@ -59,7 +57,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
-    
 }
 
 
@@ -68,23 +65,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  
-    KeChengJieShaonCell * cell = [tableView dequeueReusableCellWithIdentifier:@"KeChengJieShaonCellId" forIndexPath:indexPath];
+    KeChengJieShaonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KeChengJieShaonCellId" forIndexPath:indexPath];
     cell.selectionStyle =  UITableViewCellSelectionStyleNone;
-//    [cell.userImg sd_setImageWithURL:[NSURL URLWithString:self.teacherZaiXianDetailsModel.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
-//    cell.userNName.text = self.teacherZaiXianDetailsModel.name;
-//    cell.jieShaoLabel.text = self.teacherZaiXianDetailsModel.honor;
     cell.shanChangConnectLabel.text = self.teacherZaiXianDetailsModel.content;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger width = APP_WIDTH - 30;
-    
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14]};
     CGSize size = [self.teacherZaiXianDetailsModel.content boundingRectWithSize:CGSizeMake(width, 1000000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
     return 30 + size.height;
-    
 }
 
 - (void)didReceiveMemoryWarning {

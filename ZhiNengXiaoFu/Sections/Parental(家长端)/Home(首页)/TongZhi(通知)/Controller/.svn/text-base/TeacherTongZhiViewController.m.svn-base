@@ -39,7 +39,6 @@
     [self.view addSubview:self.teacherTongZhiTableView];
     [self.teacherTongZhiTableView registerClass:[TongZhiNewCell class] forCellReuseIdentifier:@"TongZhiNewCellId"];
     self.teacherTongZhiTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
@@ -66,8 +65,7 @@
 }
 
 - (void)getNetWork:(NSInteger)page {
-    
-    NSDictionary * dic = @{@"key":[UserManager key], @"is_school":@0,@"page":[NSString stringWithFormat:@"%ld",page]};
+    NSDictionary *dic = @{@"key":[UserManager key], @"is_school":@0,@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:JIAZHANGCHAKANTONGZHILIEBIAO parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
         [self.teacherTongZhiTableView.mj_header endRefreshing];
@@ -80,7 +78,6 @@
             }
             if (self.teacherTongZhiAry.count == 0) {
                 self.zanwushuju.alpha = 1;
-                
             } else {
                 self.zanwushuju.alpha = 0;
                 [self.teacherTongZhiTableView reloadData];
@@ -98,8 +95,6 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
 }
-
-
 
 - (UITableView *)teacherTongZhiTableView {
     if (!_teacherTongZhiTableView) {
@@ -142,7 +137,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     TongZhiNewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"TongZhiNewCellId" forIndexPath:indexPath];
     if (self.teacherTongZhiAry.count != 0) {
         TongZhiModel * model = [self.teacherTongZhiAry objectAtIndex:indexPath.row];

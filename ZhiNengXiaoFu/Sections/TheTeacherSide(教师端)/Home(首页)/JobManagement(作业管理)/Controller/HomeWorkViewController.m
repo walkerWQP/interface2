@@ -66,7 +66,6 @@
 }
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     self.title = self.titleStr;
     [self.view addSubview:self.homeWorkTableView];
@@ -82,7 +81,6 @@
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
     [self.self.homeWorkTableView addSubview:self.zanwushuju];
-    
 }
 
 - (void)getBannersURLData {
@@ -135,7 +133,6 @@
 }
 
 - (void)getWorkHomeWorkListData:(NSInteger)page {
-    
     NSDictionary *dic = @{@"key":[UserManager key],@"class_id":self.ID,@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:workHomeWorkList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
@@ -194,7 +191,6 @@
 
 #pragma Mark 左滑按钮 iOS8以上
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     //添加一个删除按钮
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         NSLog(@"点击删除");
@@ -247,7 +243,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (indexPath.section == 0) {
         static NSString *CellIdentifier = @"TableViewCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];

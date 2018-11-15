@@ -12,6 +12,7 @@
 #define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
 #define PADDING 10
 #define ITEM_WIDTH   (SCREEN_WIDTH-PADDING*(LINE+1))/LINE
+
 @class YYCollectionViewLayout;
 
 @protocol  YYCollectionViewLayoutDelegate <NSObject>

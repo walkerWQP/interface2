@@ -25,7 +25,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NewDynamicsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewDynamicsTableViewCell"];
     NewDynamicsLayout *layout = [self.layoutsArr objectAtIndex:indexPath.row];
-    DynamicsModel * model = layout.model;
+    DynamicsModel *model = layout.model;
     if (self.layoutsArr.count == 0) {
         return cell;
     } else { //隐藏删除按钮
@@ -62,8 +62,8 @@
 }
 
 - (void)DidClickMoreLessInDynamicsCell:(NewDynamicsTableViewCell *)cell {
-    NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
-    NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
+    NSIndexPath *indexPath = [self.dynamicsTable indexPathForCell:cell];
+    NewDynamicsLayout *layout = self.layoutsArr[indexPath.row];
     layout.model.isOpening = !layout.model.isOpening;
     [layout resetLayout];
     CGRect cellRect = [self.dynamicsTable rectForRowAtIndexPath:indexPath];
@@ -134,11 +134,11 @@
         return;
     }
     
-    NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
+    NSIndexPath *indexPath = [self.dynamicsTable indexPathForCell:cell];
     
     self.commentIndexPath = indexPath;
-    NewDynamicsLayout * layout = self.layoutsArr[indexPath.row];
-    DynamicsModel * model = layout.model;
+    NewDynamicsLayout *layout = self.layoutsArr[indexPath.row];
+    DynamicsModel *model = layout.model;
     
     [WProgressHUD showHUDShowText:@"正在加载中..."];
     //PraiseURL
@@ -148,7 +148,7 @@
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
             NSInteger commentRow = self.commentIndexPath.row;
-            NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
+            NewDynamicsLayout *layout = [self.layoutsArr objectAtIndex:commentRow];
             DynamicsModel * model = layout.model;
             model.isThumb = NO;
             NSDictionary *dic = [responseObject objectForKey:@"data"];
@@ -172,7 +172,7 @@
 
 
 -(void)DidClickCommentInDynamicsCell:(NewDynamicsTableViewCell *)cell {
-    NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
+    NSIndexPath *indexPath = [self.dynamicsTable indexPathForCell:cell];
     self.commentIndexPath = indexPath;
     self.commentInputTF.placeholder = @"输入评论...";
     [self.commentInputTF becomeFirstResponder];
@@ -196,10 +196,10 @@
     WS(weakSelf);
     [UIAlertView bk_showAlertViewWithTitle:nil message:@"确定删除该条成长相册吗?" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
-            NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
-            NSIndexPath * indexPath1 = [self.dynamicsTable indexPathForCell:cell];
-            NewDynamicsLayout * layout = self.layoutsArr[indexPath1.row];
-            DynamicsModel * model = layout.model;
+            NSIndexPath *indexPath = [self.dynamicsTable indexPathForCell:cell];
+            NSIndexPath *indexPath1 = [self.dynamicsTable indexPathForCell:cell];
+            NewDynamicsLayout *layout = self.layoutsArr[indexPath1.row];
+            DynamicsModel *model = layout.model;
             NSDictionary *dic = @{@"key":[UserManager key], @"album_id":[NSString stringWithFormat:@"%ld",model.album_id]};
             [WProgressHUD showHUDShowText:@"正在删除中..."];
             [[HttpRequestManager sharedSingleton] POST:DeleteAlbumURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -274,8 +274,8 @@
 - (void)DynamicsCell:(NewDynamicsTableViewCell *)cell didClickComment:(DynamicsCommentItemModel *)commentModel {
     
     NSInteger commentRow = self.commentIndexPath.row;
-    NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
-    DynamicsModel * model = layout.model;
+    NewDynamicsLayout *layout = [self.layoutsArr objectAtIndex:commentRow];
+    DynamicsModel *model = layout.model;
     
     if ([[NSString stringWithFormat:@"%ld",commentModel.discuss_is_self] isEqualToString:@"1"]) {
         
@@ -290,14 +290,14 @@
                 if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
                     [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
                     NSInteger commentRow = self.commentIndexPath.row;
-                    NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
-                    DynamicsModel * model = layout.model;
+                    NewDynamicsLayout *layout = [self.layoutsArr objectAtIndex:commentRow];
+                    DynamicsModel *model = layout.model;
                     NSMutableArray *arr = [DynamicsCommentItemModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
                     
                     model.optcomment = [arr copy];
                     [layout resetLayout];
                     
-                    NSIndexPath * indexPath = [self.dynamicsTable indexPathForCell:cell];
+                    NSIndexPath *indexPath = [self.dynamicsTable indexPathForCell:cell];
                     self.commentIndexPath = indexPath;
                     
                     [self.dynamicsTable reloadRowsAtIndexPaths:@[self.commentIndexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -335,8 +335,8 @@
     } else {
     
     NSInteger commentRow = self.commentIndexPath.row;
-    NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
-    DynamicsModel * model = layout.model;
+    NewDynamicsLayout *layout = [self.layoutsArr objectAtIndex:commentRow];
+    DynamicsModel *model = layout.model;
     if (![self.commentInputTF.text isEqualToString:@""]) {
 #pragma mark ======= 上传评论 =======
         [WProgressHUD showHUDShowText:@"正在加载中..."];
@@ -346,8 +346,8 @@
             if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
                 [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
                 NSInteger commentRow = self.commentIndexPath.row;
-                NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
-                DynamicsModel * model = layout.model;
+                NewDynamicsLayout *layout = [self.layoutsArr objectAtIndex:commentRow];
+                DynamicsModel *model = layout.model;
                 NSMutableArray *arr = [DynamicsCommentItemModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
                 
                 model.optcomment = [arr copy];

@@ -70,7 +70,6 @@
 }
 
 - (void) rightBtn : (UIButton *)sender {
-    
     NSLog(@"点击发布");
     LaunchEventViewController *launchEventVC = [[LaunchEventViewController alloc] init];
     [self.navigationController pushViewController:launchEventVC animated:YES];

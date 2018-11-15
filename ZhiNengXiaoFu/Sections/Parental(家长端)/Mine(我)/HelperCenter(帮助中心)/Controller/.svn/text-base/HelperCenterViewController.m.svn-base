@@ -71,7 +71,7 @@
 
 
 - (void)setNetWork {
-    NSDictionary * dic = @{@"key":[UserManager key]};
+    NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:userContactUs parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.helperCenterModel = [HelperCenterModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
@@ -120,17 +120,17 @@
             }
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UIImageView * imgs = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
+        UIImageView *imgs = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
         if (self.bannerArr.count == 0) {
             //            imgs.image = [UIImage imageNamed:@"教师端活动管理banner"];
         } else {
-            BannerModel * model = [self.bannerArr objectAtIndex:0];
+            BannerModel *model = [self.bannerArr objectAtIndex:0];
             [imgs sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"bannerHelper"]];
         }
         [cell addSubview:imgs];
         return cell;
     } else {
-        ClassHomePageItemCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ClassHomePageItemCellId" forIndexPath:indexPath];
+        ClassHomePageItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ClassHomePageItemCellId" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         if (indexPath.section == 1) {
@@ -173,9 +173,9 @@
     if (section == 0) {
         return nil;
     } else {
-        UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 40)];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 40)];
         headerView.backgroundColor = [UIColor colorWithRed:246 / 255.0 green:246 / 255.0 blue:246 / 255.0 alpha:1];
-        UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 100, 20)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 100, 20)];
         titleLabel.font = [UIFont systemFontOfSize: 16];
         titleLabel.textColor = COLOR(51, 51, 51, 1);
         [headerView addSubview:titleLabel];
@@ -232,15 +232,10 @@
             if (indexPath.row == 1) {
                 NSLog(@"qq联系");
                 UIWebView *webView = [[UIWebView alloc] init];
-                
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web", self.helperCenterModel.qq]];
-                
                 NSURLRequest *request = [NSURLRequest requestWithURL:url];
-                
                 webView.delegate = self;
-                
                 [webView loadRequest:request];
-                
                 [self.view addSubview:webView];
             }
         }
@@ -252,11 +247,11 @@
             self.back.backgroundColor = [UIColor colorWithRed:0 / 255.0 green:0 / 255.0 blue:0 / 255.0 alpha:0.8];
             [[[UIApplication sharedApplication] keyWindow] addSubview:self.back];
             
-            UIImageView * img = [[UIImageView alloc] initWithFrame:CGRectMake(APP_WIDTH / 2 - 100, APP_HEIGHT / 2 - 100, 200, 200)];
+            UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(APP_WIDTH / 2 - 100, APP_HEIGHT / 2 - 100, 200, 200)];
             [img sd_setImageWithURL:[NSURL URLWithString:self.helperCenterModel.wx] placeholderImage:nil];
             [self.back addSubview:img];
             
-            UITapGestureRecognizer * imgTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgTap:)];
+            UITapGestureRecognizer *imgTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgTap:)];
             self.back.userInteractionEnabled = YES;
             [self.back addGestureRecognizer:imgTap];
             
@@ -269,7 +264,6 @@
             [self.navigationController pushViewController:adviceFeedbackVC animated:YES];
         }
             break;
-            
             
         default:
             break;

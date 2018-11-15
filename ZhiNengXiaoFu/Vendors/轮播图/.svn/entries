@@ -26,6 +26,13 @@ ios2
 
 d466fc26-aeb2-6048-8488-bbf0a50f055a
 
+UIView+Banner.h
+file
+0
+
+
+add
+
 DCCycleScrollViewFlowLayout.m
 file
 
@@ -59,6 +66,20 @@ has-props
 
 
 4022
+
+HW3DBannerView.m
+file
+0
+
+
+add
+
+UIView+Banner.m
+file
+0
+
+
+add
 
 DCCycleScrollView.h
 file
@@ -229,4 +250,11 @@ has-props
 
 
 296
+
+HW3DBannerView.h
+file
+0
+
+
+add
 

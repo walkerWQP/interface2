@@ -64,7 +64,6 @@
 }
 
 - (void)getClassData {
-   
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新

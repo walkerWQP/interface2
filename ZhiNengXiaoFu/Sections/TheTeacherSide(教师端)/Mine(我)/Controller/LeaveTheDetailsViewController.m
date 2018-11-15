@@ -108,7 +108,6 @@
 }
 
 - (void)getLeaveLeaveDetailData {
-    
     NSDictionary *dic = @{@"key":[UserManager key],@"id":self.ID};
     [[HttpRequestManager sharedSingleton] POST:leaveLeaveDetail parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
@@ -344,6 +343,7 @@
             self.noteTextView.editable = YES;
         }
     }
+    
 }
 
 

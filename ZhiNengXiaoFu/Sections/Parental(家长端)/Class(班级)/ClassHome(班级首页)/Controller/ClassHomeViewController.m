@@ -45,24 +45,21 @@
     [self makeClassViewControllerUI];
 }
 
-
-
 - (void)setNetWork {
-    NSDictionary * dic = @{@"key":[UserManager key]};
+    NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:userClassInfo parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             ClassHomeModel * model = [ClassHomeModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
-            
             NSMutableArray *imgArr = [NSMutableArray arrayWithObjects:model.class_head_img, nil];
             NSMutableArray *titleArr = [NSMutableArray arrayWithObjects:model.class_name, nil];
             
             for (int i = 0; i < imgArr.count; i++) {
                 NSString *img     = [imgArr objectAtIndex:i];
                 NSString *title   = [titleArr objectAtIndex:i];
-                
                 NSDictionary *dic = @{@"img":img,@"title":title};
                 [self.classArr addObject:dic];
             }
+            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -88,7 +85,6 @@
     self.classCollectionView.delegate = self;
     self.classCollectionView.dataSource = self;
     [self.view addSubview:self.classCollectionView];
-    
     [self.classCollectionView registerClass:[TeacherNotifiedCell class] forCellWithReuseIdentifier:TeacherNotifiedCell_CollectionView];
     
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 170)];
@@ -110,7 +106,7 @@
     UICollectionViewCell *gridcell = nil;
     TeacherNotifiedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:TeacherNotifiedCell_CollectionView forIndexPath:indexPath];
     if (self.classArr.count != 0) {
-        NSDictionary * dic = [self.classArr objectAtIndex:indexPath.row];
+        NSDictionary *dic = [self.classArr objectAtIndex:indexPath.row];
         [cell.headImgView sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"img"]] placeholderImage:[UIImage imageNamed:@"user"]];
         cell.classLabel.text = [dic objectForKey:@"title"];
     }
@@ -134,12 +130,11 @@
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"2"};
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.bannerArr = [BannerModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             if (self.bannerArr.count == 0) {
                 self.headImgView.image = [UIImage imageNamed:@"教师端活动管理banner"];
             } else {
-                BannerModel * model = [self.bannerArr objectAtIndex:0];
+                BannerModel *model = [self.bannerArr objectAtIndex:0];
                 [self.headImgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"教师端活动管理banner"]];
                 [self.classCollectionView reloadData];
             }

@@ -20,8 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.teachaerBtn = [[UIButton alloc] initWithFrame:CGRectMake(APP_WIDTH / 2 - 100, 150, 200, 50)];
@@ -41,7 +39,7 @@
 
 - (void)teachaerBtn:(UIButton *)sender {
     [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"teacherStudentBiaoJi"];
-    LoginHomePageViewController * loginHomePageVC = [[LoginHomePageViewController alloc] init];
+    LoginHomePageViewController *loginHomePageVC = [[LoginHomePageViewController alloc] init];
     [self.navigationController pushViewController:loginHomePageVC animated:YES];
 }
 

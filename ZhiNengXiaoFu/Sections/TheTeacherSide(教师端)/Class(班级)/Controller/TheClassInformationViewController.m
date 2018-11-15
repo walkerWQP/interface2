@@ -169,7 +169,6 @@
 
 
 - (void)getClassURLData {
-    
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
@@ -221,14 +220,12 @@
     self.theClassInformationScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT);
     self.theClassInformationScrollView.bounces = YES;
     self.theClassInformationScrollView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
-    
     self.theClassInformationScrollView.maximumZoomScale = 2.0;//最多放大到两倍
     self.theClassInformationScrollView.minimumZoomScale = 0.5;//最多缩小到0.5倍
     //设置是否允许缩放超出倍数限制，超出后弹回
     self.theClassInformationScrollView.bouncesZoom = YES;
     //设置委托
     self.theClassInformationScrollView.delegate = self;
-    
     [self.view addSubview:self.theClassInformationScrollView];
    
     self.bgView.hidden = YES;
@@ -316,12 +313,10 @@
 }
 
 - (void)teachersBtn:(UIButton *)sender {
-    
     NSArray *array = [sender.titleLabel.text componentsSeparatedByString:@"-"];//从字符-中分隔成2个元素的数组
     if([sender.titleLabel.text rangeOfString:@"-"].location !=NSNotFound) {
         NSString *nameStr = array[0];
         NSString *phoneStr = array[1];
-        
         if ([phoneStr isEqualToString:@""] || phoneStr == nil) {
             [WProgressHUD showErrorAnimatedText:@"暂无电话"];
         } else {
@@ -334,7 +329,6 @@
                 }
                 [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneStr]]]];
             }];
-            
             UIAlertAction *alertF = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                 NSLog(@"点击了取消");
             }];
@@ -345,7 +339,6 @@
     } else {
         NSLog(@"no");
     }
-    
 }
 
 #pragma mark - UIScrollViewDelegate
