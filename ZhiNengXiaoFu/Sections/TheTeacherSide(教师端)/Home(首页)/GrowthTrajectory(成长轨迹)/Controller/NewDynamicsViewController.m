@@ -290,7 +290,7 @@
                 } else {
                     return;
                 }
-                
+
             } else {
                 
                 NSMutableArray *dataArr = [NSMutableArray array];
@@ -308,7 +308,7 @@
                 }
                 
                 for (NSDictionary  *dict in array) {
-                    DynamicsModel * model = [DynamicsModel modelWithDictionary:dict];
+                    DynamicsModel *model = [DynamicsModel modelWithDictionary:dict];
                     if (model.is_praise == 0) { //不是自己点赞
                         model.isThumb = NO;
                     } else if (model.is_praise == 1) { //是自己点赞
@@ -330,7 +330,7 @@
                         
                     }
                     model.commentArr = [tempComments copy];
-                    NewDynamicsLayout * layout = [[NewDynamicsLayout alloc] initWithModel:model];
+                    NewDynamicsLayout *layout = [[NewDynamicsLayout alloc] initWithModel:model];
                     [self.layoutsArr addObject:layout];
                 }
                 self.zanwushuju.alpha = 0;
@@ -424,7 +424,6 @@
 
 #pragma mark - YBPopupMenuDelegate
 - (void)WPopupMenuDidSelectedAtIndex:(NSInteger)index WPopupMenu:(WPopupMenu *)WPopupMenu {
-    
     PublishJobModel *model = [self.classNameArr objectAtIndex:index];
     if (model.ID == nil || model.name == nil) {
         [WProgressHUD showSuccessfulAnimatedText:@"数据不正确,请重试"];
@@ -438,7 +437,6 @@
         NSDictionary  *dic = @{@"key":[UserManager key], @"class_id":self.classID, @"page":[NSString stringWithFormat:@"%ld",self.pageID]};
         [self getDataFromGetAlbumURL:dic];
         [self.dynamicsTable reloadData];
-        
     }
 }
 

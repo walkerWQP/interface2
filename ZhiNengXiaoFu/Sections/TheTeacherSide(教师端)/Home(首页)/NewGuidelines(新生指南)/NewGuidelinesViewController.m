@@ -67,7 +67,6 @@
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"10"};
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.bannerArr = [BannerModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             if (self.bannerArr.count == 0) {
                 self.headImgView.image = [UIImage imageNamed:@"教师端活动管理banner"];
@@ -92,7 +91,7 @@
 
 - (void)setNetWork {
     NSDictionary * dic = @{@"key":[UserManager key]};
-    [[HttpRequestManager sharedSingleton] POST:getGuideURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpRequestManager sharedSingleton] POST:getGuideURL parameters:dic success:^(NSURLSessionDataTask *task, id  responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.workDetailsModel = [WorkDetailsModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
             [self.newGuidelinesTableView reloadData];
@@ -124,7 +123,6 @@
 - (void)configureImage {
     for (int i = 0; i < self.imgAry.count; i++) {
         UIImageView *imageViewNew = [[UIImageView alloc] initWithFrame:CGRectMake(0, i * 210, self.tongZhiDetailsCell.PicView.bounds.size.width ,0)];
-        
         [imageViewNew sd_setImageWithURL:[NSURL URLWithString:[self.imgAry objectAtIndex:i]] placeholderImage:nil options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             CGSize size = image.size;
             CGFloat w = size.width;
@@ -181,7 +179,6 @@
         self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.alpha = 0;
         if (self.workDetailsModel.content.length>0) {
                 [self.tongZhiDetailsCell.webView loadHTMLString:[NSString stringWithFormat:@"<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'><meta name='apple-mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-status-bar-style' content='black'><meta name='format-detection' content='telephone=no'><style type='text/css'>img{width:%fpx}</style>%@", APP_WIDTH - 20, self.workDetailsModel.content] baseURL:nil];
-            
         }
     }
     return self.tongZhiDetailsCell;
@@ -207,11 +204,9 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     NSInteger width = APP_WIDTH - 30;
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:30]};
     CGSize size = [self.workDetailsModel.title boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-    
     if (self.Hnew ==0) {
         if (self.imgAry.count == 0) {
         self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant = 0;

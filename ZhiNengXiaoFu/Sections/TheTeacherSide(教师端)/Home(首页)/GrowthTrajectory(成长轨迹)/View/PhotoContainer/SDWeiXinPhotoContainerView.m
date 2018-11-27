@@ -74,7 +74,7 @@
         UIImageView *imageView = [_imageViewsArray objectAtIndex:idx];
         imageView.hidden = NO;
         
-        NSURL * url = [NSURL URLWithString:_picPathStringsArray[idx]];
+        NSURL *url = [NSURL URLWithString:_picPathStringsArray[idx]];
         [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeHolderImg"] options:SDWebImageRetryFailed];
         imageView.frame = CGRectMake(columnIndex * (itemW + margin), rowIndex * (itemH + margin), itemW, itemH);
     }];

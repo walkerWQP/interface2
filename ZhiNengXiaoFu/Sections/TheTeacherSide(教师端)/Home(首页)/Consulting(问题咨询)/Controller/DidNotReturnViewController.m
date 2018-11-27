@@ -67,7 +67,7 @@
 }
 
 - (void)getConsultConsultListURLData :(NSInteger )page {
-    NSDictionary * dic = @{@"key":[UserManager key], @"status":@0,@"page":[NSString stringWithFormat:@"%ld",page]};
+    NSDictionary *dic = @{@"key":[UserManager key], @"status":@0,@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:ConsultConsultList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
         [self.didNotReturnCollectionView.mj_header endRefreshing];
@@ -75,7 +75,7 @@
         [self.didNotReturnCollectionView.mj_footer endRefreshing];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             NSMutableArray *arr = [ConsultListModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-            for (ConsultListModel * model in arr) {
+            for (ConsultListModel *model in arr) {
                 [self.didNotReturnArr addObject:model];
             }
             if (self.didNotReturnArr.count == 0) {

@@ -73,7 +73,6 @@
 }
 
 - (void)getClassConditionURLData:(NSString *)type classID:(NSString *)classID {  //1全部学生
-    
     NSDictionary *dic = @{@"key":[UserManager key],@"class_id":classID,@"type":type};
     [[HttpRequestManager sharedSingleton] POST:classConditionURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
@@ -152,8 +151,8 @@
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
             self.publishJobArr = [PublishJobModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-            NSMutableArray * ary = [@[]mutableCopy];
-            for (PublishJobModel * model in self.publishJobArr) {
+            NSMutableArray *ary = [@[]mutableCopy];
+            for (PublishJobModel *model in self.publishJobArr) {
                 [ary addObject:[NSString stringWithFormat:@"%@", model.ID]];
             }
             
@@ -182,8 +181,8 @@
     [[HttpRequestManager sharedSingleton] POST:getClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.classNameArr = [PublishJobModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-            NSMutableArray * ary = [@[]mutableCopy];
-            for (PublishJobModel * model in self.classNameArr) {
+            NSMutableArray *ary = [@[]mutableCopy];
+            for (PublishJobModel *model in self.classNameArr) {
                 [ary addObject:[NSString stringWithFormat:@"%@", model.name]];
             }
             if (ary.count == 0) {

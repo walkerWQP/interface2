@@ -73,7 +73,6 @@
         //结束尾部刷新
         [self.publicClassCollectionView.mj_footer endRefreshing];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             NSMutableArray *arr = [PublicClassModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             for (PublicClassModel *model in arr) {
                 [self.publicClassArr addObject:model];
@@ -118,7 +117,6 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     UICollectionViewCell *gridcell = nil;
     PublicClassCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PublicClassCell_CollectionView forIndexPath:indexPath];
     if (self.publicClassArr.count != 0) {
@@ -153,16 +151,18 @@
     return itemSize;
 }
 
-
+                                                                                                                                                                                                                                                                                                                                  
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    PublicClassModel *model = [self.publicClassArr objectAtIndex:indexPath.row];
-    TeacherZaiXianDetailsViewController *teacherZaiXianDetailsVC = [[TeacherZaiXianDetailsViewController alloc] init];
-    if (model.ID == nil) {
-        [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
-    } else {
-        teacherZaiXianDetailsVC.teacherZaiXianDetailsId = model.ID;
-        [self.navigationController pushViewController:teacherZaiXianDetailsVC animated:YES];
+    if (self.publicClassArr.count != 0) {
+        PublicClassModel *model = [self.publicClassArr objectAtIndex:indexPath.row];
+        TeacherZaiXianDetailsViewController *teacherZaiXianDetailsVC = [[TeacherZaiXianDetailsViewController alloc] init];
+        if (model.ID == nil) {
+            [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
+        } else {
+            teacherZaiXianDetailsVC.teacherZaiXianDetailsId = model.ID;
+            [self.navigationController pushViewController:teacherZaiXianDetailsVC animated:YES];
+        }
     }
 }
 

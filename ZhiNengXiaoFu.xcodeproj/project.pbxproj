@@ -331,6 +331,9 @@
 		CD9C16C8216F1F1E0094E897 /* WorkNewTwoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD9C16C6216F1F1E0094E897 /* WorkNewTwoCell.xib */; };
 		CD9C16CB216F27720094E897 /* YYCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9C16CA216F27720094E897 /* YYCollectionViewLayout.m */; };
 		CD9C16CE216F3AD20094E897 /* ParentXueTangNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9C16CD216F3AD20094E897 /* ParentXueTangNewViewController.m */; };
+		CDA1DCB521AB8AED000460DE /* InformationCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1DCB421AB8AED000460DE /* InformationCollectionController.m */; };
+		CDB5309121AD169C00EDD372 /* InformationCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB5309021AD169C00EDD372 /* InformationCollectionModel.m */; };
+		CDB5309521AD1E2F00EDD372 /* TakePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB5309321AD1E2E00EDD372 /* TakePhoto.m */; };
 		CDF2967E216DE9C800D87410 /* HomePageTongZhiView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF2967D216DE9C800D87410 /* HomePageTongZhiView.m */; };
 		CDF29681216E08A100D87410 /* SchoolTongTaiMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF29680216E08A100D87410 /* SchoolTongTaiMoreCell.m */; };
 /* End PBXBuildFile section */
@@ -982,7 +985,13 @@
 		CD9C16CA216F27720094E897 /* YYCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCollectionViewLayout.m; sourceTree = "<group>"; };
 		CD9C16CC216F3AD20094E897 /* ParentXueTangNewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParentXueTangNewViewController.h; sourceTree = "<group>"; };
 		CD9C16CD216F3AD20094E897 /* ParentXueTangNewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParentXueTangNewViewController.m; sourceTree = "<group>"; };
+		CDA1DCB321AB8AED000460DE /* InformationCollectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InformationCollectionController.h; sourceTree = "<group>"; };
+		CDA1DCB421AB8AED000460DE /* InformationCollectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InformationCollectionController.m; sourceTree = "<group>"; };
 		CDB42850218FD41E0035244A /* libstdc  .6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc  .6.0.9.tbd"; path = "usr/lib/libstdc  .6.0.9.tbd"; sourceTree = SDKROOT; };
+		CDB5308F21AD169C00EDD372 /* InformationCollectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InformationCollectionModel.h; sourceTree = "<group>"; };
+		CDB5309021AD169C00EDD372 /* InformationCollectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InformationCollectionModel.m; sourceTree = "<group>"; };
+		CDB5309321AD1E2E00EDD372 /* TakePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakePhoto.m; sourceTree = "<group>"; };
+		CDB5309421AD1E2F00EDD372 /* TakePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakePhoto.h; sourceTree = "<group>"; };
 		CDF2967C216DE9C800D87410 /* HomePageTongZhiView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageTongZhiView.h; sourceTree = "<group>"; };
 		CDF2967D216DE9C800D87410 /* HomePageTongZhiView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageTongZhiView.m; sourceTree = "<group>"; };
 		CDF2967F216E08A100D87410 /* SchoolTongTaiMoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolTongTaiMoreCell.h; sourceTree = "<group>"; };
@@ -2263,6 +2272,7 @@
 		043F391121016F8C00115A55 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				CDB5309221AD1E1A00EDD372 /* 拍照 */,
 				989B604C216F284300DDCC7B /* 轮播图 */,
 				CD4E2D6F216DDA3B008F1DA2 /* NewPagedFlowView */,
 				987209A0211ECEB3009D235D /* popView(弹出视图) */,
@@ -2730,6 +2740,8 @@
 				989382E121227A91007A9EBD /* OngoingTableViewController.m */,
 				98A1DB37213E6ECC0016230A /* BindMobilePhoneViewController.h */,
 				98A1DB38213E6ECC0016230A /* BindMobilePhoneViewController.m */,
+				CDA1DCB321AB8AED000460DE /* InformationCollectionController.h */,
+				CDA1DCB421AB8AED000460DE /* InformationCollectionController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2739,6 +2751,8 @@
 			children = (
 				98E33E7D2117FEEF0098C241 /* OffTheListModel.h */,
 				98E33E7E2117FEF00098C241 /* OffTheListModel.m */,
+				CDB5308F21AD169C00EDD372 /* InformationCollectionModel.h */,
+				CDB5309021AD169C00EDD372 /* InformationCollectionModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3375,6 +3389,15 @@
 			path = NewPagedFlowView;
 			sourceTree = "<group>";
 		};
+		CDB5309221AD1E1A00EDD372 /* 拍照 */ = {
+			isa = PBXGroup;
+			children = (
+				CDB5309421AD1E2F00EDD372 /* TakePhoto.h */,
+				CDB5309321AD1E2E00EDD372 /* TakePhoto.m */,
+			);
+			path = "拍照";
+			sourceTree = "<group>";
+		};
 		EBEBC5C2152B8D055D4D320E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3679,6 +3702,7 @@
 				0428109F2108070F00E2CA14 /* PersonIconCell.m in Sources */,
 				041482DE2117D8F300C2AED2 /* LeaveListModel.m in Sources */,
 				98AD7EBB210F11BD00641231 /* HomeWorkViewController.m in Sources */,
+				CDB5309521AD1E2F00EDD372 /* TakePhoto.m in Sources */,
 				987209A7211ECEB3009D235D /* YBRectConst.m in Sources */,
 				98F0C7E5214F9D57009AEE15 /* JRMenuView.m in Sources */,
 				98D89DE521103C7800355626 /* EasyShowLabel.m in Sources */,
@@ -3798,6 +3822,7 @@
 				0409A4282119754C004A9DB6 /* MImaLibTool.m in Sources */,
 				042AA452211D79C100E3AACB /* HelperCenterModel.m in Sources */,
 				0409A4252119754C004A9DB6 /* SDBaseProgressView.m in Sources */,
+				CDA1DCB521AB8AED000460DE /* InformationCollectionController.m in Sources */,
 				98AD7EBE210F11BD00641231 /* SchoolDynamicCellCell.m in Sources */,
 				042AA44D211D58EA00E3AACB /* UIView+XXYViewFrame.m in Sources */,
 				042810A32108070F00E2CA14 /* QianDaoPsersonCell.m in Sources */,
@@ -3872,6 +3897,7 @@
 				98C01EED21144F9200D625DA /* HomeWorkModel.m in Sources */,
 				0409A42C2119754C004A9DB6 /* MGroupCell.m in Sources */,
 				0428109C2108070F00E2CA14 /* MinePersonXiXinCell.m in Sources */,
+				CDB5309121AD169C00EDD372 /* InformationCollectionModel.m in Sources */,
 				047FB2132113E5F000AED26D /* WorkDetailsModel.m in Sources */,
 				04F30FB6214F4D7700013189 /* HomePageNumberModel.m in Sources */,
 				989BFE1C21088DA2007A69A5 /* JohnTopTitleView.m in Sources */,
@@ -4102,6 +4128,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = ZhiNengXiaoFu/ZhiNengXiaoFu.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Henan Duxiu Technology Co., Ltd. (NBZT2UT4S6)";
 				CODE_SIGN_STYLE = Manual;
@@ -4137,6 +4164,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = ZhiNengXiaoFu/ZhiNengXiaoFu.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Henan Duxiu Technology Co., Ltd. (NBZT2UT4S6)";
 				CODE_SIGN_STYLE = Manual;

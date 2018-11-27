@@ -79,14 +79,11 @@
             }
             if (self.ongoingArr.count == 0) {
                 self.zanwushuju.alpha = 1;
-                
             } else {
                 self.zanwushuju.alpha = 0;
                 [self.ongoingCollectionView reloadData];
             }
-            
         } else {
-
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
 

@@ -185,7 +185,7 @@
     [WProgressHUD showHUDShowText:@"加载中..."];
     [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (int i = 0; i < self.LQPhotoPicker_bigImageArray.count; i++) {
-            UIImage * image = self.LQPhotoPicker_bigImageArray[i];
+            UIImage *image = self.LQPhotoPicker_bigImageArray[i];
             NSData *imageData = UIImageJPEGRepresentation(image,1);
             float length=[imageData length]/1000;
             
@@ -204,7 +204,6 @@
     } progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [WProgressHUD hideAllHUDAnimated:YES];
-        
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];
             NSMutableArray *arr = [dic objectForKey:@"url"];
@@ -266,7 +265,6 @@
             }
             PickerView *vi = [[PickerView alloc] init];
             vi.array = ary;
-            
             vi.type = PickerViewTypeHeigh;
             vi.selectComponent = 0;
             vi.delegate = self;

@@ -13,9 +13,9 @@
 #endif /* URLMacro_h */
 
 //正式
-#define YUMING  @"http://app.duxiukeji.com/"
-
-
+//#define YUMING  @"http://app.duxiukeji.com/"
+//测试
+#define YUMING  @"http://test.duxiukeji.com/"
 
 //登录接口
 #define LOGIN  [NSString stringWithFormat:@"%@index/login/login",YUMING]
@@ -279,3 +279,9 @@
 //改版接口
 //教师首页
 #define indexURL [NSString stringWithFormat:@"%@index/index/index",YUMING]
+
+//教师获取自己管理的班级（是班主任的班级）
+#define GetAdviserClassURL [NSString stringWithFormat:@"%@/index/user/get_adviser_class",YUMING]
+
+//班主任获取班级学生列表
+#define GetStudentListURL [NSString stringWithFormat:@"%@index/user/get_student_list",YUMING]

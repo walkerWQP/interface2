@@ -59,7 +59,6 @@
 }
 
 - (void)getClassConditionURLData:(NSString *)type {
-    
     NSDictionary *dic = @{@"key":[UserManager key],@"class_id":self.ID,@"type":type};
     [[HttpRequestManager sharedSingleton] POST:classConditionURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
@@ -108,7 +107,6 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-
     UICollectionViewCell *gridcell = nil;
     TotalNumberCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:TotalNumberCell_CollectionView forIndexPath:indexPath];
     if (self.hasBeenArr.count != 0) {

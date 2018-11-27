@@ -68,7 +68,6 @@ static const CGFloat criticalY = -140.f;
     
     if (y < criticalY) {
         y = criticalY;
-        
         if (self.scrollView.isDragging && self.refreshState != SDWXRefreshViewStateWillRefresh) {
             self.refreshState = SDWXRefreshViewStateWillRefresh;
         } else if (!self.scrollView.isDragging && self.refreshState == SDWXRefreshViewStateWillRefresh) {

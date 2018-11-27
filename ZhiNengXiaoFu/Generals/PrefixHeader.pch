@@ -54,7 +54,7 @@
 #import "YYKit.h"
 #import "BlocksKit+UIKit.h"
 #import "HW3DBannerView.h"
-
+#import "TakePhoto.h"
 
 #define kIPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0)
 

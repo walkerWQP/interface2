@@ -222,7 +222,7 @@
     [WProgressHUD showHUDShowText:@"加载中..."];
     [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (int i = 0; i < self.LQPhotoPicker_bigImageArray.count; i++) {
-            UIImage * image = self.LQPhotoPicker_bigImageArray[i];
+            UIImage *image = self.LQPhotoPicker_bigImageArray[i];
             NSData *imageData = UIImageJPEGRepresentation(image,1);
             float length=[imageData length]/1000;
             
@@ -296,7 +296,6 @@
 }
 
 - (void)getClassURLData {
-    
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {

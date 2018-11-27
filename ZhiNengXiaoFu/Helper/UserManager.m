@@ -12,7 +12,6 @@
 
 
 + (BOOL)isLogin {
-    
     BOOL loginState;
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSData *data = [userDefault objectForKey:@"personInfo"];
@@ -56,13 +55,13 @@
         UIViewController *result = nil;
     
         // 得到当前应用程序的主要窗口
-        UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     
         // windowLevel是在 Z轴 方向上的窗口位置，默认值为UIWindowLevelNormal
         if (window.windowLevel != UIWindowLevelNormal) {
             // 获取应用程序所有的窗口
             NSArray *windows = [[UIApplication sharedApplication] windows];
-            for(UIWindow * tmpWin in windows) {
+            for(UIWindow *tmpWin in windows) {
                 // 找到程序的默认窗口（正在显示的窗口）
                 if (tmpWin.windowLevel == UIWindowLevelNormal) {
                     // 将关键窗口赋值为默认窗口
@@ -90,7 +89,7 @@
 }
 
 +(NSString  *)key {
-    NSString * key = [[NSUserDefaults standardUserDefaults] objectForKey:@"key"];
+    NSString *key = [[NSUserDefaults standardUserDefaults] objectForKey:@"key"];
     if (key == nil) {
         key = @"";
     } else {
@@ -99,8 +98,6 @@
     return key;
 }
 
-
-#pragma mark 获取当前屏幕显示的viewcontroller
 
 
 @end

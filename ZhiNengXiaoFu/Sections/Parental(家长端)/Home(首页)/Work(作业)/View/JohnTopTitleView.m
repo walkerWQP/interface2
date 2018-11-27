@@ -11,14 +11,12 @@
 #define ViewWidth self.frame.size.width
 #define ViewHeight self.frame.size.height
 
-@interface JohnTopTitleView ()<UIScrollViewDelegate>{
-   
-}
-
+@interface JohnTopTitleView ()<UIScrollViewDelegate>
 
 @property (nonatomic,strong) UIView *lineView;
 
 @end
+
 @implementation JohnTopTitleView
 
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -36,14 +34,14 @@
     self.titleSegment.tintColor = [UIColor clearColor];
     
     if ([SingletonHelper manager].biaojiJiuQinColor == 1) {
-        NSDictionary* selectedTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15.0f],NSForegroundColorAttributeName:tabBarColor};
+        NSDictionary *selectedTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15.0f],NSForegroundColorAttributeName:tabBarColor};
         [self.titleSegment setTitleTextAttributes:selectedTextAttributes forState:UIControlStateSelected];//设置文字属性
     } else {
-        NSDictionary* selectedTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15.0f],NSForegroundColorAttributeName: tabBarColor};
+        NSDictionary *selectedTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15.0f],NSForegroundColorAttributeName: tabBarColor};
         [self.titleSegment setTitleTextAttributes:selectedTextAttributes forState:UIControlStateSelected];//设置文字属性
     }
     
-    NSDictionary* unselectedTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15.0f],NSForegroundColorAttributeName: self.unSelcetColor ? self.unSelcetColor :[UIColor colorWithRed:51 / 255.0 green:51 / 255.0 blue:51 / 255.0 alpha:1]};
+    NSDictionary *unselectedTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15.0f],NSForegroundColorAttributeName: self.unSelcetColor ? self.unSelcetColor :[UIColor colorWithRed:51 / 255.0 green:51 / 255.0 blue:51 / 255.0 alpha:1]};
     [self.titleSegment setTitleTextAttributes:unselectedTextAttributes forState:UIControlStateNormal];
     [self.titleSegment addTarget:self action:@selector(pageChange:) forControlEvents:UIControlEventValueChanged];
     [self addSubview:self.titleSegment];
@@ -80,7 +78,6 @@
 
 #pragma mark - 定制VC
 - (void)setupViewControllerWithFatherVC:(UIViewController *)fatherVC childVC:(NSArray<UIViewController *>*)childVC {
-    
     NSInteger page = childVC.count;
     _lineViewWidth = ViewWidth / page;
     self.lineView.frame = CGRectMake(_lineViewWidth / 2 - 10, _titleHeight - 3,20, 3);

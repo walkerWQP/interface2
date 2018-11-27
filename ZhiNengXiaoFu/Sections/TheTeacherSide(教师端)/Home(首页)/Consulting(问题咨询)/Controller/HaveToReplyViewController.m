@@ -63,7 +63,7 @@
 }
 
 - (void)getConsultListURLData:(NSInteger)page {
-    NSDictionary * dic = @{@"key":[UserManager key], @"status":@1,@"page":[NSString stringWithFormat:@"%ld",page]};
+    NSDictionary *dic = @{@"key":[UserManager key], @"status":@1,@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:ConsultConsultList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
         [self.haveToReplyCollectionView.mj_header endRefreshing];
@@ -71,7 +71,7 @@
         [self.haveToReplyCollectionView.mj_footer endRefreshing];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             NSMutableArray *arr = [ConsultListModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-            for (ConsultListModel * model in arr) {
+            for (ConsultListModel *model in arr) {
                 [self.haveToReplyArr addObject:model];
             }
             
@@ -124,13 +124,10 @@
     if (self.haveToReplyArr.count != 0) {
         ConsultListModel *model = [self.haveToReplyArr objectAtIndex:indexPath.row];
         if ([model.s_headimg isEqualToString:@""]) {
-            
             cell.headImgView.image = [UIImage imageNamed:@"user"];
-            
         } else {
             [cell.headImgView sd_setImageWithURL:[NSURL URLWithString:model.s_headimg] placeholderImage:[UIImage imageNamed:@"user"]];
         }
-        
         cell.problemLabel.text = [NSString stringWithFormat:@"%@%@问:", model.class_name ,model.student_name];
         cell.problemContentLabel.text = model.question;
         cell.problemContentLabel.isTop = YES;
@@ -143,7 +140,6 @@
         } else {
             [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.t_headimg] placeholderImage:[UIImage imageNamed:@"user"]];
         }
-        
         cell.replyLabel.text = [NSString stringWithFormat:@"%@%@老师%@回复:", model.class_name, model.course_name, model.teacher_name];
         cell.replyContentLabel.text = model.answer;
         cell.replyContentLabel.isTop = YES;
@@ -165,9 +161,7 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     NSLog(@"%ld",indexPath.row);
-    
 }
 
 

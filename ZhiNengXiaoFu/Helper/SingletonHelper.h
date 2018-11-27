@@ -14,14 +14,13 @@
 @interface SingletonHelper : NSObject
 
 + (SingletonHelper *)manager;
-
 - (NSString *)encode:(NSString *)string;
 - (NSString *)dencode:(NSString *)base64String;
 
 
-@property (nonatomic, strong) PersonInformationModel * personInfoModel;
+@property (nonatomic, strong) PersonInformationModel *personInfoModel;
 
-@property (nonatomic, strong) TeacherZaiXianDetailsModel * teacherZaiXianDetailsModel;
+@property (nonatomic, strong) TeacherZaiXianDetailsModel *teacherZaiXianDetailsModel;
 
 @property (nonatomic, assign) int            stateNewXiang;
 @property (nonatomic, assign) NSInteger      force;

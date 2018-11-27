@@ -67,12 +67,12 @@ extern CGFloat maxContentLabelHeight;
     if (_content == nil) {
         _content = @"";
     }
-    NSMutableAttributedString * text = [[NSMutableAttributedString alloc] initWithString:_content];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:_content];
     text.font = [UIFont systemFontOfSize:14];
     
-    YYTextContainer * container = [YYTextContainer containerWithSize:CGSizeMake(APP_WIDTH - 15 - 45 - 10 - 15, CGFLOAT_MAX)];
+    YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake(APP_WIDTH - 15 - 45 - 10 - 15, CGFLOAT_MAX)];
     
-    YYTextLayout * layout = [YYTextLayout layoutWithContainer:container text:text];
+    YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:text];
     
     if (layout.rowCount <= 6) {
         _shouldShowMoreButton = NO;

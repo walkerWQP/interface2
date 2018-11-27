@@ -147,10 +147,8 @@
 - (void)UpdateNoticeURLData:(NSDictionary *)dic {
     [[HttpRequestManager sharedSingleton] POST:updateNoticeURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
             [self.navigationController popViewControllerAnimated:YES];
-            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -166,7 +164,6 @@
 //修改作业
 - (void)UpdateHomeWorkData:(NSDictionary *)dic {
     [[HttpRequestManager sharedSingleton] POST:updateHomeWork parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-      
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
             [self.navigationController popViewControllerAnimated:YES];

@@ -64,16 +64,11 @@
 - (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask * task, id responseObject))success failure:(void (^)(NSURLSessionDataTask * task, NSError * error))failure {
     
     NSMutableDictionary *mutableParmerts = [[NSMutableDictionary alloc]initWithDictionary:parameters];
-    NSURLSessionDataTask * dataTask = [_sessionManger POST:URLString parameters:mutableParmerts progress:nil success:^(NSURLSessionDataTask *  task, id  responseObject)
-                                       {
-                                           
-                                           
-                                           success(task, responseObject);
-                                           
-                                       } failure:^(NSURLSessionDataTask *  task, NSError *  error) {
-                                           
-                                           failure(task,error);
-                                       }];
+    NSURLSessionDataTask * dataTask = [_sessionManger POST:URLString parameters:mutableParmerts progress:nil success:^(NSURLSessionDataTask *  task, id  responseObject) {
+         success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *  task, NSError *  error) {
+        failure(task,error);
+    }];
 
     return dataTask;
     

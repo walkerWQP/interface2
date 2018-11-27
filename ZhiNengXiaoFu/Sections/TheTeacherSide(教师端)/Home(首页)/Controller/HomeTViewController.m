@@ -44,7 +44,7 @@
 @property (nonatomic, strong) NSString            *className;
 @property (nonatomic, strong) NSMutableArray      *bannerArr;
 @property (nonatomic, strong) NSMutableArray      *imgArr;
-@property (nonatomic, strong) HW3DBannerView     *banner;
+@property (nonatomic, strong) HW3DBannerView      *banner;
 @property (nonatomic, strong) NSMutableArray      *classArr;
 @property (nonatomic, strong) NSMutableArray      *activityArr;
 @property (nonatomic, strong) NSMutableArray      *tongzhiAry;
@@ -382,7 +382,7 @@
             [self.FiveView addSubview:titleLabel];
         }
         
-        UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 80, kScreenWidth, 10)];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 80, kScreenWidth, 10)];
         lineView.backgroundColor = [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1];
         [self.FiveView addSubview:lineView];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

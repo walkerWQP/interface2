@@ -17,7 +17,7 @@
 @interface YYPhotoGroupItem()<NSCopying>
 
 @property (nonatomic, readonly) UIImage *thumbImage;
-@property (nonatomic, readonly) BOOL thumbClippedToTop;
+@property (nonatomic, readonly) BOOL    thumbClippedToTop;
 - (BOOL)shouldClipToTop:(CGSize)imageSize forView:(UIView *)view;
 
 @end
@@ -201,15 +201,11 @@
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
     UIView *subView = _imageContainerView;
-    
     CGFloat offsetX = (scrollView.bounds.size.width > scrollView.contentSize.width)?
     (scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5 : 0.0;
-    
     CGFloat offsetY = (scrollView.bounds.size.height > scrollView.contentSize.height)?
     (scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5 : 0.0;
-    
-    subView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,
-                                 scrollView.contentSize.height * 0.5 + offsetY);
+    subView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,scrollView.contentSize.height * 0.5 + offsetY);
 }
 
 @end
@@ -227,29 +223,23 @@
 
 @interface YYPhotoGroupView() <UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
-@property (nonatomic, weak) UIView *fromView;
-@property (nonatomic, weak) UIView *toContainerView;
-
-@property (nonatomic, strong) UIImage *snapshotImage;
-@property (nonatomic, strong) UIImage *snapshorImageHideFromView;
-
-@property (nonatomic, strong) UIImageView *background;
-@property (nonatomic, strong) UIImageView *blurBackground;
-
-@property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) NSMutableArray *cells;
-@property (nonatomic, strong) UIPageControl *pager;
-@property (nonatomic, assign) CGFloat pagerCurrentPage;
-@property (nonatomic, assign) BOOL fromNavigationBarHidden;
-
-@property (nonatomic, assign) NSInteger fromItemIndex;
-@property (nonatomic, assign) BOOL isPresented;
-
+@property (nonatomic, weak) UIView                   *fromView;
+@property (nonatomic, weak) UIView                   *toContainerView;
+@property (nonatomic, strong) UIImage                *snapshotImage;
+@property (nonatomic, strong) UIImage                *snapshorImageHideFromView;
+@property (nonatomic, strong) UIImageView            *background;
+@property (nonatomic, strong) UIImageView            *blurBackground;
+@property (nonatomic, strong) UIView                 *contentView;
+@property (nonatomic, strong) UIScrollView           *scrollView;
+@property (nonatomic, strong) NSMutableArray         *cells;
+@property (nonatomic, strong) UIPageControl          *pager;
+@property (nonatomic, assign) CGFloat                pagerCurrentPage;
+@property (nonatomic, assign) BOOL                   fromNavigationBarHidden;
+@property (nonatomic, assign) NSInteger              fromItemIndex;
+@property (nonatomic, assign) BOOL                   isPresented;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
-@property (nonatomic, assign) CGPoint panGestureBeginPoint;
-
-@property (nonatomic, strong) UIButton *downloadBtn;
+@property (nonatomic, assign) CGPoint                panGestureBeginPoint;
+@property (nonatomic, strong) UIButton               *downloadBtn;
 
 @end
 
@@ -420,7 +410,6 @@
     [UIView setAnimationsEnabled:YES];
     _fromNavigationBarHidden = [UIApplication sharedApplication].statusBarHidden;
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:animated ? UIStatusBarAnimationFade : UIStatusBarAnimationNone];
-    
     
     YYPhotoGroupCell *cell = [self cellForPage:self.currentPage];
     YYPhotoGroupItem *item = _groupItems[self.currentPage];
@@ -760,36 +749,24 @@
     
     
     if (pressSender.state == UIGestureRecognizerStateBegan) {
-        
-        UIActionSheet * photoSheet = [[UIActionSheet alloc] init];
-        
+        UIActionSheet *photoSheet = [[UIActionSheet alloc] init];
         //截图 再读取
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, YES, 0);
-        
         CGContextRef context = UIGraphicsGetCurrentContext();
-        
         [self.layer renderInContext:context];
-        
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        
-        
-        
         CIImage *ciImage = [[CIImage alloc] initWithCGImage:image.CGImage options:nil];
         CIContext *ciContext = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(YES)}]; // 软件渲染
         CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeQRCode context:ciContext options:@{CIDetectorAccuracy : CIDetectorAccuracyHigh}];// 二维码识别
-        
-        
         NSArray *features = [detector featuresInImage:ciImage];
-        
-        
         for (CIQRCodeFeature *feature in features) {
             
             
         }
         
-        YYPhotoGroupCell * cell = [self cellForPage:self.currentPage];
-        UIImage * photoImg = cell.imageView.image;
+        YYPhotoGroupCell *cell = [self cellForPage:self.currentPage];
+        UIImage *photoImg = cell.imageView.image;
         if (photoImg) {
             [photoSheet bk_addButtonWithTitle:@"保存图片" handler:^{
                 [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
@@ -807,11 +784,9 @@
                         }
                     });
                    
-                    
                 }];
             }];
         }
-        
         
         [photoSheet bk_setCancelButtonWithTitle:@"取消" handler:^{
             

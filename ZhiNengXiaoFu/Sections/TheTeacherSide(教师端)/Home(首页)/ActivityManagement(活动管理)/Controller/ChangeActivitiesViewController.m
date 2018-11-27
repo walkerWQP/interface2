@@ -240,7 +240,6 @@
     [dateformater setDateFormat:@"yyyy-MM-dd"];
     NSDate *dta = [[NSDate alloc] init];
     NSDate *dtb = [[NSDate alloc] init];
-    
     dta = [dateformater dateFromString:aDate];
     dtb = [dateformater dateFromString:bDate];
     NSComparisonResult result = [dta compare:dtb];
@@ -248,12 +247,12 @@
         NSLog(@"相等");
         self.timeID = 0;
         return;
-    }else if (result == NSOrderedAscending) {
+    } else if (result == NSOrderedAscending) {
         //bDate比aDate大
         NSLog(@"第二个比第一个大");
         self.timeID = 0;
         return;
-    }else if (result == NSOrderedDescending) {
+    } else if (result == NSOrderedDescending) {
         //bDate比aDate小
         NSLog(@"第二个比第一个小");
         [WProgressHUD showErrorAnimatedText:@"开始时间不能小于结束时间"];

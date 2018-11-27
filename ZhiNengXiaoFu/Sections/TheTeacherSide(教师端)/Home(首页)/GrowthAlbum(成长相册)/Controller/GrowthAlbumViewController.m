@@ -102,7 +102,6 @@
 - (void)WPopupMenuDidSelectedAtIndex:(NSInteger)index WPopupMenu:(WPopupMenu *)WPopupMenu {
     if (self.publishJobArr.count != 0) {
         PublishJobModel *model = [self.publishJobArr objectAtIndex:index];
-        NSLog(@"%@",model.ID);
         if (model.ID == nil) {
             [WProgressHUD showSuccessfulAnimatedText:@"数据不正确,请重试"];
         } else {
@@ -150,7 +149,6 @@
     for (cookie in [storage cookies]){
         [storage deleteCookie:cookie];
     }
-    
     //清除UIWebView的缓存
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     NSURLCache * cache = [NSURLCache sharedURLCache];
@@ -171,13 +169,10 @@
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     // 3.开启日志
     [WebViewJavascriptBridge enableLogging];
-    
     // 4.给webView建立JS和OC的沟通桥梁
     self.bridge = [WebViewJavascriptBridge bridgeForWebView:self.webView];
     [self.bridge setWebViewDelegate:self];
-    
     [self.bridge registerHandler:@"uploadphoto" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"点击上传");
         ReleasedAlbumsViewController *releasedAlbumsVC = [[ReleasedAlbumsViewController alloc] init];
         [self.navigationController pushViewController:releasedAlbumsVC animated:YES];
     }];

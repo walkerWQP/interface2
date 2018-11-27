@@ -141,10 +141,9 @@
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         JingJiActivityDetailsViewController *jjA = [[JingJiActivityDetailsViewController alloc] init];
-         if (self.ongoingArr.count != 0) {
-        JingJiHuoDongListModel * model = [self.ongoingArr objectAtIndex:indexPath.row];
-
-        jjA.JingJiActivityDetailsId = model.ID;
+        if (self.ongoingArr.count != 0) {
+            JingJiHuoDongListModel * model = [self.ongoingArr objectAtIndex:indexPath.row];
+            jjA.JingJiActivityDetailsId = model.ID;
      }
     [self.navigationController pushViewController:jjA animated:YES];
     NSLog(@"%ld",indexPath.row);

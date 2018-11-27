@@ -64,7 +64,6 @@
 }
 
 -  (void)getActivityActivityListData:(NSInteger)page  {
-    
     NSDictionary *dic = @{@"key":[UserManager key],@"status":@"3",@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:activityActivityList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新

@@ -102,8 +102,8 @@
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
             NSInteger commentRow = self.commentIndexPath.row;
-            NewDynamicsLayout * layout = [self.layoutsArr objectAtIndex:commentRow];
-            DynamicsModel * model = layout.model;
+            NewDynamicsLayout *layout = [self.layoutsArr objectAtIndex:commentRow];
+            DynamicsModel *model = layout.model;
             model.isThumb = YES;
             NSDictionary *dic = [responseObject objectForKey:@"data"];
              NSMutableArray *arr = [DynamicsLikeItemModel mj_objectArrayWithKeyValuesArray:[dic objectForKey:@"praise"]];
@@ -149,7 +149,7 @@
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
             NSInteger commentRow = self.commentIndexPath.row;
             NewDynamicsLayout *layout = [self.layoutsArr objectAtIndex:commentRow];
-            DynamicsModel * model = layout.model;
+            DynamicsModel *model = layout.model;
             model.isThumb = NO;
             NSDictionary *dic = [responseObject objectForKey:@"data"];
             NSMutableArray *arr = [DynamicsLikeItemModel mj_objectArrayWithKeyValuesArray:[dic objectForKey:@"praise"]];
@@ -204,7 +204,6 @@
             [WProgressHUD showHUDShowText:@"正在删除中..."];
             [[HttpRequestManager sharedSingleton] POST:DeleteAlbumURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
                 if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-                    
                     [WProgressHUD showSuccessfulAnimatedText:@"删除成功!"];
                     [weakSelf.dynamicsTable beginUpdates];
                     [weakSelf.layoutsArr removeObjectAtIndex:indexPath.row];
@@ -293,10 +292,8 @@
                     NewDynamicsLayout *layout = [self.layoutsArr objectAtIndex:commentRow];
                     DynamicsModel *model = layout.model;
                     NSMutableArray *arr = [DynamicsCommentItemModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-                    
                     model.optcomment = [arr copy];
                     [layout resetLayout];
-                    
                     NSIndexPath *indexPath = [self.dynamicsTable indexPathForCell:cell];
                     self.commentIndexPath = indexPath;
                     
@@ -328,12 +325,9 @@
 
 #pragma mark ======= 评论 =======
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
         [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
-        
     } else {
-    
     NSInteger commentRow = self.commentIndexPath.row;
     NewDynamicsLayout *layout = [self.layoutsArr objectAtIndex:commentRow];
     DynamicsModel *model = layout.model;
@@ -349,7 +343,6 @@
                 NewDynamicsLayout *layout = [self.layoutsArr objectAtIndex:commentRow];
                 DynamicsModel *model = layout.model;
                 NSMutableArray *arr = [DynamicsCommentItemModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-                
                 model.optcomment = [arr copy];
                 [layout resetLayout];
                 [self.dynamicsTable reloadRowsAtIndexPaths:@[self.commentIndexPath] withRowAnimation:UITableViewRowAnimationNone];

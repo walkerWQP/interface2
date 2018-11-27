@@ -27,6 +27,6 @@
 +(void)logoOut;
 
 //获取key
-+(NSString  *)key;
++(NSString *)key;
 
 @end

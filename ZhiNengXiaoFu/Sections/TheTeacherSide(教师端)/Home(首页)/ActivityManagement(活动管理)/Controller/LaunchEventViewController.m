@@ -300,7 +300,7 @@
     [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (int i = 0; i < self.LQPhotoPicker_bigImageArray.count; i++) {
             UIImage *image = self.LQPhotoPicker_bigImageArray[i];
-            NSData *imageData = UIImageJPEGRepresentation(image,1);
+            NSData  *imageData = UIImageJPEGRepresentation(image,1);
             float length=[imageData length]/1000;
             
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -308,7 +308,7 @@
             NSString *str = [formatter stringFromDate:[NSDate date]];
             NSString *imageFileName = [NSString stringWithFormat:@"%@.jpeg", str];
     
-            if (length>1280) {
+            if (length > 1280) {
                 NSData *fData = UIImageJPEGRepresentation(image, 0.5);
                 [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
             } else {
@@ -420,9 +420,7 @@
 - (void)getClassData {
     NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.jobManagementArr = [TeacherNotifiedModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             NSMutableArray *ary = [@[]mutableCopy];
             for (TeacherNotifiedModel *model in self.jobManagementArr) {

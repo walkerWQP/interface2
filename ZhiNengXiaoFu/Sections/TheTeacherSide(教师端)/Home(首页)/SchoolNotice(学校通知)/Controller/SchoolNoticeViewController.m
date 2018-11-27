@@ -79,7 +79,7 @@
             if (self.bannerArr.count == 0) {
                 self.headImgView.image = [UIImage imageNamed:@"教师端活动管理banner"];
             } else {
-                BannerModel * model = [self.bannerArr objectAtIndex:0];
+                BannerModel *model = [self.bannerArr objectAtIndex:0];
                 [self.headImgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"教师端活动管理banner"]];
                 [self.schoolNoticeCollectionView reloadData];
             }

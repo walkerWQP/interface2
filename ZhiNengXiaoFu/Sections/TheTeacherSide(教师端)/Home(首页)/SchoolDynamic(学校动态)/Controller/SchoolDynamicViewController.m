@@ -73,13 +73,12 @@
     NSDictionary *dic = @{@"key":[UserManager key],@"t_id":@"6"};
     [[HttpRequestManager sharedSingleton] POST:bannersURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-            
             self.bannerArr = [BannerModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             
             if (self.bannerArr.count == 0) {
                 self.headImgView.image = [UIImage imageNamed:@"教师端活动管理banner"];
             } else {
-                BannerModel * model = [self.bannerArr objectAtIndex:0];
+                BannerModel *model = [self.bannerArr objectAtIndex:0];
                 [self.headImgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"教师端活动管理banner"]];
                 [self.schoolDynamicCollectionView reloadData];
             }
@@ -107,7 +106,7 @@
         [self.schoolDynamicCollectionView.mj_footer endRefreshing];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             NSMutableArray *arr = [SchoolDynamicModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-            for (SchoolDynamicModel * model in arr) {
+            for (SchoolDynamicModel *model in arr) {
                 [self.schoolDynamicArr addObject:model];
             }
             if (self.schoolDynamicArr.count == 0) {

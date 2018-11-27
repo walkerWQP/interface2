@@ -59,7 +59,6 @@
 }
 
 - (void)getClassConditionURLData:(NSString *)type {
-    
     NSDictionary *dic = @{@"key":[UserManager key],@"class_id":self.ID,@"type":type};
     [[HttpRequestManager sharedSingleton] POST:classConditionURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
@@ -167,7 +166,6 @@
                 QianDaoViewController *qianDaoVC = [QianDaoViewController new];
                 qianDaoVC.studentId = model.ID;
                 [self.navigationController pushViewController:qianDaoVC animated:YES];
-                
             }
                 break;
             case 3:

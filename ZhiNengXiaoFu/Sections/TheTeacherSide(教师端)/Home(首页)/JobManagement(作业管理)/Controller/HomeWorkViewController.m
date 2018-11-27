@@ -89,11 +89,10 @@
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
             self.bannerArr = [BannerModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
-           
             if (self.bannerArr.count == 0) {
                 self.headImgView.image = [UIImage imageNamed:@"教师端活动管理banner"];
             } else {
-                BannerModel * model = [self.bannerArr objectAtIndex:0];
+                BannerModel *model = [self.bannerArr objectAtIndex:0];
                 [self.headImgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"教师端活动管理banner"]];
                 [self.homeWorkTableView reloadData];
             }
@@ -199,16 +198,14 @@
             [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
         } else {
             //先删数据 再删UI
-            HomeWorkModel * model = [self.homeWorkArr objectAtIndex:indexPath.row];
+            HomeWorkModel *model = [self.homeWorkArr objectAtIndex:indexPath.row];
             [self WorkDeleteHomeWorkData:model.ID];
             [self.homeWorkArr removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
-       
     }];
     return @[deleteAction];
 }
-
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

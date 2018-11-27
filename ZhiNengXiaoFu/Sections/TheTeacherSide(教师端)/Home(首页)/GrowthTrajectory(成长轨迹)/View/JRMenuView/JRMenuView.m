@@ -49,7 +49,7 @@
     }
     for (int i = 0; i < array.count; i++) {
         //添加按钮
-        UIButton * itemBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        UIButton *itemBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         itemBtn.tag = 80000 + i;
         [itemBtn setTitle:nameArray[i] forState:UIControlStateNormal];
         [itemBtn setTintColor:[UIColor whiteColor]];
@@ -63,7 +63,7 @@
         
         //设置分割线
         if (i < array.count - 1) {
-            UIView * dividingLine = [[UIView alloc] initWithFrame:CGRectMake(jrMenuWidth - 0.5, JRMenuHeight/4, 1, JRMenuHeight/2)];
+            UIView *dividingLine = [[UIView alloc] initWithFrame:CGRectMake(jrMenuWidth - 0.5, JRMenuHeight/4, 1, JRMenuHeight/2)];
             dividingLine.backgroundColor = [UIColor lightGrayColor];
             [self addSubview:dividingLine];
         }

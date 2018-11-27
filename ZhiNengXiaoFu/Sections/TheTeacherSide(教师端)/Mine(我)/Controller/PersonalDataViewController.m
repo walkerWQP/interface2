@@ -45,7 +45,7 @@
 }
 
 - (void)setUser {
-    NSDictionary * dic = @{@"key":[UserManager key]};
+    NSDictionary *dic = @{@"key":[UserManager key]};
     [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         self.personInfo = [PersonInformationModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
         [self.personalDataTableView reloadData];
@@ -86,7 +86,7 @@
     if (section == 0) {
         return nil;
     } else {
-        UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 10)];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 10)];
         headerView.backgroundColor = backColor;
         return headerView;
     }
@@ -99,7 +99,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            PersonIconCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PersonIconCellId" forIndexPath:indexPath];
+            PersonIconCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonIconCellId" forIndexPath:indexPath];
             cell.nameLabel.text = @"头像";
             cell.selectionStyle =  UITableViewCellSelectionStyleNone;
             if (self.personInfo.head_img == nil) {
@@ -109,7 +109,7 @@
             }
             return cell;
         }  else {
-            PersonInfomationCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PersonInfomationCellId" forIndexPath:indexPath];
+            PersonInfomationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonInfomationCellId" forIndexPath:indexPath];
             if (self.nameArr.count != 0) {
                 cell.nameLabel.text = [self.nameArr objectAtIndex:indexPath.row];
             }

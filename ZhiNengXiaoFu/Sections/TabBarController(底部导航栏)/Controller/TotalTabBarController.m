@@ -31,46 +31,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] isEqualToString:@"2"]) {
         [[UITabBar appearance] setTintColor:THEMECOLOR];
-
     } else {
         [[UITabBar appearance] setTintColor:THEMECOLOR];
-
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTabBarThree:) name:@"changeTabBarThree" object:nil];
-    
+    [[UITabBar appearance] setTintColor:tabBarColor];
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] isEqualToString:@"2"]) {
         
-        [[UITabBar appearance] setTintColor:tabBarColor];
-        
         [self setupChildViewController:@"首页" viewController:[HomeTViewController new] image:@"首页图标" selectedImage:@"首页图标拷贝"];
-        
         [self setupChildViewController:@"班级信息" viewController:[TheClassInformationViewController new] image:@"班级管理" selectedImage:@"班级管理1"];
-        
         [self setupChildViewController:@"到校情况" viewController:[SignClassViewController new] image:@"到校情况2" selectedImage:@"到校情况"];
-        
         [self setupChildViewController:@"我的" viewController:[MyViewController new] image:@"我的拷贝" selectedImage:@"我的"];
         
     } else {
 
         [self setupChildViewController:@"首页" viewController:[HomePageJViewController new] image:@"首页未选" selectedImage:@"首页选中"];
-
         [self setupChildViewController:@"班级信息" viewController:[TheClassInformationViewController new] image:@"班级未选" selectedImage:@"班级选中"];
-
         [self setupChildViewController:@"进出安全" viewController:[QianDaoViewController new] image:@"进出未选" selectedImage:@"进出选中"];
-
         [self setupChildViewController:@"我的" viewController:[MineViewController new] image:@"我的未选" selectedImage:@"我的选中"];
+        
     }
 
 }
 
 - (void)changeTabBarThree:(NSNotification *)notify {
     self.selectedViewController = [self.viewControllers objectAtIndex:2];
-    UINavigationController* nav= (UINavigationController*)self.viewControllers[2];
-    
+    UINavigationController *nav= (UINavigationController*)self.viewControllers[2];
     [nav popToRootViewControllerAnimated:NO];
 }
 

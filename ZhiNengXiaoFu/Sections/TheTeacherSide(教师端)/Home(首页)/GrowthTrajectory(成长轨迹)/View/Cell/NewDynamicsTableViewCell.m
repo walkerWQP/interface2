@@ -115,13 +115,13 @@
     UIView * lastView = _bgImgView;
     
     if (_likeArray.count != 0) {
-        _thumbLabel.hidden = NO;
-        _thumbLabel.top = 10;
-        _thumbLabel.left = kDynamicsNameDetailPadding;
-        _thumbLabel.width = self.frame.size.width - kDynamicsNameDetailPadding*2;
-        _thumbLabel.height = _layout.thumbLayout.textBoundingSize.height;
+        _thumbLabel.hidden     = NO;
+        _thumbLabel.top        = 10;
+        _thumbLabel.left       = kDynamicsNameDetailPadding;
+        _thumbLabel.width      = self.frame.size.width - kDynamicsNameDetailPadding*2;
+        _thumbLabel.height     = _layout.thumbLayout.textBoundingSize.height;
         _thumbLabel.textLayout = _layout.thumbLayout;
-        lastView = _thumbLabel;
+        lastView               = _thumbLabel;
     } else {
         _thumbLabel.hidden = YES;
     }
@@ -159,13 +159,13 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    YYTextLayout * layout = self.commentArray[indexPath.row];
+    YYTextLayout *layout = self.commentArray[indexPath.row];
     return layout.textBoundingSize.height + kDynamicsGrayPicPadding*2;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell * cell;//这里不使用重用机制(会出现评论窜位bug)
+    UITableViewCell *cell;//这里不使用重用机制(会出现评论窜位bug)
     YYTextLayout * layout = self.commentArray[indexPath.row];
     YYLabel * label;
     if (!cell) {
@@ -267,9 +267,9 @@
 }
 
 - (void)setLayout:(NewDynamicsLayout *)layout {
-    UIView * lastView;
+    UIView *lastView;
     _layout = layout;
-    DynamicsModel * model = layout.model;
+    DynamicsModel *model = layout.model;
     //头像
     _portrait.left = kDynamicsNormalPadding;
     _portrait.top = kDynamicsNormalPadding;
@@ -371,7 +371,6 @@
         _thumbCommentView.hidden = YES;
     }
     
-    
     //分割线
     _dividingLine.left   = 15;
     _dividingLine.height = .5;
@@ -428,7 +427,7 @@
 
 #pragma mark - 点击JRMenu上的Btn
 - (void)hasSelectedJRMenuIndex:(NSInteger)jrMenuIndex {
-    DynamicsModel * model = _layout.model;
+    DynamicsModel *model = _layout.model;
     if (jrMenuIndex == 0) {
         if (!model.isThumb) {
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(DidClickThunmbInDynamicsCell:)]) {
@@ -456,7 +455,7 @@
 //        _portrait.layer.cornerRadius  = 20;
         _portrait.backgroundColor = RGB(67, 74, 94);
         WS(weakSelf);
-        UITapGestureRecognizer * tapGR = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+        UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
             if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUser:)]) {
                 NSString *idStr = [NSString stringWithFormat:@"%ld",weakSelf.layout.model.album_id];
                 [weakSelf.delegate DynamicsCell:weakSelf didClickUser:idStr];
@@ -474,7 +473,7 @@
         _nameLabel.font = [UIFont systemFontOfSize:15];
         _nameLabel.textColor = [UIColor colorWithRed:74/255.0 green:90/255.0 blue:133/255.0 alpha:1];
         WS(weakSelf);
-        UITapGestureRecognizer * tapGR = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+        UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
             if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(DynamicsCell:didClickUser:)]) {
                 NSString *IDStr = [NSString stringWithFormat:@"%ld",weakSelf.layout.model.album_id];
                 [weakSelf.delegate DynamicsCell:weakSelf didClickUser:IDStr];
@@ -497,7 +496,6 @@
     }
     return _detailLabel;
 }
-
 
 - (UIButton *)moreLessDetailBtn {
     if (!_moreLessDetailBtn) {

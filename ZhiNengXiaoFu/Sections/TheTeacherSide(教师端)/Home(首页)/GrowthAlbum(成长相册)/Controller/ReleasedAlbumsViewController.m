@@ -128,11 +128,11 @@
 - (void)setShangChuanTupian {
     
     [self LQPhotoPicker_getBigImageDataArray];
-    NSDictionary * params = @{@"key":[UserManager key],@"upload_type":@"img", @"upload_img_type":@"album"};
+    NSDictionary *params = @{@"key":[UserManager key],@"upload_type":@"img", @"upload_img_type":@"album"};
     [WProgressHUD showHUDShowText:@"加载中..."];
     [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (int i = 0; i < self.LQPhotoPicker_bigImageArray.count; i++) {
-            UIImage * image = self.LQPhotoPicker_bigImageArray[i];
+            UIImage *image = self.LQPhotoPicker_bigImageArray[i];
             NSData *imageData = UIImageJPEGRepresentation(image,1);
             float length=[imageData length]/1000;
             
@@ -141,13 +141,12 @@
             NSString *str = [formatter stringFromDate:[NSDate date]];
             NSString *imageFileName = [NSString stringWithFormat:@"%@.jpeg", str];
             
-            if (length>1280) {
+            if (length > 1280) {
                 NSData *fData = UIImageJPEGRepresentation(image, 0.5);
                 [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
             } else {
                 [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file[%d]",i] fileName:imageFileName mimeType:@"image/jpeg"];
             }
-            
         }
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
