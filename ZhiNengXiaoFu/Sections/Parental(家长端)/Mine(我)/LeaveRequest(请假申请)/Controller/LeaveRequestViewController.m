@@ -136,9 +136,9 @@
     _pikerView.delegate = self;
     _pikerView.type = type;
     // 今天开始往后的日期
-    [_pikerView.datePickerView setMinimumDate:[NSDate date]];
+//    [_pikerView.datePickerView setMinimumDate:[NSDate date]];
     // 在今天之前的日期
-    //    [_pikerView.datePickerView setMaximumDate:[NSDate date]];
+    [_pikerView.datePickerView setMaximumDate:[NSDate date]];
     [self.view addSubview:_pikerView];
     
 }

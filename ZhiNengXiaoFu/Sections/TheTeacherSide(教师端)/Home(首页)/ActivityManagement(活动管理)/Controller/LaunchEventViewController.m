@@ -9,7 +9,7 @@
 #import "LaunchEventViewController.h"
 #import "TeacherNotifiedModel.h"
 #import <Photos/Photos.h>
-@interface LaunchEventViewController ()<UITextFieldDelegate,HZQDatePickerViewDelegate,LQPhotoPickerViewDelegate,PickerViewResultDelegate,UIScrollViewDelegate>
+@interface LaunchEventViewController ()<UITextFieldDelegate,HZQDatePickerViewDelegate,LQPhotoPickerViewDelegate,PickerViewResultDelegate,UIScrollViewDelegate,STPickerDateDelegate>
 {
     HZQDatePickerView *_pikerView;
 }
@@ -23,6 +23,8 @@
 @property (nonatomic, strong) UILabel          *changeLabel;
 @property (nonatomic, strong) UIButton         *beginTimeBtn;
 @property (nonatomic, strong) UIButton         *endTimeBtn;
+@property (nonatomic, strong) STPickerDate     *beginDatePicker;
+@property (nonatomic, strong) STPickerDate     *endDatePicker;
 //班级
 @property (nonatomic, strong) UILabel          *classLabel;
 @property (nonatomic, strong) UIButton         *classBtn;
@@ -39,6 +41,7 @@
 @property (nonatomic, strong) NSMutableArray   *imgFiledArr;
 @property (nonatomic, strong) NSString         *ID;
 @property (nonatomic, assign) NSInteger        timeID;
+@property (nonatomic, assign) NSInteger        typeID;
 
 @end
 
@@ -390,18 +393,40 @@
 
 - (void)endTimeBtnBtn : (UIButton *)sender {
     NSLog(@"点击结束时间");
+    
     [self.view endEditing:YES];
-    self.timeID = 0;
-    [self setupDateView:DateTypeOfEnd];
+//    self.timeID = 0;
+//    [self setupDateView:DateTypeOfEnd];
+    self.typeID = 1;
+    self.endDatePicker = [[STPickerDate alloc]initWithDelegate:self];
+    [self.beginDatePicker show];
 }
 
 - (void)beginTimeBtn : (UIButton *)sender {
     NSLog(@"点击开始时间");
-    [self.view endEditing:YES];
-    self.timeID = 0;
-    [self setupDateView:DateTypeOfStart];
-    [self.endTimeBtn setTitle:@"结束时间" forState:UIControlStateNormal];
+    
+//    [self.view endEditing:YES];
+//    self.timeID = 0;
+//    [self setupDateView:DateTypeOfStart];
+//    [self.endTimeBtn setTitle:@"结束时间" forState:UIControlStateNormal];
+    self.typeID = 0;
+    self.beginDatePicker = [[STPickerDate alloc]initWithDelegate:self];
+    [self.beginDatePicker show];
 }
+
+
+- (void)pickerDate:(STPickerDate *)pickerDate year:(NSInteger)year month:(NSInteger)month day:(NSInteger)day {
+    NSString *text = [NSString stringWithFormat:@"%ld-%ld-%ld", year, month, day];
+    NSLog(@"%ld",self.typeID);
+    if (self.typeID == 0) {
+        [self.beginTimeBtn setTitle:text forState:UIControlStateNormal];
+    }
+    if (self.typeID == 1) {
+        [self.endTimeBtn setTitle:text forState:UIControlStateNormal];
+    }
+
+}
+
 
 -(void)pickerView:(UIView *)pickerView result:(NSString *)string index:(NSInteger)index {
     [self.classBtn setTitle:string forState:UIControlStateNormal];
@@ -475,7 +500,7 @@
     // 今天开始往后的日期
     [_pikerView.datePickerView setMinimumDate:[NSDate date]];
     // 在今天之前的日期
-    //    [_pikerView.datePickerView setMaximumDate:[NSDate date]];
+//        [_pikerView.datePickerView setMaximumDate:[NSDate date]];
     [self.view addSubview:_pikerView];
     
 }

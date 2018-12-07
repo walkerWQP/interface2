@@ -25,6 +25,7 @@
 #import "NewDynamicsViewController.h"
 #import "InformationCollectionController.h"
 #import "PublishJobModel.h"
+#import "ManagementViewController.h"
 
 @interface MyViewController ()<UIAlertViewDelegate>
 
@@ -40,6 +41,7 @@
 @property (nonatomic, strong) NSMutableArray         *titleAry;
 @property (nonatomic, strong)  UIView                *bottom;
 @property (nonatomic, strong) NSMutableArray         *publishJobArr;
+@property (nonatomic, strong) PersonInformationModel *personInfoModel;
 
 @end
 
@@ -115,6 +117,11 @@
     self.touxiangIcon.image = [UIImage imageNamed:@"头像"];
     [self.view addSubview:self.touxiangIcon];
     
+    UIButton *headBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 62, APP_NAVH + 9, 124, 124)];
+    headBtn.backgroundColor = [UIColor clearColor];
+    [headBtn addTarget:self action:@selector(headBtnSelector:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:headBtn];
+    
     self.iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 50, 12 + APP_NAVH + 9, 100, 100)];
     self.iconImg.layer.cornerRadius = 50;
     self.iconImg.layer.masksToBounds = YES;
@@ -126,18 +133,19 @@
     self.nameLabel.font = [UIFont systemFontOfSize:16];
     [self.view addSubview:self.nameLabel];
     
-    self.bottom = [[UIView alloc] initWithFrame:CGRectMake(0, whiteImg.frame.origin.y + whiteImg.frame.size.height + 10, kScreenWidth, 249)];
+    self.bottom = [[UIView alloc] initWithFrame:CGRectMake(0, whiteImg.frame.origin.y + whiteImg.frame.size.height + 10, kScreenWidth, 332)];
     self.bottom.userInteractionEnabled = YES;
     [self.view addSubview:self.bottom];
     
     NSInteger width = (kScreenWidth - 60) / 3;
-    UIView *hengOneView = [[UIView alloc] initWithFrame:CGRectMake(30 + width, 0, 1, 248)];
+    UIView *hengOneView = [[UIView alloc] initWithFrame:CGRectMake(30 + width, 0, 1, 331)];
     hengOneView.backgroundColor = RGBA(186, 186, 186, 0.2);
     [self.bottom addSubview:hengOneView];
     
-    UIView *hengTwoView = [[UIView alloc] initWithFrame:CGRectMake(30 + width * 2, 0, 1, 248)];
+    UIView *hengTwoView = [[UIView alloc] initWithFrame:CGRectMake(30 + width * 2, 0, 1, 331)];
     hengTwoView.backgroundColor = RGBA(186, 186, 186, 0.2);
     [self.bottom addSubview:hengTwoView];
+    
     
     UIView *shuOneView = [[UIView alloc] initWithFrame:CGRectMake(30, 83, self.bottom.frame.size.width - 60, 1)];
     shuOneView.backgroundColor = RGBA(186, 186, 186, 0.2);
@@ -146,9 +154,67 @@
     UIView *shuTwoView = [[UIView alloc] initWithFrame:CGRectMake(30, 83 * 2, self.bottom.frame.size.width- 60, 1)];
     shuTwoView.backgroundColor = RGBA(186, 186, 186, 0.2);
     [self.bottom addSubview:shuTwoView];
+    
+    UIView *shuThreeView = [[UIView alloc] initWithFrame:CGRectMake(30, 83 * 3, self.bottom.frame.size.width- 60, 1)];
+    shuThreeView.backgroundColor = RGBA(186, 186, 186, 0.2);
+    [self.bottom addSubview:shuThreeView];
     self.navigationController.navigationBar.translucent = YES;
 
 }
+
+- (void)headBtnSelector : (UIButton *)sender {
+    NSLog(@"hahha");
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
+        [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
+    } else {
+        self.personInfoModel = [UserManager getUserObject];
+            if (![self.personInfoModel.ID isEqualToString:@""] || self.personInfoModel.school_id != nil) {
+                [TakePhoto sharePictureWith:self andWith:^(UIImage *image) {
+                     NSString *keyDic = [NSString stringWithFormat:@"%ld&%@&%@", self.personInfoModel.school_id, self.personInfoModel.ID, @"duxiukeji2018"];
+                    NSString *signStr = [[SingletonHelper manager] encode:keyDic];
+                    NSDictionary *dic = @{@"sign":signStr};
+                    [WProgressHUD showHUDShowText:@"加载中..."];
+                    [[HttpRequestManager sharedSingleton].sessionManger POST:EditTimgURL parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                        NSData  *imageData = UIImageJPEGRepresentation(image,1);
+                        float length = [imageData length]/1000;
+
+                        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                        formatter.dateFormat = @"yyyyMMddHHmmss";
+                        NSString *str = [formatter stringFromDate:[NSDate date]];
+                        NSString *imageFileName = [NSString stringWithFormat:@"%@.jpeg", str];
+                        if (length > 1280) {
+                            NSData *fData = UIImageJPEGRepresentation(image, 0.5);
+                            [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file"] fileName:imageFileName mimeType:@"image/jpeg"];
+                        } else {
+                            [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file"] fileName:imageFileName mimeType:@"image/jpeg"];
+                        }
+                    } progress:^(NSProgress * _Nonnull uploadProgress) {
+                    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+                        if ([[responseObject objectForKey:@"errcode"] integerValue] == 200) {
+                            [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
+                            [WProgressHUD hideAllHUDAnimated:YES];
+                            [self setUser1];
+                           
+                        } else {
+                            if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
+                                [UserManager logoOut];
+                            } else {
+                            }
+                            [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
+                        }
+
+                    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                        NSLog(@"%@", error);
+                        [WProgressHUD hideAllHUDAnimated:YES];
+                    }];
+                }];
+            }
+        }
+}
+    
+
 
 - (void)setUser {
     NSDictionary *dic = @{@"key":[UserManager key]};
@@ -166,59 +232,101 @@
         self.nameLabel.frame =  CGRectMake(kScreenWidth / 2 - JGlabelContentWidth / 2 ,self.touxiangIcon.frame.size.height + self.touxiangIcon.frame.origin.y + 10, JGlabelContentWidth, 16);
 
         [self.iconImg sd_setImageWithURL:[NSURL URLWithString:self.model.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
-        if (self.model.is_adviser == 1) {
-            if (self.model.dorm_open == 1) {
-                NSMutableArray *imgAry = [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"就寝管理新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新",@"信息采集", nil];
-                NSMutableArray *TitleAry = [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"就寝管理",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈",@"信息管理", nil];
-                for (int i = 0; i < imgAry.count; i++) {
-                    NSString *img  = [imgAry objectAtIndex:i];
-                    NSString *title = [TitleAry objectAtIndex:i];
-                    NSDictionary *dic = @{@"img":img, @"title":title};
-                    [self.myArr  addObject:dic];
+        
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
+            if (self.model.is_adviser == 1) {
+                if (self.model.dorm_open == 1) {
+                    NSMutableArray *imgAry = [NSMutableArray array];
+                    [imgAry removeAllObjects];
+                    imgAry =  [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"就寝管理新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新",@"信息采集", nil];
+                    NSMutableArray *TitleAry = [NSMutableArray array];
+                    [TitleAry removeAllObjects];
+                    TitleAry =  [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"就寝管理",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈",@"信息管理", nil];
+                    for (int i = 0; i < imgAry.count; i++) {
+                        NSString *img  = [imgAry objectAtIndex:i];
+                        NSString *title = [TitleAry objectAtIndex:i];
+                        NSDictionary *dic = @{@"img":img, @"title":title};
+                        [self.myArr  addObject:dic];
+                    }
+                    
+                    NSInteger width = (kScreenWidth - 60) / 3;
+                    for (int i = 0; i < self.myArr .count; i++) {
+                        NSDictionary *dic = [self.myArr  objectAtIndex:i];
+                        UIView * itemView = [[UIView alloc] initWithFrame:CGRectMake(30 + width *  (i %3), 0 + 83 * (i / 3), width, 83)];
+                        [self.bottom addSubview:itemView];
+                        itemView.tag = i;
+                        
+                        UITapGestureRecognizer *itmeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itmeTap:)];
+                        itemView.userInteractionEnabled = YES;
+                        [itemView addGestureRecognizer:itmeTap];
+                        
+                        UIImageView *itemImg = [[UIImageView alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 15, 20, 30, 30)];
+                        itemImg.image = [UIImage imageNamed:[dic objectForKey:@"img"]];
+                        [itemView addSubview:itemImg];
+                        
+                        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 30, itemImg.frame.origin.y + itemImg.frame.size.height + 10, 60, 15)];
+                        nameLabel.textColor = RGB(51, 51, 51);
+                        nameLabel.textAlignment = NSTextAlignmentCenter;
+                        nameLabel.font = [UIFont systemFontOfSize:13];
+                        nameLabel.text = [dic objectForKey:@"title"];
+                        [itemView addSubview:nameLabel];
+                    }
+                } else {
+                    NSMutableArray *imgAry = [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新",@"信息采集", nil];
+                    NSMutableArray *TitleAry = [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈",@"信息管理", nil];
+                    for (int i = 0; i < imgAry.count; i++) {
+                        NSString *img  = [imgAry objectAtIndex:i];
+                        NSString *title = [TitleAry objectAtIndex:i];
+                        NSDictionary *dic = @{@"img":img, @"title":title};
+                        [self.myArr  addObject:dic];
+                    }
+                    
+                    NSInteger width = (kScreenWidth - 60) / 3;
+                    for (int i = 0; i < self.myArr .count; i++) {
+                        NSDictionary *dic = [self.myArr  objectAtIndex:i];
+                        UIView * itemView = [[UIView alloc] initWithFrame:CGRectMake(30 + width *  (i %3), 0 + 83 * (i / 3), width, 83)];
+                        [self.bottom addSubview:itemView];
+                        itemView.tag = i;
+                        
+                        UITapGestureRecognizer *itmeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itmeTap:)];
+                        itemView.userInteractionEnabled = YES;
+                        [itemView addGestureRecognizer:itmeTap];
+                        
+                        UIImageView *itemImg = [[UIImageView alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 15, 20, 30, 30)];
+                        itemImg.image = [UIImage imageNamed:[dic objectForKey:@"img"]];
+                        [itemView addSubview:itemImg];
+                        
+                        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 30, itemImg.frame.origin.y + itemImg.frame.size.height + 10, 60, 15)];
+                        nameLabel.textColor = RGB(51, 51, 51);
+                        nameLabel.textAlignment = NSTextAlignmentCenter;
+                        nameLabel.font = [UIFont systemFontOfSize:13];
+                        nameLabel.text = [dic objectForKey:@"title"];
+                        [itemView addSubview:nameLabel];
+                    }
                 }
                 
-                NSInteger width = (kScreenWidth - 60) / 3;
-                for (int i = 0; i < self.myArr .count; i++) {
-                    NSDictionary *dic = [self.myArr  objectAtIndex:i];
-                    UIView * itemView = [[UIView alloc] initWithFrame:CGRectMake(30 + width *  (i %3), 0 + 83 * (i / 3), width, 83)];
-                    [self.bottom addSubview:itemView];
-                    itemView.tag = i;
-                    
-                    UITapGestureRecognizer *itmeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itmeTap:)];
-                    itemView.userInteractionEnabled = YES;
-                    [itemView addGestureRecognizer:itmeTap];
-                    
-                    UIImageView *itemImg = [[UIImageView alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 15, 20, 30, 30)];
-                    itemImg.image = [UIImage imageNamed:[dic objectForKey:@"img"]];
-                    [itemView addSubview:itemImg];
-                    
-                    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 30, itemImg.frame.origin.y + itemImg.frame.size.height + 10, 60, 15)];
-                    nameLabel.textColor = RGB(51, 51, 51);
-                    nameLabel.textAlignment = NSTextAlignmentCenter;
-                    nameLabel.font = [UIFont systemFontOfSize:13];
-                    nameLabel.text = [dic objectForKey:@"title"];
-                    [itemView addSubview:nameLabel];
-                }
             } else {
-                NSMutableArray *imgAry = [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新",@"信息采集", nil];
-                NSMutableArray *TitleAry = [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈",@"信息管理", nil];
+                NSMutableArray *imgAry = [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新", nil];
+                NSMutableArray *TitleAry = [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈", nil];
+                
                 for (int i = 0; i < imgAry.count; i++) {
                     NSString *img  = [imgAry objectAtIndex:i];
                     NSString *title = [TitleAry objectAtIndex:i];
-                    NSDictionary *dic = @{@"img":img, @"title":title};
+                    NSDictionary * dic = @{@"img":img, @"title":title};
                     [self.myArr  addObject:dic];
                 }
                 
                 NSInteger width = (kScreenWidth - 60) / 3;
                 for (int i = 0; i < self.myArr .count; i++) {
                     NSDictionary *dic = [self.myArr  objectAtIndex:i];
-                    UIView * itemView = [[UIView alloc] initWithFrame:CGRectMake(30 + width *  (i %3), 0 + 83 * (i / 3), width, 83)];
+                    UIView *itemView = [[UIView alloc] initWithFrame:CGRectMake(30 + width *  (i % 3), 0 + 83 * (i / 3), width, 83)];
                     [self.bottom addSubview:itemView];
+                    
                     itemView.tag = i;
                     
-                    UITapGestureRecognizer *itmeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itmeTap:)];
+                    UITapGestureRecognizer *itmeTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itmeTap1:)];
                     itemView.userInteractionEnabled = YES;
-                    [itemView addGestureRecognizer:itmeTap];
+                    [itemView addGestureRecognizer:itmeTap1];
                     
                     UIImageView *itemImg = [[UIImageView alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 15, 20, 30, 30)];
                     itemImg.image = [UIImage imageNamed:[dic objectForKey:@"img"]];
@@ -226,47 +334,120 @@
                     
                     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 30, itemImg.frame.origin.y + itemImg.frame.size.height + 10, 60, 15)];
                     nameLabel.textColor = RGB(51, 51, 51);
-                    nameLabel.textAlignment = NSTextAlignmentCenter;
                     nameLabel.font = [UIFont systemFontOfSize:13];
+                    nameLabel.textAlignment = NSTextAlignmentCenter;
+                    
                     nameLabel.text = [dic objectForKey:@"title"];
                     [itemView addSubview:nameLabel];
                 }
             }
-            
         } else {
-            NSMutableArray *imgAry = [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新", nil];
-            NSMutableArray *TitleAry = [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈", nil];
-            
-            for (int i = 0; i < imgAry.count; i++) {
-                NSString *img  = [imgAry objectAtIndex:i];
-                NSString *title = [TitleAry objectAtIndex:i];
-                NSDictionary * dic = @{@"img":img, @"title":title};
-                [self.myArr  addObject:dic];
-            }
-            
-            NSInteger width = (kScreenWidth - 60) / 3;
-            for (int i = 0; i < self.myArr .count; i++) {
-                NSDictionary *dic = [self.myArr  objectAtIndex:i];
-                UIView *itemView = [[UIView alloc] initWithFrame:CGRectMake(30 + width *  (i % 3), 0 + 83 * (i / 3), width, 83)];
-                [self.bottom addSubview:itemView];
+            if (self.model.is_adviser == 1) {
+                if (self.model.dorm_open == 1) {
+                    NSMutableArray *imgAry = [NSMutableArray array];
+                    [imgAry removeAllObjects];
+                    imgAry =  [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"就寝管理新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新",@"信息采集",@"视频管理", nil];
+                    NSMutableArray *TitleAry = [NSMutableArray array];
+                    [TitleAry removeAllObjects];
+                    TitleAry =  [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"就寝管理",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈",@"信息管理",@"视频管理", nil];
+                    for (int i = 0; i < imgAry.count; i++) {
+                        NSString *img  = [imgAry objectAtIndex:i];
+                        NSString *title = [TitleAry objectAtIndex:i];
+                        NSDictionary *dic = @{@"img":img, @"title":title};
+                        [self.myArr  addObject:dic];
+                    }
+                    
+                    NSInteger width = (kScreenWidth - 60) / 3;
+                    for (int i = 0; i < self.myArr .count; i++) {
+                        NSDictionary *dic = [self.myArr  objectAtIndex:i];
+                        UIView * itemView = [[UIView alloc] initWithFrame:CGRectMake(30 + width *  (i %3), 0 + 83 * (i / 3), width, 83)];
+                        [self.bottom addSubview:itemView];
+                        itemView.tag = i;
+                        
+                        UITapGestureRecognizer *itmeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itmeTap:)];
+                        itemView.userInteractionEnabled = YES;
+                        [itemView addGestureRecognizer:itmeTap];
+                        
+                        UIImageView *itemImg = [[UIImageView alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 15, 20, 30, 30)];
+                        itemImg.image = [UIImage imageNamed:[dic objectForKey:@"img"]];
+                        [itemView addSubview:itemImg];
+                        
+                        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 30, itemImg.frame.origin.y + itemImg.frame.size.height + 10, 60, 15)];
+                        nameLabel.textColor = RGB(51, 51, 51);
+                        nameLabel.textAlignment = NSTextAlignmentCenter;
+                        nameLabel.font = [UIFont systemFontOfSize:13];
+                        nameLabel.text = [dic objectForKey:@"title"];
+                        [itemView addSubview:nameLabel];
+                    }
+                } else {
+                    NSMutableArray *imgAry = [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新",@"信息采集",@"视频管理", nil];
+                    NSMutableArray *TitleAry = [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈",@"信息管理",@"视频管理", nil];
+                    for (int i = 0; i < imgAry.count; i++) {
+                        NSString *img  = [imgAry objectAtIndex:i];
+                        NSString *title = [TitleAry objectAtIndex:i];
+                        NSDictionary *dic = @{@"img":img, @"title":title};
+                        [self.myArr  addObject:dic];
+                    }
+                    
+                    NSInteger width = (kScreenWidth - 60) / 3;
+                    for (int i = 0; i < self.myArr .count; i++) {
+                        NSDictionary *dic = [self.myArr  objectAtIndex:i];
+                        UIView * itemView = [[UIView alloc] initWithFrame:CGRectMake(30 + width *  (i %3), 0 + 83 * (i / 3), width, 83)];
+                        [self.bottom addSubview:itemView];
+                        itemView.tag = i;
+                        
+                        UITapGestureRecognizer *itmeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itmeTap:)];
+                        itemView.userInteractionEnabled = YES;
+                        [itemView addGestureRecognizer:itmeTap];
+                        
+                        UIImageView *itemImg = [[UIImageView alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 15, 20, 30, 30)];
+                        itemImg.image = [UIImage imageNamed:[dic objectForKey:@"img"]];
+                        [itemView addSubview:itemImg];
+                        
+                        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 30, itemImg.frame.origin.y + itemImg.frame.size.height + 10, 60, 15)];
+                        nameLabel.textColor = RGB(51, 51, 51);
+                        nameLabel.textAlignment = NSTextAlignmentCenter;
+                        nameLabel.font = [UIFont systemFontOfSize:13];
+                        nameLabel.text = [dic objectForKey:@"title"];
+                        [itemView addSubview:nameLabel];
+                    }
+                }
                 
-                itemView.tag = i;
-            
-                UITapGestureRecognizer *itmeTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itmeTap1:)];
-                itemView.userInteractionEnabled = YES;
-                [itemView addGestureRecognizer:itmeTap1];
+            } else {
+                NSMutableArray *imgAry = [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新",@"视频管理", nil];
+                NSMutableArray *TitleAry = [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈",@"视频管理", nil];
                 
-                UIImageView *itemImg = [[UIImageView alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 15, 20, 30, 30)];
-                itemImg.image = [UIImage imageNamed:[dic objectForKey:@"img"]];
-                [itemView addSubview:itemImg];
+                for (int i = 0; i < imgAry.count; i++) {
+                    NSString *img  = [imgAry objectAtIndex:i];
+                    NSString *title = [TitleAry objectAtIndex:i];
+                    NSDictionary * dic = @{@"img":img, @"title":title};
+                    [self.myArr  addObject:dic];
+                }
                 
-                UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 30, itemImg.frame.origin.y + itemImg.frame.size.height + 10, 60, 15)];
-                nameLabel.textColor = RGB(51, 51, 51);
-                nameLabel.font = [UIFont systemFontOfSize:13];
-                nameLabel.textAlignment = NSTextAlignmentCenter;
-
-                nameLabel.text = [dic objectForKey:@"title"];
-                [itemView addSubview:nameLabel];
+                NSInteger width = (kScreenWidth - 60) / 3;
+                for (int i = 0; i < self.myArr .count; i++) {
+                    NSDictionary *dic = [self.myArr  objectAtIndex:i];
+                    UIView *itemView = [[UIView alloc] initWithFrame:CGRectMake(30 + width *  (i % 3), 0 + 83 * (i / 3), width, 83)];
+                    [self.bottom addSubview:itemView];
+                    
+                    itemView.tag = i;
+                    
+                    UITapGestureRecognizer *itmeTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itmeTap1:)];
+                    itemView.userInteractionEnabled = YES;
+                    [itemView addGestureRecognizer:itmeTap1];
+                    
+                    UIImageView *itemImg = [[UIImageView alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 15, 20, 30, 30)];
+                    itemImg.image = [UIImage imageNamed:[dic objectForKey:@"img"]];
+                    [itemView addSubview:itemImg];
+                    
+                    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemView.frame.size.width / 2 - 30, itemImg.frame.origin.y + itemImg.frame.size.height + 10, 60, 15)];
+                    nameLabel.textColor = RGB(51, 51, 51);
+                    nameLabel.font = [UIFont systemFontOfSize:13];
+                    nameLabel.textAlignment = NSTextAlignmentCenter;
+                    
+                    nameLabel.text = [dic objectForKey:@"title"];
+                    [itemView addSubview:nameLabel];
+                }
             }
         }
         
@@ -274,6 +455,31 @@
         NSLog(@"%@", error);
     }];
 }
+
+
+- (void)setUser1 {
+    NSDictionary *dic = @{@"key":[UserManager key]};
+    [WProgressHUD showHUDShowText:@"加载中..."];
+    [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        [WProgressHUD hideAllHUDAnimated:YES];
+        self.model = [PersonInformationModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
+        self.nameLabel.text = self.model.name;
+        CGSize size = [self.nameLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.nameLabel.font,NSFontAttributeName,nil]];
+        CGFloat JGlabelContentWidth = size.width;
+        // 如果label的内容的宽度度超过150，则label的宽度就设置为150，即label的最大宽度为150
+        if (JGlabelContentWidth >= 230) {
+            JGlabelContentWidth = 230;
+        }
+        self.nameLabel.frame =  CGRectMake(kScreenWidth / 2 - JGlabelContentWidth / 2 ,self.touxiangIcon.frame.size.height + self.touxiangIcon.frame.origin.y + 10, JGlabelContentWidth, 16);
+        NSLog(@"%@",self.model.head_img);
+        [self.iconImg sd_setImageWithURL:[NSURL URLWithString:self.model.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
+
+
 
 
 
@@ -371,6 +577,14 @@
             
         }
             break;
+        case 9:
+        {
+            NSLog(@"视频管理");
+            ManagementViewController *managementVC = [ManagementViewController new];
+            [self.navigationController pushViewController:managementVC animated:YES];
+            
+        }
+            break;
        
         default:
             break;
@@ -454,6 +668,14 @@
         {
             NSLog(@"信息管理");
             [self getClassURLData];
+            
+        }
+            break;
+        case 8:
+        {
+            NSLog(@"视频管理");
+            ManagementViewController *managementVC = [ManagementViewController new];
+            [self.navigationController pushViewController:managementVC animated:YES];
             
         }
             break;

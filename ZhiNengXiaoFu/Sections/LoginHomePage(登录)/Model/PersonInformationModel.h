@@ -46,6 +46,7 @@
 @property (nonatomic, assign) NSInteger      dorm_open;
 //key
 @property (nonatomic, copy) NSString         *key;
-
+//学校是否开启定位服务0否1是
+@property (nonatomic, assign) NSInteger      location_open;
 
 @end

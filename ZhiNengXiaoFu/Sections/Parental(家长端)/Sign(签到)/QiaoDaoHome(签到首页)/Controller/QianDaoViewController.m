@@ -12,6 +12,7 @@
 #import "DingWeiViewController.h"
 #import "QianDaoModel.h"
 #import "QianDaoInModel.h"
+#import "PersonInformationModel.h"
 
 @interface QianDaoViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) QianDaoModel   *qianDaoModel;
 @property (nonatomic, strong) UIImageView    *close;
 @property (nonatomic, strong) UIImageView    *zanwushuju;
+@property (nonatomic, strong) PersonInformationModel *personModel;
 
 @end
 
@@ -37,12 +39,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"进出安全";
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] isEqualToString:@"2"]) {
-
+    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"location_openStr"]);
+    //游客登陆判断
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
+        
     } else {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dingwei"] style:UIBarButtonItemStyleDone target:self action:@selector(dingweiClick:)];
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] isEqualToString:@"2"] && [[[NSUserDefaults standardUserDefaults] objectForKey:@"location_openStr"] isEqualToString:@"0"]) {
+            
+        } else {
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dingwei"] style:UIBarButtonItemStyleDone target:self action:@selector(dingweiClick:)];
+            self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+        }
     }
+    
+    
     
     [self.view addSubview:self.QianDaoTableView];
         
@@ -54,6 +64,8 @@
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
     [self.QianDaoTableView addSubview:self.zanwushuju];
+    
+    
    
 }
 

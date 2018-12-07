@@ -52,7 +52,9 @@
     self.problemLabel.text = self.nameStr;
     [self.bgView addSubview:self.problemLabel];
     
-    self.problemContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10 + self.headImgView.frame.size.height, self.bgView.frame.size.width - 20, 30)];
+    self.problemContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10 + self.headImgView.frame.size.height, self.bgView.frame.size.width - 20, 60)];
+    self.problemContentLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.problemContentLabel.numberOfLines = 0;
     self.problemContentLabel.textColor = titlColor;
     self.problemContentLabel.font = titFont;
     self.problemContentLabel.text = self.problemStr;

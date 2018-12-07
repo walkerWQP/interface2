@@ -32,6 +32,7 @@
 #import "JingJiActivityDetailsViewController.h"
 #import "SchoolDongTaiDetailsViewController.h"
 #import <JPUSHService.h>
+#import "HomePageNumberModel.h"
 
 @interface HomeTViewController ()<NewPagedFlowViewDelegate, UITableViewDelegate, UITableViewDataSource, HomePageJingJiViewDelegate,DCCycleScrollViewDelegate>
 
@@ -53,10 +54,18 @@
 @property (nonatomic, strong) HomePageTongZhiView *ccspView;
 @property (nonatomic, strong) UIImageView         *tongZhiImg;
 @property (nonatomic, strong) UIView              *FiveView;
+@property (nonatomic, strong) NSMutableArray      *numberAry;
 
 @end
 
 @implementation HomeTViewController
+
+- (NSMutableArray *)numberAry {
+    if (!_numberAry) {
+        self.numberAry = [@[]mutableCopy];
+    }
+    return _numberAry;
+}
 
 - (NSMutableArray *)activityArr {
     if (!_activityArr) {
@@ -198,6 +207,54 @@
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"%@", error);
         }];
+    }];
+}
+
+- (void)huoQuNumber {
+    
+    NSDictionary * dic = @{@"key":[UserManager key]};
+    [[HttpRequestManager sharedSingleton] POST:UserGetUnreadNumber parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        HomePageNumberModel * model = [HomePageNumberModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
+        NSString * activity = [[NSString alloc] init];
+        if (model.activity > 9) {
+            activity = @"9+";
+        } else {
+            activity = [NSString stringWithFormat:@"%ld", model.activity];
+        }
+        
+        NSString * consult = [[NSString alloc] init];
+        if (model.consult > 9) {
+            consult = @"9+";
+        } else {
+            consult = [NSString stringWithFormat:@"%ld", model.consult];
+        }
+        
+        NSString * dynamic = [[NSString alloc] init];
+        if (model.dynamic > 9) {
+            dynamic = @"9+";
+        } else {
+            dynamic = [NSString stringWithFormat:@"%ld", model.dynamic];
+        }
+        
+        NSString * leave = [[NSString alloc] init];
+        if (model.leave > 9) {
+            leave = @"9+";
+        } else {
+            leave = [NSString stringWithFormat:@"%ld", model.leave];
+        }
+        NSString * notice_s = [[NSString alloc] init];
+        if (model.notice_s > 9) {
+            notice_s = @"9+";
+        } else {
+            notice_s = [NSString stringWithFormat:@"%ld", model.notice_s];
+        }
+        
+        self.numberAry = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",activity,consult,notice_s,dynamic,leave,@"0" ,nil];
+        
+        [self.HomePageJTabelView reloadData];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", error);
+        
     }];
 }
 

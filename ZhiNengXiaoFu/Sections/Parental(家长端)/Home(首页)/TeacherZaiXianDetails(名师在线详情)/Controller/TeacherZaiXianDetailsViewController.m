@@ -20,6 +20,8 @@
 @property (nonatomic,weak) CLPlayerView                 *playerView;
 @property (nonatomic,strong) JohnTopTitleView           *titleView;
 @property (nonatomic,strong) TeacherZaiXianDetailsModel * teacherZaiXianDetailsModel;
+@property (nonatomic, strong) UIView                    *contentView;
+
 @end
 
 @implementation TeacherZaiXianDetailsViewController
@@ -79,7 +81,8 @@
     [[HttpRequestManager sharedSingleton] POST:indexOnlineVideoById parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         self.teacherZaiXianDetailsModel = [TeacherZaiXianDetailsModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
         self.title = self.teacherZaiXianDetailsModel.title;
-        [self createUI];
+//        [self createUI];
+        [self makeContentViewUI];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200 ) {
             if ([self.teacherZaiXianDetailsModel.video_url isEqualToString:@""]) {
                 UIImageView * back = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 200)];
@@ -168,6 +171,65 @@
 }
 
 
+- (void)makeContentViewUI {
+    self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, self.view.frame.size.height)];
+    self.contentView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.contentView];
+    
+    UIImageView *headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 50, 50)];
+    headImgView.layer.masksToBounds = YES;
+    headImgView.layer.cornerRadius  = 25;
+    [headImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.teacherZaiXianDetailsModel.head_img]] placeholderImage:[UIImage imageNamed:@"user"]];
+    [self.contentView addSubview:headImgView];
+    
+    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(30 + headImgView.frame.size.width, 25, 90, 20)];
+    nameLabel.textColor = RGB(51, 51, 51);
+    nameLabel.font = [UIFont systemFontOfSize:18];
+    nameLabel.text = self.teacherZaiXianDetailsModel.name;
+    [self.contentView addSubview:nameLabel];
+    
+    UILabel *numLabel = [[UILabel alloc] initWithFrame:CGRectMake(APP_WIDTH - 100, 30, 90, 20)];
+    numLabel.textColor = RGB(170, 170, 170);
+    numLabel.font = [UIFont systemFontOfSize:12];
+    numLabel.text = self.teacherZaiXianDetailsModel.name;
+    if (self.teacherZaiXianDetailsModel.view > 9999) {
+        CGFloat num = self.teacherZaiXianDetailsModel.view / 10000;
+        numLabel.text = [NSString stringWithFormat:@"播放数:%.1f", num];
+    } else {
+        numLabel.text = [NSString stringWithFormat:@"播放数:%ld", self.teacherZaiXianDetailsModel.view];
+    }
+    numLabel.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:numLabel];
+    
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(20, headImgView.frame.size.height + 20, APP_WIDTH - 40, 1)];
+    lineView.backgroundColor = RGB(238, 238, 238);
+    [self.contentView addSubview:lineView];
+    
+    UILabel *typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, headImgView.frame.size.height + 30, 200, 20)];
+    typeLabel.textAlignment = NSTextAlignmentLeft;
+    typeLabel.text = @"内容简介";
+    typeLabel.textColor = RGB(51, 51, 51);
+    typeLabel.font = [UIFont systemFontOfSize:15];
+    [self.contentView addSubview:typeLabel];
+    
+   UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, headImgView.frame.size.height + typeLabel.frame.size.height + 40, APP_WIDTH - 40, 100)];
+    NSString *labelStr = self.teacherZaiXianDetailsModel.content;
+    CGSize labelSize = {0, 0};
+    labelSize = [labelStr sizeWithFont:[UIFont systemFontOfSize:12]
+                     constrainedToSize:CGSizeMake(200.0, 5000)
+                         lineBreakMode:NSLineBreakByWordWrapping];
+    contentLabel.numberOfLines = 0;//表示label可以多行显示
+    contentLabel.lineBreakMode = NSLineBreakByWordWrapping;//换行模式，与上面的计算保持一致。
+    contentLabel.frame = CGRectMake(contentLabel.frame.origin.x, contentLabel.frame.origin.y, contentLabel.frame.size.width, labelSize.height);//保持原来Label的位置和宽度，只是改变高度。
+    contentLabel.textColor = RGB(102, 102, 102);
+    contentLabel.text = labelStr;
+    contentLabel.font = [UIFont systemFontOfSize:12];
+    contentLabel.isTop = YES;
+    [self.contentView addSubview:contentLabel];
+    
+    
+}
+
 
 - (void)createUI {
     NSArray *titleArray = [NSArray arrayWithObjects:@"视频介绍",@"相关推荐", nil];
@@ -186,12 +248,12 @@
 }
 
 #pragma mark - getter
-- (JohnTopTitleView *)titleView {
-    if (!_titleView) {
-        _titleView = [[JohnTopTitleView alloc]initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, self.view.frame.size.height)];
-    }
-    return _titleView;
-}
+//- (JohnTopTitleView *)titleView {
+//    if (!_titleView) {
+//        _titleView = [[JohnTopTitleView alloc]initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, self.view.frame.size.height)];
+//    }
+//    return _titleView;
+//}
 
 -(void)viewDidDisappear:(BOOL)animated {
     [_playerView destroyPlayer];

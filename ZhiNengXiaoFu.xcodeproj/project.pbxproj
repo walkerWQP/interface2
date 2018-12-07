@@ -322,6 +322,16 @@
 		CD4E2D6E216DDA01008F1DA2 /* HomePageJingJiView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E2D69216DDA00008F1DA2 /* HomePageJingJiView.m */; };
 		CD4E2D74216DDA3B008F1DA2 /* PGIndexBannerSubiew.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E2D70216DDA3B008F1DA2 /* PGIndexBannerSubiew.m */; };
 		CD4E2D75216DDA3B008F1DA2 /* NewPagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E2D71216DDA3B008F1DA2 /* NewPagedFlowView.m */; };
+		CD815F6421B8C78E00738C87 /* CWUploadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CD815F5C21B8C78E00738C87 /* CWUploadTask.m */; };
+		CD815F6521B8C78E00738C87 /* CWFileStreamSeparation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD815F5E21B8C78E00738C87 /* CWFileStreamSeparation.m */; };
+		CD815F6621B8C78E00738C87 /* CWFileUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD815F6121B8C78E00738C87 /* CWFileUploadManager.m */; };
+		CD815F6721B8C78E00738C87 /* CWUploadTask+CheckInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD815F6221B8C78E00738C87 /* CWUploadTask+CheckInfo.m */; };
+		CD815F6A21B8C7FD00738C87 /* CWFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD815F6921B8C7FD00738C87 /* CWFileManager.m */; };
+		CD815F6D21B9094700738C87 /* ManagementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD815F6C21B9094700738C87 /* ManagementModel.m */; };
+		CD815F7021B90B0300738C87 /* ManagementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD815F6F21B90B0300738C87 /* ManagementCell.m */; };
+		CD815F7521B9210D00738C87 /* ZPFProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = CD815F7321B9210C00738C87 /* ZPFProcess.m */; };
+		CD81E21821B7B1FC002D0396 /* ManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD81E21721B7B1FC002D0396 /* ManagementViewController.m */; };
+		CD81E21B21B7B2D5002D0396 /* ReleasedVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD81E21A21B7B2D5002D0396 /* ReleasedVideoViewController.m */; };
 		CD93D03E219AA3BD00327AD6 /* UIView+Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = CD93D03A219AA3BD00327AD6 /* UIView+Banner.m */; };
 		CD93D03F219AA3BD00327AD6 /* HW3DBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD93D03D219AA3BD00327AD6 /* HW3DBannerView.m */; };
 		CD9C16BE216EED920094E897 /* TongZhiNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9C16BD216EED920094E897 /* TongZhiNewCell.m */; };
@@ -334,6 +344,23 @@
 		CDA1DCB521AB8AED000460DE /* InformationCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1DCB421AB8AED000460DE /* InformationCollectionController.m */; };
 		CDB5309121AD169C00EDD372 /* InformationCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB5309021AD169C00EDD372 /* InformationCollectionModel.m */; };
 		CDB5309521AD1E2F00EDD372 /* TakePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB5309321AD1E2E00EDD372 /* TakePhoto.m */; };
+		CDB7C37921B4CFF300616C6A /* GSFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7C36C21B4CFF200616C6A /* GSFilterCell.m */; };
+		CDB7C37A21B4CFF300616C6A /* GSFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7C37021B4CFF200616C6A /* GSFilterView.m */; };
+		CDB7C37B21B4CFF300616C6A /* SelectBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7C37221B4CFF200616C6A /* SelectBtn.m */; };
+		CDB7C37C21B4CFF300616C6A /* DKFilterSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7C37521B4CFF200616C6A /* DKFilterSectionHeaderView.m */; };
+		CDB7C37D21B4CFF300616C6A /* ModelBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7C37621B4CFF200616C6A /* ModelBtn.m */; };
+		CDB7C37E21B4CFF300616C6A /* DKFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7C37721B4CFF200616C6A /* DKFilterModel.m */; };
+		CDB7C38121B5164E00616C6A /* GradeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7C38021B5164E00616C6A /* GradeModel.m */; };
+		CDB7C38421B517AF00616C6A /* TypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7C38321B517AF00616C6A /* TypeModel.m */; };
+		CDB7C38721B51F8000616C6A /* TeacherOnlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7C38621B51F7F00616C6A /* TeacherOnlineCell.m */; };
+		CDB7C38A21B5236A00616C6A /* TeacherOnlineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7C38921B5236A00616C6A /* TeacherOnlineModel.m */; };
+		CDB832F221AE6E560058AF10 /* TeacherOnlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB832F121AE6E560058AF10 /* TeacherOnlineViewController.m */; };
+		CDB8512D21B11DFB00A8E9D5 /* STPickerDate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB8512921B11DFA00A8E9D5 /* STPickerDate.m */; };
+		CDB8512E21B11DFB00A8E9D5 /* NSCalendar+ST.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB8512A21B11DFA00A8E9D5 /* NSCalendar+ST.m */; };
+		CDB8513721B11EA900A8E9D5 /* STConst.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB8513221B11EA900A8E9D5 /* STConst.m */; };
+		CDB8513821B11EA900A8E9D5 /* STUI.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB8513421B11EA900A8E9D5 /* STUI.m */; };
+		CDB8513921B11EA900A8E9D5 /* UIView+ST.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB8513621B11EA900A8E9D5 /* UIView+ST.m */; };
+		CDB8513C21B11EE900A8E9D5 /* STToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB8513B21B11EE900A8E9D5 /* STToolbar.m */; };
 		CDF2967E216DE9C800D87410 /* HomePageTongZhiView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF2967D216DE9C800D87410 /* HomePageTongZhiView.m */; };
 		CDF29681216E08A100D87410 /* SchoolTongTaiMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF29680216E08A100D87410 /* SchoolTongTaiMoreCell.m */; };
 /* End PBXBuildFile section */
@@ -969,6 +996,26 @@
 		CD4E2D71216DDA3B008F1DA2 /* NewPagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPagedFlowView.m; sourceTree = "<group>"; };
 		CD4E2D72216DDA3B008F1DA2 /* PGIndexBannerSubiew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGIndexBannerSubiew.h; sourceTree = "<group>"; };
 		CD4E2D73216DDA3B008F1DA2 /* NewPagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPagedFlowView.h; sourceTree = "<group>"; };
+		CD815F5C21B8C78E00738C87 /* CWUploadTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWUploadTask.m; sourceTree = "<group>"; };
+		CD815F5D21B8C78E00738C87 /* CWFileUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWFileUploadManager.h; sourceTree = "<group>"; };
+		CD815F5E21B8C78E00738C87 /* CWFileStreamSeparation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWFileStreamSeparation.m; sourceTree = "<group>"; };
+		CD815F5F21B8C78E00738C87 /* CWUploadTask+CheckInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CWUploadTask+CheckInfo.h"; sourceTree = "<group>"; };
+		CD815F6021B8C78E00738C87 /* CWUploadTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWUploadTask.h; sourceTree = "<group>"; };
+		CD815F6121B8C78E00738C87 /* CWFileUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWFileUploadManager.m; sourceTree = "<group>"; };
+		CD815F6221B8C78E00738C87 /* CWUploadTask+CheckInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CWUploadTask+CheckInfo.m"; sourceTree = "<group>"; };
+		CD815F6321B8C78E00738C87 /* CWFileStreamSeparation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWFileStreamSeparation.h; sourceTree = "<group>"; };
+		CD815F6821B8C7FD00738C87 /* CWFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWFileManager.h; sourceTree = "<group>"; };
+		CD815F6921B8C7FD00738C87 /* CWFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWFileManager.m; sourceTree = "<group>"; };
+		CD815F6B21B9094700738C87 /* ManagementModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagementModel.h; sourceTree = "<group>"; };
+		CD815F6C21B9094700738C87 /* ManagementModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManagementModel.m; sourceTree = "<group>"; };
+		CD815F6E21B90B0300738C87 /* ManagementCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagementCell.h; sourceTree = "<group>"; };
+		CD815F6F21B90B0300738C87 /* ManagementCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManagementCell.m; sourceTree = "<group>"; };
+		CD815F7321B9210C00738C87 /* ZPFProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPFProcess.m; sourceTree = "<group>"; };
+		CD815F7421B9210D00738C87 /* ZPFProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPFProcess.h; sourceTree = "<group>"; };
+		CD81E21621B7B1FC002D0396 /* ManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagementViewController.h; sourceTree = "<group>"; };
+		CD81E21721B7B1FC002D0396 /* ManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManagementViewController.m; sourceTree = "<group>"; };
+		CD81E21921B7B2D5002D0396 /* ReleasedVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReleasedVideoViewController.h; sourceTree = "<group>"; };
+		CD81E21A21B7B2D5002D0396 /* ReleasedVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReleasedVideoViewController.m; sourceTree = "<group>"; };
 		CD93D03A219AA3BD00327AD6 /* UIView+Banner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Banner.m"; sourceTree = "<group>"; };
 		CD93D03B219AA3BD00327AD6 /* UIView+Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Banner.h"; sourceTree = "<group>"; };
 		CD93D03C219AA3BD00327AD6 /* HW3DBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HW3DBannerView.h; sourceTree = "<group>"; };
@@ -992,6 +1039,42 @@
 		CDB5309021AD169C00EDD372 /* InformationCollectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InformationCollectionModel.m; sourceTree = "<group>"; };
 		CDB5309321AD1E2E00EDD372 /* TakePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakePhoto.m; sourceTree = "<group>"; };
 		CDB5309421AD1E2F00EDD372 /* TakePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakePhoto.h; sourceTree = "<group>"; };
+		CDB7C36C21B4CFF200616C6A /* GSFilterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSFilterCell.m; sourceTree = "<group>"; };
+		CDB7C36D21B4CFF200616C6A /* DKFilterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKFilterModel.h; sourceTree = "<group>"; };
+		CDB7C36E21B4CFF200616C6A /* ModelBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelBtn.h; sourceTree = "<group>"; };
+		CDB7C36F21B4CFF200616C6A /* DKFilterSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKFilterSectionHeaderView.h; sourceTree = "<group>"; };
+		CDB7C37021B4CFF200616C6A /* GSFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSFilterView.m; sourceTree = "<group>"; };
+		CDB7C37121B4CFF200616C6A /* GSMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSMacros.h; sourceTree = "<group>"; };
+		CDB7C37221B4CFF200616C6A /* SelectBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectBtn.m; sourceTree = "<group>"; };
+		CDB7C37321B4CFF200616C6A /* GSFilterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSFilterCell.h; sourceTree = "<group>"; };
+		CDB7C37421B4CFF200616C6A /* GSFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSFilterView.h; sourceTree = "<group>"; };
+		CDB7C37521B4CFF200616C6A /* DKFilterSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKFilterSectionHeaderView.m; sourceTree = "<group>"; };
+		CDB7C37621B4CFF200616C6A /* ModelBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelBtn.m; sourceTree = "<group>"; };
+		CDB7C37721B4CFF200616C6A /* DKFilterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKFilterModel.m; sourceTree = "<group>"; };
+		CDB7C37821B4CFF200616C6A /* SelectBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectBtn.h; sourceTree = "<group>"; };
+		CDB7C37F21B5164E00616C6A /* GradeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GradeModel.h; sourceTree = "<group>"; };
+		CDB7C38021B5164E00616C6A /* GradeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GradeModel.m; sourceTree = "<group>"; };
+		CDB7C38221B517AF00616C6A /* TypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeModel.h; sourceTree = "<group>"; };
+		CDB7C38321B517AF00616C6A /* TypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeModel.m; sourceTree = "<group>"; };
+		CDB7C38521B51F7F00616C6A /* TeacherOnlineCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherOnlineCell.h; sourceTree = "<group>"; };
+		CDB7C38621B51F7F00616C6A /* TeacherOnlineCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherOnlineCell.m; sourceTree = "<group>"; };
+		CDB7C38821B5236A00616C6A /* TeacherOnlineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherOnlineModel.h; sourceTree = "<group>"; };
+		CDB7C38921B5236A00616C6A /* TeacherOnlineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherOnlineModel.m; sourceTree = "<group>"; };
+		CDB832F021AE6E560058AF10 /* TeacherOnlineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeacherOnlineViewController.h; sourceTree = "<group>"; };
+		CDB832F121AE6E560058AF10 /* TeacherOnlineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeacherOnlineViewController.m; sourceTree = "<group>"; };
+		CDB8512921B11DFA00A8E9D5 /* STPickerDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPickerDate.m; sourceTree = "<group>"; };
+		CDB8512A21B11DFA00A8E9D5 /* NSCalendar+ST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+ST.m"; sourceTree = "<group>"; };
+		CDB8512B21B11DFA00A8E9D5 /* STPickerDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPickerDate.h; sourceTree = "<group>"; };
+		CDB8512C21B11DFB00A8E9D5 /* NSCalendar+ST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+ST.h"; sourceTree = "<group>"; };
+		CDB8513021B11EA900A8E9D5 /* STConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STConfig.h; sourceTree = "<group>"; };
+		CDB8513121B11EA900A8E9D5 /* STUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STUI.h; sourceTree = "<group>"; };
+		CDB8513221B11EA900A8E9D5 /* STConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STConst.m; sourceTree = "<group>"; };
+		CDB8513321B11EA900A8E9D5 /* UIView+ST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ST.h"; sourceTree = "<group>"; };
+		CDB8513421B11EA900A8E9D5 /* STUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STUI.m; sourceTree = "<group>"; };
+		CDB8513521B11EA900A8E9D5 /* STConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STConst.h; sourceTree = "<group>"; };
+		CDB8513621B11EA900A8E9D5 /* UIView+ST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ST.m"; sourceTree = "<group>"; };
+		CDB8513A21B11EE900A8E9D5 /* STToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STToolbar.h; sourceTree = "<group>"; };
+		CDB8513B21B11EE900A8E9D5 /* STToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STToolbar.m; sourceTree = "<group>"; };
 		CDF2967C216DE9C800D87410 /* HomePageTongZhiView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageTongZhiView.h; sourceTree = "<group>"; };
 		CDF2967D216DE9C800D87410 /* HomePageTongZhiView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageTongZhiView.m; sourceTree = "<group>"; };
 		CDF2967F216E08A100D87410 /* SchoolTongTaiMoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolTongTaiMoreCell.h; sourceTree = "<group>"; };
@@ -1168,6 +1251,8 @@
 				0432F2C02123C96900E78FB4 /* TeacherZaiXianTotalViewController.m */,
 				0413D692210EA53A00CB34A6 /* TeacherZaiXianViewController.h */,
 				0413D693210EA53A00CB34A6 /* TeacherZaiXianViewController.m */,
+				CDB832F021AE6E560058AF10 /* TeacherOnlineViewController.h */,
+				CDB832F121AE6E560058AF10 /* TeacherOnlineViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1177,6 +1262,12 @@
 			children = (
 				0409A43D21197C9C004A9DB6 /* TeacherZaiXianModel.h */,
 				0409A43E21197C9C004A9DB6 /* TeacherZaiXianModel.m */,
+				CDB7C37F21B5164E00616C6A /* GradeModel.h */,
+				CDB7C38021B5164E00616C6A /* GradeModel.m */,
+				CDB7C38221B517AF00616C6A /* TypeModel.h */,
+				CDB7C38321B517AF00616C6A /* TypeModel.m */,
+				CDB7C38821B5236A00616C6A /* TeacherOnlineModel.h */,
+				CDB7C38921B5236A00616C6A /* TeacherOnlineModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1191,6 +1282,8 @@
 				0432F2C52123F99800E78FB4 /* TeacherListNCell.h */,
 				0432F2C62123F99800E78FB4 /* TeacherListNCell.m */,
 				0432F2C72123F99800E78FB4 /* TeacherListNCell.xib */,
+				CDB7C38521B51F7F00616C6A /* TeacherOnlineCell.h */,
+				CDB7C38621B51F7F00616C6A /* TeacherOnlineCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2242,6 +2335,13 @@
 		043F391021016F8C00115A55 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				CDB8512F21B11EA900A8E9D5 /* STConfig */,
+				CD815F7421B9210D00738C87 /* ZPFProcess.h */,
+				CD815F7321B9210C00738C87 /* ZPFProcess.m */,
+				CDB8512C21B11DFB00A8E9D5 /* NSCalendar+ST.h */,
+				CDB8512A21B11DFA00A8E9D5 /* NSCalendar+ST.m */,
+				CDB8512B21B11DFA00A8E9D5 /* STPickerDate.h */,
+				CDB8512921B11DFA00A8E9D5 /* STPickerDate.m */,
 				98E33E6E2117E2800098C241 /* HZQDatePickerView.h */,
 				98E33E6D2117E2800098C241 /* HZQDatePickerView.m */,
 				98E33E6C2117E27F0098C241 /* HZQDatePickerView.xib */,
@@ -2272,6 +2372,8 @@
 		043F391121016F8C00115A55 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				CD815F5B21B8C78E00738C87 /* CWUploadFile */,
+				CDB7C36B21B4CFF200616C6A /* GSFilterView */,
 				CDB5309221AD1E1A00EDD372 /* 拍照 */,
 				989B604C216F284300DDCC7B /* 轮播图 */,
 				CD4E2D6F216DDA3B008F1DA2 /* NewPagedFlowView */,
@@ -2714,6 +2816,7 @@
 		981395882105E61E00CDE2BA /* Mine(我) */ = {
 			isa = PBXGroup;
 			children = (
+				CD81E21221B7B199002D0396 /* 视频管理 */,
 				981395892105E61E00CDE2BA /* Controller */,
 				9813958C2105E61E00CDE2BA /* Model */,
 				9813958D2105E61E00CDE2BA /* View */,
@@ -3389,6 +3492,62 @@
 			path = NewPagedFlowView;
 			sourceTree = "<group>";
 		};
+		CD815F5B21B8C78E00738C87 /* CWUploadFile */ = {
+			isa = PBXGroup;
+			children = (
+				CD815F6821B8C7FD00738C87 /* CWFileManager.h */,
+				CD815F6921B8C7FD00738C87 /* CWFileManager.m */,
+				CD815F5C21B8C78E00738C87 /* CWUploadTask.m */,
+				CD815F5D21B8C78E00738C87 /* CWFileUploadManager.h */,
+				CD815F5E21B8C78E00738C87 /* CWFileStreamSeparation.m */,
+				CD815F5F21B8C78E00738C87 /* CWUploadTask+CheckInfo.h */,
+				CD815F6021B8C78E00738C87 /* CWUploadTask.h */,
+				CD815F6121B8C78E00738C87 /* CWFileUploadManager.m */,
+				CD815F6221B8C78E00738C87 /* CWUploadTask+CheckInfo.m */,
+				CD815F6321B8C78E00738C87 /* CWFileStreamSeparation.h */,
+			);
+			path = CWUploadFile;
+			sourceTree = "<group>";
+		};
+		CD81E21221B7B199002D0396 /* 视频管理 */ = {
+			isa = PBXGroup;
+			children = (
+				CD81E21521B7B1C0002D0396 /* Controller */,
+				CD81E21421B7B1B3002D0396 /* View */,
+				CD81E21321B7B1A5002D0396 /* Model */,
+			);
+			path = "视频管理";
+			sourceTree = "<group>";
+		};
+		CD81E21321B7B1A5002D0396 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD815F6B21B9094700738C87 /* ManagementModel.h */,
+				CD815F6C21B9094700738C87 /* ManagementModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CD81E21421B7B1B3002D0396 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CD815F6E21B90B0300738C87 /* ManagementCell.h */,
+				CD815F6F21B90B0300738C87 /* ManagementCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CD81E21521B7B1C0002D0396 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CD81E21621B7B1FC002D0396 /* ManagementViewController.h */,
+				CD81E21721B7B1FC002D0396 /* ManagementViewController.m */,
+				CD81E21921B7B2D5002D0396 /* ReleasedVideoViewController.h */,
+				CD81E21A21B7B2D5002D0396 /* ReleasedVideoViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		CDB5309221AD1E1A00EDD372 /* 拍照 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3396,6 +3555,42 @@
 				CDB5309321AD1E2E00EDD372 /* TakePhoto.m */,
 			);
 			path = "拍照";
+			sourceTree = "<group>";
+		};
+		CDB7C36B21B4CFF200616C6A /* GSFilterView */ = {
+			isa = PBXGroup;
+			children = (
+				CDB7C36C21B4CFF200616C6A /* GSFilterCell.m */,
+				CDB7C36D21B4CFF200616C6A /* DKFilterModel.h */,
+				CDB7C36E21B4CFF200616C6A /* ModelBtn.h */,
+				CDB7C36F21B4CFF200616C6A /* DKFilterSectionHeaderView.h */,
+				CDB7C37021B4CFF200616C6A /* GSFilterView.m */,
+				CDB7C37121B4CFF200616C6A /* GSMacros.h */,
+				CDB7C37221B4CFF200616C6A /* SelectBtn.m */,
+				CDB7C37321B4CFF200616C6A /* GSFilterCell.h */,
+				CDB7C37421B4CFF200616C6A /* GSFilterView.h */,
+				CDB7C37521B4CFF200616C6A /* DKFilterSectionHeaderView.m */,
+				CDB7C37621B4CFF200616C6A /* ModelBtn.m */,
+				CDB7C37721B4CFF200616C6A /* DKFilterModel.m */,
+				CDB7C37821B4CFF200616C6A /* SelectBtn.h */,
+			);
+			path = GSFilterView;
+			sourceTree = "<group>";
+		};
+		CDB8512F21B11EA900A8E9D5 /* STConfig */ = {
+			isa = PBXGroup;
+			children = (
+				CDB8513A21B11EE900A8E9D5 /* STToolbar.h */,
+				CDB8513B21B11EE900A8E9D5 /* STToolbar.m */,
+				CDB8513021B11EA900A8E9D5 /* STConfig.h */,
+				CDB8513121B11EA900A8E9D5 /* STUI.h */,
+				CDB8513221B11EA900A8E9D5 /* STConst.m */,
+				CDB8513321B11EA900A8E9D5 /* UIView+ST.h */,
+				CDB8513421B11EA900A8E9D5 /* STUI.m */,
+				CDB8513521B11EA900A8E9D5 /* STConst.h */,
+				CDB8513621B11EA900A8E9D5 /* UIView+ST.m */,
+			);
+			path = STConfig;
 			sourceTree = "<group>";
 		};
 		EBEBC5C2152B8D055D4D320E /* Pods */ = {
@@ -3631,10 +3826,12 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ZhiNengXiaoFu/Pods-ZhiNengXiaoFu-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework",
+				"${BUILT_PRODUCTS_DIR}/HappyDNS/HappyDNS.framework",
 				"${BUILT_PRODUCTS_DIR}/LTScrollView/LTScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/Qiniu/Qiniu.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/WebViewJavascriptBridge/WebViewJavascriptBridge.framework",
@@ -3644,10 +3841,12 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlocksKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HappyDNS.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Qiniu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebViewJavascriptBridge.framework",
@@ -3701,6 +3900,7 @@
 				9883A1C621217E0400E5BB07 /* ChangeActivitiesViewController.m in Sources */,
 				0428109F2108070F00E2CA14 /* PersonIconCell.m in Sources */,
 				041482DE2117D8F300C2AED2 /* LeaveListModel.m in Sources */,
+				CD815F6721B8C78E00738C87 /* CWUploadTask+CheckInfo.m in Sources */,
 				98AD7EBB210F11BD00641231 /* HomeWorkViewController.m in Sources */,
 				CDB5309521AD1E2F00EDD372 /* TakePhoto.m in Sources */,
 				987209A7211ECEB3009D235D /* YBRectConst.m in Sources */,
@@ -3729,6 +3929,7 @@
 				042DFB702138F14700EDD989 /* StudentJiuQinModel.m in Sources */,
 				0409A42A2119754C004A9DB6 /* MImaCell.m in Sources */,
 				98AD7EAC210F11BD00641231 /* UploadVideoViewController.m in Sources */,
+				CD815F6621B8C78E00738C87 /* CWFileUploadManager.m in Sources */,
 				9883A1CF2121A0A100E5BB07 /* ToSchoolSituationViewController.m in Sources */,
 				043F38E421016DB600115A55 /* ZhiNengXiaoFu.xcdatamodeld in Sources */,
 				98AD7EBA210F11BD00641231 /* JobManagementViewController.m in Sources */,
@@ -3780,6 +3981,7 @@
 				042895DA212E988F00044E0B /* WeiLanListCell.m in Sources */,
 				98D89DEF21103C8E00355626 /* SingletonHelper.m in Sources */,
 				98AD7EC7210F11BD00641231 /* TeacherNotifiedCell.m in Sources */,
+				CDB7C38A21B5236A00616C6A /* TeacherOnlineModel.m in Sources */,
 				0409A41F2119754C004A9DB6 /* LQImgPickerActionSheet.m in Sources */,
 				0413D6B7210F05A000CB34A6 /* ChildJiaoYuViewController.m in Sources */,
 				04F6956B211C40E600F9D2E2 /* UITabBarController+CLPlayerRotation.m in Sources */,
@@ -3795,6 +3997,7 @@
 				989B6053216F285200DDCC7B /* DCCycleScrollViewCell.m in Sources */,
 				98F0C7EA214F9DAC009AEE15 /* NewDynamicsTableViewCell.m in Sources */,
 				047FB224211435E400AED26D /* SchoolDongTaiModel.m in Sources */,
+				CDB8513721B11EA900A8E9D5 /* STConst.m in Sources */,
 				0409A4232119754C004A9DB6 /* SDDemoItemView.m in Sources */,
 				98AD7EC3210F11BD00641231 /* TeacherNotifiedViewController.m in Sources */,
 				98AD7EB3210F11BD00641231 /* LaunchEventViewController.m in Sources */,
@@ -3827,10 +4030,12 @@
 				042AA44D211D58EA00E3AACB /* UIView+XXYViewFrame.m in Sources */,
 				042810A32108070F00E2CA14 /* QianDaoPsersonCell.m in Sources */,
 				CD4E2D75216DDA3B008F1DA2 /* NewPagedFlowView.m in Sources */,
+				CD815F6D21B9094700738C87 /* ManagementModel.m in Sources */,
 				0413D6B4210F04F000CB34A6 /* ParentXueTangViewController.m in Sources */,
 				989BFE0121081493007A69A5 /* BaseViewController.m in Sources */,
 				CD9C16C2216EFFF40094E897 /* WorkNewCell.m in Sources */,
 				0471BED42122B4D000E7E22B /* KeChengJieShaonCell.m in Sources */,
+				CD815F7521B9210D00738C87 /* ZPFProcess.m in Sources */,
 				98B6B6D02106B7BB00146DFD /* MyInformationCell.m in Sources */,
 				CD4E2D6A216DDA01008F1DA2 /* SchoolDongTaiCell.m in Sources */,
 				0413D6AA210EEAE200CB34A6 /* KeChengJieShaoCell.m in Sources */,
@@ -3853,16 +4058,19 @@
 				04AB4DAC211855260070E548 /* QianDaoInModel.m in Sources */,
 				98E33E8221181D200098C241 /* LeaveTheDetailsViewController.m in Sources */,
 				0471BECB212267F200E7E22B /* UIView+Frame.m in Sources */,
+				CDB7C38121B5164E00616C6A /* GradeModel.m in Sources */,
 				98E33E732117E2D90098C241 /* UIColor+HexString.m in Sources */,
 				CD9C16BE216EED920094E897 /* TongZhiNewCell.m in Sources */,
 				98F0C7D7214F9C7D009AEE15 /* SDWeiXinPhotoContainerView.m in Sources */,
 				98AD7EC0210F11BD00641231 /* HomeItemCell.m in Sources */,
+				CD815F6421B8C78E00738C87 /* CWUploadTask.m in Sources */,
 				98ADABC4210B034200491AD5 /* HomeworkCell.m in Sources */,
 				98AD7EB9210F11BD00641231 /* PublishJobViewController.m in Sources */,
 				98A26352212BA57E0080EFA4 /* NewGuidelinesViewController.m in Sources */,
 				04F69569211C40E600F9D2E2 /* CLSlider.m in Sources */,
 				98AD7EB6210F11BD00641231 /* OngoingViewController.m in Sources */,
 				0413D6AD210EF9C800CB34A6 /* ShiPinListCell.m in Sources */,
+				CDB8513921B11EA900A8E9D5 /* UIView+ST.m in Sources */,
 				98C01EE72114326B00D625DA /* ClassNoticeViewController.m in Sources */,
 				0409A42D2119754C004A9DB6 /* JJOneScrollView.m in Sources */,
 				CDF2967E216DE9C800D87410 /* HomePageTongZhiView.m in Sources */,
@@ -3881,6 +4089,7 @@
 				9883A1C0212119D700E5BB07 /* JurisdictionMethod.m in Sources */,
 				045A94F72112E41D00030E56 /* IQKeyboardManager.m in Sources */,
 				042AA44E211D58EA00E3AACB /* XXYActionSheetView.m in Sources */,
+				CDB8512D21B11DFB00A8E9D5 /* STPickerDate.m in Sources */,
 				98AD7ECA210F163000641231 /* TheClassInformationViewController.m in Sources */,
 				045A94FD2112E41D00030E56 /* IQUIViewController+Additions.m in Sources */,
 				98F0C7D3214F9C4F009AEE15 /* YYPhotoGroupView.m in Sources */,
@@ -3893,11 +4102,18 @@
 				98F0C7C6214F9B70009AEE15 /* DynamicsModel.m in Sources */,
 				042AA440211D2ED800E3AACB /* ParentXueTangDetailsViewController.m in Sources */,
 				CD4E2D6E216DDA01008F1DA2 /* HomePageJingJiView.m in Sources */,
+				CD81E21821B7B1FC002D0396 /* ManagementViewController.m in Sources */,
+				CDB8513821B11EA900A8E9D5 /* STUI.m in Sources */,
 				04D04538213633BA0066D3AC /* JiuQinGuanLiViewController.m in Sources */,
 				98C01EED21144F9200D625DA /* HomeWorkModel.m in Sources */,
 				0409A42C2119754C004A9DB6 /* MGroupCell.m in Sources */,
+				CDB8513C21B11EE900A8E9D5 /* STToolbar.m in Sources */,
 				0428109C2108070F00E2CA14 /* MinePersonXiXinCell.m in Sources */,
+				CDB7C37E21B4CFF300616C6A /* DKFilterModel.m in Sources */,
+				CD815F6521B8C78E00738C87 /* CWFileStreamSeparation.m in Sources */,
+				CDB7C37A21B4CFF300616C6A /* GSFilterView.m in Sources */,
 				CDB5309121AD169C00EDD372 /* InformationCollectionModel.m in Sources */,
+				CD815F6A21B8C7FD00738C87 /* CWFileManager.m in Sources */,
 				047FB2132113E5F000AED26D /* WorkDetailsModel.m in Sources */,
 				04F30FB6214F4D7700013189 /* HomePageNumberModel.m in Sources */,
 				989BFE1C21088DA2007A69A5 /* JohnTopTitleView.m in Sources */,
@@ -3909,6 +4125,7 @@
 				98A49434211578B8002A4C97 /* SchoolDynamicModel.m in Sources */,
 				98E33E792117F9D40098C241 /* OffTheListViewController.m in Sources */,
 				0471BEC8212266D400E7E22B /* UIImage+Extension.m in Sources */,
+				CDB7C37B21B4CFF300616C6A /* SelectBtn.m in Sources */,
 				0428109D2108070F00E2CA14 /* PersonInfomationViewController.m in Sources */,
 				989BFE1521088D4B007A69A5 /* HomeWorkPViewController.m in Sources */,
 				989822BF211B029500D547C0 /* OngoingModel.m in Sources */,
@@ -3926,10 +4143,13 @@
 				0428109E2108070F00E2CA14 /* PersonInfomationCell.m in Sources */,
 				98AD7EAA210F11BD00641231 /* DidNotReturnCell.m in Sources */,
 				0415B341212D39BC00A17D1D /* WeiLanViewController.m in Sources */,
+				CDB7C37C21B4CFF300616C6A /* DKFilterSectionHeaderView.m in Sources */,
+				CD81E21B21B7B2D5002D0396 /* ReleasedVideoViewController.m in Sources */,
 				CD4E2D61216DD9C0008F1DA2 /* HomePageJViewController.m in Sources */,
 				045A94F22112E41D00030E56 /* IQToolbar.m in Sources */,
 				042810A52108070F00E2CA14 /* HomePageViewController.m in Sources */,
 				042810972108070F00E2CA14 /* LeaveListItemCell.m in Sources */,
+				CDB832F221AE6E560058AF10 /* TeacherOnlineViewController.m in Sources */,
 				98D89E0721105CC000355626 /* HuoDongWeiKaiShiViewController.m in Sources */,
 				0429F60C210C696A00C32957 /* SchoolTongZhiViewController.m in Sources */,
 				CD9C16CE216F3AD20094E897 /* ParentXueTangNewViewController.m in Sources */,
@@ -3937,12 +4157,15 @@
 				0471BEC52122642E00E7E22B /* TheGuideViewController.m in Sources */,
 				042810932108070F00E2CA14 /* ClassInformationViewController.m in Sources */,
 				983CD9692111B7210050508C /* TongZhiDetailsModel.m in Sources */,
+				CDB7C38721B51F8000616C6A /* TeacherOnlineCell.m in Sources */,
 				04324DC12105A6C7003789D7 /* LoginHomePageViewController.m in Sources */,
+				CDB7C37D21B4CFF300616C6A /* ModelBtn.m in Sources */,
 				0409A42F2119754C004A9DB6 /* JJPhotoManeger.m in Sources */,
 				04D0453F2136728A0066D3AC /* JiuQinItemCell.m in Sources */,
 				98E33E7F2117FEF00098C241 /* OffTheListModel.m in Sources */,
 				045A94F32112E41D00030E56 /* IQTitleBarButtonItem.m in Sources */,
 				98D89E0521105CC000355626 /* HuoDongIngViewController.m in Sources */,
+				CD815F7021B90B0300738C87 /* ManagementCell.m in Sources */,
 				98AD7EB5210F11BD00641231 /* IsAboutToBeginViewController.m in Sources */,
 				0413D697210EAE9400CB34A6 /* TeacherZhuanLanCell.m in Sources */,
 				04251B9421153EE50090CD3C /* YiHuiFuViewController.m in Sources */,
@@ -3952,10 +4175,13 @@
 				98AD7EB0210F11BD00641231 /* GrowthAlbumViewController.m in Sources */,
 				98D89DBE2110058600355626 /* NotToViewController.m in Sources */,
 				989BFE1921088D6C007A69A5 /* SchoolDongTaiViewController.m in Sources */,
+				CDB7C37921B4CFF300616C6A /* GSFilterCell.m in Sources */,
 				0429F60B210C696A00C32957 /* TeacherTongZhiViewController.m in Sources */,
 				043F38DB21016DB600115A55 /* AppDelegate.m in Sources */,
+				CDB7C38421B517AF00616C6A /* TypeModel.m in Sources */,
 				045A95012113079800030E56 /* WorkModel.m in Sources */,
 				04F6956E211C40E600F9D2E2 /* CLPlayerView.m in Sources */,
+				CDB8512E21B11DFB00A8E9D5 /* NSCalendar+ST.m in Sources */,
 				989B603D216EFEAB00DDCC7B /* HomeBannerModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4044,6 +4270,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -4102,6 +4329,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -4128,7 +4356,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_ENTITLEMENTS = ZhiNengXiaoFu/ZhiNengXiaoFu.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Henan Duxiu Technology Co., Ltd. (NBZT2UT4S6)";
 				CODE_SIGN_STYLE = Manual;
@@ -4164,7 +4392,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_ENTITLEMENTS = ZhiNengXiaoFu/ZhiNengXiaoFu.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Henan Duxiu Technology Co., Ltd. (NBZT2UT4S6)";
 				CODE_SIGN_STYLE = Manual;
@@ -4197,6 +4425,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NBZT2UT4S6;
 				INFOPLIST_FILE = ZhiNengXiaoFuTests/Info.plist;
@@ -4216,6 +4445,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NBZT2UT4S6;
 				INFOPLIST_FILE = ZhiNengXiaoFuTests/Info.plist;
@@ -4234,7 +4464,9 @@
 		043F390C21016DB800115A55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ZhiNengXiaoFuUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4251,7 +4483,9 @@
 		043F390D21016DB800115A55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ZhiNengXiaoFuUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

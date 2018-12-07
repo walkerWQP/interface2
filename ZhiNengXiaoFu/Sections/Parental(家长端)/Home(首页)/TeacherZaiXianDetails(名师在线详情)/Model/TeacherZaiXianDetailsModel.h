@@ -18,4 +18,7 @@
 @property (nonatomic, copy) NSString         *content;
 @property (nonatomic, strong) NSMutableArray *label;
 @property (nonatomic, assign) NSInteger      t_id;
+@property (nonatomic, copy) NSString         *head_img;
+@property (nonatomic, assign) NSInteger      view;
+
 @end

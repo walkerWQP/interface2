@@ -330,13 +330,15 @@
                     }
                     
                     self.personInfoModel = [PersonInformationModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
-                    
+                    NSString *location_openStr = [NSString stringWithFormat:@"%ld",self.personInfoModel.location_open];
+                    [[NSUserDefaults standardUserDefaults] setObject:location_openStr forKey:@"location_openStr"];
                     //存储学生和家长信息
                     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.personInfoModel];
                     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
                     [user setObject:data forKey:@"personInfo"];
                     //同步到本地
                     [user synchronize];
+                    
                     
                     NSString *keyDic = [NSString stringWithFormat:@"%ld:%@:%@:%@", self.personInfoModel.school_id, self.personInfoModel.ID, chooseLoginState, self.personInfoModel.token];
                     NSString *key = [[SingletonHelper manager] encode:keyDic];

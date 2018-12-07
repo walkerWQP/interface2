@@ -29,6 +29,9 @@
 #import "SchoolDongTaiDetailsViewController.h"
 #import "WenTiZiXunViewController.h"
 #import <JPUSHService.h>
+#import "TeacherOnlineViewController.h"
+#import "HomePageNumberModel.h"
+
 @interface HomePageJViewController ()<NewPagedFlowViewDelegate, NewPagedFlowViewDataSource, UITableViewDelegate, UITableViewDataSource, HomePageJingJiViewDelegate, DCCycleScrollViewDelegate>
 
 @property (nonatomic, strong) NSString           *schoolName;
@@ -48,10 +51,18 @@
 @property (nonatomic, strong) HomePageTongZhiView *ccspView;
 @property (nonatomic, strong) UIImageView         *tongZhiImg;
 @property (nonatomic, strong) UIView              *FiveView;
+@property (nonatomic, strong) NSMutableArray      *numberAry;
 
 @end
 
 @implementation HomePageJViewController
+
+- (NSMutableArray *)numberAry {
+    if (!_numberAry) {
+        self.numberAry = [@[]mutableCopy];
+    }
+    return _numberAry;
+}
 
 - (NSMutableArray *)imgArr {
     if (!_imgArr) {
@@ -79,6 +90,10 @@
         _workAry = [NSMutableArray array];
     }
     return _workAry;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self huoQuNumber];
 }
 
 - (void)viewDidLoad {
@@ -169,7 +184,53 @@
     }];
 }
 
-
+- (void)huoQuNumber {
+    NSDictionary * dic = @{@"key":[UserManager key]};
+    [[HttpRequestManager sharedSingleton] POST:UserGetUnreadNumber parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        HomePageNumberModel * model = [HomePageNumberModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
+        NSString * activity = [[NSString alloc] init];
+        if (model.activity > 9) {
+            activity = @"9+";
+        } else {
+            activity = [NSString stringWithFormat:@"%ld", model.activity];
+        }
+        
+        NSString * consult = [[NSString alloc] init];
+        if (model.consult > 9) {
+            consult = @"9+";
+        } else {
+            consult = [NSString stringWithFormat:@"%ld", model.consult];
+        }
+        
+        NSString * dynamic = [[NSString alloc] init];
+        if (model.dynamic > 9) {
+            dynamic = @"9+";
+        } else {
+            dynamic = [NSString stringWithFormat:@"%ld", model.dynamic];
+        }
+        
+        NSString * homework = [[NSString alloc] init];
+        if (model.homework > 9) {
+            homework = @"9+";
+        } else {
+            homework = [NSString stringWithFormat:@"%ld", model.homework];
+        }
+        
+        NSString * notice = [[NSString alloc] init];
+        if (model.notice > 9) {
+            notice = @"9+";
+        } else {
+            notice = [NSString stringWithFormat:@"%ld", model.notice];
+        }
+        
+        self.numberAry = [NSMutableArray arrayWithObjects:notice,homework,@"0",@"0",@"0",consult,activity,dynamic,@"0" ,nil];
+        
+        [self.HomePageJTabelView reloadData];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", error);
+        
+    }];
+}
 
 
 - (void)unObserveAllNotifications {
@@ -697,7 +758,7 @@
     switch (sender.tag) {
         case 0:
         {
-            TeacherZaiXianTotalViewController * teacherZaiXianVC = [[TeacherZaiXianTotalViewController alloc] init];
+            TeacherOnlineViewController *teacherZaiXianVC = [[TeacherOnlineViewController alloc] init];
             [self.navigationController pushViewController:teacherZaiXianVC animated:YES];
         }
             break;

@@ -56,7 +56,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"信息管理";
+    self.title = @"更换学生头像";
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
@@ -87,7 +87,8 @@
 - (void)getClassConditionURLData:(NSString *)type {
     NSDictionary *dic = @{@"key":[UserManager key],@"class_id":self.classID,@"type":type};
     [[HttpRequestManager sharedSingleton] POST:GetStudentListURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+        //结束头部刷新
+        [self.informationCollectionCollectionView.mj_header endRefreshing];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             self.informationCollectionArr = [InformationCollectionModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"] ];
             if (self.informationCollectionArr.count == 0) {
@@ -96,7 +97,6 @@
                 self.zanwushuju.alpha = 0;
                 [self.informationCollectionCollectionView reloadData];
             }
-//            [self.informationCollectionCollectionView reloadData];
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -105,9 +105,7 @@
             }
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
         }
-        //结束头部刷新
-        [self.informationCollectionCollectionView.mj_header endRefreshing];
-        [self.informationCollectionCollectionView.mj_footer endRefreshing];
+        
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -118,7 +116,7 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    self.informationCollectionCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH) collectionViewLayout:layout];
+    self.informationCollectionCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT) collectionViewLayout:layout];
     self.informationCollectionCollectionView.backgroundColor = backColor;
     self.informationCollectionCollectionView.delegate = self;
     self.informationCollectionCollectionView.dataSource = self;
@@ -166,60 +164,55 @@
 
 //点击响应方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"点击");
     
-    
-    
-    if (self.informationCollectionArr.count > 0) {
-        InformationCollectionModel *model = [self.informationCollectionArr objectAtIndex:indexPath.row];
-        NSLog(@"%@",model.name);
-        self.studentID = model.ID;
-        if (![self.studentID isEqualToString:@""] || self.studentID != nil) {
-            [TakePhoto sharePictureWith:self andWith:^(UIImage *image) {
-                NSDictionary * params = @{@"key":[UserManager key],@"upload_type":@"img", @"upload_img_type":@"head_img",@"student_id":self.studentID};
-                [WProgressHUD showHUDShowText:@"加载中..."];
-                [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-                    NSData  *imageData = UIImageJPEGRepresentation(image,1);
-                    float length = [imageData length]/1000;
-                    
-                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                    formatter.dateFormat = @"yyyyMMddHHmmss";
-                    NSString *str = [formatter stringFromDate:[NSDate date]];
-                    NSString *imageFileName = [NSString stringWithFormat:@"%@.jpeg", str];
-                    
-                    if (length > 1280) {
-                        NSData *fData = UIImageJPEGRepresentation(image, 0.5);
-                        [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file"] fileName:imageFileName mimeType:@"image/jpeg"];
-                    } else {
-                        [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file"] fileName:imageFileName mimeType:@"image/jpeg"];
-                    }
-                } progress:^(NSProgress * _Nonnull uploadProgress) {
-                } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                    
-                    if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
-                        [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
-                        [WProgressHUD hideAllHUDAnimated:YES];
-                        [self loadNewTopic];
-                    } else {
-                        if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
-                            [UserManager logoOut];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
+        [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
+    } else {
+        if (self.informationCollectionArr.count > 0) {
+            InformationCollectionModel *model = [self.informationCollectionArr objectAtIndex:indexPath.row];
+            self.studentID = model.ID;
+            if (![self.studentID isEqualToString:@""] || self.studentID != nil) {
+                [TakePhoto sharePictureWith:self andWith:^(UIImage *image) {
+                    NSDictionary * params = @{@"key":[UserManager key],@"upload_type":@"img", @"upload_img_type":@"head_img",@"student_id":self.studentID};
+                    [WProgressHUD showHUDShowText:@"加载中..."];
+                    [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                        NSData  *imageData = UIImageJPEGRepresentation(image,1);
+                        float length = [imageData length]/1000;
+                        
+                        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                        formatter.dateFormat = @"yyyyMMddHHmmss";
+                        NSString *str = [formatter stringFromDate:[NSDate date]];
+                        NSString *imageFileName = [NSString stringWithFormat:@"%@.jpeg", str];
+                        if (length > 1280) {
+                            NSData *fData = UIImageJPEGRepresentation(image, 0.5);
+                            [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file"] fileName:imageFileName mimeType:@"image/jpeg"];
                         } else {
+                            [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file"] fileName:imageFileName mimeType:@"image/jpeg"];
                         }
-                        [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-                    }
-                    
-                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                    NSLog(@"%@", error);
-                    [WProgressHUD hideAllHUDAnimated:YES];
+                    } progress:^(NSProgress * _Nonnull uploadProgress) {
+                    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                        
+                        if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
+                            [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
+                            [WProgressHUD hideAllHUDAnimated:YES];
+                            [self loadNewTopic];
+                        } else {
+                            if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
+                                [UserManager logoOut];
+                            } else {
+                            }
+                            [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
+                        }
+                        
+                    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                        NSLog(@"%@", error);
+                        [WProgressHUD hideAllHUDAnimated:YES];
+                    }];
                 }];
-            }];
+            }
         }
-        
     }
 }
-
-
-
 
 
 - (void)getClassURLDataForClassID {
@@ -236,11 +229,7 @@
             } else {
                 [WPopupMenu showRelyOnView:self.rightBtn titles:ary icons:nil menuWidth:140 delegate:self];
             }
-//            if (self.publishJobArr.count == 0) {
-//                [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
-//            } else {
-//
-//            }
+
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];

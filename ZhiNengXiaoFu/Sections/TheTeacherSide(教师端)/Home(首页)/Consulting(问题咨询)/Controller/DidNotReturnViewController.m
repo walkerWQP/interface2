@@ -139,8 +139,8 @@
         cell.problemLabel.text = [NSString stringWithFormat:@"%@%@问:", model.class_name ,model.student_name];
         cell.problemContentLabel.text = model.question;
         cell.problemContentLabel.isTop = YES;
-        self.typeID = indexPath.row;
-        [cell.answerBtn addTarget:self action:@selector(answerBtn:) forControlEvents:UIControlEventTouchUpInside];
+        UIButton *deviceImageButton = cell.answerBtn;
+        [deviceImageButton addTarget:self action:@selector(answerBtn:) forControlEvents:UIControlEventTouchUpInside];
         gridcell = cell;
     }
     return gridcell;
@@ -148,8 +148,11 @@
 
 - (void)answerBtn : (UIButton *)sender {
     NSLog(@"点击回答咨询");
+    UIView *v = [sender superview];//获取父类view
+    DidNotReturnCell *cell = (DidNotReturnCell *)[v superview];//获取cell
+    NSIndexPath *indexpath = [self.didNotReturnCollectionView indexPathForCell:cell];//获取cell对应的indexpath;
     if (self.didNotReturnArr.count != 0) {
-        ConsultListModel *model = [self.didNotReturnArr objectAtIndex:self.typeID];
+        ConsultListModel *model = [self.didNotReturnArr objectAtIndex:indexpath.row];
         ReplyViewController *replyVC = [[ReplyViewController alloc] init];
         if (model.ID == nil) {
             [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];

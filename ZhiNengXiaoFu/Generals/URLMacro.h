@@ -285,3 +285,21 @@
 
 //班主任获取班级学生列表
 #define GetStudentListURL [NSString stringWithFormat:@"%@index/user/get_student_list",YUMING]
+
+//上传的教师头像
+#define EditTimgURL [NSString stringWithFormat:@"%@",@"http://admin.duxiukeji.com/index.php/s_a/edit_timg/e_img"]
+
+//根据阶段获取年级、科目列表
+#define GetTypeListURL [NSString stringWithFormat:@"%@index/online/get_type_list",YUMING]
+
+//获取名师在线视频列表
+#define VideoListURL [NSString stringWithFormat:@"%@index/online/video_list_by_type1",YUMING]
+
+//获取七牛云上传token
+#define GetQiniuTokenURL [NSString stringWithFormat:@"%@index/qiniu/get_qiniu_token",YUMING]
+
+//教师发布名师在线视频
+#define OnlineUploadURL [NSString stringWithFormat:@"%@index/online/online_upload",YUMING]
+
+//教师查看自己发布的名师在线视频
+#define MyUploadURL [NSString stringWithFormat:@"%@index/online/my_upload",YUMING]
