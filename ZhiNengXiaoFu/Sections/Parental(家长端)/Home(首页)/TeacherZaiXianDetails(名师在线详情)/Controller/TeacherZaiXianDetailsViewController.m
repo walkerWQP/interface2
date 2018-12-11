@@ -17,6 +17,9 @@
 
 @interface TeacherZaiXianDetailsViewController ()
 
+
+@property (nonatomic, strong) SelVideoPlayer            *player;
+
 @property (nonatomic,weak) CLPlayerView                 *playerView;
 @property (nonatomic,strong) JohnTopTitleView           *titleView;
 @property (nonatomic,strong) TeacherZaiXianDetailsModel * teacherZaiXianDetailsModel;
@@ -111,47 +114,24 @@
 }
 
 - (void)setBoFang {
-    CLPlayerView *playerView = [[CLPlayerView alloc] initWithFrame:CGRectMake(0, 0, self.view.CLwidth, 200)];
     
-    _playerView = playerView;
-    [self.view addSubview:_playerView];
+    if ([[UIDevice currentDevice].systemVersion floatValue] > 7.0) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    SelPlayerConfiguration *configuration = [[SelPlayerConfiguration alloc]init];
+    configuration.shouldAutoPlay = YES;
+    configuration.supportedDoubleTap = YES;
+    configuration.shouldAutorotate = YES;
+    configuration.repeatPlay = YES;
+    configuration.statusBarHideState = SelStatusBarHideStateFollowControls;
+    configuration.sourceUrl = [NSURL URLWithString:self.teacherZaiXianDetailsModel.video_url];
+    configuration.videoGravity = SelVideoGravityResizeAspect;
     
-    //    //重复播放，默认不播放
-         _playerView.repeatPlay = YES;
-    //    //当前控制器是否支持旋转，当前页面支持旋转的时候需要设置，告知播放器
-    _playerView.isLandscape = YES;
-    //    //设置等比例全屏拉伸，多余部分会被剪切
-    //    _playerView.fillMode = ResizeAspectFill;
-    //    //设置进度条背景颜色
-    //    _playerView.progressBackgroundColor = [UIColor purpleColor];
-    //    //设置进度条缓冲颜色
-    //    _playerView.progressBufferColor = [UIColor redColor];
-    //    //设置进度条播放完成颜色
-    //    _playerView.progressPlayFinishColor = [UIColor greenColor];
-    //    //全屏是否隐藏状态栏
-    //    _playerView.fullStatusBarHidden = NO;
-    //    //是否静音，默认NO
-    //    _playerView.mute = YES;
-    //    //转子颜色
-    //    _playerView.strokeColor = [UIColor redColor];
-    //视频地址
-    //     _playerView.url = [NSURL URLWithString:@"http://c31.aipai.com/user/128/31977128/1006/card/44340096/card.mp4?l=f&ip=1"];
-    _playerView.url = [NSURL URLWithString:self.teacherZaiXianDetailsModel.video_url];
-    //播放
-    [_playerView playVideo];
-    //返回按钮点击事件回调
-    [_playerView backButton:^(UIButton *button) {
-        NSLog(@"返回按钮被点击");
-        //查询是否是全屏状态
-        NSLog(@"%d",_playerView.isFullScreen);
-    }];
-    //播放完成回调
-    [_playerView endPlay:^{
-        //销毁播放器
-        //        [_playerView destroyPlayer];
-        //        _playerView = nil;
-        NSLog(@"播放完成");
-    }];
+    CGFloat width = self.view.frame.size.width;
+    _player = [[SelVideoPlayer alloc]initWithFrame:CGRectMake(0, 0, width, 200) configuration:configuration];
+    [self.view addSubview:_player];
+    
+
 }
 
 #pragma mark -- 需要设置全局支持旋转方向，然后重写下面三个方法可以让当前页面支持多个方向
@@ -188,7 +168,7 @@
     nameLabel.text = self.teacherZaiXianDetailsModel.name;
     [self.contentView addSubview:nameLabel];
     
-    UILabel *numLabel = [[UILabel alloc] initWithFrame:CGRectMake(APP_WIDTH - 100, 30, 90, 20)];
+    UILabel *numLabel = [[UILabel alloc] initWithFrame:CGRectMake(APP_WIDTH - 120, 10, 100, 20)];
     numLabel.textColor = RGB(170, 170, 170);
     numLabel.font = [UIFont systemFontOfSize:12];
     numLabel.text = self.teacherZaiXianDetailsModel.name;
@@ -200,6 +180,16 @@
     }
     numLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:numLabel];
+    
+    UILabel *dataLabel = [[UILabel alloc] initWithFrame:CGRectMake(APP_WIDTH - 170, 40, 150, 20)];
+    dataLabel.textColor = RGB(170, 170, 170);
+    dataLabel.font = [UIFont systemFontOfSize:12];
+    dataLabel.text = self.teacherZaiXianDetailsModel.name;
+    dataLabel.text = [NSString stringWithFormat:@"发布日期:%@", self.teacherZaiXianDetailsModel.create_time];
+    dataLabel.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:dataLabel];
+    
+    
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(20, headImgView.frame.size.height + 20, APP_WIDTH - 40, 1)];
     lineView.backgroundColor = RGB(238, 238, 238);
@@ -228,6 +218,7 @@
     [self.contentView addSubview:contentLabel];
     
     
+    
 }
 
 
@@ -248,16 +239,18 @@
 }
 
 #pragma mark - getter
-//- (JohnTopTitleView *)titleView {
-//    if (!_titleView) {
-//        _titleView = [[JohnTopTitleView alloc]initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, self.view.frame.size.height)];
-//    }
-//    return _titleView;
-//}
+- (JohnTopTitleView *)titleView {
+    if (!_titleView) {
+        _titleView = [[JohnTopTitleView alloc]initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, self.view.frame.size.height)];
+    }
+    return _titleView;
+}
 
 -(void)viewDidDisappear:(BOOL)animated {
     [_playerView destroyPlayer];
     _playerView = nil;
+    [super viewDidDisappear:animated];
+    [_player _deallocPlayer];
 }
 
 - (void)didReceiveMemoryWarning {

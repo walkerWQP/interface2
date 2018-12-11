@@ -8,15 +8,17 @@
 
 #import "LeaveRequestViewController.h"
 
-@interface LeaveRequestViewController ()<UITextViewDelegate, HZQDatePickerViewDelegate>
-{
-    HZQDatePickerView *_pikerView;
-}
+@interface LeaveRequestViewController ()<UITextViewDelegate>
 
-@property (nonatomic, strong) UILabel    *chooseStart;
-@property (nonatomic, strong) UILabel    *chooseEnd;
-@property (nonatomic, strong) UILabel    *leaveSeason;
-@property (nonatomic, strong) UITextView *leaveSeasonTextView;
+
+@property (nonatomic, strong) UILabel          *chooseStart;
+@property (nonatomic, strong) UILabel          *chooseEnd;
+@property (nonatomic, strong) UILabel          *leaveSeason;
+@property (nonatomic, strong) UITextView       *leaveSeasonTextView;
+@property (nonatomic, strong) STPickerDate     *beginDatePicker;
+@property (nonatomic, strong) STPickerDate     *endDatePicker;
+@property (nonatomic, assign) NSInteger        typeID;
+
 
 @end
 
@@ -119,44 +121,29 @@
 //选择开始时间
 - (void)chooseStartTap:(UITapGestureRecognizer *)sender {
     [self.view endEditing:YES];
-    [self setupDateView:DateTypeOfStart];
+    self.typeID = 0;
+    self.beginDatePicker = [[STPickerDate alloc]initWithDelegate:self];
+    [self.beginDatePicker show];
 }
 
 //选择结束时间
 - (void)chooseEndTap:(UITapGestureRecognizer *)sender {
     [self.view endEditing:YES];
-    [self setupDateView:DateTypeOfEnd];
+    self.typeID = 1;
+    self.endDatePicker = [[STPickerDate alloc]initWithDelegate:self];
+    [self.beginDatePicker show];
 }
 
-- (void)setupDateView:(DateType)type {
-    
-    _pikerView = [HZQDatePickerView instanceDatePickerView];
-    _pikerView.frame = CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT + 20);
-    [_pikerView setBackgroundColor:[UIColor clearColor]];
-    _pikerView.delegate = self;
-    _pikerView.type = type;
-    // 今天开始往后的日期
-//    [_pikerView.datePickerView setMinimumDate:[NSDate date]];
-    // 在今天之前的日期
-    [_pikerView.datePickerView setMaximumDate:[NSDate date]];
-    [self.view addSubview:_pikerView];
-    
-}
-
-- (void)getSelectDate:(NSString *)date type:(DateType)type {
-    
-    switch (type) {
-        case DateTypeOfStart:
-           self.chooseStart.text = date;
-            break;
-            
-        case DateTypeOfEnd:
-            self.chooseEnd.text = date;
-            break;
-            
-        default:
-            break;
+- (void)pickerDate:(STPickerDate *)pickerDate year:(NSInteger)year month:(NSInteger)month day:(NSInteger)day {
+    NSString *text = [NSString stringWithFormat:@"%ld-%ld-%ld", year, month, day];
+    NSLog(@"%ld",self.typeID);
+    if (self.typeID == 0) {
+        self.chooseStart.text = text;
     }
+    if (self.typeID == 1) {
+        self.chooseEnd.text = text;
+    }
+    
 }
 
 #pragma mark - UITextViewDelegate

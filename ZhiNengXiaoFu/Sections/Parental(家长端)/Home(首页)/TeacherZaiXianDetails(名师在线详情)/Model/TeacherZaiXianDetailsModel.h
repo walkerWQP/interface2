@@ -20,5 +20,6 @@
 @property (nonatomic, assign) NSInteger      t_id;
 @property (nonatomic, copy) NSString         *head_img;
 @property (nonatomic, assign) NSInteger      view;
+@property (nonatomic, strong) NSString       *create_time;
 
 @end

@@ -103,7 +103,7 @@
     self.teacherOnlineTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.teacherOnlineTableView registerClass:[TeacherOnlineCell class] forCellReuseIdentifier:@"TeacherOnlineCellId"];
     
-    self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 300, 105, 111)];
+    self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 350, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
     [self.view addSubview:self.zanwushuju];
@@ -165,7 +165,10 @@
 //根据阶段获取年级、科目列表
 - (void)GetTypeListURLData:(NSString *)stage {
     NSDictionary *dic = @{@"key":[UserManager key], @"stage":stage};
+    [WProgressHUD showHUDShowText:@"数据加载中..."];
     [[HttpRequestManager sharedSingleton] POST:GetTypeListURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        [WProgressHUD hideAllHUDAnimated:YES];
+//        [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             [self.gradeArr1 removeAllObjects];
             [self.typeArr1 removeAllObjects];

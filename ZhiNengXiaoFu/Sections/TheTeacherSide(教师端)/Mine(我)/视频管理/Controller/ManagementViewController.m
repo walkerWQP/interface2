@@ -10,7 +10,7 @@
 #import "ReleasedVideoViewController.h"
 #import "ManagementModel.h"
 #import "ManagementCell.h"
-
+#import "TeacherZaiXianDetailsViewController.h"
 
 @interface ManagementViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -80,7 +80,7 @@
 //删除视频
 - (void)DeleteVideoData:(NSString *)videoID {
     NSDictionary *dic = @{@"key":[UserManager key],@"id":videoID};
-    [[HttpRequestManager sharedSingleton] POST:workDeleteHomeWork parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpRequestManager sharedSingleton] POST:DeleteUploadURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             
             [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
@@ -114,7 +114,6 @@
             }
             if (self.managementArr.count == 0) {
                 self.zanwushuju.alpha = 1;
-                //                [self.homeWorkTableView reloadData];
             } else {
                 self.zanwushuju.alpha = 0;
                 [self.managementTableView reloadData];
@@ -140,18 +139,12 @@
         self.managementTableView.backgroundColor = backColor;
         self.managementTableView.delegate = self;
         self.managementTableView.dataSource = self;
-        self.managementTableView.estimatedRowHeight = 0;
-        self.managementTableView.estimatedSectionHeaderHeight = 0;
-        self.managementTableView.estimatedSectionFooterHeight = 0;
     }
     return _managementTableView;
 }
 
 //侧滑允许编辑cell
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        return NO;
-    }
     return YES;
 }
 
@@ -160,7 +153,6 @@
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     //添加一个删除按钮
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        NSLog(@"点击删除");
         
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
             [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
@@ -249,6 +241,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    TeacherZaiXianDetailsViewController *teacherZaiXianDetailsVC = [TeacherZaiXianDetailsViewController new];
+    if (self.managementArr.count != 0) {
+        ManagementModel *model = [self.managementArr objectAtIndex:indexPath.row];
+        teacherZaiXianDetailsVC.teacherZaiXianDetailsId = model.ID;
+        [self.navigationController pushViewController:teacherZaiXianDetailsVC animated:YES];
+    }
+    
     
 }
 

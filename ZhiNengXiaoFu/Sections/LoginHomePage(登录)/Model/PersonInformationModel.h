@@ -48,5 +48,7 @@
 @property (nonatomic, copy) NSString         *key;
 //学校是否开启定位服务0否1是
 @property (nonatomic, assign) NSInteger      location_open;
+//定位url
+@property (nonatomic, strong) NSString       *location_url;
 
 @end

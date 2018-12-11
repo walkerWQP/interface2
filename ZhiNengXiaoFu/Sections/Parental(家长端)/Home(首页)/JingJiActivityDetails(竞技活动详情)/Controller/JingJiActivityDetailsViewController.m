@@ -11,7 +11,7 @@
 #import "JingJiHuoDongListModel.h"
 #import "ChangeActivitiesViewController.h"
 #import <WebKit/WebKit.h>
-#import "UIView+XXYViewFrame.h"
+//#import "UIView+XXYViewFrame.h"
 
 @interface JingJiActivityDetailsViewController ()<UITableViewDelegate, UITableViewDataSource,WKUIDelegate,WKNavigationDelegate>
 

@@ -10,6 +10,7 @@
 
 @interface QianDaoViewController : UIViewController
 
-@property (nonatomic, copy) NSString * studentId;
+@property (nonatomic, copy) NSString    *studentId;
+@property (nonatomic, strong) NSString  *typeID;
 
 @end

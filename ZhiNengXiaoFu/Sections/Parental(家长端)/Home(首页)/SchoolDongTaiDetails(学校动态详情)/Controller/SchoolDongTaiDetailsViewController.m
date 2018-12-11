@@ -10,7 +10,7 @@
 #import "TongZhiDetailsCell.h"
 #import "WorkDetailsModel.h"
 #import <WebKit/WebKit.h>
-#import "UIView+XXYViewFrame.h"
+//#import "UIView+XXYViewFrame.h"
 
 @interface SchoolDongTaiDetailsViewController ()<UITableViewDelegate, UITableViewDataSource,WKUIDelegate,WKNavigationDelegate>
 

@@ -40,8 +40,11 @@
 @property (nonatomic, strong) NSString       *classNameID;
 @property (nonatomic, strong) NSMutableArray *gradeArr; //年级
 @property (nonatomic, strong) NSString       *gradeID;
-@property (nonatomic, strong) ZPFProcess     *processView;
 @property (nonatomic, strong) UIImageView    *thumbnailImgView;
+@property (nonatomic, strong) UIButton       *delegateBtn;
+
+@property (nonatomic, strong) JhDownProgressView *progressView;
+@property (nonatomic, strong) JhDownProgressView *proress;
 
 
 @end
@@ -194,10 +197,33 @@
     self.thumbnailImgView.layer.cornerRadius  = 5;
     [self.videoView addSubview:self.thumbnailImgView];
     
+    self.delegateBtn = [[UIButton alloc] initWithFrame:CGRectMake(160, 0, 30, 30)];
+    [self.delegateBtn setBackgroundImage:[UIImage imageNamed:@"删除"] forState:UIControlStateNormal];
+    self.delegateBtn.layer.masksToBounds = YES;
+    self.delegateBtn.layer.cornerRadius  = 15;
+    [self.delegateBtn addTarget:self action:@selector(delegateBtnSelector:) forControlEvents:UIControlEventTouchUpInside];
+    self.delegateBtn.hidden = YES;
+    [self.videoView addSubview:self.delegateBtn];
+    
+    _proress = [JhDownProgressView showWithStyle:JhStyle_percentAndText];
+    [self.view addSubview:_proress];
+    _progressView = _proress;
+    _progressView.hidden = YES;
+    _proress.hidden      = YES;
 }
 
-- (void)thumbnailBtnSelector:(UIButton *)sender {
-    NSLog(@"点击缩略图");
+- (void)delegateBtnSelector:(UIButton *)sender {
+    NSLog(@"点击删除");
+    if (self.thumbnailImgStr != nil && self.qiniuKey != nil) {
+        [self.thumbnailImgView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@""]];
+        self.thumbnailImgView.backgroundColor = [UIColor clearColor];
+        self.thumbnailImgStr = nil;
+        self.qiniuKey        = nil;
+        self.delegateBtn.hidden = YES;
+        [WProgressHUD showSuccessfulAnimatedText:@"删除成功, 请重新选择"];
+    } else {
+        [WProgressHUD showErrorAnimatedText:@"暂无视频可选择"];
+    }
 }
 
 - (void)upVideoBtnSelector:(UIButton *)sender {
@@ -241,7 +267,7 @@
             [[[UIApplication sharedApplication] keyWindow] addSubview:vi];
         }
     } else {
-        [WProgressHUD showErrorAnimatedText:@"请选择教育程度"];
+        [WProgressHUD showErrorAnimatedText:@"请选择年级"];
     }
 }
 
@@ -314,6 +340,7 @@
             [[HttpRequestManager sharedSingleton] POST:OnlineUploadURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
                 if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
                     [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
+                    [self.navigationController popViewControllerAnimated:YES];
                 } else {
                     if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                         [UserManager logoOut];
@@ -446,10 +473,11 @@
 //            [WProgressHUD hideAllHUDAnimated:YES];
             NSArray *arr = [[responseObject objectForKey:@"data"] objectForKey:@"url"];
             self.thumbnailImgStr = arr[0];
-            NSLog(@"bbbbbbbbbbbbbb%@",self.thumbnailImgStr);
             NSString *str = [NSString stringWithFormat:@"%@%@",YUMING,self.thumbnailImgStr];
-            NSLog(@"aaaaaaaaaaaaaaaaaa%@",str);
             [self.thumbnailImgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"tu"]];
+            self.delegateBtn.hidden = NO;
+            [self uploadImageToQNFilePath:self.sandboxPathStr];
+            
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -466,16 +494,22 @@
 
 
 
-
-
-
-
 - (void)uploadImageToQNFilePath:(NSString *)filePath {
+    _progressView.hidden = NO;
+    _proress.hidden     = NO;
     QNUploadManager *upManager = [[QNUploadManager alloc] init];
+//    [WProgressHUD showHUDShowText:@"视频上传中..."];
     QNUploadOption *uploadOption = [[QNUploadOption alloc] initWithMime:nil progressHandler:^(NSString *key, float percent) {
-        NSLog(@"percent == %.2f", percent);
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.processView.process = percent;
+            NSLog(@"percent == %.2f", percent);
+            
+            self.progressView.progress += percent;
+            if (percent >= 1) {
+                NSLog(@"下载完成");
+                _progressView.hidden = YES;
+                _proress.hidden     = YES;
+            }
         });
         
     } params:nil checkCrc:NO cancellationSignal:nil];
@@ -488,6 +522,8 @@
     NSString *keyStr = [NSString stringWithFormat:@"online/video/%@%@.mp4",timeString,randomNumber];
     
     [upManager putFile:filePath key:keyStr token:self.token complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+//        [WProgressHUD showSuccessfulAnimatedText:@"上传成功"];
+//        [WProgressHUD hideAllHUDAnimated:YES];
         NSLog(@"info ===== %@", info);
         NSLog(@"resp ===== %@", resp);
         NSLog(@"%@",[resp objectForKey:@"key"]);
@@ -496,6 +532,8 @@
     }
      option:uploadOption];
 }
+
+
 
 #pragma mark - 当用户取消时，调用该方法
 
@@ -530,7 +568,7 @@
         self.sandboxPathStr = sandboxPath;
         UIImage *img = [self getScreenShotImageFromVideoPath:self.sandboxPathStr];
         [self postImgForVideo:img];
-        [self uploadImageToQNFilePath:self.sandboxPathStr];
+        
         
     }
     

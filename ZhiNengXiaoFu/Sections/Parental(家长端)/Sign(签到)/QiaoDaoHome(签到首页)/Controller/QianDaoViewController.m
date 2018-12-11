@@ -40,6 +40,7 @@
     [super viewDidLoad];
     self.title = @"进出安全";
     NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"location_openStr"]);
+    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"location_urlStr"]);
     //游客登陆判断
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
         
@@ -47,12 +48,16 @@
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] isEqualToString:@"2"] && [[[NSUserDefaults standardUserDefaults] objectForKey:@"location_openStr"] isEqualToString:@"0"]) {
             
         } else {
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dingwei"] style:UIBarButtonItemStyleDone target:self action:@selector(dingweiClick:)];
-            self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+            
+            if ([self.typeID isEqualToString:@"1"]) {
+            
+            } else {
+                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dingwei"] style:UIBarButtonItemStyleDone target:self action:@selector(dingweiClick:)];
+                self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+            }
+ 
         }
     }
-    
-    
     
     [self.view addSubview:self.QianDaoTableView];
         
@@ -65,8 +70,6 @@
     self.zanwushuju.alpha = 0;
     [self.QianDaoTableView addSubview:self.zanwushuju];
     
-    
-   
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -276,8 +279,19 @@
 }
 
 - (void)dingweiClick:(UIBarButtonItem *)sender {
-    DingWeiViewController *VC = [[DingWeiViewController alloc] init];
-    [self.navigationController pushViewController:VC animated:YES]; }
+//    DingWeiViewController *VC = [[DingWeiViewController alloc] init];
+//    [self.navigationController pushViewController:VC animated:YES];
+   
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"location_urlStr"] != nil) {
+        TGWebViewController *web = [[TGWebViewController alloc] init];
+        web.url = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"location_urlStr"]];
+        web.webTitle = @"一山智慧";
+//        web.progressColor = [UIColor blueColor];
+        [self.navigationController pushViewController:web animated:YES];
+    }
+    
+    
+}
 
 - (void)imgTap:(UITapGestureRecognizer *)sender {
     

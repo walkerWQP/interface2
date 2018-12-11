@@ -9,10 +9,8 @@
 #import "LaunchEventViewController.h"
 #import "TeacherNotifiedModel.h"
 #import <Photos/Photos.h>
-@interface LaunchEventViewController ()<UITextFieldDelegate,HZQDatePickerViewDelegate,LQPhotoPickerViewDelegate,PickerViewResultDelegate,UIScrollViewDelegate,STPickerDateDelegate>
-{
-    HZQDatePickerView *_pikerView;
-}
+@interface LaunchEventViewController ()<UITextFieldDelegate,LQPhotoPickerViewDelegate,PickerViewResultDelegate,UIScrollViewDelegate,STPickerDateDelegate>
+
 
 //活动标题
 @property (nonatomic, strong) UILabel          *titleLabel;
@@ -475,35 +473,6 @@
     }];
 }
 
-- (void)getSelectDate:(NSString *)date type:(DateType)type {
-    switch (type) {
-        case DateTypeOfStart:
-            [self.beginTimeBtn setTitle:date forState:UIControlStateNormal];
-            break;
-            
-        case DateTypeOfEnd:
-            [self.endTimeBtn setTitle:date forState:UIControlStateNormal];
-            break;
-            
-        default:
-            break;
-    }
-}
-
-- (void)setupDateView:(DateType)type {
-    
-    _pikerView = [HZQDatePickerView instanceDatePickerView];
-    _pikerView.frame = CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT + 20);
-    [_pikerView setBackgroundColor:[UIColor clearColor]];
-    _pikerView.delegate = self;
-    _pikerView.type = type;
-    // 今天开始往后的日期
-    [_pikerView.datePickerView setMinimumDate:[NSDate date]];
-    // 在今天之前的日期
-//        [_pikerView.datePickerView setMaximumDate:[NSDate date]];
-    [self.view addSubview:_pikerView];
-    
-}
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

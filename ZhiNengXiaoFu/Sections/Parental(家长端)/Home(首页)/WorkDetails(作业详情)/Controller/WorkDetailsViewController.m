@@ -10,7 +10,7 @@
 #import "TongZhiDetailsCell.h"
 #import "TongZhiDetailsModel.h"
 #import <WebKit/WebKit.h>
-#import "UIView+XXYViewFrame.h"
+//#import "UIView+XXYViewFrame.h"
 #import "ChangeViewController.h"
 
 @interface WorkDetailsViewController ()<UITableViewDelegate, UITableViewDataSource,WKUIDelegate,WKNavigationDelegate>

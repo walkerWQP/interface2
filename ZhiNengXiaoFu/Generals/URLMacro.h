@@ -303,3 +303,7 @@
 
 //教师查看自己发布的名师在线视频
 #define MyUploadURL [NSString stringWithFormat:@"%@index/online/my_upload",YUMING]
+
+//教师删除自己发布的名师在线视频
+#define DeleteUploadURL [NSString stringWithFormat:@"%@index/online/delete_upload",YUMING]
+

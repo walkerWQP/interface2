@@ -25,14 +25,12 @@
 #import "Encryption.h"
 #import "SingletonHelper.h"
 #import <MJExtension/MJExtension.h>
-#import "EasyShowView.h"
 #import <WebKit/WebKit.h>
 #import "BusinessDetailController.h"
 #import "UserManager.h"
 #import "IQKeyboardManager.h"
 #import "MJRefresh.h"
 #import "UIColor+HexString.h"
-#import "HZQDatePickerView.h"
 #import "HQPickerView.h"
 #import "LQPhotoPickerViewController.h"
 #import "WProgressHUD.h" //提示效果
@@ -64,7 +62,10 @@
 #import "CWUploadTask.h"
 #import "HappyDNS.h"
 #import "QiniuSDK.h"
-#import "ZPFProcess.h"
+#import "SelVideoPlayer.h"
+#import "SelPlayerConfiguration.h"
+#import "TGWebViewController.h"
+#import "JhDownProgressView.h"
 
 #define kIPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0)
 

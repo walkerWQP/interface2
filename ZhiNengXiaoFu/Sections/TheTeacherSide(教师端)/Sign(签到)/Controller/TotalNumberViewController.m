@@ -168,6 +168,7 @@
                 NSLog(@"逃学");
                 QianDaoViewController *qianDaoVC = [QianDaoViewController new];
                 qianDaoVC.studentId = model.ID;
+                qianDaoVC.typeID    = @"1";
                 [self.navigationController pushViewController:qianDaoVC animated:YES];
             }
                 break;
@@ -176,6 +177,7 @@
                 NSLog(@"签到");
                 QianDaoViewController *qianDaoVC = [QianDaoViewController new];
                 qianDaoVC.studentId = model.ID;
+                qianDaoVC.typeID    = @"1";
                 [self.navigationController pushViewController:qianDaoVC animated:YES];
             }
                 break;

@@ -332,6 +332,10 @@
                     self.personInfoModel = [PersonInformationModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
                     NSString *location_openStr = [NSString stringWithFormat:@"%ld",self.personInfoModel.location_open];
                     [[NSUserDefaults standardUserDefaults] setObject:location_openStr forKey:@"location_openStr"];
+                    NSString *location_urlStr = [NSString stringWithFormat:@"%@",self.personInfoModel.location_url];
+                    [[NSUserDefaults standardUserDefaults] setObject:location_urlStr forKey:@"location_urlStr"];
+                    
+                    
                     //存储学生和家长信息
                     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.personInfoModel];
                     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];

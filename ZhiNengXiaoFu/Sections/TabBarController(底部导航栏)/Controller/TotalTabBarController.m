@@ -8,14 +8,12 @@
 
 #import "TotalTabBarController.h"
 //家长端
-#import "HomePageViewController.h"
 #import "HomePageJViewController.h"
 #import "ClassHomeViewController.h"
 #import "QianDaoViewController.h"
 #import "MineViewController.h"
 #import "ChooseHomeViewController.h"
 //教师端
-#import "HomeViewController.h"
 #import "HomeTViewController.h"
 #import "TheClassInformationViewController.h"
 #import "SignClassViewController.h"

@@ -9,7 +9,6 @@
 #import "NewGuidelinesViewController.h"
 #import "TongZhiDetailsCell.h"
 #import "WorkDetailsModel.h"
-#import "UIView+XXYViewFrame.h"
 #import <WebKit/WebKit.h>
 #import "BannerModel.h"
 
